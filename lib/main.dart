@@ -47,35 +47,35 @@ class FlashApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      // home: const MainHomeScreen(),
-      home: StreamBuilder(
-        stream: ApiService.auth.authStateChanges(),
-        builder: (context, hasAccountSnapshot) {
-          if (hasAccountSnapshot.connectionState == ConnectionState.waiting) {
-            return const SplashScreen();
-          } else if (hasAccountSnapshot.hasData) {
-            return FutureBuilder<DocumentSnapshot>(
-              future: ApiService.firestore
-                  .collection(Constant.userCollection)
-                  .doc(ApiService.user.uid)
-                  .get(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const SplashScreen();
-                } else if (snapshot.hasError) {
-                  return const SplashScreen();
-                } else if (!snapshot.hasData || !snapshot.data!.exists) {
-                  return const AddDetailsScreen();
-                } else {
-                  return const MainHomeScreen();
-                }
-              },
-            );
-          } else {
-            return const LoginScreen();
-          }
-        },
-      ),
+      home: const MainHomeScreen(),
+      // home: StreamBuilder(
+      //   stream: ApiService.auth.authStateChanges(),
+      //   builder: (context, hasAccountSnapshot) {
+      //     if (hasAccountSnapshot.connectionState == ConnectionState.waiting) {
+      //       return const SplashScreen();
+      //     } else if (hasAccountSnapshot.hasData) {
+      //       return FutureBuilder<DocumentSnapshot>(
+      //         future: ApiService.firestore
+      //             .collection(Constant.userCollection)
+      //             .doc(ApiService.user.uid)
+      //             .get(),
+      //         builder: (context, snapshot) {
+      //           if (snapshot.connectionState == ConnectionState.waiting) {
+      //             return const SplashScreen();
+      //           } else if (snapshot.hasError) {
+      //             return const SplashScreen();
+      //           } else if (!snapshot.hasData || !snapshot.data!.exists) {
+      //             return const AddDetailsScreen();
+      //           } else {
+      //             return const MainHomeScreen();
+      //           }
+      //         },
+      //       );
+      //     } else {
+      //       return const LoginScreen();
+      //     }
+      //   },
+      // ),
     );
   }
 }
