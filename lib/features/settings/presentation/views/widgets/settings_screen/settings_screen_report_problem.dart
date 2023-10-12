@@ -1,4 +1,4 @@
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../../../core/constant/style.dart';
 import '../../report_problem_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class SettingsScreenReportProblem extends StatelessWidget {
         ),
       ),
       leading: const Icon(Icons.call_outlined),
-      trailing: const Icon(IconBroken.Arrow___Right_2),
+      trailing: const Icon(IconlyBroken.arrowRight2),
     );
   }
 }

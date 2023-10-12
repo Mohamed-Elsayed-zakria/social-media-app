@@ -1,4 +1,4 @@
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/style.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class ProfileScreenBio extends StatelessWidget {
       child: Row(
         children: [
           const Icon(
-            IconBroken.Info_Circle,
+            IconlyBroken.infoCircle,
             color: AppColors.kPrimaryColor,
           ),
           const SizedBox(width: 8),

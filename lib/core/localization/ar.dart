@@ -114,6 +114,10 @@ const Map<String, String> ar = {
   'write something': 'أكتب شيئا',
   'Download image done': "تم تنزيل الصورة",
   'Download image': "تنزيل الصورة",
+  //=====================comments==================
+  'Delete': 'حذف',
+  "Report": "إبلاغ",
+  "Copy text": "نسخ النص",
 
   //=====================stories==================
   'My status': 'قصصي',
@@ -133,6 +137,7 @@ const Map<String, String> ar = {
 
 //==================='Video'===================
   'Videos': "الفيديوهات",
+  'Reels': 'ريلز',
 
   //===================profile===================
 

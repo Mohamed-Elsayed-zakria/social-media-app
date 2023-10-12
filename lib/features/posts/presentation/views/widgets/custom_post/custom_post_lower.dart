@@ -2,7 +2,7 @@ import '../../../../../../core/api/api_service.dart';
 import '../../../controllers/custom_post_controller.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../data/model/post_model.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter/material.dart';
 import 'likes/show_all_likes.dart';
@@ -40,10 +40,10 @@ class CustomPostLower extends StatelessWidget {
                       },
                       icon: allLikes.contains(ApiService.user.uid)
                           ? const Icon(
-                              IconBroken.Heart,
+                              IconlyBold.heart,
                               color: AppColors.kPrimaryColor,
                             )
-                          : const Icon(IconBroken.Heart),
+                          : const Icon(IconlyBroken.heart),
                     ),
                     InkWell(
                       onTap: () => Get.to(
@@ -62,7 +62,7 @@ class CustomPostLower extends StatelessWidget {
                           postUid: postData.postUid,
                         ),
                       ),
-                      icon: const Icon(IconBroken.More_Square),
+                      icon: const Icon(IconlyBroken.moreSquare),
                     ),
                     Text('$countComments'),
                   ],
@@ -78,7 +78,7 @@ class CustomPostLower extends StatelessWidget {
                     subject: postData.description,
                   );
                 },
-                icon: const Icon(IconBroken.Send),
+                icon: const Icon(IconlyBroken.send),
               ),
             ),
           ],

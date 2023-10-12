@@ -1,7 +1,7 @@
 import 'package:flash/core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 class NoticeScreenNotFound extends StatelessWidget {
   const NoticeScreenNotFound({super.key});
@@ -13,7 +13,7 @@ class NoticeScreenNotFound extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Icon(
-            IconBroken.Notification,
+            IconlyBroken.notification,
             size: 80,
             color: AppColors.kPrimaryColor,
           ),

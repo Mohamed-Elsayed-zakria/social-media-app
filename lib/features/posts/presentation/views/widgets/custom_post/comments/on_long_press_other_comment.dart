@@ -1,23 +1,24 @@
-import '../../../controllers/custom_post_controller.dart';
-import '../../../../../../core/constant/colors.dart';
-import '../../../../../../core/constant/style.dart';
-import 'custom_post_more_bottom_sheet_report.dart';
-import '../../../../data/model/post_model.dart';
+import '../../../../../../../core/constant/colors.dart';
+import '../../../../../../../core/constant/style.dart';
+import '../../../../../data/model/comment_model.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class CustomPostMoreOtherUser extends StatelessWidget {
-  final PostModel postData;
+class OnLongPressOtherComment extends StatelessWidget {
+  final CommentModel commentData;
 
-  const CustomPostMoreOtherUser({
+  const OnLongPressOtherComment({
     super.key,
-    required this.postData,
+    required this.commentData,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       height: 140,
       decoration: const BoxDecoration(
         color: AppColors.kSurfaceColor,
@@ -30,31 +31,30 @@ class CustomPostMoreOtherUser extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ListTile(
-            onTap: () async {
-              await reportThePost(data: postData);
-              Get.back();
-              Get.bottomSheet(const CustomPostMoreBottomSheetReport());
-            },
+            title: Text(
+              "Report".tr,
+              style: const TextStyle(fontSize: AppStyle.kTextStyle18),
+            ),
             leading: const Icon(
               IconlyBroken.infoSquare,
               color: AppColors.kPrimaryColor,
             ),
-            title: Text(
-              "Report the post".tr,
-              style: const TextStyle(fontSize: AppStyle.kTextStyle18),
-            ),
           ),
           ListTile(
-            onTap: () async {
-              await addSavedItems(data: postData);
-              Get.back();
+            onTap: () {
+              Clipboard.setData(ClipboardData(text: commentData.textComment));
+              Fluttertoast.showToast(
+                msg: "The text has been copied".tr,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+              );
             },
             leading: const Icon(
               color: AppColors.kPrimaryColor,
-              IconlyBroken.bookmark,
+              Icons.copy_all_outlined,
             ),
             title: Text(
-              "Save post".tr,
+              "Copy text".tr,
               style: const TextStyle(fontSize: AppStyle.kTextStyle18),
             ),
           ),

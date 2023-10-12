@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../../../../core/constant/colors.dart';
 
 class CommentsNotFount extends StatelessWidget {
@@ -12,7 +12,7 @@ class CommentsNotFount extends StatelessWidget {
         SizedBox(height: 10),
         Icon(
           color: AppColors.kPrimaryColor,
-          IconBroken.Chat,
+          IconlyBroken.chat,
           size: 80,
         ),
         SizedBox(height: 25),

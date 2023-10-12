@@ -80,8 +80,7 @@ Future<void> addUserDataToDatabase({required String username}) async {
 }
 
 class AddDetailsController extends GetxController {
-  uploadImage({required ImageSource source}) async {
-    
+  Future<void> uploadImage({required ImageSource source}) async {
     final pickedImg = await ImagePicker().pickImage(source: source);
 
     if (pickedImg != null) {

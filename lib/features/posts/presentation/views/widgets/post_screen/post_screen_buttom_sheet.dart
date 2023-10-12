@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../../../core/constant/colors.dart';
 
 class PostScreenButtomSheet extends StatelessWidget {
@@ -31,7 +31,7 @@ class PostScreenButtomSheet extends StatelessWidget {
             title: Text('Uploade Image'.tr),
             leading: const Icon(
               color: AppColors.kPrimaryColor,
-              IconBroken.Image,
+              IconlyBroken.image,
             ),
           ),
           ListTile(
@@ -39,7 +39,7 @@ class PostScreenButtomSheet extends StatelessWidget {
             title: Text('Uploade Video'.tr),
             leading: const Icon(
               color: AppColors.kPrimaryColor,
-              IconBroken.Video,
+              IconlyBroken.video,
             ),
           ),
         ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../../../core/api/api_service.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../data/models/profile_model.dart';
@@ -44,7 +44,7 @@ class ProfileScreenOtherMoreButtom extends StatelessWidget {
                     Get.back();
                   },
                   leading: const Icon(
-                    IconBroken.Info_Square,
+                    IconlyBroken.infoSquare,
                     color: AppColors.kPrimaryColor,
                   ),
                   title: Text("unBlock".tr),
@@ -60,7 +60,7 @@ class ProfileScreenOtherMoreButtom extends StatelessWidget {
                     Get.back();
                   },
                   leading: const Icon(
-                    IconBroken.Info_Square,
+                    IconlyBroken.infoSquare,
                     color: AppColors.kPrimaryColor,
                   ),
                   title: Text("Block".tr),

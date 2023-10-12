@@ -1,4 +1,4 @@
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../explore_frinds_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ class ServicesCustomExploreFrinds extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5),
       child: ListTile(
         onTap: () => Get.to(() => const ExploreFrindsScreen()),
-        title:  Text('Explore frinds'.tr),
+        title: Text('Explore frinds'.tr),
         leading: ClipOval(
           child: Container(
             color: const Color.fromARGB(189, 246, 202, 255),
@@ -26,7 +26,7 @@ class ServicesCustomExploreFrinds extends StatelessWidget {
             ),
           ),
         ),
-        trailing: const Icon(IconBroken.Arrow___Right_2),
+        trailing: const Icon(IconlyBroken.arrowRight2),
       ),
     );
   }

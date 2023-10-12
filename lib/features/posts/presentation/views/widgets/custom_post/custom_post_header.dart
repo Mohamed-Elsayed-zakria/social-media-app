@@ -5,7 +5,7 @@ import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/api/api_service.dart';
 import '../../../../../../core/constant/style.dart';
 import '../../../../data/model/post_model.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'custom_post_more_current_user.dart';
 import 'custom_post_more_other_user.dart';
 import 'package:flutter/material.dart';
@@ -93,7 +93,7 @@ class CustomPostHeader extends StatelessWidget {
               ? Get.bottomSheet(CustomPostMoreCurrentUser(postData: postData))
               : Get.bottomSheet(CustomPostMoreOtherUser(postData: postData));
         },
-        icon: const Icon(IconBroken.More_Circle),
+        icon: const Icon(IconlyBroken.moreCircle),
       ),
     );
   }

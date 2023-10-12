@@ -7,7 +7,7 @@ import '../../../../posts/presentation/views/post_screen.dart';
 import '../../../../../core/constant/colors.dart';
 import 'buttom_sheet_upload_post_or_story.dart';
 import 'home_screen_custom_circle_avatar.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,14 +28,14 @@ class HomeScreenCustomAppbar extends StatelessWidget {
         IconButton(
           onPressed: () => Get.to(() => const ChatScreenAllUsers()),
           icon: const Icon(
-            IconBroken.Chat,
+            IconlyBroken.chat,
             color: AppColors.kOnSurfaceColor,
           ),
         ),
         IconButton(
           onPressed: () => Get.to(() => const SearchScreen()),
           icon: const Icon(
-            IconBroken.Search,
+            IconlyBroken.search,
             color: AppColors.kOnSurfaceColor,
           ),
         ),
@@ -59,7 +59,7 @@ class HomeScreenCustomAppbar extends StatelessWidget {
           );
         },
         icon: const Icon(
-          IconBroken.Arrow___Up_Square,
+          IconlyBroken.arrowUpSquare,
           color: AppColors.kOnSurfaceColor,
         ),
       ),

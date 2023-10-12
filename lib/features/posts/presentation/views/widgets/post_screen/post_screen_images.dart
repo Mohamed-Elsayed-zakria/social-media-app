@@ -2,7 +2,7 @@ import '../../../controllers/post_screen_controller.dart';
 import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../post_screen_image_viewer_page.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
@@ -59,7 +59,7 @@ class PostScreenImages extends StatelessWidget {
                   IconButton(
                     icon: const Icon(
                       color: AppColors.kSecondeColor,
-                      IconBroken.Delete,
+                      IconlyBroken.delete,
                       size: 28,
                     ),
                     onPressed: () => removeImage(index),

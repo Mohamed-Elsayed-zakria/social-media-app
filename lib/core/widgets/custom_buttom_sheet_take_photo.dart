@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../constant/colors.dart';
 import 'package:get/get.dart';
 
@@ -34,7 +34,7 @@ class CustomButtomSheetTakePhoto extends StatelessWidget {
             ),
             leading: const Icon(
               color: AppColors.kSecondeColor,
-              IconBroken.Image,
+              IconlyBroken.image,
               size: 28,
             ),
           ),
@@ -46,7 +46,7 @@ class CustomButtomSheetTakePhoto extends StatelessWidget {
             ),
             leading: const Icon(
               color: AppColors.kSecondeColor,
-              IconBroken.Camera,
+              IconlyBroken.camera,
               size: 28,
             ),
           ),

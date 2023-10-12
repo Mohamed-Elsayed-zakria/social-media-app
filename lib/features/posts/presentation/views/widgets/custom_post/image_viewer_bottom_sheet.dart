@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../../../core/constant/colors.dart';
 
 class ImageViewerBottomSheet extends StatelessWidget {
@@ -43,7 +43,7 @@ class ImageViewerBottomSheet extends StatelessWidget {
           },
           title: Text('Download image'.tr),
           leading: const Icon(
-            IconBroken.Download,
+            IconlyBroken.download,
             color: AppColors.kPrimaryColor,
           ),
         ),

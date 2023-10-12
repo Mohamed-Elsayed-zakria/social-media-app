@@ -1,6 +1,6 @@
 import '../../../../search/presentation/view/search_screen.dart';
 import '../../../../../core/constant/colors.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +17,7 @@ class VideoScreenCustomAppbar extends StatelessWidget {
           child: IconButton(
             onPressed: () => Get.to(() => const SearchScreen()),
             icon: const Icon(
-              IconBroken.Search,
+              IconlyBroken.search,
               color: AppColors.kOnSurfaceColor,
             ),
           ),

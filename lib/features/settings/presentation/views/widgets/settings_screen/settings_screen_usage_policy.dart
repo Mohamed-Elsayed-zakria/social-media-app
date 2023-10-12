@@ -1,6 +1,6 @@
 import '../../../../../usage_policy/presentation/view/usage_policy_screen.dart';
 import '../../../../../../core/constant/style.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +18,7 @@ class SettingsScreenUsagePolicy extends StatelessWidget {
         ),
       ),
       leading: const Icon(Icons.policy_outlined),
-      trailing: const Icon(IconBroken.Arrow___Right_2),
+      trailing: const Icon(IconlyBroken.arrowRight2),
     );
   }
 }

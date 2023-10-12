@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../../../../../../../core/constant/colors.dart';
 import '../../../../controllers/comments_controller.dart';
@@ -29,7 +29,7 @@ class CommentsLower extends StatelessWidget {
                 );
               }
             },
-            icon: const Icon(IconBroken.Send),
+            icon: const Icon(IconlyBroken.send),
             style: const ButtonStyle(
               iconColor: MaterialStatePropertyAll(
                 AppColors.kPrimaryColor,

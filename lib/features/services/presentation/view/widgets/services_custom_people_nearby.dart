@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../../controller/people_nearby_controller.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,7 @@ class ServicesCustomPeopleNearby extends StatelessWidget {
             ),
           ),
         ),
-        trailing: const Icon(IconBroken.Arrow___Right_2),
+        trailing: const Icon(IconlyBroken.arrowRight2),
       ),
     );
   }

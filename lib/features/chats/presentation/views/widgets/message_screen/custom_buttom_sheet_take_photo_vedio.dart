@@ -1,4 +1,4 @@
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,7 +34,7 @@ class CustomButtomSheetTakePhotoVedio extends StatelessWidget {
             ),
             leading: const Icon(
               color: AppColors.kSecondeColor,
-              IconBroken.Image,
+              IconlyBroken.image,
               size: 28,
             ),
           ),
@@ -46,7 +46,7 @@ class CustomButtomSheetTakePhotoVedio extends StatelessWidget {
             ),
             leading: const Icon(
               color: AppColors.kSecondeColor,
-              IconBroken.Video,
+              IconlyBroken.video,
               size: 28,
             ),
           ),

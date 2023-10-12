@@ -1,4 +1,4 @@
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../../../../../core/api/api_service.dart';
 import '../../../../profile/presentation/views/profile_all_followers_screen.dart';
@@ -29,7 +29,7 @@ class ServicesCustomFollowers extends StatelessWidget {
             ),
           ),
         ),
-        trailing: const Icon(IconBroken.Arrow___Right_2),
+        trailing: const Icon(IconlyBroken.arrowRight2),
       ),
     );
   }

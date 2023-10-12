@@ -3,7 +3,7 @@ import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/style.dart';
 import '../../../../data/model/post_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import '../../update_post_screen.dart';
 import 'package:get/get.dart';
@@ -42,7 +42,7 @@ class CustomPostMoreCurrentUser extends StatelessWidget {
             },
             leading: const Icon(
               color: AppColors.kPrimaryColor,
-              IconBroken.Delete,
+              IconlyBroken.delete,
             ),
             title: Text(
               "Deletet the Post".tr,
@@ -53,7 +53,7 @@ class CustomPostMoreCurrentUser extends StatelessWidget {
             onTap: () => Get.off(() => UpdatePostScreen(postData: postData)),
             leading: const Icon(
               color: AppColors.kPrimaryColor,
-              IconBroken.Edit,
+              IconlyBroken.edit,
             ),
             title: Text(
               "Edite post".tr,

@@ -5,7 +5,7 @@ import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/style.dart';
 import '../../../../data/model/stories_model.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -76,7 +76,7 @@ class StoryViewerHeader extends StatelessWidget {
           trailing: IconButton(
             onPressed: () {},
             icon: const Icon(
-              IconBroken.More_Circle,
+              IconlyBroken.moreCircle,
               color: AppColors.kBackgroundColor,
             ),
           ),

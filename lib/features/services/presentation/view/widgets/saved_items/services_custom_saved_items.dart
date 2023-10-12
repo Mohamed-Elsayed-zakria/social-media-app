@@ -1,4 +1,4 @@
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import '../../saved_items_screen.dart';
 import 'package:get/get.dart';
@@ -25,7 +25,7 @@ class ServicesCustomSavedItems extends StatelessWidget {
             ),
           ),
         ),
-        trailing: const Icon(IconBroken.Arrow___Right_2),
+        trailing: const Icon(IconlyBroken.arrowRight2),
       ),
     );
   }

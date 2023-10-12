@@ -6,7 +6,7 @@ import '../../../controllers/settings_screen_controller.dart';
 import '../../../../data/models/settings_screen_model.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/style.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,8 +27,7 @@ class SettingsScreenCustomProfileCard extends StatelessWidget {
             children: [
               ListTile(
                 onTap: () {
-                  Get.to(
-                      () => ProfileScreen(otherUid: ApiService.user.uid));
+                  Get.to(() => ProfileScreen(otherUid: ApiService.user.uid));
                 },
                 title: Text(
                   '@${userData.username}',
@@ -36,7 +35,7 @@ class SettingsScreenCustomProfileCard extends StatelessWidget {
                     fontSize: AppStyle.kTextStyle18,
                   ),
                 ),
-                subtitle:  Text(
+                subtitle: Text(
                   "View Profile".tr,
                   style: const TextStyle(
                     fontSize: AppStyle.kTextStyle18,
@@ -50,7 +49,7 @@ class SettingsScreenCustomProfileCard extends StatelessWidget {
                     userData.personalPicture,
                   ),
                 ),
-                trailing: const Icon(IconBroken.Arrow___Right_2),
+                trailing: const Icon(IconlyBroken.arrowRight2),
               ),
               const SizedBox(height: 4),
             ],

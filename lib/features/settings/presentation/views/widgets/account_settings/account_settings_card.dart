@@ -1,4 +1,4 @@
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/style.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class AccountSettingCard extends StatelessWidget {
                 text,
                 style: const TextStyle(fontSize: AppStyle.kTextStyle16),
               ),
-              const Icon(IconBroken.Arrow___Right),
+              const Icon(IconlyBroken.arrowRight),
             ],
           ),
         ),

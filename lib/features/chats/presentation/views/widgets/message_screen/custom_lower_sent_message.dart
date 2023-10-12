@@ -3,7 +3,7 @@ import '../../../controllers/chat_screen_messages_controller.dart';
 import 'custom_buttom_sheet_take_photo_vedio.dart';
 import '../../../../data/models/user_chat_data.dart';
 import '../../../../../../core/constant/colors.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,7 +29,7 @@ class CustomLowerSentMessage extends StatelessWidget {
           },
           icon: const Icon(
             color: AppColors.kPrimaryColor,
-            IconBroken.Send,
+            IconlyBroken.send,
           ),
         ),
         Expanded(

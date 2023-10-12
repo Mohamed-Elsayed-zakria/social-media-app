@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../../../../../../../core/constant/colors.dart';
 import '../../../../../../../core/constant/style.dart';
 import '../../../../../data/model/likes_model.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -51,7 +51,7 @@ class AllLikesCustomPerson extends StatelessWidget {
         ),
         trailing: const Icon(
           color: AppColors.kPrimaryColor,
-          IconBroken.Heart,
+          IconlyBroken.heart,
         ),
       ),
     );

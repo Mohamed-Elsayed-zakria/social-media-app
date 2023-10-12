@@ -1,6 +1,6 @@
 import '../../../controllers/settings_screen_controller.dart';
 import '../../../../../../core/constant/style.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,7 +37,7 @@ class SettingsScreenExitFromApp extends StatelessWidget {
         ),
       ),
       leading: const Icon(Icons.login_outlined),
-      trailing: const Icon(IconBroken.Arrow___Right_2),
+      trailing: const Icon(IconlyBroken.arrowRight2),
     );
   }
 }

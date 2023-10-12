@@ -1,7 +1,7 @@
 import '../../../../../core/constant/colors.dart';
 import '../../../data/model/stories_model.dart';
 import '../../controller/story_controller.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import '../uploade_story_screen.dart';
 import 'package:get/get.dart';
@@ -20,7 +20,7 @@ class DialogUploadeStory extends StatelessWidget {
           },
           leading: const Icon(
             color: AppColors.kSecondeColor,
-            IconBroken.Image,
+            IconlyBroken.image,
           ),
           title: Text('Image'.tr),
         ),
@@ -31,7 +31,7 @@ class DialogUploadeStory extends StatelessWidget {
           },
           leading: const Icon(
             color: AppColors.kSecondeColor,
-            IconBroken.Video,
+            IconlyBroken.video,
           ),
           title: Text('Video'.tr),
         ),
@@ -46,7 +46,7 @@ class DialogUploadeStory extends StatelessWidget {
           },
           leading: const Icon(
             color: AppColors.kSecondeColor,
-            IconBroken.Edit,
+            IconlyBroken.edit,
           ),
           title: Text('Text'.tr),
         ),

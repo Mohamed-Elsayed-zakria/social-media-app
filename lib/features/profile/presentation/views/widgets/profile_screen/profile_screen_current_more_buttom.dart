@@ -1,7 +1,7 @@
 import '../../../../../settings/presentation/views/account_settings/account_settings_screen.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -36,7 +36,7 @@ class ProfileScreenCurrentMoreButtom extends StatelessWidget {
             },
             leading: const Icon(
               color: AppColors.kPrimaryColor,
-              IconBroken.Setting,
+              IconlyBroken.setting,
             ),
             title: Text("Account settings".tr),
           ),

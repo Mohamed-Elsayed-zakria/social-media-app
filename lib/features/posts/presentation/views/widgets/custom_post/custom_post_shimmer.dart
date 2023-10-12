@@ -1,4 +1,4 @@
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/constant/colors.dart';
@@ -62,7 +62,7 @@ class CustomPostShimmer extends StatelessWidget {
                   children: [
                     CustomShimmer(
                       child: Icon(
-                        IconBroken.Heart,
+                        IconlyBroken.heart,
                         size: 30,
                       ),
                     ),
@@ -78,7 +78,7 @@ class CustomPostShimmer extends StatelessWidget {
                     SizedBox(width: 10),
                     CustomShimmer(
                       child: Icon(
-                        IconBroken.More_Square,
+                        IconlyBroken.moreSquare,
                         size: 30,
                       ),
                     ),
@@ -95,7 +95,7 @@ class CustomPostShimmer extends StatelessWidget {
                 ),
                 CustomShimmer(
                   child: Icon(
-                    IconBroken.Send,
+                    IconlyBroken.send,
                     size: 30,
                   ),
                 ),

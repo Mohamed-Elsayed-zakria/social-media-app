@@ -1,20 +1,22 @@
+import '../../../../../../../core/constant/colors.dart';
+import '../../../../../../../core/constant/style.dart';
+import '../../../../../data/model/comment_model.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import '../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ButtomSheetUploadPostOrStory extends StatelessWidget {
-  final Function() onTapUploadePost;
-  final Function() onTapUploadeStory;
-  const ButtomSheetUploadPostOrStory({
+class OnLongPressCurrentComment extends StatelessWidget {
+  final CommentModel commentData;
+
+  const OnLongPressCurrentComment({
     super.key,
-    required this.onTapUploadePost,
-    required this.onTapUploadeStory,
+    required this.commentData,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       height: 140,
       decoration: const BoxDecoration(
         color: AppColors.kSurfaceColor,
@@ -27,27 +29,20 @@ class ButtomSheetUploadPostOrStory extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ListTile(
-            onTap: onTapUploadePost,
-            title: Text(
-              "uploade post".tr,
-              style: const TextStyle(fontSize: 18),
-            ),
+            title: Text('Delete'.tr),
             leading: const Icon(
-              IconlyBroken.document,
               color: AppColors.kPrimaryColor,
-              size: 28,
+              IconlyBroken.delete,
             ),
           ),
           ListTile(
-            onTap: onTapUploadeStory,
-            title: Text(
-              "uploade story".tr,
-              style: const TextStyle(fontSize: 18),
-            ),
             leading: const Icon(
-              IconlyBroken.paperPlus,
               color: AppColors.kPrimaryColor,
-              size: 28,
+              IconlyBroken.edit,
+            ),
+            title: Text(
+              "Edite".tr,
+              style: const TextStyle(fontSize: AppStyle.kTextStyle18),
             ),
           ),
         ],

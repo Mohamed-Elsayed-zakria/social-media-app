@@ -1,6 +1,6 @@
 import '../../../search/presentation/view/search_screen.dart';
 import 'widgets/all_users_screen/chat_screen_all_users_body.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +15,7 @@ class ChatScreenAllUsers extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () => Get.to(() => const SearchScreen()),
-            icon: const Icon(IconBroken.Search),
+            icon: const Icon(IconlyBroken.search),
           ),
         ],
       ),

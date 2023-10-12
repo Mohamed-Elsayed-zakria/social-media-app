@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:icon_broken/icon_broken.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../../../../../../core/constant/style.dart';
 import '../../about_us_screen.dart';
@@ -19,7 +19,7 @@ class SettingsScreenAboutUs extends StatelessWidget {
         ),
       ),
       leading: const Icon(Icons.info_outline),
-      trailing: const Icon(IconBroken.Arrow___Right_2),
+      trailing: const Icon(IconlyBroken.arrowRight2),
     );
   }
 }
