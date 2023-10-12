@@ -88,6 +88,15 @@ abstract class ApiFirebaseMessaging {
               body: message.notification!.body,
             ),
           );
+          AwesomeNotifications().setListeners(
+            onActionReceivedMethod: (receivedAction) async {
+              if (message.data['type'] == 'chat') {
+                Get.to(() => const ChatScreenAllUsers());
+              } else if (message.data['type'] == 'profile') {
+                Get.to(() => ProfileScreen(otherUid: message.data['userUid']));
+              }
+            },
+          );
           ApiService.firestore
               .collection(Constant.userCollection)
               .doc(ApiService.user.uid)
@@ -99,11 +108,6 @@ abstract class ApiFirebaseMessaging {
             'datePublished': message.data['datePublished'],
             'type': message.data['type'],
           });
-          // if (message.data['type'] == 'chat') {
-          //   Get.to(() => const ChatScreenAllUsers());
-          // } else if (message.data['type'] == 'profile') {
-          //   Get.to(() => ProfileScreen(otherUid: message.data['userUid']));
-          // }
         }
       },
     );

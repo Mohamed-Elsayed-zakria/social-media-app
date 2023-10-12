@@ -78,6 +78,8 @@ const Map<String, String> en = {
   "Say hi": "Say hi",
   "You can not message this person": "You can not message this person",
   'Type your Message here': 'Type your Message here ...',
+  "Uploade image":"Uploade image",
+  "Uploade video":"Uploade video",
 //===================home===================
   "Home": "Home",
   "uploade post": "uploade post",
@@ -101,6 +103,7 @@ const Map<String, String> en = {
   "Video is too long": "Video is too long",
   'You must add a description to the post':
       'You must add a description to the post',
+  'Update Post' :'Update Post',
 
 //===================customPost===================
   "The Post has been deleted": "The Post has been deleted",

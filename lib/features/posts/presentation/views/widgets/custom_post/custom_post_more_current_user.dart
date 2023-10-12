@@ -5,9 +5,8 @@ import '../../../../data/model/post_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:icon_broken/icon_broken.dart';
 import 'package:flutter/material.dart';
+import '../../update_post_screen.dart';
 import 'package:get/get.dart';
-
-import '../../post_screen.dart';
 
 class CustomPostMoreCurrentUser extends StatelessWidget {
   final PostModel postData;
@@ -51,7 +50,7 @@ class CustomPostMoreCurrentUser extends StatelessWidget {
             ),
           ),
           ListTile(
-            onTap: () => Get.off(() => const PostScreen()),
+            onTap: () => Get.off(() => UpdatePostScreen(postData: postData)),
             leading: const Icon(
               color: AppColors.kPrimaryColor,
               IconBroken.Edit,

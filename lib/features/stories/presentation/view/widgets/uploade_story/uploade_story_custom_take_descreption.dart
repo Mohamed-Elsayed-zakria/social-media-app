@@ -20,9 +20,12 @@ class UploadeStoryCustomTakeDescreption extends StatelessWidget {
             margin: const EdgeInsets.only(top: 20, bottom: 10),
             child: TextFormField(
               controller: getTextStory,
+              maxLines: null,
+              maxLength: 300,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'write something'.tr,
+                counterText: '',
               ),
             ),
           )
@@ -33,9 +36,12 @@ class UploadeStoryCustomTakeDescreption extends StatelessWidget {
             height: size.height * .5,
             child: TextFormField(
               controller: getTextStory,
+              maxLines: null,
+              maxLength: 300,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'write something'.tr,
+                counterText: '',
               ),
             ),
           );

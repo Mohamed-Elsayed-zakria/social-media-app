@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import '../../../../../../core/constant/style.dart';
 import '../../../../../../core/widgets/custom_read_more_text.dart';
 import '../../../../data/model/post_model.dart';
@@ -26,7 +28,7 @@ class CustomPostContent extends StatelessWidget {
             onLongPress: () {
               Clipboard.setData(ClipboardData(text: postData.description));
               Fluttertoast.showToast(
-                msg: 'Copy text',
+                msg: "The text has been copied".tr,
                 toastLength: Toast.LENGTH_SHORT,
                 gravity: ToastGravity.BOTTOM,
               );

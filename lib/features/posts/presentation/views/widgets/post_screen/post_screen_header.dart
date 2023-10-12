@@ -1,11 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:get/get.dart';
-import '../../../../../../core/api/api_service.dart';
 import '../../../../../../core/widgets/custom_persona_list_tile_shimmer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../controllers/post_screen_controller.dart';
 import '../../../../../../core/constant/colors.dart';
+import '../../../../../../core/api/api_service.dart';
 import '../../../../data/model/post_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PostScreenHeader extends StatelessWidget {
   const PostScreenHeader({super.key});
@@ -29,7 +29,7 @@ class PostScreenHeader extends StatelessWidget {
               ),
             ),
             title: Text('@${userData.username}'),
-            subtitle: Text('Add new post'.tr),
+            subtitle: Text('Update post'.tr),
           );
         } else {
           return const CustomPersonaListTileShimmer();

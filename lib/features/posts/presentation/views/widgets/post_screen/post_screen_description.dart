@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import '../../../controllers/post_screen_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +16,7 @@ class PostScreenDescription extends StatelessWidget {
           controller: getDescriptionText,
           keyboardType: TextInputType.multiline,
           maxLines: null,
-          maxLength: 250,
+          maxLength: 500,
           decoration:  InputDecoration(
             counterText: '',
             hintText: "What are you thinking about".tr,

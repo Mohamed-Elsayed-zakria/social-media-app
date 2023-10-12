@@ -18,22 +18,26 @@ class CustomStoryCurrentPersonalPicture extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return CustomShimmer(
                 child: CircleAvatar(
-                  radius: size.width * .102,
+                  radius: size.width * .110,
                 ),
               );
             } else {
               String personalPictureUrl = snapshot.data!;
               return CircleAvatar(
-                radius: size.width * .102,
-                backgroundColor: AppColors.kBackgroundColor,
-                backgroundImage: NetworkImage(personalPictureUrl),
+                radius: size.width * .110,
+                backgroundColor: AppColors.kSurfaceColor,
+                child: CircleAvatar(
+                  radius: size.width * .102,
+                  backgroundColor: AppColors.kBackgroundColor,
+                  backgroundImage: NetworkImage(personalPictureUrl),
+                ),
               );
             }
           },
         ),
         Positioned(
-          bottom: 0,
-          right: 0,
+          bottom: 2,
+          right: 2,
           child: Container(
             padding: const EdgeInsets.all(2),
             decoration: BoxDecoration(

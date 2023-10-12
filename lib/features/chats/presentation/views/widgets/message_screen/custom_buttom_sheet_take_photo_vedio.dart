@@ -1,5 +1,5 @@
 import 'package:icon_broken/icon_broken.dart';
-import '../../../../../core/constant/colors.dart';
+import '../../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -41,7 +41,7 @@ class CustomButtomSheetTakePhotoVedio extends StatelessWidget {
           ListTile(
             onTap: onTapUploadeVedio,
             title: Text(
-              "Uploade vedio".tr,
+              "Uploade video".tr,
               style: const TextStyle(fontSize: 18),
             ),
             leading: const Icon(

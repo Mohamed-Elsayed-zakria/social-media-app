@@ -1,6 +1,6 @@
-import '../../controllers/chat_screen_all_users_controller.dart';
-import '../../../data/models/message_model.dart';
-import '../../../data/models/user_chat_data.dart';
+import '../../../controllers/chat_screen_all_users_controller.dart';
+import '../../../../data/models/message_model.dart';
+import '../../../../data/models/user_chat_data.dart';
 import 'custom_list_tile_personal_user_item.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,6 @@ class CustomListTilePersonalUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MessageModel? messages;
-
     return StreamBuilder(
       stream: getLastMessages(otherUserId: userData.personUid),
       builder: (context, snapshot) {

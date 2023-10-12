@@ -17,29 +17,29 @@ class CustomStoryAllUsers extends StatelessWidget {
       future: future,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 3,
-              itemBuilder: (context, index) => const CustomStoryShimmer(),
-            ),
+          return ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            itemCount: 3,
+            itemBuilder: (context, index) => const CustomStoryShimmer(),
           );
         } else {
           List<List<StoriesModel>> storyDataList = snapshot.data!;
-          return Expanded(
-            child: ListView.builder(
-              itemCount: storyDataList.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                List<StoriesModel> userStories = storyDataList[index];
-                StoriesModel firstStory = userStories[0];
-                return CustomStoryItemAllUsers(
-                  storyDatabasic: storyDataList,
-                  firstStory: firstStory,
-                  initialPage: index,
-                );
-              },
-            ),
+          return ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: storyDataList.length,
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              List<StoriesModel> userStories = storyDataList[index];
+              StoriesModel firstStory = userStories[0];
+              return CustomStoryItemAllUsers(
+                storyDatabasic: storyDataList,
+                firstStory: firstStory,
+                initialPage: index,
+              );
+            },
           );
         }
       },

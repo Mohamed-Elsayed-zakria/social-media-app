@@ -23,7 +23,8 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
           const HomeScreenCustomAppbar(),
           SliverToBoxAdapter(
             child: CustomStoryCover(
-              child: Row(
+              child: ListView(
+                scrollDirection: Axis.horizontal,
                 children: [
                   CustomStoryCurrentUser(future: getCurrentUserStory()),
                   CustomStoryAllUsers(future: getAllUsersStories()),

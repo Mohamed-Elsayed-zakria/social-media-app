@@ -79,6 +79,8 @@ const Map<String, String> ar = {
   "Say hi": "قل مرحبا",
   "You can not message this person": "لا يمكنك مراسلة هذا الشخص",
   'Type your Message here': 'اكتب رسالتك هنا',
+  "Uploade image": "إضافة صوره",
+  "Uploade video": "إضافة فيديو",
 //===================home===================
   "Home": "الرئيسية",
   "uploade post": "إضافة منشور",
@@ -99,6 +101,8 @@ const Map<String, String> ar = {
   'Uploade Video': 'إضافة فيديو',
   "Video is too long": "الفيديو طويل جدًا",
   'You must add a description to the post': "يجب عليك إضافة وصف إلى المنشور",
+  'Update Post': 'تحديث المنشور',
+
   //===================customPost===================
   "The Post has been deleted": "تم حذف المنشور",
   "Deletet the Post": "حذف المنشور",

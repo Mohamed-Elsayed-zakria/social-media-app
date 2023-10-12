@@ -102,6 +102,8 @@ class PostScreenApi implements PostScreenRepo {
       imagePaths.removeRange(0, imagePaths.length);
       addPostLoading.value = false;
       Get.offAll(() => const MainHomeScreen());
+    }).catchError((e) {
+      addPostLoading.value = false;
     });
   }
 }

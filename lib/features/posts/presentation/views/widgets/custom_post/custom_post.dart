@@ -20,7 +20,6 @@ class CustomPost extends StatelessWidget {
     return FutureBuilder(
       future: future,
       builder: (context, postSnapshot) {
-        List<PostModel> listPost = [];
         if (postSnapshot.connectionState == ConnectionState.waiting) {
           return detailsPage
               ? const CustomPostShimmer()
@@ -38,12 +37,9 @@ class CustomPost extends StatelessWidget {
           );
         } else {
           final allPostData = postSnapshot.data!;
-          if (vedioPage) {
-            listPost =
-                allPostData.where((post) => post.imgUrl.isEmpty).toList();
-          } else {
-            listPost = allPostData;
-          }
+          final List<PostModel> listPost = vedioPage
+              ? allPostData.where((post) => post.imgUrl.isEmpty).toList()
+              : allPostData;
           return detailsPage
               ? CustomPostItem(
                   postData: listPost[0],
