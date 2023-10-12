@@ -24,7 +24,7 @@ class VideoReelsBody extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8),
             width: size.width,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 VideoReelsCustomCircleAvatar(),
                 const SizedBox(height: 12),

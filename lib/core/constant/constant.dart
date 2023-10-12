@@ -1,27 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import '../api/api_service.dart';
 
 abstract class Constant {
   static sizeScreen({required BuildContext context}) {
     return MediaQuery.of(context).size;
-  }
-
-  static String convertDateTime({required String historyAsText}) {
-    final DateTime dateTime = DateTime.parse(historyAsText);
-    final DateTime now = DateTime.timestamp();
-    final Duration difference = now.difference(dateTime);
-    if (difference.inSeconds < 3) {
-      return 'Now';
-    } else if (difference.inSeconds < 60) {
-      return '${difference.inSeconds} second ago';
-    } else if (difference.inMinutes < 60) {
-      return '${difference.inMinutes} minute ago';
-    } else if (difference.inHours < 24) {
-      return '${difference.inHours} hour ago';
-    } else {
-      return DateFormat('MMMM d, ' 'y').format(dateTime);
-    }
   }
 
   static const String userCollection = 'users';

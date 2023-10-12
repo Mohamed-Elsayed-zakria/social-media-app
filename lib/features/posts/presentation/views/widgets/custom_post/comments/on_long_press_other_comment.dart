@@ -42,6 +42,7 @@ class OnLongPressOtherComment extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
+              Get.back();
               Clipboard.setData(ClipboardData(text: commentData.textComment));
               Fluttertoast.showToast(
                 msg: "The text has been copied".tr,

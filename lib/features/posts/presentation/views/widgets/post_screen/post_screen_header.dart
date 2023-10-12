@@ -29,7 +29,7 @@ class PostScreenHeader extends StatelessWidget {
               ),
             ),
             title: Text('@${userData.username}'),
-            subtitle: Text('Update post'.tr),
+            subtitle: Text("uploade post".tr),
           );
         } else {
           return const CustomPersonaListTileShimmer();

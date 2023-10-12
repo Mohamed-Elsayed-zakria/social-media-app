@@ -16,7 +16,7 @@ class UpdatePostScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Update post'.tr),
+        title: Text('update post'.tr),
         actions: [
           UpdatePostButtomShare(postData: postData),
         ],

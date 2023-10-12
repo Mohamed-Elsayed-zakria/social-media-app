@@ -3,19 +3,21 @@ import '../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ButtomSheetUploadPostOrStory extends StatelessWidget {
+class CustomButtomSheetUploadeElement extends StatelessWidget {
   final Function() onTapUploadePost;
   final Function() onTapUploadeStory;
-  const ButtomSheetUploadPostOrStory({
+  final Function() onTapUploadeReels;
+  const CustomButtomSheetUploadeElement({
     super.key,
     required this.onTapUploadePost,
     required this.onTapUploadeStory,
+    required this.onTapUploadeReels,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 140,
+      height: 185,
       decoration: const BoxDecoration(
         color: AppColors.kSurfaceColor,
         borderRadius: BorderRadius.only(
@@ -46,6 +48,18 @@ class ButtomSheetUploadPostOrStory extends StatelessWidget {
             ),
             leading: const Icon(
               IconlyBroken.paperPlus,
+              color: AppColors.kPrimaryColor,
+              size: 28,
+            ),
+          ),
+          ListTile(
+            onTap: onTapUploadeReels,
+            title: Text(
+              "uploade reels".tr,
+              style: const TextStyle(fontSize: 18),
+            ),
+            leading: const Icon(
+              IconlyBroken.video,
               color: AppColors.kPrimaryColor,
               size: 28,
             ),

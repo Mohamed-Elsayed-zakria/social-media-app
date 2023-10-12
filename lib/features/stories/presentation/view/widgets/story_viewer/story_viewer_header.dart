@@ -1,11 +1,11 @@
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import '../../../../../profile/presentation/views/profile_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import '../../../../../../core/constant/constant.dart';
+import '../../../../../../core/utils/date_time.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/style.dart';
-import '../../../../data/model/stories_model.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import '../../../../data/model/stories_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -52,7 +52,7 @@ class StoryViewerHeader extends StatelessWidget {
             ],
           ),
           subtitle: Text(
-            Constant.convertDateTime(historyAsText: storyData.datePublish),
+            MyDateUtil.convertDateTime(historyAsText: storyData.datePublish),
             style: const TextStyle(
               color: AppColors.kSurfaceColor,
             ),

@@ -66,9 +66,13 @@ const Map<String, String> en = {
   "Done": "Done",
   "Verification link has been sent email":
       "Verification link has been sent email",
+
   //***************addPhoto*******************
   "From Galary": "From Galary",
   "From Camera": "From Camera",
+//===================Date===================
+  'Now': 'Now',
+  'Yesterday':'Yesterday',
 //===================chat===================
   'Chat': 'Chat',
   "Image": "Image",
@@ -84,6 +88,7 @@ const Map<String, String> en = {
   "Home": "Home",
   "uploade post": "uploade post",
   "uploade story": "uploade story",
+  "uploade reels": "uploade reels",
 //===================Notice===================
   "Notice": "Notice",
   "You have no notifications": "You have no notifications",
@@ -103,7 +108,9 @@ const Map<String, String> en = {
   "Video is too long": "Video is too long",
   'You must add a description to the post':
       'You must add a description to the post',
-  'Update Post': 'Update Post',
+  'update post': 'update post',
+  'Show more': 'Show more',
+  'Show less': 'Show less',
 
 //===================customPost===================
   "The Post has been deleted": "The Post has been deleted",
@@ -138,7 +145,7 @@ const Map<String, String> en = {
   'There are no saved items': 'There are no saved items',
 //==================='Video'===================
   'Videos': 'Videos',
-  'Reels':'Reels',
+  'Reels': 'Reels',
 
 //===================profile===================
 

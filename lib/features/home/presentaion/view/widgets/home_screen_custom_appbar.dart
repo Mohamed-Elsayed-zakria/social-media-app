@@ -5,7 +5,8 @@ import '../../../../profile/presentation/views/profile_screen.dart';
 import '../../../../search/presentation/view/search_screen.dart';
 import '../../../../posts/presentation/views/post_screen.dart';
 import '../../../../../core/constant/colors.dart';
-import 'buttom_sheet_upload_post_or_story.dart';
+import '../../../../videos/presentaion/view/uploade_video_reels_screen.dart';
+import 'custom_buttom_sheet_uploade_element.dart';
 import 'home_screen_custom_circle_avatar.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,7 @@ class HomeScreenCustomAppbar extends StatelessWidget {
       leading: IconButton(
         onPressed: () {
           Get.bottomSheet(
-            ButtomSheetUploadPostOrStory(
+            CustomButtomSheetUploadeElement(
               onTapUploadePost: () {
                 Get.off(() => const PostScreen());
               },
@@ -55,6 +56,9 @@ class HomeScreenCustomAppbar extends StatelessWidget {
                   content: const DialogUploadeStory(),
                 );
               },
+              onTapUploadeReels: () => Get.off(
+                () => const UploadeVideoReelsScreen(),
+              ),
             ),
           );
         },

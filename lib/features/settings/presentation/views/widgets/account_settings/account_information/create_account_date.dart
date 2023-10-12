@@ -1,4 +1,4 @@
-import '../../../../../../../core/constant/constant.dart';
+import '../../../../../../../core/utils/date_time.dart';
 import '../../../../../../../core/api/api_service.dart';
 import '../../../../../../../core/constant/colors.dart';
 import '../../../../../../../core/constant/style.dart';
@@ -31,7 +31,7 @@ class CreateAccountDate extends StatelessWidget {
                   const Icon(Icons.date_range_outlined),
                   const SizedBox(width: 15),
                   Text(
-                    Constant.convertDateTime(
+                    MyDateUtil.convertDateTime(
                       historyAsText:
                           ApiService.user.metadata.creationTime!.toString(),
                     ),

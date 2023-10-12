@@ -37,7 +37,7 @@ class CustomPostContent extends StatelessWidget {
               width: double.infinity,
               child: CustomReadMoreText(
                 text: postData.description,
-                trimLines: postData.imgUrl.isEmpty ? 6 : 3,
+                trimLines: postData.imgUrl.isEmpty ? 10 : 5,
                 style: const TextStyle(fontSize: AppStyle.kTextStyle18),
               ),
             ),

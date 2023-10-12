@@ -1,7 +1,7 @@
+import '../../../../../core/utils/date_time.dart';
 import '../../../../profile/presentation/views/profile_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../data/model/notice_model.dart';
-import '../../../../../core/constant/constant.dart';
 import '../../../../../core/constant/colors.dart';
 import '../../../../../core/constant/style.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class CustomNotificationCard extends StatelessWidget {
         ],
       ),
       subtitle: Text(
-        Constant.convertDateTime(
+        MyDateUtil.convertDateTime(
           historyAsText: allNotification.datePublished,
         ),
       ),

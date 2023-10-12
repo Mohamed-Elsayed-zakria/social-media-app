@@ -19,7 +19,7 @@ class VideoReelsDescription extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         width: size.width,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Flexible(
               child: Text(

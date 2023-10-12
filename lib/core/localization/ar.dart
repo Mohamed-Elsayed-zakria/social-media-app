@@ -70,6 +70,9 @@ const Map<String, String> ar = {
   //***************addPhoto*******************
   "From Galary": "من المعرض",
   "From Camera": "من الكاميرا",
+  //===================Date===================
+  'Now': 'Now',
+  'Yesterday': 'Yesterday',
 //===================chat===================
   'Chat': 'محادثة',
   "Image": "صورة",
@@ -85,6 +88,8 @@ const Map<String, String> ar = {
   "Home": "الرئيسية",
   "uploade post": "إضافة منشور",
   "uploade story": "إضافة قصة",
+  "uploade reels": "إضافة ريلز",
+
 //===================Notice===================
   "Notice": "اشعارات",
   "You have no notifications": "ليس لديك أي إشعارات",
@@ -101,7 +106,9 @@ const Map<String, String> ar = {
   'Uploade Video': 'إضافة فيديو',
   "Video is too long": "الفيديو طويل جدًا",
   'You must add a description to the post': "يجب عليك إضافة وصف إلى المنشور",
-  'Update Post': 'تحديث المنشور',
+  'update post': 'تحديث المنشور',
+  'Show more': 'شاهد المزيد',
+  'Show less': 'شاهد أقل',
 
   //===================customPost===================
   "The Post has been deleted": "تم حذف المنشور",

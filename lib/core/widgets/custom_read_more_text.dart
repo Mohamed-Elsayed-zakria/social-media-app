@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
 import '../constant/colors.dart';
 import '../constant/style.dart';
@@ -21,8 +22,8 @@ class CustomReadMoreText extends StatelessWidget {
       style: style,
       trimLines: trimLines,
       trimMode: TrimMode.Line,
-      trimCollapsedText: 'showMore',
-      trimExpandedText: 'showLess',
+      trimCollapsedText: 'Show more'.tr,
+      trimExpandedText: 'Show less'.tr,
       lessStyle: const TextStyle(
         color: AppColors.kPrimaryColor,
         fontSize: AppStyle.kTextStyle16,

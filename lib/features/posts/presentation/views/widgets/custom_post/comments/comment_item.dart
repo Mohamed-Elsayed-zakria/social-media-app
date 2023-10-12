@@ -1,7 +1,7 @@
+import '../../../../../../../core/utils/date_time.dart';
 import '../../../../../../profile/presentation/views/profile_screen.dart';
 import '../../../../../../../core/widgets/custom_read_more_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import '../../../../../../../core/constant/constant.dart';
 import '../../../../controllers/comments_controller.dart';
 import '../../../../../../../core/api/api_service.dart';
 import '../../../../../../../core/constant/colors.dart';
@@ -66,7 +66,7 @@ class CommentItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        Constant.convertDateTime(
+                        MyDateUtil.convertDateTime(
                           historyAsText: commentData.dataPublished,
                         ),
                       ),
@@ -92,7 +92,7 @@ class CommentItem extends StatelessWidget {
                                 ApiService.user.uid,
                               )
                                   ? const Icon(
-                                      IconlyBroken.heart,
+                                      IconlyBold.heart,
                                       size: 22,
                                       color: AppColors.kPrimaryColor,
                                     )

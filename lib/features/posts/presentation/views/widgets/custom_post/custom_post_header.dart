@@ -1,6 +1,6 @@
+import '../../../../../../core/utils/date_time.dart';
 import '../../../../../profile/presentation/views/profile_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/api/api_service.dart';
 import '../../../../../../core/constant/style.dart';
@@ -78,7 +78,7 @@ class CustomPostHeader extends StatelessWidget {
       subtitle: Row(
         children: [
           Text(
-            Constant.convertDateTime(historyAsText: postData.datePublished),
+            MyDateUtil.convertDateTime(historyAsText: postData.datePublished),
             style: const TextStyle(
               fontSize: AppStyle.kTextStyle16,
             ),
