@@ -1,8 +1,8 @@
+import '../../../../../core/constant/collections.dart';
 import '../../../../notifications/data/model/notice_model.dart';
 import '../../../presentation/controllers/chat_screen_messages_controller.dart';
 import '../../../../../core/api/api_firebase_messaging.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../../../core/constant/constant.dart';
 import '../../../../../core/api/api_service.dart';
 import '../chat_screen_messages_repo.dart';
 import '../../models/user_chat_data.dart';
@@ -14,11 +14,11 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
     required String receiverId,
   }) {
     return ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
-        .collection(Constant.chatCollection)
+        .collection(Collections.chatCollection)
         .doc(receiverId)
-        .collection(Constant.messageCollection)
+        .collection(Collections.messageCollection)
         .orderBy('dateTime', descending: true)
         .snapshots();
   }
@@ -51,19 +51,19 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
     );
 
     await ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
-        .collection(Constant.chatCollection)
+        .collection(Collections.chatCollection)
         .doc(userData.personUid)
-        .collection(Constant.messageCollection)
+        .collection(Collections.messageCollection)
         .add(messageModel.toJson());
 
     await ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(userData.personUid)
-        .collection(Constant.chatCollection)
+        .collection(Collections.chatCollection)
         .doc(ApiService.user.uid)
-        .collection(Constant.messageCollection)
+        .collection(Collections.messageCollection)
         .add(messageModel.toJson());
   }
 }

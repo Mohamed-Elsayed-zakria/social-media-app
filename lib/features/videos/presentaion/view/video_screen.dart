@@ -7,11 +7,9 @@ class VideoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.kBackgroundColor,
-        body: VideoScreenBody(),
-      ),
+    return const Scaffold(
+      backgroundColor: AppColors.kBackgroundColor,
+      body: VideoScreenBody(),
     );
   }
 }

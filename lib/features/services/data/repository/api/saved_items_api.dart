@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flash/features/posts/data/model/post_model.dart';
-import '../../../../../core/constant/constant.dart';
+import '../../../../../core/constant/collections.dart';
 import '../../../../../core/api/api_service.dart';
 import '../saved_items_repo.dart';
 
@@ -11,7 +11,7 @@ class SavedItemsApi extends SavedItemsRepo {
 
     DocumentSnapshot<Map<String, dynamic>> currentUserData = await ApiService
         .firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
         .get();
 
@@ -22,7 +22,7 @@ class SavedItemsApi extends SavedItemsRepo {
         for (var element in postsUid) {
           QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
               .firestore
-              .collection(Constant.postCollection)
+              .collection(Collections.postCollection)
               .where('postUid', isEqualTo: element)
               .get();
 
@@ -32,7 +32,7 @@ class SavedItemsApi extends SavedItemsRepo {
               var data = doc.data();
               DocumentSnapshot<Map<String, dynamic>> userDataDoc =
                   await ApiService.firestore
-                      .collection(Constant.userCollection)
+                      .collection(Collections.userCollection)
                       .doc(data['personUid'])
                       .get();
               if (userDataDoc.exists) {

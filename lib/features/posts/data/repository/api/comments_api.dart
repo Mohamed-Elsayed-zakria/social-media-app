@@ -1,6 +1,6 @@
+import '../../../../../core/constant/collections.dart';
 import '../../../presentation/controllers/comments_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../../../core/constant/constant.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../../../../core/constant/colors.dart';
 import '../../model/comment_model.dart';
@@ -30,9 +30,9 @@ class CommentsApi extends CommentsRepo {
 
     try {
       await ApiService.firestore
-          .collection(Constant.postCollection)
+          .collection(Collections.postCollection)
           .doc(postId)
-          .collection(Constant.commentsCollection)
+          .collection(Collections.commentsCollection)
           .doc(commentId)
           .set(newComment.toJson());
     } catch (e) {
@@ -50,9 +50,9 @@ class CommentsApi extends CommentsRepo {
     required String postId,
   }) {
     return ApiService.firestore
-        .collection(Constant.postCollection)
+        .collection(Collections.postCollection)
         .doc(postId)
-        .collection(Constant.commentsCollection)
+        .collection(Collections.commentsCollection)
         .orderBy("dataPublished", descending: false)
         .snapshots();
   }
@@ -62,7 +62,7 @@ class CommentsApi extends CommentsRepo {
     required String personUid,
   }) {
     return ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(personUid)
         .get();
   }
@@ -73,9 +73,9 @@ class CommentsApi extends CommentsRepo {
     required String commentUid,
   }) async {
     await ApiService.firestore
-        .collection(Constant.postCollection)
+        .collection(Collections.postCollection)
         .doc(postUid)
-        .collection(Constant.commentsCollection)
+        .collection(Collections.commentsCollection)
         .doc(commentUid)
         .update({
       "likes": FieldValue.arrayUnion([ApiService.user.uid])
@@ -88,9 +88,9 @@ class CommentsApi extends CommentsRepo {
     required String commentUid,
   }) async {
     return await ApiService.firestore
-        .collection(Constant.postCollection)
+        .collection(Collections.postCollection)
         .doc(postUid)
-        .collection(Constant.commentsCollection)
+        .collection(Collections.commentsCollection)
         .doc(commentUid)
         .update({
       "likes": FieldValue.arrayRemove([ApiService.user.uid])

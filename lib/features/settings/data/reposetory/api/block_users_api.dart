@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flash/features/settings/data/models/block_users_model.dart';
-
 import '../../../../../core/api/api_service.dart';
-import '../../../../../core/constant/constant.dart';
+import '../../../../../core/constant/collections.dart';
 import '../block_users_repo.dart';
 
 class BlockUserApi implements BlockUserRepo {
@@ -11,7 +10,7 @@ class BlockUserApi implements BlockUserRepo {
     List<BlockUserModel> blockUser = [];
     DocumentSnapshot<Map<String, dynamic>> currentUserData = await ApiService
         .firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
         .get();
     Map<String, dynamic>? jsonCurrentUserData = currentUserData.data();
@@ -22,7 +21,7 @@ class BlockUserApi implements BlockUserRepo {
     for (var userUid in blockedUIDs) {
       DocumentSnapshot<Map<String, dynamic>> userDataDoc = await ApiService
           .firestore
-          .collection(Constant.userCollection)
+          .collection(Collections.userCollection)
           .doc(userUid)
           .get();
       if (userDataDoc.exists) {

@@ -1,10 +1,10 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import '../constant/constant.dart';
+import '../constant/collections.dart';
 
 abstract class ApiService {
   static FirebaseAuth auth = FirebaseAuth.instance;
@@ -20,7 +20,7 @@ abstract class ApiService {
   static FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
   static updateUserStatus({required bool status}) async {
-    firestore.collection(Constant.userCollection).doc(user.uid).update({
+    firestore.collection(Collections.userCollection).doc(user.uid).update({
       'isOnline': status,
     });
   }
@@ -37,7 +37,7 @@ abstract class ApiService {
             desiredAccuracy: LocationAccuracy.high,
           );
           await ApiService.firestore
-              .collection(Constant.userCollection)
+              .collection(Collections.userCollection)
               .doc(ApiService.user.uid)
               .update({
             'latitude': position.latitude,
@@ -49,7 +49,7 @@ abstract class ApiService {
           desiredAccuracy: LocationAccuracy.high,
         );
         await ApiService.firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
             .update({
           'latitude': position.latitude,
@@ -61,7 +61,7 @@ abstract class ApiService {
 
   static Future<String> getCurrentUsername() async {
     DocumentSnapshot<Map<String, dynamic>> snapshot =
-        await firestore.collection(Constant.userCollection).doc(user.uid).get();
+        await firestore.collection(Collections.userCollection).doc(user.uid).get();
     String username = snapshot.data()!['username'];
     return username;
   }

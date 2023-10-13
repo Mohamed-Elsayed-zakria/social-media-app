@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flash/features/auth/data/repository/add_details_screen_repo.dart';
 import '../../../../../core/api/api_dynamic_link.dart';
 import '../../../../../core/api/api_firebase_messaging.dart';
+import '../../../../../core/constant/collections.dart';
 import '../../../../../core/constant/colors.dart';
 import '../../../presentation/controllers/add_details_controller.dart';
 import '../../../../main_home/presentation/views/main_home_screen.dart';
@@ -18,7 +19,7 @@ class AddDetailsScreenApi extends AddDetailsScreenRepo {
     addDetailsIsLodinge.value = true;
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
         .firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .where('username', isEqualTo: username)
         .limit(1)
         .get();
@@ -82,7 +83,7 @@ class AddDetailsScreenApi extends AddDetailsScreenRepo {
         token: myToken,
       );
       ApiService.firestore
-          .collection(Constant.userCollection)
+          .collection(Collections.userCollection)
           .doc(ApiService.user.uid)
           .set(createAccount.toJson())
           .then(

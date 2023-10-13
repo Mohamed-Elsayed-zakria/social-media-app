@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/api/api_service.dart';
-import '../../../../../core/constant/constant.dart';
+import '../../../../../core/constant/collections.dart';
 import '../../models/profile_model.dart';
 import '../profile_all_followers_repo.dart';
 
@@ -10,7 +10,7 @@ class ProfileAllFollowersApi extends ProfileAllFollowersRepo {
     List<ProfileScreenModel> allFolowers = [];
     DocumentSnapshot<Map<String, dynamic>> currentUserData = await ApiService
         .firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(otherUid)
         .get();
 
@@ -22,7 +22,7 @@ class ProfileAllFollowersApi extends ProfileAllFollowersRepo {
       for (var element in followersList) {
         DocumentSnapshot<Map<String, dynamic>> jsonData = await ApiService
             .firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(element)
             .get();
         if (jsonData.exists) {
@@ -41,7 +41,7 @@ class ProfileAllFollowersApi extends ProfileAllFollowersRepo {
     List<ProfileScreenModel> allFollowing = [];
     DocumentSnapshot<Map<String, dynamic>> currentUserData = await ApiService
         .firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(otherUid)
         .get();
 
@@ -53,7 +53,7 @@ class ProfileAllFollowersApi extends ProfileAllFollowersRepo {
       for (var element in followingList) {
         DocumentSnapshot<Map<String, dynamic>> jsonData = await ApiService
             .firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(element)
             .get();
         if (jsonData.exists) {

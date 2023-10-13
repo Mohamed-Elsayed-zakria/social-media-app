@@ -1,14 +1,14 @@
-import '../../../../../core/api/api_service.dart';
+import '../../../../videos/presentaion/controller/uploade_video_reels_controller.dart';
 import '../../../../stories/presentation/view/widgets/dialog_uploade_story.dart';
 import '../../../../chats/presentation/views/chat_screen_all_users.dart';
 import '../../../../profile/presentation/views/profile_screen.dart';
 import '../../../../search/presentation/view/search_screen.dart';
 import '../../../../posts/presentation/views/post_screen.dart';
-import '../../../../../core/constant/colors.dart';
-import '../../../../videos/presentaion/view/uploade_video_reels_screen.dart';
-import 'custom_buttom_sheet_uploade_element.dart';
-import 'home_screen_custom_circle_avatar.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import '../../../../../core/constant/colors.dart';
+import 'custom_buttom_sheet_uploade_element.dart';
+import '../../../../../core/api/api_service.dart';
+import 'home_screen_custom_circle_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -56,9 +56,10 @@ class HomeScreenCustomAppbar extends StatelessWidget {
                   content: const DialogUploadeStory(),
                 );
               },
-              onTapUploadeReels: () => Get.off(
-                () => const UploadeVideoReelsScreen(),
-              ),
+              onTapUploadeReels: () {
+                Get.back();
+                addVideoReelsOpenGalary();
+              },
             ),
           );
         },

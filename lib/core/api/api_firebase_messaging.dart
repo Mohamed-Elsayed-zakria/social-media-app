@@ -4,7 +4,7 @@ import '../../features/profile/presentation/views/profile_screen.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
-import '../constant/constant.dart';
+import '../constant/collections.dart';
 import 'package:get/get.dart';
 import 'api_service.dart';
 import 'dart:convert';
@@ -98,9 +98,9 @@ abstract class ApiFirebaseMessaging {
             },
           );
           ApiService.firestore
-              .collection(Constant.userCollection)
+              .collection(Collections.userCollection)
               .doc(ApiService.user.uid)
-              .collection(Constant.notificationCollection)
+              .collection(Collections.notificationCollection)
               .add({
             'textTitle': message.notification!.title,
             'textBody': message.notification!.body,
@@ -116,9 +116,9 @@ abstract class ApiFirebaseMessaging {
   static Future<void> firebaseMessagingBackground(RemoteMessage message) async {
     if (message.notification != null) {
       ApiService.firestore
-          .collection(Constant.userCollection)
+          .collection(Collections.userCollection)
           .doc(ApiService.user.uid)
-          .collection(Constant.notificationCollection)
+          .collection(Collections.notificationCollection)
           .add({
         'textTitle': message.notification!.title,
         'textBody': message.notification!.body,

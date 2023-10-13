@@ -41,7 +41,7 @@ class MessageScreenCustomHeader extends StatelessWidget {
         ],
       ),
       subtitle: Text(
-        userData.isOnline ? "Online".tr : "Ofline".tr,
+        userData.isOnline ? "online".tr : "ofline".tr,
         style: const TextStyle(fontSize: AppStyle.kTextStyle16),
       ),
       leading: CircleAvatar(

@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import '../../../../../core/api/api_service.dart';
+import '../../../../../core/constant/collections.dart';
 import '../../../../../core/constant/colors.dart';
-import '../../../../../core/constant/constant.dart';
 import '../../../presentation/controllers/edite_personal_controller.dart';
 import '../edite_personal_repo.dart';
 
@@ -12,7 +12,7 @@ class EditePersonalApi extends EditePersonalRepo {
   Future<bool> isUsernameTaken({required String username}) async {
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
         .firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .where('username', isEqualTo: username)
         .limit(1)
         .get();
@@ -40,7 +40,7 @@ class EditePersonalApi extends EditePersonalRepo {
         editePersonUpdateUserData.value = true;
 
         await ApiService.firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
             .update({'username': username});
         editePersonGetUsername.clear();
@@ -58,7 +58,7 @@ class EditePersonalApi extends EditePersonalRepo {
         editePersonUpdateUserData.value = true;
 
         await ApiService.firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
             .update({'firstName': firstname});
 
@@ -78,7 +78,7 @@ class EditePersonalApi extends EditePersonalRepo {
       try {
         editePersonUpdateUserData.value = true;
         await ApiService.firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
             .update({'lastName': lastname});
         editePersonGetLastName.clear();
@@ -96,7 +96,7 @@ class EditePersonalApi extends EditePersonalRepo {
       try {
         editePersonUpdateUserData.value = true;
         await ApiService.firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
             .update({'age': dateTime});
         editePersonUpdateUserData.value = false;

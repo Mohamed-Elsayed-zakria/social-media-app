@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../../../core/constant/constant.dart';
+import '../../../../../core/constant/collections.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../model/post_model.dart';
 import '../../model/report_post.dart';
@@ -10,9 +10,9 @@ class CustomPostApi implements CustomPostRepo {
   Stream<QuerySnapshot<Map<String, dynamic>>> getPostComments(
       {required String postUid}) {
     return ApiService.firestore
-        .collection(Constant.postCollection)
+        .collection(Collections.postCollection)
         .doc(postUid)
-        .collection(Constant.commentsCollection)
+        .collection(Collections.commentsCollection)
         .snapshots();
   }
 
@@ -20,9 +20,9 @@ class CustomPostApi implements CustomPostRepo {
   Stream<QuerySnapshot<Map<String, dynamic>>> getPostLikes(
       {required String postUid}) {
     return ApiService.firestore
-        .collection(Constant.postCollection)
+        .collection(Collections.postCollection)
         .doc(postUid)
-        .collection(Constant.likesCollection)
+        .collection(Collections.likesCollection)
         .snapshots();
   }
 
@@ -31,7 +31,7 @@ class CustomPostApi implements CustomPostRepo {
     required String personUid,
   }) {
     return ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(personUid)
         .get();
   }
@@ -39,9 +39,9 @@ class CustomPostApi implements CustomPostRepo {
   @override
   Future<void> addLikeToPost({required String postId}) async {
     await ApiService.firestore
-        .collection(Constant.postCollection)
+        .collection(Collections.postCollection)
         .doc(postId)
-        .collection(Constant.likesCollection)
+        .collection(Collections.likesCollection)
         .doc(ApiService.user.uid)
         .set({
       'personUid': ApiService.user.uid,
@@ -51,9 +51,9 @@ class CustomPostApi implements CustomPostRepo {
   @override
   Future<void> removeLikeToPost({required String postId}) async {
     await ApiService.firestore
-        .collection(Constant.postCollection)
+        .collection(Collections.postCollection)
         .doc(postId)
-        .collection(Constant.likesCollection)
+        .collection(Collections.likesCollection)
         .doc(ApiService.user.uid)
         .delete();
   }
@@ -70,7 +70,7 @@ class CustomPostApi implements CustomPostRepo {
       datePublished: data.datePublished,
     );
     await ApiService.firestore
-        .collection(Constant.reportPostCollection)
+        .collection(Collections.reportPostCollection)
         .doc(data.postUid)
         .set(reportPost.toJson());
   }
@@ -78,18 +78,18 @@ class CustomPostApi implements CustomPostRepo {
   @override
   Future<void> deletePost({required PostModel data}) async {
     final postRef = ApiService.firestore
-        .collection(Constant.postCollection)
+        .collection(Collections.postCollection)
         .doc(data.postUid);
 
     await postRef.delete();
 
-    final subCollection1Ref = postRef.collection(Constant.commentsCollection);
+    final subCollection1Ref = postRef.collection(Collections.commentsCollection);
     final subCollection1Docs = await subCollection1Ref.get();
     for (final doc in subCollection1Docs.docs) {
       await doc.reference.delete();
     }
 
-    final subCollection2Ref = postRef.collection(Constant.likesCollection);
+    final subCollection2Ref = postRef.collection(Collections.likesCollection);
     final subCollection2Docs = await subCollection2Ref.get();
     for (final doc in subCollection2Docs.docs) {
       await doc.reference.delete();
@@ -99,7 +99,7 @@ class CustomPostApi implements CustomPostRepo {
   @override
   Future<void> addSavedItems({required PostModel data}) async {
     await ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
         .update({
       "savedItems": FieldValue.arrayUnion([data.postUid])
@@ -111,7 +111,7 @@ class CustomPostApi implements CustomPostRepo {
     List<PostModel> allPosts = [];
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
         .firestore
-        .collection(Constant.postCollection)
+        .collection(Collections.postCollection)
         .where('postUid', isEqualTo: postId)
         .get();
     if (querySnapshot.docs.isNotEmpty) {
@@ -120,7 +120,7 @@ class CustomPostApi implements CustomPostRepo {
         var data = doc.data();
         DocumentSnapshot<Map<String, dynamic>> userDataDoc = await ApiService
             .firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(data['personUid'])
             .get();
         if (userDataDoc.exists) {

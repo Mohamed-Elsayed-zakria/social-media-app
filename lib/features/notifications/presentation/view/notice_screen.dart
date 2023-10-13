@@ -7,14 +7,12 @@ class NoticeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            NoticeScreenCustomAppbar(),
-            NoticeScreenBody(),
-          ],
-        ),
+    return const Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          NoticeScreenCustomAppbar(),
+          NoticeScreenBody(),
+        ],
       ),
     );
   }

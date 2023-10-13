@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flash/core/constant/constant.dart';
 import '../../../../core/api/api_service.dart';
+import '../../../../core/constant/collections.dart';
 import '../../../posts/data/model/post_model.dart';
 import '../../../stories/data/model/stories_model.dart';
 import 'home_screen_repo.dart';
@@ -9,7 +9,7 @@ class HomeScreenApi extends HomeScreenRepo {
   @override
   Future<DocumentSnapshot<Map<String, dynamic>>> getAllUserData() async {
     return await ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
         .get();
   }
@@ -19,9 +19,9 @@ class HomeScreenApi extends HomeScreenRepo {
     List<StoriesModel> storiesData = [];
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
         .firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
-        .collection(Constant.storyCollection)
+        .collection(Collections.storyCollection)
         .get();
     if (querySnapshot.docs.isNotEmpty) {
       Map<String, dynamic> allData = {};
@@ -29,7 +29,7 @@ class HomeScreenApi extends HomeScreenRepo {
         var data = doc.data();
         DocumentSnapshot<Map<String, dynamic>> userDataDoc = await ApiService
             .firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
             .get();
         var userData = userDataDoc.data();
@@ -47,7 +47,7 @@ class HomeScreenApi extends HomeScreenRepo {
     List<PostModel> allPosts = [];
 
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await ApiService.firestore.collection(Constant.postCollection).get();
+        await ApiService.firestore.collection(Collections.postCollection).get();
 
     if (querySnapshot.docs.isNotEmpty) {
       Map<String, dynamic> allData = {};
@@ -55,7 +55,7 @@ class HomeScreenApi extends HomeScreenRepo {
         var data = doc.data();
         DocumentSnapshot<Map<String, dynamic>> userDataDoc = await ApiService
             .firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(data['personUid'])
             .get();
         if (userDataDoc.exists) {
@@ -76,7 +76,7 @@ class HomeScreenApi extends HomeScreenRepo {
 
     DocumentSnapshot<Map<String, dynamic>> currentUserData = await ApiService
         .firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
         .get();
     Map<String, dynamic>? jsonFollowingList = currentUserData.data();
@@ -89,9 +89,9 @@ class HomeScreenApi extends HomeScreenRepo {
 
       QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
           .firestore
-          .collection(Constant.userCollection)
+          .collection(Collections.userCollection)
           .doc(userUid)
-          .collection(Constant.storyCollection)
+          .collection(Collections.storyCollection)
           .get();
 
       if (querySnapshot.docs.isNotEmpty) {
@@ -99,7 +99,7 @@ class HomeScreenApi extends HomeScreenRepo {
           var data = doc.data();
           DocumentSnapshot<Map<String, dynamic>> userDataDoc = await ApiService
               .firestore
-              .collection(Constant.userCollection)
+              .collection(Collections.userCollection)
               .doc(data['personUid'])
               .get();
           if (userDataDoc.exists) {

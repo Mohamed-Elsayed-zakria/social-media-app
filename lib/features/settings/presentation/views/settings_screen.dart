@@ -7,15 +7,13 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Settings'.tr,
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Settings'.tr,
         ),
-        body: const SettingsScreenBody(),
       ),
+      body: const SettingsScreenBody(),
     );
   }
 }

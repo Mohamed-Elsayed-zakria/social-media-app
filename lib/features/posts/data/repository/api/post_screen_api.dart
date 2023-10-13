@@ -1,3 +1,4 @@
+import '../../../../../core/constant/collections.dart';
 import '../../../../main_home/presentation/views/main_home_screen.dart';
 import '../../../presentation/controllers/post_screen_controller.dart';
 import '../../../../notifications/data/model/notice_model.dart';
@@ -18,7 +19,7 @@ class PostScreenApi implements PostScreenRepo {
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(
       {required String currentUserUid}) {
     return ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(currentUserUid)
         .get();
   }
@@ -89,7 +90,7 @@ class PostScreenApi implements PostScreenRepo {
     String currentUsername = await ApiService.getCurrentUsername();
 
     return await ApiService.firestore
-        .collection(Constant.postCollection)
+        .collection(Collections.postCollection)
         .doc(generatId)
         .set(postModel.toJson())
         .then((value) {

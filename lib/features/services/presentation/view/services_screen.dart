@@ -7,15 +7,13 @@ class ServicesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Services'.tr,
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Services'.tr,
         ),
-        body: const ServicesScreenBody(),
       ),
+      body: const ServicesScreenBody(),
     );
   }
 }

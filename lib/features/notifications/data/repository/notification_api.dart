@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../../../../core/api/api_service.dart';
-import '../../../../core/constant/constant.dart';
+import '../../../../core/constant/collections.dart';
 import '../model/notice_model.dart';
 import 'notification_repo.dart';
 
@@ -12,9 +11,9 @@ class NotificationApi implements NotificationRepo {
 
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
         .firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
-        .collection(Constant.notificationCollection)
+        .collection(Collections.notificationCollection)
         .get();
 
     if (querySnapshot.docs.isNotEmpty) {
@@ -23,7 +22,7 @@ class NotificationApi implements NotificationRepo {
         var data = doc.data();
         DocumentSnapshot<Map<String, dynamic>> userDataDoc = await ApiService
             .firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(data['personUid'])
             .get();
 

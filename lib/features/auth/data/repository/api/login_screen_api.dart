@@ -1,7 +1,7 @@
-import '../../../../../core/api/api_firebase_messaging.dart';
 import '../../../../main_home/presentation/views/main_home_screen.dart';
 import '../../../presentation/controllers/login_screen_controller.dart';
-import '../../../../../core/constant/constant.dart';
+import '../../../../../core/api/api_firebase_messaging.dart';
+import '../../../../../core/constant/collections.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../../core/constant/colors.dart';
 import '../../../../../core/api/api_service.dart';
@@ -28,7 +28,7 @@ class LoginScreenApi extends LoginScreenRepo {
       )
           .then((value) async {
         await ApiService.firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
             .update(loginScreenModel.toJson());
         loginIsLodinge.value = false;

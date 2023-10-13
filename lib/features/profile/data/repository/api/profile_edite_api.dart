@@ -1,3 +1,4 @@
+import '../../../../../core/constant/collections.dart';
 import '../../../presentation/controller/profile_edite_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/constant/constant.dart';
@@ -10,7 +11,7 @@ class ProfileEditeApi extends ProfileEditeRepo {
   @override
   Stream<DocumentSnapshot<Map<String, dynamic>>> getUserDataProfileEdite() {
     return ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
         .snapshots();
   }
@@ -20,7 +21,7 @@ class ProfileEditeApi extends ProfileEditeRepo {
     try {
       updateIsLodinge.value = true;
       await ApiService.firestore
-          .collection(Constant.userCollection)
+          .collection(Collections.userCollection)
           .doc(ApiService.user.uid)
           .update({'bio': text});
       getTextBio.clear();
@@ -42,7 +43,7 @@ class ProfileEditeApi extends ProfileEditeRepo {
         String url = await storageRef.getDownloadURL();
 
         await ApiService.firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
             .update({
           'personalPicture': url,
@@ -74,7 +75,7 @@ class ProfileEditeApi extends ProfileEditeRepo {
 
         String url = await storageRef.getDownloadURL();
         await ApiService.firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
             .update({
           'coverPhoto': url,

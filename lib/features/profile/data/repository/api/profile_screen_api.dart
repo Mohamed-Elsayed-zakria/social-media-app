@@ -1,6 +1,6 @@
 import 'package:flash/core/api/api_firebase_messaging.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../../../core/constant/constant.dart';
+import '../../../../../core/constant/collections.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../../../notifications/data/model/notice_model.dart';
 import '../../../../posts/data/model/post_model.dart';
@@ -13,7 +13,7 @@ class ProfileScreenApi implements ProfileScreenRepo {
     required String otherUid,
   }) {
     return ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(otherUid)
         .snapshots();
   }
@@ -25,7 +25,7 @@ class ProfileScreenApi implements ProfileScreenRepo {
     List<PostModel> allPosts = [];
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
         .firestore
-        .collection(Constant.postCollection)
+        .collection(Collections.postCollection)
         .where('personUid', isEqualTo: otherUid)
         .get();
     if (querySnapshot.docs.isNotEmpty) {
@@ -34,7 +34,7 @@ class ProfileScreenApi implements ProfileScreenRepo {
         var data = doc.data();
         DocumentSnapshot<Map<String, dynamic>> userDataDoc = await ApiService
             .firestore
-            .collection(Constant.userCollection)
+            .collection(Collections.userCollection)
             .doc(data['personUid'])
             .get();
         if (userDataDoc.exists) {
@@ -52,14 +52,14 @@ class ProfileScreenApi implements ProfileScreenRepo {
   @override
   Future<void> tapFolow({required ProfileScreenModel userData}) async {
     await ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(userData.personalUid)
         .update({
       "followers": FieldValue.arrayUnion([ApiService.user.uid])
     });
 
     await ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
         .update({
       "following": FieldValue.arrayUnion([userData.personalUid])
@@ -86,14 +86,14 @@ class ProfileScreenApi implements ProfileScreenRepo {
   @override
   Future<void> tapUnfolow({required ProfileScreenModel userData}) async {
     await ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(userData.personalUid)
         .update({
       "followers": FieldValue.arrayRemove([ApiService.user.uid])
     });
 
     await ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
         .update({
       "following": FieldValue.arrayRemove([userData.personalUid])

@@ -7,8 +7,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'core/api/api_firebase_messaging.dart';
 import 'core/localization/app_locale.dart';
+import 'core/constant/collections.dart';
 import 'package:flutter/material.dart';
-import 'core/constant/constant.dart';
 import 'core/api/api_service.dart';
 import 'core/constant/colors.dart';
 import 'firebase_options.dart';
@@ -57,7 +57,7 @@ class FlashApp extends StatelessWidget {
           } else if (hasAccountSnapshot.hasData) {
             return FutureBuilder<DocumentSnapshot>(
               future: ApiService.firestore
-                  .collection(Constant.userCollection)
+                  .collection(Collections.userCollection)
                   .doc(ApiService.user.uid)
                   .get(),
               builder: (context, snapshot) {

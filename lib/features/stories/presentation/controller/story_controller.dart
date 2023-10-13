@@ -68,8 +68,8 @@ Future<void> videoStoryOpenGalary() async {
     final double videoSizeInMB = videoSize / (1024 * 1024);
     if (videoSizeInMB > 30) {
       Get.snackbar(
-        "error".tr,
-        "Video is too long",
+        "Error".tr,
+        "Video is too long".tr,
         backgroundColor: AppColors.kErrorColor,
         colorText: AppColors.kSurfaceColor,
       );

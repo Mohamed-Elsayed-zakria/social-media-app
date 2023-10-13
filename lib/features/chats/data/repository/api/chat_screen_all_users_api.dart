@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/api/api_service.dart';
-import '../../../../../core/constant/constant.dart';
+import '../../../../../core/constant/collections.dart';
 import '../chat_screen_all_users_repo.dart';
 
 class ChatScreenAllUsersApi extends ChatScreenAllUsersRepo {
   @override
   Future<QuerySnapshot<Map<String, dynamic>>> getUserDataToChat() {
     return ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .where('personUid', isNotEqualTo: ApiService.user.uid)
         .get();
   }
@@ -17,11 +17,11 @@ class ChatScreenAllUsersApi extends ChatScreenAllUsersRepo {
     required String otherUserId,
   }) {
     return ApiService.firestore
-        .collection(Constant.userCollection)
+        .collection(Collections.userCollection)
         .doc(otherUserId)
-        .collection(Constant.chatCollection)
+        .collection(Collections.chatCollection)
         .doc(ApiService.user.uid)
-        .collection(Constant.messageCollection)
+        .collection(Collections.messageCollection)
         .orderBy("dateTime", descending: true)
         .limit(1)
         .snapshots();

@@ -1,4 +1,5 @@
 import '../../../../../core/api/api_service.dart';
+import '../../../../../core/constant/collections.dart';
 import '../../../../../core/constant/colors.dart';
 import '../../../../../core/constant/constant.dart';
 import '../../../presentation/controllers/verification_controller.dart';
@@ -51,7 +52,7 @@ class VerificationApi extends VerificationRepo {
     );
     try {
       await ApiService.firestore
-          .collection(Constant.verificationCollection)
+          .collection(Collections.verificationCollection)
           .doc(ApiService.user.uid)
           .set(verificationModel.toJson())
           .then(
