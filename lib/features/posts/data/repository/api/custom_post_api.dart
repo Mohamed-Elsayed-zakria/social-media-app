@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/constant/collections.dart';
 import '../../../../../core/api/api_service.dart';
@@ -7,33 +9,35 @@ import '../custom_post_repo.dart';
 
 class CustomPostApi implements CustomPostRepo {
   @override
-  Stream<QuerySnapshot<Map<String, dynamic>>> getPostComments(
-      {required String postUid}) {
-    return ApiService.firestore
-        .collection(Collections.postCollection)
+  Stream<int> getCommentCount({required String postUid}) {
+    return FirebaseFirestore.instance
+        .collection('posts')
         .doc(postUid)
-        .collection(Collections.commentsCollection)
-        .snapshots();
+        .collection('comments')
+        .snapshots()
+        .map((QuerySnapshot snapshot) {
+      return snapshot.docs.length;
+    });
   }
 
   @override
-  Stream<QuerySnapshot<Map<String, dynamic>>> getPostLikes(
-      {required String postUid}) {
-    return ApiService.firestore
+  Stream<List> getPostLikes({
+    required String postUid,
+  }) {
+    final StreamController<List> likesController = StreamController<List>();
+
+    FirebaseFirestore.instance
         .collection(Collections.postCollection)
         .doc(postUid)
         .collection(Collections.likesCollection)
-        .snapshots();
-  }
+        .snapshots()
+        .listen((QuerySnapshot<Map<String, dynamic>> querySnapshot) {
+      List likesData =
+          querySnapshot.docs.map((doc) => doc['personUid']).toList();
+      likesController.add(likesData);
+    });
 
-  @override
-  Future<DocumentSnapshot<Map<String, dynamic>>> getUserData({
-    required String personUid,
-  }) {
-    return ApiService.firestore
-        .collection(Collections.userCollection)
-        .doc(personUid)
-        .get();
+    return likesController.stream;
   }
 
   @override
@@ -83,7 +87,8 @@ class CustomPostApi implements CustomPostRepo {
 
     await postRef.delete();
 
-    final subCollection1Ref = postRef.collection(Collections.commentsCollection);
+    final subCollection1Ref =
+        postRef.collection(Collections.commentsCollection);
     final subCollection1Docs = await subCollection1Ref.get();
     for (final doc in subCollection1Docs.docs) {
       await doc.reference.delete();

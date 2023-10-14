@@ -1,6 +1,6 @@
 import '../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
-import '../video_reels_screen.dart';
+import '../show_video_reels_screen.dart';
 import 'package:get/get.dart';
 import '../video_screen.dart';
 
@@ -37,7 +37,7 @@ class VideoCustomHeader extends StatelessWidget {
               ),
               Expanded(
                 child: TextButton(
-                  onPressed: () => Get.to(() => const VideoReelsScreen()),
+                  onPressed: () => Get.to(() => const ShowVideoReelsScreen()),
                   child: Text('Reels'.tr),
                 ),
               ),

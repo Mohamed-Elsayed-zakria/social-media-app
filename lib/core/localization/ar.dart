@@ -121,6 +121,8 @@ const Map<String, String> ar = {
   'write something': 'أكتب شيئا',
   'Download image done': "تم تنزيل الصورة",
   'Download image': "تنزيل الصورة",
+  'Failed to load image': "فشل تحميل الصورة",
+
   //=====================comments==================
   'Delete': 'حذف',
   "Report": "إبلاغ",
@@ -184,7 +186,7 @@ const Map<String, String> ar = {
   'Do you want to log out ?': 'هل ترغب بالخروج ؟',
   'Yes': 'نعم',
   'No': 'لا',
-  'Application language': "لغة التطبيق",
+  'Language': "اللغة",
   "English": "انجليزي",
   'Arabic': 'عربي',
   //***************'General settings'*************

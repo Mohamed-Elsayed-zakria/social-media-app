@@ -14,6 +14,14 @@ import 'dart:io';
 late VideoPlayerController? addVideoReelsController;
 TextEditingController? getDescriptionReels = TextEditingController();
 
+List<String> listItem = [
+  "Public".tr,
+  "Followers".tr,
+  "Private".tr,
+];
+
+RxString selectItem = listItem[0].obs;
+
 File? addVideoReelsPath;
 
 RxBool isPlaying = false.obs;

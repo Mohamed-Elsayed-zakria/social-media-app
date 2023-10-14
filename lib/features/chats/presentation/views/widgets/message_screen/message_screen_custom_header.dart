@@ -16,39 +16,41 @@ class MessageScreenCustomHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
+    return GestureDetector(
       onTap: () => Get.to(
         () => ProfileScreen(otherUid: userData.personUid),
       ),
-      title: Row(
-        children: [
-          Text(
-            '@${userData.username}',
-            style: const TextStyle(
-              fontSize: AppStyle.kTextStyle16,
+      child: ListTile(
+        contentPadding: EdgeInsets.zero,
+        title: Row(
+          children: [
+            Text(
+              '@${userData.username}',
+              style: const TextStyle(
+                fontSize: AppStyle.kTextStyle16,
+              ),
             ),
-          ),
-          const SizedBox(width: 5),
-          Visibility(
-            visible: userData.verified,
-            child: const Icon(
-              Icons.verified,
-              size: 17,
-              color: AppColors.kPrimaryColor,
+            const SizedBox(width: 5),
+            Visibility(
+              visible: userData.verified,
+              child: const Icon(
+                Icons.verified,
+                size: 17,
+                color: AppColors.kPrimaryColor,
+              ),
             ),
+          ],
+        ),
+        subtitle: Text(
+          userData.isOnline ? "online".tr : "ofline".tr,
+          style: const TextStyle(fontSize: AppStyle.kTextStyle16),
+        ),
+        leading: CircleAvatar(
+          radius: 24,
+          backgroundColor: AppColors.kBackgroundColor,
+          backgroundImage: CachedNetworkImageProvider(
+            userData.personalPicture,
           ),
-        ],
-      ),
-      subtitle: Text(
-        userData.isOnline ? "online".tr : "ofline".tr,
-        style: const TextStyle(fontSize: AppStyle.kTextStyle16),
-      ),
-      leading: CircleAvatar(
-        radius: 24,
-        backgroundColor: AppColors.kBackgroundColor,
-        backgroundImage: CachedNetworkImageProvider(
-          userData.personalPicture,
         ),
       ),
     );

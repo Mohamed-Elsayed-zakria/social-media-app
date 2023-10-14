@@ -14,10 +14,10 @@ class AccountSettingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: AppColors.kSurfaceColor,
-      child: InkWell(
-        onTap: onTap,
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        color: AppColors.kSurfaceColor,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
           child: Row(

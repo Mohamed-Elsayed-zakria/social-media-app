@@ -28,8 +28,8 @@ class CustomPostShowSingleImage extends StatelessWidget {
           errorWidget: (context, url, error) => SizedBox(
             height: size.height * .35,
             width: double.infinity,
-            child: const Center(
-              child: Text('Failed to load image'),
+            child: Center(
+              child: Text('Failed to load image'.tr),
             ),
           ),
         ),

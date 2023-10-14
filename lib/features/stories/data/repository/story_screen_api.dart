@@ -1,9 +1,9 @@
 import 'package:flash/features/main_home/presentation/views/main_home_screen.dart';
-import '../../../../core/constant/collections.dart';
 import '../../../home/presentaion/controller/home_sceen_controller.dart';
 import '../../presentation/controller/story_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../../core/constant/collections.dart';
 import '../../../../core/constant/constant.dart';
 import '../../../../core/api/api_service.dart';
 import '../model/stories_model.dart';
@@ -44,7 +44,7 @@ class StoryScreenApi extends StoryScreenRepo {
 
       if (vedioPath != null) {
         final storageRef = FirebaseStorage.instance.ref(
-          "post-user/${ApiService.user.uid}/post-videos/$vedioName",
+         Constant.userVideoStoryPath(generatStoryId: generatStoryId),
         );
         await storageRef.putFile(vedioPath);
         videoUrl = await storageRef.getDownloadURL();

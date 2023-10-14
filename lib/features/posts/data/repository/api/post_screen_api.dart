@@ -1,10 +1,10 @@
-import '../../../../../core/constant/collections.dart';
 import '../../../../main_home/presentation/views/main_home_screen.dart';
 import '../../../presentation/controllers/post_screen_controller.dart';
 import '../../../../notifications/data/model/notice_model.dart';
 import '../../../../../core/api/api_firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../../../core/api/api_dynamic_link.dart';
+import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/constant/constant.dart';
 import '../../../../../core/api/api_service.dart';
@@ -53,7 +53,7 @@ class PostScreenApi implements PostScreenRepo {
 
     if (vedioPath.value != null) {
       final storageRef = FirebaseStorage.instance.ref(
-        "post-user/${ApiService.user.uid}/post-videos/$vedioName",
+       Constant.postVideoPath(generatId: generatId),
       );
       await storageRef.putFile(vedioPath.value!);
       videoUrl = await storageRef.getDownloadURL();

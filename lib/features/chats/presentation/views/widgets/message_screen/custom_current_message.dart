@@ -30,7 +30,7 @@ class CustomCurrentMessage extends StatelessWidget {
               color: AppColors.kOnSurfaceColor,
             ),
             children: [
-              const TextSpan(text: '\n\n', style: TextStyle(fontSize: 6)),
+              const TextSpan(text: '\n\n', style: TextStyle(fontSize: 4.5)),
               TextSpan(
                 text: MyDateUtil.convertDateTime(
                   historyAsText: messageData.dateTime,

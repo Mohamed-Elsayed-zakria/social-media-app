@@ -123,6 +123,7 @@ const Map<String, String> en = {
   'write something': 'write something...',
   'Download image done': 'Download image done',
   'Download image': 'Download image',
+  'Failed to load image':'Failed to load image',
 //=====================comments==================
   'Delete': 'Delete',
   "Report": "Report",
@@ -186,7 +187,7 @@ const Map<String, String> en = {
   'Do you want to log out ?': 'Do you want to log out ?',
   'Yes': 'Yes',
   'No': 'No',
-  'Application language': 'Application language',
+  'Language': 'Language',
   "English": "English",
   'Arabic': 'Arabic',
   //***************'General settings'*************

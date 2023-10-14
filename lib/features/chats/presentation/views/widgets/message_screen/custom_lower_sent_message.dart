@@ -61,6 +61,7 @@ class CustomLowerSentMessage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: TextFormField(
                       controller: getMessageChat,
+                      maxLines: null,
                       decoration: InputDecoration(
                         hintText: 'Type your Message here'.tr,
                         border: InputBorder.none,

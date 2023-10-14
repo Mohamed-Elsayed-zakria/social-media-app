@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flash/core/constant/colors.dart';
 import 'package:flash/core/constant/style.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../../../posts/presentation/views/widgets/custom_post/custom_post_image_shimmer.dart';
 import '../../../../data/model/stories_model.dart';
 import 'story_viewer_play_vedio.dart';
 import 'story_viewer_header.dart';
@@ -29,9 +31,16 @@ class StoryViewerBody extends StatelessWidget {
                 storyData.type == TypeStoryUploade.image,
             child: CachedNetworkImage(
               imageUrl: storyData.imgPath!,
-              filterQuality: FilterQuality.high,
               fit: BoxFit.fill,
               width: double.infinity,
+              filterQuality: FilterQuality.high,
+              placeholder: (context, url) => const CustomPostImageShimmer(),
+              errorWidget: (context, url, error) => SizedBox(
+                width: double.infinity,
+                child:  Center(
+                  child: Text('Failed to load image'.tr),
+                ),
+              ),
             ),
           ),
           Visibility(

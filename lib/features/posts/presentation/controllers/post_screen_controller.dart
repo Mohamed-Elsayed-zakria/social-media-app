@@ -1,5 +1,4 @@
 import 'package:video_player/video_player.dart';
-import 'package:path/path.dart' show basename;
 import '../../../../core/constant/colors.dart';
 import '../../data/repository/api/post_screen_api.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -44,7 +43,6 @@ void removeImage(int index) {
 }
 
 Rx<File?> vedioPath = Rx<File?>(null);
-String? vedioName;
 
 late VideoPlayerController? playerController;
 
@@ -68,7 +66,6 @@ Future<void> uploadeVideo() async {
       return;
     }
     vedioPath.value = videoFile;
-    vedioName = basename(videoFile.path);
     playerController = VideoPlayerController.file(vedioPath.value!);
     await playerController!.initialize();
     playerController!.play();

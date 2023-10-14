@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:video_player/video_player.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../core/constant/colors.dart';
-import 'package:path/path.dart' show basename;
 import '../view/uploade_story_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +17,6 @@ late VideoPlayerController? playerController;
 PageController pageController = PageController();
 
 File? vedioPath;
-String? vedioName;
 
 Future<DocumentSnapshot<Map<String, dynamic>>> getuserDataToStory({
   required String otherUid,
@@ -76,7 +74,6 @@ Future<void> videoStoryOpenGalary() async {
       return;
     }
     vedioPath = videoFile;
-    vedioName = basename(videoFile.path);
     playerController = VideoPlayerController.file(vedioPath!);
     await playerController!.initialize();
     playerController!.play();

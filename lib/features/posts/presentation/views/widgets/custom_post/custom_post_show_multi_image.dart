@@ -21,8 +21,8 @@ class CustomPostShowMultiImage extends StatelessWidget {
         fit: BoxFit.fill,
         filterQuality: FilterQuality.high,
         placeholder: (context, url) => const CustomPostImageShimmer(),
-        errorWidget: (context, url, error) => const Center(
-          child: Text('Failed to load image'),
+        errorWidget: (context, url, error) => Center(
+          child: Text('Failed to load image'.tr),
         ),
       ),
     );

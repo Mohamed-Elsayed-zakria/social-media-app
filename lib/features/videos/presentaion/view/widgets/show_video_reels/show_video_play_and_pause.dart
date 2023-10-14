@@ -1,20 +1,20 @@
-import '../../../controller/uploade_video_reels_controller.dart';
-import '../../../../../../core/constant/constant.dart';
-import '../../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../core/constant/colors.dart';
+import '../../../../../../core/constant/constant.dart';
+import '../../../controller/show_video_reels_controller.dart';
 
-class ShowPlayAndPauseInVideo extends StatelessWidget {
-  const ShowPlayAndPauseInVideo({super.key});
+class ShowVideoPlayAndPause extends StatelessWidget {
+  const ShowVideoPlayAndPause({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+   final size = Constant.sizeScreen(context: context);
     return Obx(
-      () => isShow.value
+      () => showVideoIsShowIcon.value
           ? Center(
-              child: isPlaying.value
+              child: showVideoIsPlaying.value
                   ? Icon(
                       Icons.play_arrow,
                       color: AppColors.kBackgroundColor,
@@ -30,3 +30,4 @@ class ShowPlayAndPauseInVideo extends StatelessWidget {
     );
   }
 }
+

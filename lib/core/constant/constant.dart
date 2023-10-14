@@ -2,26 +2,38 @@ import 'package:flutter/material.dart';
 import '../api/api_service.dart';
 
 abstract class Constant {
-  static sizeScreen({required BuildContext context}) {
+  static Size sizeScreen({required BuildContext context}) {
     return MediaQuery.of(context).size;
   }
 
   static String postImagesPath({
     required String generatId,
   }) =>
-      'post-images/$generatId/${DateTime.timestamp().millisecondsSinceEpoch}.jpg';
+      'posts/images/${ApiService.user.uid}/$generatId/${DateTime.timestamp().millisecondsSinceEpoch}.jpg';
+
+  static String postVideoPath({
+    required String generatId,
+  }) =>
+      "posts/videos/${ApiService.user.uid}/$generatId/${DateTime.timestamp().millisecondsSinceEpoch}.mp4";
+
+  static String userImagesStoryPath({
+    required String generatStoryId,
+  }) =>
+      "stories/images/${ApiService.user.uid}/$generatStoryId/${DateTime.timestamp().millisecondsSinceEpoch}.jpg";
+
+static String userVideoStoryPath({
+    required String generatStoryId,
+  }) =>
+      "stories/videos/${ApiService.user.uid}/$generatStoryId/${DateTime.timestamp().millisecondsSinceEpoch}.mp4";
 
   static String userImagesPath =
       "user-images/${ApiService.user.uid}/profile-image/${DateTime.timestamp().millisecondsSinceEpoch}.jpg";
 
   static String userPersonalPictureVerificationPath =
-      "user-Verification/${ApiService.user.uid}/personal-picture/${DateTime.timestamp().millisecondsSinceEpoch}.jpg";
+      "user-images/${ApiService.user.uid}/user-Verification/personal-picture/${DateTime.timestamp().millisecondsSinceEpoch}.jpg";
+
   static String userImageIdVerificationPath =
-      "user-Verification/${ApiService.user.uid}/id-picture/${DateTime.timestamp().millisecondsSinceEpoch}.jpg";
-  static String userImagesStoryPath({
-    required String generatStoryId,
-  }) =>
-      "user-images-story/${ApiService.user.uid}/$generatStoryId/${DateTime.timestamp().millisecondsSinceEpoch}.jpg";
+      "user-images/${ApiService.user.uid}/user-Verification/id-picture/${DateTime.timestamp().millisecondsSinceEpoch}.jpg";
 
   static const String urlCoverPhoto =
       "https://firebasestorage.googleapis.com/v0/b/social-frinds.appspot.com/o/defulte-cover%2Fcover.jpg?alt=media&token=cfed2d09-7e9b-4f9f-855f-ec0df1344d71";

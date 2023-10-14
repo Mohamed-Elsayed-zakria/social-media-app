@@ -11,7 +11,7 @@ class SettingsScreenAppLanguage extends StatelessWidget {
     return ListTile(
       onTap: () {
         Get.defaultDialog(
-          title: 'Application language'.tr,
+          title: 'Language'.tr,
           titlePadding: const EdgeInsets.only(top: 25, bottom: 10),
           content: Column(
             children: [

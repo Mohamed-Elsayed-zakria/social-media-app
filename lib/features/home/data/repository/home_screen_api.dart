@@ -7,11 +7,16 @@ import 'home_screen_repo.dart';
 
 class HomeScreenApi extends HomeScreenRepo {
   @override
-  Future<DocumentSnapshot<Map<String, dynamic>>> getAllUserData() async {
-    return await ApiService.firestore
+  Future<String> getPersonalPicture() async {
+    String personalPicture;
+    DocumentSnapshot<Map<String, dynamic>> currentUserData = await ApiService
+        .firestore
         .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
         .get();
+    var userData = currentUserData.data();
+    personalPicture = userData!['personalPicture'];
+    return personalPicture;
   }
 
   @override

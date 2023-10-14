@@ -1,19 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../model/post_model.dart';
 
 abstract class CustomPostRepo {
-  Stream<QuerySnapshot<Map<String, dynamic>>> getPostComments({
-    required String postUid,
-  });
+  Stream<int> getCommentCount({required String postUid});
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> getPostLikes({
-    required String postUid,
-  });
-
-  Future<DocumentSnapshot<Map<String, dynamic>>> getUserData({
-    required String personUid,
-  });
+  Stream<List> getPostLikes({required String postUid});
 
   Future<List<PostModel>> getPostDetails({required String postId});
 
