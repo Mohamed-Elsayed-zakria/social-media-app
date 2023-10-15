@@ -1,4 +1,6 @@
 class CommentModel {
+  late String personalPicture;
+  late bool verified;
   late String username;
   late String textComment;
   late String dataPublished;
@@ -7,7 +9,6 @@ class CommentModel {
   late List likes;
 
   CommentModel({
-    required this.username,
     required this.commentId,
     required this.textComment,
     required this.dataPublished,
@@ -16,6 +17,8 @@ class CommentModel {
   });
 
   CommentModel.fromJson(Map<String, dynamic> json) {
+    personalPicture = json['personalPicture'] ?? '';
+    verified = json['verified'] ?? '';
     username = json['username'] ?? '';
     textComment = json['textComment'] ?? '';
     dataPublished = json['dataPublished'] ?? '';
@@ -23,10 +26,9 @@ class CommentModel {
     likes = json['likes'] ?? [];
     personUid = json['personUid'] ?? '';
   }
-  
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['username'] = username;
     data['textComment'] = textComment;
     data['dataPublished'] = dataPublished;
     data['commentId'] = commentId;

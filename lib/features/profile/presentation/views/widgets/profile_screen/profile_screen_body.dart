@@ -41,18 +41,15 @@ class ProfileScreenBody extends StatelessWidget {
               ],
             ),
             child: StreamBuilder(
-              stream: getDataToProfileScreen(otherUid: otherUid),
+              stream: getCurrentUserData(otherUid: otherUid),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const ProfileScreenShimmer();
                 } else {
-                  ProfileScreenModel userData;
-                  UserChatData userDataMessage;
-                  Map<String, dynamic> data =
-                      snapshot.data!.data() as Map<String, dynamic>;
-                  userData = ProfileScreenModel.fromJson(data);
-                  userDataMessage = UserChatData.fromJson(data);
-
+                  Map<String, dynamic> allData = snapshot.data!;
+                  ProfileScreenModel userData =
+                      ProfileScreenModel.fromJson(allData);
+                  UserChatData userDataMessage = UserChatData.fromJson(allData);
                   return Column(
                     children: [
                       ProfileScreenCoverAndPersonImage(

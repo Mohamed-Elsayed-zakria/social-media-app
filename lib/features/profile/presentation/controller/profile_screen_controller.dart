@@ -1,18 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../data/repository/api/profile_screen_api.dart';
 import '../../../posts/data/model/post_model.dart';
 import '../../data/models/profile_model.dart';
-import '../../data/repository/api/profile_screen_api.dart';
 
-Stream<DocumentSnapshot<Map<String, dynamic>>> getDataToProfileScreen({
+Stream<Map<String, dynamic>> getCurrentUserData({
   required String otherUid,
 }) {
-  return ProfileScreenApi().getDataToProfileScreen(otherUid: otherUid);
-}
-
-Future<List<PostModel>> getPostsForSpecificPerson({
-  required String otherUid,
-}) {
-  return ProfileScreenApi().getPostsForSpecificPerson(otherUid: otherUid);
+  return ProfileScreenApi().getCurrentUserData(otherUid: otherUid);
 }
 
 Future<void> tapFolow({required ProfileScreenModel userData}) async {
@@ -21,4 +14,10 @@ Future<void> tapFolow({required ProfileScreenModel userData}) async {
 
 Future<void> tapUnfolow({required ProfileScreenModel userData}) async {
   ProfileScreenApi().tapUnfolow(userData: userData);
+}
+
+Future<List<PostModel>> getPostsForSpecificPerson({
+  required String otherUid,
+}) {
+  return ProfileScreenApi().getPostsForSpecificPerson(otherUid: otherUid);
 }

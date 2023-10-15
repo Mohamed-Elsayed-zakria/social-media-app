@@ -1,20 +1,19 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../data/repository/api/comments_api.dart';
+import '../../data/model/comment_model.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 TextEditingController commentController = TextEditingController();
+
+Stream<List<CommentModel>> getAllComments({required String postId}) {
+  return CommentsApi().getAllComments(postId: postId);
+}
 
 Future<void> addNewComment({
   required String postId,
   required String text,
 }) async {
   CommentsApi().addNewComment(postId: postId, text: text);
-}
-
-Stream<QuerySnapshot<Map<String, dynamic>>> getAllComments({
-  required String postId,
-}) {
-  return CommentsApi().getAllComments(postId: postId);
 }
 
 Future<void> addLikeComment({
@@ -29,11 +28,5 @@ Future<void> removeLikeFromComment({
   required String commentUid,
 }) async {
   CommentsApi().removeLikeFromComment(postUid: postUid, commentUid: commentUid);
-}
-
-Future<DocumentSnapshot<Map<String, dynamic>>> getUserDataToComments({
-  required String personUid,
-}) {
-  return CommentsApi().getUserDataToComments(personUid: personUid);
 }
 

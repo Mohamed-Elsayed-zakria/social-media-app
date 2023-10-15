@@ -21,11 +21,8 @@ class CustomPostApi implements CustomPostRepo {
   }
 
   @override
-  Stream<List> getPostLikes({
-    required String postUid,
-  }) {
+  Stream<List> getPostLikes({required String postUid}) {
     final StreamController<List> likesController = StreamController<List>();
-
     FirebaseFirestore.instance
         .collection(Collections.postCollection)
         .doc(postUid)

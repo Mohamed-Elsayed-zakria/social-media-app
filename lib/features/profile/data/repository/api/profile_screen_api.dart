@@ -1,21 +1,30 @@
-import 'package:flash/core/api/api_firebase_messaging.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../../../core/constant/collections.dart';
-import '../../../../../core/api/api_service.dart';
 import '../../../../notifications/data/model/notice_model.dart';
+import 'package:flash/core/api/api_firebase_messaging.dart';
+import '../../../../../core/constant/collections.dart';
 import '../../../../posts/data/model/post_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../../../core/api/api_service.dart';
 import '../../models/profile_model.dart';
 import '../profile_screen_repo.dart';
+import 'dart:async';
 
 class ProfileScreenApi implements ProfileScreenRepo {
   @override
-  Stream<DocumentSnapshot<Map<String, dynamic>>> getDataToProfileScreen({
+  Stream<Map<String, dynamic>> getCurrentUserData({
     required String otherUid,
   }) {
-    return ApiService.firestore
+    StreamController<Map<String, dynamic>> userDataController =
+        StreamController();
+    ApiService.firestore
         .collection(Collections.userCollection)
         .doc(otherUid)
-        .snapshots();
+        .snapshots()
+        .listen((DocumentSnapshot<Map<String, dynamic>> data) {
+      Map<String, dynamic> currentUserData = data.data()!;
+      userDataController.add(currentUserData);
+    });
+
+    return userDataController.stream;
   }
 
   @override
@@ -28,6 +37,7 @@ class ProfileScreenApi implements ProfileScreenRepo {
         .collection(Collections.postCollection)
         .where('personUid', isEqualTo: otherUid)
         .get();
+        
     if (querySnapshot.docs.isNotEmpty) {
       Map<String, dynamic> allData = {};
       for (var doc in querySnapshot.docs) {
@@ -74,8 +84,6 @@ class ProfileScreenApi implements ProfileScreenRepo {
       textTitle: 'He followed you',
       sentTo: userData.token,
     );
-
-
 
     ApiFirebaseMessaging.sendNotfiy(
       username: currentUsername,

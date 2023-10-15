@@ -1,9 +1,9 @@
 import '../../../../controllers/comments_controller.dart';
 import '../../../../../data/model/comment_model.dart';
 import 'package:flash/core/constant/colors.dart';
-import 'comment_item.dart';
 import 'package:flutter/material.dart';
 import 'comments_not_fount.dart';
+import 'comment_item.dart';
 
 class CustomComments extends StatelessWidget {
   final String postId;
@@ -20,15 +20,8 @@ class CustomComments extends StatelessWidget {
       child: StreamBuilder(
         stream: getAllComments(postId: postId),
         builder: (context, commentSnapshot) {
-          List<CommentModel> commentsList;
           if (commentSnapshot.hasData) {
-            final allCommentData = commentSnapshot.data?.docs;
-            commentsList = allCommentData
-                    ?.map(
-                      (element) => CommentModel.fromJson(element.data()),
-                    )
-                    .toList() ??
-                [];
+            List<CommentModel> commentsList = commentSnapshot.data!;
             if (commentsList.isNotEmpty) {
               return ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),

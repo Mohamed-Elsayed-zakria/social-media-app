@@ -38,7 +38,7 @@ class SettingsScreenAppLanguage extends StatelessWidget {
         );
       },
       title: Text(
-        "Application language".tr,
+        "Language".tr,
         style: const TextStyle(
           fontSize: AppStyle.kTextStyle18,
         ),
