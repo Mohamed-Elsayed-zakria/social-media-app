@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../data/repository/api/all_likes_api.dart';
+import '../../data/model/likes_model.dart';
 
-Future<DocumentSnapshot<Map<String, dynamic>>> getPersonWordLikeByUid({
-  required String getLikesByUid,
-}) {
-  return AllLikesApi().getPersonWordLikeByUid(getLikesByUid: getLikesByUid);
+Future<List<LikesModel>> getAllLikesByUid({required String postUid}) {
+  return AllLikesApi().getAllLikesByUid(postUid: postUid);
 }

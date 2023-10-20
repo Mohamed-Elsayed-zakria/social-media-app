@@ -37,7 +37,7 @@ class ProfileScreenApi implements ProfileScreenRepo {
         .collection(Collections.postCollection)
         .where('personUid', isEqualTo: otherUid)
         .get();
-        
+
     if (querySnapshot.docs.isNotEmpty) {
       Map<String, dynamic> allData = {};
       for (var doc in querySnapshot.docs) {

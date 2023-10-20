@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/constant.dart';
-import '../../../controller/show_video_reels_controller.dart';
+import '../../../controller/show_reels_controller.dart';
 
 class ShowVideoPlayAndPause extends StatelessWidget {
   const ShowVideoPlayAndPause({super.key});

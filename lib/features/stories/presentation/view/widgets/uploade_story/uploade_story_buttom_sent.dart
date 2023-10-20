@@ -27,7 +27,7 @@ class UploadeStoryButtomSent extends StatelessWidget {
                   description: getTextStory.text,
                   imgPath: imagePathStory,
                   vedioPath: vedioPath,
-                  type: type,
+                  type: type.name,
                 ),
                 text: 'Share'.tr,
               ),

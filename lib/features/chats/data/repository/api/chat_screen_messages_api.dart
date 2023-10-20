@@ -29,7 +29,7 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
     required UserChatData userData,
   }) async {
     MessageModel messageModel = MessageModel(
-      type: Type.text,
+      type: Type.text.name,
       senderId: ApiService.user.uid,
       receiverId: userData.personUid,
       dateTime: DateTime.timestamp().toString(),

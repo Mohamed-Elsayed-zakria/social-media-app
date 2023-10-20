@@ -51,7 +51,7 @@ class AllLikesCustomPerson extends StatelessWidget {
         ),
         trailing: const Icon(
           color: AppColors.kPrimaryColor,
-          IconlyBroken.heart,
+          IconlyBold.heart,
         ),
       ),
     );

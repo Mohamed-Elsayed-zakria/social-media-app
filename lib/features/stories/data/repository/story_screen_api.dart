@@ -24,7 +24,7 @@ class StoryScreenApi extends StoryScreenRepo {
 
   @override
   Future<void> uploadeStory({
-    required TypeStoryUploade type,
+    required String type,
     String? description,
     String? imgPath,
     File? vedioPath,

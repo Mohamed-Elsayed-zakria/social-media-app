@@ -1,5 +1,5 @@
 class MessageModel {
-  late Type type;
+  late String type;
   late String senderId;
   late String message;
   late String receiverId;
@@ -14,7 +14,7 @@ class MessageModel {
   });
 
   MessageModel.fromJson(Map<String, dynamic> json) {
-    type = json['type'].toString() == Type.image.name ? Type.image : Type.text;
+    type = json['type'] ?? '';
     senderId = json['senderId'] ?? '';
     message = json['message'] ?? '';
     receiverId = json['receiverId'] ?? '';
@@ -23,7 +23,7 @@ class MessageModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'text': type.name,
+      'text': type,
       'senderId': senderId,
       'message': message,
       'receiverId': receiverId,
@@ -32,4 +32,4 @@ class MessageModel {
   }
 }
 
-enum Type { text, image }
+enum Type { text, image , video}

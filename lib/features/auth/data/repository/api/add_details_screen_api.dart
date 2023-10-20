@@ -57,7 +57,7 @@ class AddDetailsScreenApi extends AddDetailsScreenRepo {
         gender.value = "Female";
       }
       String personalPageUrl = await ApiDynamicLink.createDynamicLink(
-        type: TypeDynamicLink.personalPageUrl,
+        type: TypeDynamicLink.personalPageUrl.name,
         id: ApiService.user.uid,
         short: false,
       );

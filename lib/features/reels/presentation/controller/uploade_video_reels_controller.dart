@@ -1,7 +1,9 @@
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flash/features/main_home/presentation/views/main_home_screen.dart';
+import '../../../../core/api/api_dynamic_link.dart';
 import '../../../../core/constant/collections.dart';
 import '../../data/model/video_reels_model.dart';
-import '../view/uploade_video_reels_screen.dart';
+import '../views/uploade_reels_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 import '../../../../core/constant/colors.dart';
@@ -14,13 +16,13 @@ import 'dart:io';
 late VideoPlayerController? addVideoReelsController;
 TextEditingController? getDescriptionReels = TextEditingController();
 
-List<String> listItem = [
+List<String> videoReelsListItem = [
   "Public".tr,
   "Followers".tr,
   "Private".tr,
 ];
 
-RxString selectItem = listItem[0].obs;
+RxString selectItem = videoReelsListItem[0].obs;
 
 File? addVideoReelsPath;
 
@@ -52,9 +54,8 @@ Future<void> addVideoReelsOpenGalary() async {
       await addVideoReelsController!.initialize();
       addVideoReelsController!.play();
       Get.to(
-        () => UploadeVideoReelsScreen(
+        () => UploadeReelsScreen(
           playerControllerPlay: addVideoReelsController!,
-          addVideoReelsPath: addVideoReelsPath!,
         ),
       );
     }
@@ -82,7 +83,7 @@ void playAndPauseVideo({required VideoPlayerController playerControllerPlay}) {
 }
 
 Future uploadeVideoReels({
-  required File vedioPath,
+  required String postStatus,
   String? description,
 }) async {
   String generatId = const Uuid().v1();
@@ -91,17 +92,31 @@ Future uploadeVideoReels({
   final storageRef = FirebaseStorage.instance.ref(
     "reels-user/${ApiService.user.uid}/reels-videos/${DateTime.timestamp().millisecondsSinceEpoch}.mp4",
   );
-  await storageRef.putFile(vedioPath);
+  await storageRef.putFile(addVideoReelsPath!);
   videoUrl = await storageRef.getDownloadURL();
+
+  String postUrl = await ApiDynamicLink.createDynamicLink(
+    type: TypeDynamicLink.reels.name,
+    short: false,
+    id: generatId,
+  );
+
+  if (postStatus == "عام") {
+    postStatus = "Public";
+  } else if (postStatus == "خاص") {
+    postStatus = "Private";
+  } else if (postStatus == "المتابعين") {
+    postStatus = "Followers";
+  }
 
   VideoReelsModel videoReelsModel = VideoReelsModel(
     datePublished: DateTime.timestamp().toString(),
     personUid: ApiService.user.uid,
     description: description,
+    postStatus: postStatus,
     videoUid: generatId,
     videoUrl: videoUrl,
-    postStatus: 'postStatus',
-    postUrl: 'postUrl',
+    postUrl: postUrl,
   );
 
   ApiService.firestore
@@ -110,5 +125,7 @@ Future uploadeVideoReels({
       .set(videoReelsModel.toJson())
       .then((value) {
     getDescriptionReels?.clear();
+    addVideoReelsPath = null;
+    Get.off(() => const MainHomeScreen());
   });
 }

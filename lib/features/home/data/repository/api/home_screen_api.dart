@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../../core/api/api_service.dart';
-import '../../../../core/constant/collections.dart';
-import '../../../posts/data/model/post_model.dart';
-import '../../../stories/data/model/stories_model.dart';
-import 'home_screen_repo.dart';
+import '../../../../../core/api/api_service.dart';
+import '../../../../../core/constant/collections.dart';
+import '../../../../posts/data/model/post_model.dart';
+import '../../../../stories/data/model/stories_model.dart';
+import '../home_screen_repo.dart';
 
 class HomeScreenApi extends HomeScreenRepo {
   @override

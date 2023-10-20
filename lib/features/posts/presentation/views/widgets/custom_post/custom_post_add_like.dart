@@ -4,7 +4,7 @@ import '../../../../../../core/constant/colors.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../data/model/post_model.dart';
 import 'package:flutter/material.dart';
-import 'likes/show_all_likes.dart';
+import '../../custom_post_show_all_likes.dart';
 import 'package:get/get.dart';
 
 class CustomPostAddLike extends StatelessWidget {
@@ -41,7 +41,7 @@ class CustomPostAddLike extends StatelessWidget {
             ),
             InkWell(
               onTap: () => Get.to(
-                () => ShowAllLikes(allLikes: allLikes),
+                () => CustomPostShowAllLikes(postUid: postData.postUid),
               ),
               child: Text('${allLikes.length}'),
             ),

@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/style.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomPostNotFount extends StatelessWidget {
   final bool vedioPage;
@@ -28,16 +29,16 @@ class CustomPostNotFount extends StatelessWidget {
       ),
       child: Center(
         child: vedioPage
-            ? const Text(
-                "There are no Vedios yet",
-                style: TextStyle(
+            ? Text(
+                "There are no Vedios yet".tr,
+                style: const TextStyle(
                   fontSize: AppStyle.kTextStyle20,
                   color: AppColors.kPrimaryColor,
                 ),
               )
-            : const Text(
-                "There are no posts yet",
-                style: TextStyle(
+            : Text(
+                "There are no posts yet".tr,
+                style: const TextStyle(
                   fontSize: AppStyle.kTextStyle20,
                   color: AppColors.kPrimaryColor,
                 ),

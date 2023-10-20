@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/widgets/custom_shimmer.dart';
@@ -29,7 +31,9 @@ class CustomStoryCurrentPersonalPicture extends StatelessWidget {
                 child: CircleAvatar(
                   radius: size.width * .102,
                   backgroundColor: AppColors.kBackgroundColor,
-                  backgroundImage: NetworkImage(personalPictureUrl),
+                  backgroundImage: CachedNetworkImageProvider(
+                    personalPictureUrl,
+                  ),
                 ),
               );
             }

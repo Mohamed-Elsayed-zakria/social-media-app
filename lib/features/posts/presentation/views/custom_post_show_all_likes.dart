@@ -1,13 +1,12 @@
+import 'widgets/custom_post/likes/show_all_likes_body.dart';
 import 'package:flutter/material.dart';
-import 'show_all_likes_body.dart';
 import 'package:get/get.dart';
 
-class ShowAllLikes extends StatelessWidget {
-  final List allLikes;
-
-  const ShowAllLikes({
+class CustomPostShowAllLikes extends StatelessWidget {
+  final String postUid;
+  const CustomPostShowAllLikes({
     super.key,
-    required this.allLikes,
+    required this.postUid,
   });
 
   @override
@@ -22,7 +21,7 @@ class ShowAllLikes extends StatelessWidget {
         appBar: AppBar(
           title: Text('All Likes'.tr),
         ),
-        body: ShowAllLikesBody(allLikes: allLikes),
+        body:  ShowAllLikesBody(postUid: postUid),
       ),
     );
   }

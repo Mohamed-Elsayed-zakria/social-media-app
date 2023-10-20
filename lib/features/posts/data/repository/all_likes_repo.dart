@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import '../model/likes_model.dart';
 
 abstract class AllLikesRepo {
-  Future<DocumentSnapshot<Map<String, dynamic>>> getPersonWordLikeByUid({
-    required String getLikesByUid,
-  });
+  Future<List<LikesModel>> getAllLikesByUid({required String postUid});
 }

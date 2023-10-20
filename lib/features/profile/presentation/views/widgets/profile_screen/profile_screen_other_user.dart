@@ -42,9 +42,9 @@ class ProfileScreenOtherUser extends StatelessWidget {
             SizedBox(
               width: size.width * 0.33,
               child: CustomButton(
-                onPressed: () => Get.to(
-                  () => ChatScreenMessages(userData: userDataMessage),
-                ),
+                onPressed: () {
+                  Get.to(() => ChatScreenMessages(userData: userDataMessage));
+                },
                 text: "chat".tr,
               ),
             ),

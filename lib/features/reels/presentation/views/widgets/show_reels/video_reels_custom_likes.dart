@@ -1,4 +1,4 @@
-import '../../../controller/show_video_reels_controller.dart';
+import '../../../controller/show_reels_controller.dart';
 import '../../../../data/model/video_reels_model.dart';
 import '../../../../../../core/api/api_service.dart';
 import '../../../../../../core/constant/colors.dart';

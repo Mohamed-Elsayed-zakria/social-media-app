@@ -6,8 +6,8 @@ import '../../../../../../core/api/api_service.dart';
 import '../../../../../../core/constant/style.dart';
 import '../../../../data/model/post_model.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'custom_post_more_current_user.dart';
-import 'custom_post_more_other_user.dart';
+import 'custom_post_more_on_header/custom_post_more_current_user.dart';
+import 'custom_post_more_on_header/custom_post_more_other_user.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

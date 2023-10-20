@@ -34,7 +34,7 @@ class PostScreenApi implements PostScreenRepo {
     List<String> imageUrls = [];
     String videoUrl;
     String postUrl = await ApiDynamicLink.createDynamicLink(
-      type: TypeDynamicLink.post,
+      type: TypeDynamicLink.post.name,
       short: false,
       id: generatId,
     );

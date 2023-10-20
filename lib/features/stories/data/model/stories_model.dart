@@ -4,7 +4,7 @@ class StoriesModel {
   late String? description;
   late String personUid;
   late String datePublish;
-  late TypeStoryUploade type;
+  late String type;
   late String personalPicture;
   late List followingList;
   late String username;
@@ -29,11 +29,7 @@ class StoriesModel {
     username = json['username'] ?? '';
     personUid = json['personUid'] ?? '';
     verified = json['verified'] ?? false;
-    type = json['type'].toString() == TypeStoryUploade.image.name
-        ? TypeStoryUploade.image
-        : json['type'].toString() == TypeStoryUploade.vedio.name
-            ? TypeStoryUploade.vedio
-            : TypeStoryUploade.text;
+    type = json['type'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
@@ -43,7 +39,7 @@ class StoriesModel {
     data['description'] = description;
     data['datePublish'] = datePublish;
     data['personUid'] = personUid;
-    data['type'] = type.name;
+    data['type'] = type;
     return data;
   }
 }

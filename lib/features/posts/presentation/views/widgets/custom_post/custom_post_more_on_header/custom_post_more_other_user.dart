@@ -1,11 +1,12 @@
-import '../../../controllers/custom_post_controller.dart';
-import '../../../../../../core/constant/colors.dart';
-import '../../../../../../core/constant/style.dart';
-import 'custom_post_more_bottom_sheet_report.dart';
-import '../../../../data/model/post_model.dart';
+import '../../../../controllers/custom_post_controller.dart';
+import '../../../../../../../core/constant/colors.dart';
+import '../../../../../../../core/constant/style.dart';
+import '../custom_post_more_bottom_sheet_report.dart';
+import '../../../../../data/model/post_model.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'custom_post_more_all_likes.dart';
 
 class CustomPostMoreOtherUser extends StatelessWidget {
   final PostModel postData;
@@ -18,7 +19,7 @@ class CustomPostMoreOtherUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 140,
+      height: 185,
       decoration: const BoxDecoration(
         color: AppColors.kSurfaceColor,
         borderRadius: BorderRadius.only(
@@ -58,6 +59,7 @@ class CustomPostMoreOtherUser extends StatelessWidget {
               style: const TextStyle(fontSize: AppStyle.kTextStyle18),
             ),
           ),
+          CustomPostMoreAllLikes(postUid: postData.postUid),
         ],
       ),
     );

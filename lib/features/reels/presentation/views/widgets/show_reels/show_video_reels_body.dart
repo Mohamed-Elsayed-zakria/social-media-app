@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'video_reels_custom_likes.dart';
 import 'video_reels_custom_share.dart';
 import 'video_reels_description.dart';
-import 'show_video_reels_item.dart';
+import 'show_reels_item.dart';
 
 class ShowVideoReelsBody extends StatelessWidget {
   final VideoReelsModel allReels;
@@ -20,7 +20,7 @@ class ShowVideoReelsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ShowVideoReelsItem(videoUrl: allReels.videoUrl),
+        ShowReelsItem(videoUrl: allReels.videoUrl),
         const ShowVideoPlayAndPause(),
         Container(
           margin: const EdgeInsets.only(right: 12, left: 12, bottom: 25),

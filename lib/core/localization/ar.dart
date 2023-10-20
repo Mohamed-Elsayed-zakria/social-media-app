@@ -122,11 +122,13 @@ const Map<String, String> ar = {
   'Download image done': "تم تنزيل الصورة",
   'Download image': "تنزيل الصورة",
   'Failed to load image': "فشل تحميل الصورة",
-
+  "There are no posts yet": "لا توجد منشورات بعد",
+  "There are no Vedios yet": "لا يوجد فيديوهات بعد",
   //=====================comments==================
   'Delete': 'حذف',
   "Report": "إبلاغ",
   "Copy text": "نسخ النص",
+  'There are no comments yet': 'لا توجد تعليقات حتى الآن',
 
   //=====================stories==================
   'My status': 'قصصي',
@@ -147,6 +149,10 @@ const Map<String, String> ar = {
 //==================='Video'===================
   'Videos': "الفيديوهات",
   'Reels': 'ريلز',
+
+  //==================='Reels'===================
+  'Next': 'التالي',
+  'Write a description': 'اكتب وصف',
 
   //===================profile===================
 

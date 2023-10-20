@@ -24,7 +24,7 @@ class CustomListTilePersonalUserItem extends StatelessWidget {
       ),
       title: Text('@${userData.username}'),
       subtitle: messages != null
-          ? messages!.type == Type.text
+          ? messages!.type == Type.text.name
               ? Text(messages!.message)
               : Row(
                   children: [

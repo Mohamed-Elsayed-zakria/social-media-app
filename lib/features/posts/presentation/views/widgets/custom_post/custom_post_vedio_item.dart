@@ -36,9 +36,12 @@ class _CustomPostVedioItemState extends State<CustomPostVedioItem> {
     final size = Constant.sizeScreen(context: context);
     return LimitedBox(
       maxHeight: size.height * 0.40,
-      child: Chewie(
-        controller: ChewieController(
-          videoPlayerController: videoPlayerController,
+      child: AspectRatio(
+        aspectRatio: videoPlayerController.value.aspectRatio,
+        child: Chewie(
+          controller: ChewieController(
+            videoPlayerController: videoPlayerController,
+          ),
         ),
       ),
     );

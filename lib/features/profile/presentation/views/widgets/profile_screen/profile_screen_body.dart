@@ -1,15 +1,15 @@
-import '../../../../../../core/api/api_service.dart';
-import '../../../../../chats/data/models/user_chat_data.dart';
 import '../../../../../posts/presentation/views/widgets/custom_post/custom_post.dart';
+import '../../../../../chats/data/models/user_chat_data.dart';
 import '../../../controller/profile_screen_controller.dart';
-import 'profile_screen_current_user.dart';
-import 'profile_screen_other_user.dart';
 import 'profile_screen_username_fullname_verified.dart';
 import '../../../../../../core/constant/colors.dart';
+import '../../../../../../core/api/api_service.dart';
 import '../../../../data/models/profile_model.dart';
 import 'profile_count_following_followers.dart';
 import 'profile_screen_cover_person_image.dart';
 import 'shimmer/profile_screen_shimmer.dart';
+import 'profile_screen_current_user.dart';
+import 'profile_screen_other_user.dart';
 import 'package:flutter/material.dart';
 import 'profile_screen_bio.dart';
 
@@ -46,10 +46,10 @@ class ProfileScreenBody extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const ProfileScreenShimmer();
                 } else {
-                  Map<String, dynamic> allData = snapshot.data!;
                   ProfileScreenModel userData =
-                      ProfileScreenModel.fromJson(allData);
-                  UserChatData userDataMessage = UserChatData.fromJson(allData);
+                      ProfileScreenModel.fromJson(snapshot.data!);
+                  UserChatData userDataMessage =
+                      UserChatData.fromJson(snapshot.data!);
                   return Column(
                     children: [
                       ProfileScreenCoverAndPersonImage(
@@ -62,12 +62,10 @@ class ProfileScreenBody extends StatelessWidget {
                         userData: userData,
                       ),
                       ApiService.user.uid == userData.personalUid
-                          ? ProfileScreenCurrentUser(
-                              userData: userData,
-                            )
+                          ? ProfileScreenCurrentUser(userData: userData)
                           : ProfileScreenOtherUser(
-                              userData: userData,
                               userDataMessage: userDataMessage,
+                              userData: userData,
                             ),
                       ProfileScreenBio(
                         textBio: userData.bio,

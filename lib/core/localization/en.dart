@@ -72,7 +72,7 @@ const Map<String, String> en = {
   "From Camera": "From Camera",
 //===================Date===================
   'Now': 'Now',
-  'Yesterday':'Yesterday',
+  'Yesterday': 'Yesterday',
 //===================chat===================
   'Chat': 'Chat',
   "Image": "Image",
@@ -123,11 +123,14 @@ const Map<String, String> en = {
   'write something': 'write something...',
   'Download image done': 'Download image done',
   'Download image': 'Download image',
-  'Failed to load image':'Failed to load image',
+  'Failed to load image': 'Failed to load image',
+  "There are no posts yet": "There are no posts yet",
+  "There are no Vedios yet": "There are no Vedios yet",
 //=====================comments==================
   'Delete': 'Delete',
   "Report": "Report",
   "Copy text": "Copy text",
+  'There are no comments yet': 'There are no comments yet',
 //=====================stories==================
   'My status': 'My status',
   'Add new story': 'Add new story',
@@ -147,6 +150,10 @@ const Map<String, String> en = {
 //==================='Video'===================
   'Videos': 'Videos',
   'Reels': 'Reels',
+
+//==================='Reels'===================
+  'Next': 'Next',
+  'Write a description': 'Write a description',
 
 //===================profile===================
 

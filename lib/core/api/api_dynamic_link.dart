@@ -5,18 +5,22 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flash/core/api/api_service.dart';
 import 'package:get/get.dart';
 
+import '../../features/reels/presentation/views/widgets/show_reels/show_reels_item.dart';
+
 abstract class ApiDynamicLink {
   static Future<String> createDynamicLink({
     required bool short,
     required String id,
-    required TypeDynamicLink type,
+    required String type,
   }) async {
     String linkMessage;
     String pathUrl;
-    if (type == TypeDynamicLink.post) {
+    if (type == TypeDynamicLink.post.name) {
       pathUrl = 'https://flashxapp.page.link/postUid?id=$id';
-    } else {
+    } else if (type == TypeDynamicLink.personalPageUrl.name) {
       pathUrl = 'https://flashxapp.page.link/personalPageUrl?id=$id';
+    } else {
+      pathUrl = 'https://flashxapp.page.link/reelsUid?id=$id';
     }
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
@@ -48,18 +52,23 @@ abstract class ApiDynamicLink {
     final PendingDynamicLinkData? data =
         await FirebaseDynamicLinks.instance.getInitialLink();
     final Uri? deepLink = data?.link;
+
     bool? isPost = deepLink?.pathSegments.contains('postUid') ?? false;
     bool? isPersonalPage =
         deepLink?.pathSegments.contains('personalPageUrl') ?? false;
+    bool? isReels = deepLink?.pathSegments.contains('reelsUid') ?? false;
+
     if (deepLink != null) {
       final id = deepLink.queryParameters['id'];
       if (id != null && isPost) {
         Get.to(() => CustomPostDetails(postUid: id));
       } else if (id != null && isPersonalPage) {
         Get.to(() => ProfileScreen(otherUid: id));
+      } else if (id != null && isReels) {
+        // Get.to(() => ShowReelsItem(videoUrl: id));
       }
     }
   }
 }
 
-enum TypeDynamicLink { post, personalPageUrl }
+enum TypeDynamicLink { post, personalPageUrl, reels }

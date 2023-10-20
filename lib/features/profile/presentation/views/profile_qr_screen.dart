@@ -12,7 +12,7 @@ class ProfileQrScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text('Scan Barcode'.tr),
+        title: Text('Scan Barcode'.tr),
       ),
       body: FutureBuilder(
         future: getUserDataProfileQrScreen(),
