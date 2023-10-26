@@ -5,6 +5,8 @@ import 'dart:async';
 
 TextEditingController commentController = TextEditingController();
 
+TextEditingController getTextComment = TextEditingController();
+
 Stream<List<CommentModel>> getAllComments({required String postId}) {
   return CommentsApi().getAllComments(postId: postId);
 }
@@ -30,3 +32,28 @@ Future<void> removeLikeFromComment({
   CommentsApi().removeLikeFromComment(postUid: postUid, commentUid: commentUid);
 }
 
+Future<void> deleteComment({
+  required String postUid,
+  required String commentUid,
+}) async {
+  CommentsApi().deleteComment(postUid: postUid, commentUid: commentUid);
+}
+
+Future<void> updateComment({
+  required String newTextComment,
+  required String commentUid,
+  required String postUid,
+}) async {
+  CommentsApi().updateComment(
+    newTextComment: newTextComment,
+    commentUid: commentUid,
+    postUid: postUid,
+  );
+}
+
+Future<void> reportComment({
+  required CommentModel commentData,
+  required String postUid,
+}) async {
+  CommentsApi().reportComment(commentData: commentData, postUid: postUid);
+}

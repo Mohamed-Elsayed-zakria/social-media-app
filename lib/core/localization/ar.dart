@@ -129,6 +129,9 @@ const Map<String, String> ar = {
   "Report": "إبلاغ",
   "Copy text": "نسخ النص",
   'There are no comments yet': 'لا توجد تعليقات حتى الآن',
+  "Edite comment": "تعديل التعليق",
+  "Delete comment": "حذف تعليق",
+  "The comment has been reported": "تم الإبلاغ عن التعليق",
 
   //=====================stories==================
   'My status': 'قصصي',

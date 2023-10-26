@@ -26,6 +26,9 @@ static String userVideoStoryPath({
   }) =>
       "stories/videos/${ApiService.user.uid}/$generatStoryId/${DateTime.timestamp().millisecondsSinceEpoch}.mp4";
 
+static String reelsPath =
+"reels-user/${ApiService.user.uid}/reels-videos/${DateTime.timestamp().millisecondsSinceEpoch}.mp4";
+
   static String userImagesPath =
       "user-images/${ApiService.user.uid}/profile-image/${DateTime.timestamp().millisecondsSinceEpoch}.jpg";
 

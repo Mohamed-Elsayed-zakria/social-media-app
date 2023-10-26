@@ -26,8 +26,14 @@ class CommentItem extends StatelessWidget {
       onLongPress: () {
         Get.bottomSheet(
           commentData.personUid == ApiService.user.uid
-              ? OnLongPressCurrentComment(commentData: commentData)
-              : OnLongPressOtherComment(commentData: commentData),
+              ? OnLongPressCurrentComment(
+                  commentData: commentData,
+                  postUid: postUid,
+                )
+              : OnLongPressOtherComment(
+                  commentData: commentData,
+                  postUid: postUid,
+                ),
         );
       },
       child: Card(

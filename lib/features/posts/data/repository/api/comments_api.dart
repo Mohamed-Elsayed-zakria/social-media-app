@@ -110,4 +110,49 @@ class CommentsApi extends CommentsRepo {
       "likes": FieldValue.arrayRemove([ApiService.user.uid])
     });
   }
+
+  @override
+  Future<void> deleteComment({
+    required String postUid,
+    required String commentUid,
+  }) async {
+    await ApiService.firestore
+        .collection(Collections.postCollection)
+        .doc(postUid)
+        .collection(Collections.commentsCollection)
+        .doc(commentUid)
+        .delete();
+  }
+
+  @override
+  Future<void> updateComment({
+    required String newTextComment,
+    required String commentUid,
+    required String postUid,
+  }) async {
+    await ApiService.firestore
+        .collection(Collections.postCollection)
+        .doc(postUid)
+        .collection(Collections.commentsCollection)
+        .doc(commentUid)
+        .update({'textComment': newTextComment});
+  }
+
+  @override
+  Future<void> reportComment({
+    required CommentModel commentData,
+    required String postUid,
+  }) async {
+    Map<String, dynamic> additionalData = {
+      'idMakeReport': ApiService.user.uid,
+      'postUid': postUid,
+    };
+
+    Map<String, dynamic> dataToUpdate = commentData.toJson();
+    dataToUpdate.addAll(additionalData);
+
+    ApiService.firestore
+        .collection(Collections.reportCommentCollection)
+        .add(dataToUpdate);
+  }
 }

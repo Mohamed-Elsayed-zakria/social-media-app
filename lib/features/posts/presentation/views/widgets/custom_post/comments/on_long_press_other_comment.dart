@@ -7,12 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../../../../controllers/comments_controller.dart';
+
 class OnLongPressOtherComment extends StatelessWidget {
   final CommentModel commentData;
+  final String postUid;
 
   const OnLongPressOtherComment({
     super.key,
     required this.commentData,
+    required this.postUid,
   });
 
   @override
@@ -31,6 +35,18 @@ class OnLongPressOtherComment extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ListTile(
+            onTap: () async {
+              await reportComment(
+                commentData: commentData,
+                postUid: postUid,
+              );
+              Get.back();
+              Fluttertoast.showToast(
+                msg: "The comment has been reported".tr,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+              );
+            },
             title: Text(
               "Report".tr,
               style: const TextStyle(fontSize: AppStyle.kTextStyle18),

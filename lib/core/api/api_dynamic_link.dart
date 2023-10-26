@@ -1,11 +1,8 @@
 import 'package:flash/features/profile/presentation/views/profile_screen.dart';
-
 import '../../features/posts/presentation/views/widgets/custom_post/custom_post_details.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flash/core/api/api_service.dart';
 import 'package:get/get.dart';
-
-import '../../features/reels/presentation/views/widgets/show_reels/show_reels_item.dart';
 
 abstract class ApiDynamicLink {
   static Future<String> createDynamicLink({

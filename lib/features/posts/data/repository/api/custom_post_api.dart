@@ -63,7 +63,7 @@ class CustomPostApi implements CustomPostRepo {
   Future<void> reportThePost({required PostModel data}) async {
     ReportPost reportPost = ReportPost(
       idMakeReport: ApiService.user.uid,
-      idPost: data.postUid,
+      postUid: data.postUid,
       idMakePost: data.personUid,
       description: data.description,
       imgUrl: data.imgUrl,
@@ -72,8 +72,7 @@ class CustomPostApi implements CustomPostRepo {
     );
     await ApiService.firestore
         .collection(Collections.reportPostCollection)
-        .doc(data.postUid)
-        .set(reportPost.toJson());
+        .add(reportPost.toJson());
   }
 
   @override

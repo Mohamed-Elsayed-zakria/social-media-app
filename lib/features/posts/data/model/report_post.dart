@@ -1,6 +1,6 @@
 class ReportPost {
   late String idMakeReport;
-  late String idPost;
+  late String postUid;
   late String idMakePost;
   late String description;
   late List imgUrl;
@@ -8,7 +8,7 @@ class ReportPost {
   late String datePublished;
   ReportPost({
     required this.idMakeReport,
-    required this.idPost,
+    required this.postUid,
     required this.idMakePost,
     required this.description,
     required this.imgUrl,
@@ -18,7 +18,7 @@ class ReportPost {
   Map<String, dynamic> toJson() {
     Map<String, dynamic> data = {};
     data['idMakeReport'] = idMakeReport;
-    data['idPost'] = idPost;
+    data['postUid'] = postUid;
     data['idMakePost'] = idMakePost;
     data['description'] = description;
     data['imgUrl'] = imgUrl;

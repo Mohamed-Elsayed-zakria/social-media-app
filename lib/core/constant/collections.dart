@@ -21,5 +21,7 @@ abstract class Collections{
 
   static const String reportPostCollection = 'Report post';
 
+  static const String reportCommentCollection = 'Report Comment';
+
   static const String reportProblemCollection = 'Report problem';
 }

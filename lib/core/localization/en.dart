@@ -131,6 +131,9 @@ const Map<String, String> en = {
   "Report": "Report",
   "Copy text": "Copy text",
   'There are no comments yet': 'There are no comments yet',
+  "Edite comment": "Edite comment",
+  "Delete comment": "Delete comment",
+  "The comment has been reported": "The comment has been reported",
 //=====================stories==================
   'My status': 'My status',
   'Add new story': 'Add new story',
