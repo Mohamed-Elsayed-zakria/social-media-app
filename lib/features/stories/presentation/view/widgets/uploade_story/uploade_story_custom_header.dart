@@ -16,7 +16,10 @@ class UploadeStoryCustomHeader extends StatelessWidget {
         backgroundImage:
             CachedNetworkImageProvider(CurrentUserData.personalPicture),
       ),
-      title: Text('@${CurrentUserData.username}'),
+      title: Text(
+        textDirection: TextDirection.ltr,
+        '@${CurrentUserData.username}',
+      ),
       subtitle: Text('Add new story'.tr),
     );
   }

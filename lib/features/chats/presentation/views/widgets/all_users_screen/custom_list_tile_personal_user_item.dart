@@ -22,7 +22,10 @@ class CustomListTilePersonalUserItem extends StatelessWidget {
       onTap: () => Get.to(
         () => ChatScreenMessages(userData: userData),
       ),
-      title: Text('@${userData.username}'),
+      title: Text(
+        textDirection: TextDirection.ltr,
+        '@${userData.username}',
+      ),
       subtitle: messages != null
           ? messages!.type == Type.text.name
               ? Text(messages!.message)

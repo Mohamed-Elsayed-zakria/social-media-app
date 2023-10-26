@@ -25,6 +25,7 @@ class MessageScreenCustomHeader extends StatelessWidget {
         title: Row(
           children: [
             Text(
+              textDirection: TextDirection.ltr,
               '@${userData.username}',
               style: const TextStyle(
                 fontSize: AppStyle.kTextStyle16,

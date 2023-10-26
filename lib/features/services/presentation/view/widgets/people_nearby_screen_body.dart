@@ -25,6 +25,7 @@ class PeopleNearbyScreenBody extends StatelessWidget {
       title: Row(
         children: [
           Text(
+            textDirection: TextDirection.ltr,
             '@${userData.username}',
           ),
           const SizedBox(width: 5),

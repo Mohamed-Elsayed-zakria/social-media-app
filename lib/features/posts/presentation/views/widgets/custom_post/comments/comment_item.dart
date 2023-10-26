@@ -44,7 +44,10 @@ class CommentItem extends StatelessWidget {
             ListTile(
               title: Row(
                 children: [
-                  Text('@${commentData.username}'),
+                  Text(
+                    textDirection: TextDirection.ltr,
+                    '@${commentData.username}',
+                  ),
                   const SizedBox(width: 5),
                   Visibility(
                     visible: commentData.verified,
@@ -60,6 +63,7 @@ class CommentItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
+                    textDirection: TextDirection.ltr,
                     MyDateUtil.convertDateTime(
                       historyAsText: commentData.dataPublished,
                     ),

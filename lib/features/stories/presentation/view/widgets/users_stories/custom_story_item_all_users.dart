@@ -36,6 +36,7 @@ class CustomStoryItemAllUsers extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             RichText(
+              textDirection: TextDirection.ltr,
               text: TextSpan(
                 text: '@${firstStory.username}',
                 style: const TextStyle(

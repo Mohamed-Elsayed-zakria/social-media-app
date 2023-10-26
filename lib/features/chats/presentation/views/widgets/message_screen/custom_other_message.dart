@@ -24,6 +24,7 @@ class CustomOtherMessage extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: RichText(
+          textDirection: TextDirection.ltr,
           text: TextSpan(
             text: messageData.message,
             style: const TextStyle(

@@ -23,6 +23,7 @@ class CustomCurrentMessage extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: RichText(
+          textDirection: TextDirection.ltr,
           text: TextSpan(
             text: messageData.message,
             style: const TextStyle(
@@ -35,6 +36,7 @@ class CustomCurrentMessage extends StatelessWidget {
                 text: MyDateUtil.convertDateTime(
                   historyAsText: messageData.dateTime,
                 ),
+                
                 style: const TextStyle(
                   fontSize: AppStyle.kTextStyle12,
                   color: AppColors.kOnSurfaceColor,

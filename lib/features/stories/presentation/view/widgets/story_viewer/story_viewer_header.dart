@@ -52,6 +52,7 @@ class StoryViewerHeader extends StatelessWidget {
             ],
           ),
           subtitle: Text(
+            textDirection: TextDirection.ltr,
             MyDateUtil.convertDateTime(historyAsText: storyData.datePublish),
             style: const TextStyle(
               color: AppColors.kSurfaceColor,

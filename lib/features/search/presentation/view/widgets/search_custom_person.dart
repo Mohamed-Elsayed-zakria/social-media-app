@@ -18,7 +18,10 @@ class SearchCustomPerson extends StatelessWidget {
       onTap: () {
         Get.to(() => ProfileScreen(otherUid: userData.personUid));
       },
-      title: Text('@${userData.username}'),
+      title: Text(
+        textDirection: TextDirection.ltr,
+        '@${userData.username}',
+      ),
       leading: Stack(
         children: [
           CircleAvatar(

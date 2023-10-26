@@ -22,6 +22,7 @@ class ProfileCustomShapePerson extends StatelessWidget {
           () => ProfileScreen(otherUid: followerData.personalUid),
         ),
         title: Text(
+          textDirection: TextDirection.ltr,
           '@${followerData.username}',
           style: const TextStyle(
             fontSize: AppStyle.kTextStyle16,

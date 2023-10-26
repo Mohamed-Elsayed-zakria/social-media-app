@@ -36,6 +36,7 @@ class ProfileScreenUsernameAndFullnameAndVerified extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           Text(
+            textDirection: TextDirection.ltr,
             "@${userData.username}",
             style: const TextStyle(
               fontSize: 18,

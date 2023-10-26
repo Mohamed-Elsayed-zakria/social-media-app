@@ -59,6 +59,7 @@ class CustomPostHeader extends StatelessWidget {
       title: Row(
         children: [
           Text(
+            textDirection: TextDirection.ltr,
             '@${postData.username}',
             style: const TextStyle(
               fontSize: AppStyle.kTextStyle16,
@@ -78,6 +79,7 @@ class CustomPostHeader extends StatelessWidget {
       subtitle: Row(
         children: [
           Text(
+            textDirection: TextDirection.ltr,
             MyDateUtil.convertDateTime(historyAsText: postData.datePublished),
             style: const TextStyle(
               fontSize: AppStyle.kTextStyle16,

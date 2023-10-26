@@ -1,23 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:get/get.dart';
-import '../../../../data/models/profile_model.dart';
+import '../../../../../../core/model/current_user_data.dart';
 import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:barcode_widget/barcode_widget.dart';
 import '../../../../../../core/constant/style.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileQrScreenBody extends StatelessWidget {
-  final ProfileScreenModel userData;
-  const ProfileQrScreenBody({
-    super.key,
-    required this.userData,
-  });
+  const ProfileQrScreenBody({super.key});
 
   @override
   Widget build(BuildContext context) {
     final size = Constant.sizeScreen(context: context);
-
     return Center(
       child: SizedBox(
         height: size.height * .6,
@@ -44,14 +39,15 @@ class ProfileQrScreenBody extends StatelessWidget {
                   child: CircleAvatar(
                     backgroundColor: AppColors.kSurfaceColor,
                     backgroundImage: CachedNetworkImageProvider(
-                      userData.personalPicture,
+                      CurrentUserData.personalPicture,
                     ),
                     radius: size.width * .16,
                   ),
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  '@${userData.username}',
+                  textDirection: TextDirection.ltr,
+                  '@${CurrentUserData.username}',
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: AppStyle.kTextStyle20,
@@ -61,7 +57,7 @@ class ProfileQrScreenBody extends StatelessWidget {
                 const SizedBox(height: 20),
                 BarcodeWidget(
                   padding: const EdgeInsets.all(8),
-                  data: userData.username,
+                  data: CurrentUserData.username,
                   barcode: Barcode.qrCode(),
                   backgroundColor: AppColors.kSurfaceColor,
                   height: size.width * .4,

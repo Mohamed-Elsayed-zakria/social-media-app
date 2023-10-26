@@ -29,7 +29,10 @@ class BlockedUsersCustomPerson extends StatelessWidget {
             blockUserModel.personalPicture,
           ),
         ),
-        title: Text('@${blockUserModel.username}'),
+        title: Text(
+          textDirection: TextDirection.ltr,
+          '@${blockUserModel.username}',
+        ),
       ),
     );
   }

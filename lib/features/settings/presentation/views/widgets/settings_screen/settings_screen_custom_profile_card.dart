@@ -20,6 +20,7 @@ class SettingsScreenCustomProfileCard extends StatelessWidget {
             Get.to(() => ProfileScreen(otherUid: ApiService.user.uid));
           },
           title: Text(
+            textDirection: TextDirection.ltr,
             '@${CurrentUserData.username}',
             style: const TextStyle(
               fontSize: AppStyle.kTextStyle18,

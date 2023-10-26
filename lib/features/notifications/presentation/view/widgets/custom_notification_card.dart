@@ -31,6 +31,7 @@ class CustomNotificationCard extends StatelessWidget {
         ],
       ),
       subtitle: Text(
+        textDirection: TextDirection.ltr,
         MyDateUtil.convertDateTime(
           historyAsText: allNotification.datePublished,
         ),

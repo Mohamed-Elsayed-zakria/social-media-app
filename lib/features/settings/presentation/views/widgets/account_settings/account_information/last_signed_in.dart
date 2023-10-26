@@ -32,6 +32,7 @@ class LastSignedIn extends StatelessWidget {
                   const Icon(Icons.date_range_outlined),
                   const SizedBox(width: 15),
                   Text(
+                    textDirection: TextDirection.ltr,
                     MyDateUtil.convertDateTime(
                       historyAsText:
                           ApiService.user.metadata.lastSignInTime!.toString(),
