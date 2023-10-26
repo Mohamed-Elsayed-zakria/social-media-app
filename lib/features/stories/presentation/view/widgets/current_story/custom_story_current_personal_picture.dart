@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-
-import '../../../../../../core/constant/colors.dart';
+import '../../../../../../core/model/current_user_data.dart';
 import '../../../../../../core/constant/constant.dart';
-import '../../../../../../core/widgets/custom_shimmer.dart';
-import '../../../controller/story_controller.dart';
+import '../../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomStoryCurrentPersonalPicture extends StatelessWidget {
@@ -14,30 +12,16 @@ class CustomStoryCurrentPersonalPicture extends StatelessWidget {
     final size = Constant.sizeScreen(context: context);
     return Stack(
       children: [
-        FutureBuilder(
-          future: getCurrentPersonalPicture(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return CustomShimmer(
-                child: CircleAvatar(
-                  radius: size.width * .110,
-                ),
-              );
-            } else {
-              String personalPictureUrl = snapshot.data!;
-              return CircleAvatar(
-                radius: size.width * .110,
-                backgroundColor: AppColors.kSurfaceColor,
-                child: CircleAvatar(
-                  radius: size.width * .102,
-                  backgroundColor: AppColors.kBackgroundColor,
-                  backgroundImage: CachedNetworkImageProvider(
-                    personalPictureUrl,
-                  ),
-                ),
-              );
-            }
-          },
+        CircleAvatar(
+          radius: size.width * .110,
+          backgroundColor: AppColors.kSurfaceColor,
+          child: CircleAvatar(
+            radius: size.width * .102,
+            backgroundColor: AppColors.kBackgroundColor,
+            backgroundImage: CachedNetworkImageProvider(
+              CurrentUserData.personalPicture,
+            ),
+          ),
         ),
         Positioned(
           bottom: 2,

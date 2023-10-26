@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../../../../../core/model/current_user_data.dart';
 import '../../../../main_home/presentation/views/main_home_screen.dart';
 import '../../../presentation/controllers/login_screen_controller.dart';
 import '../../../../../core/api/api_firebase_messaging.dart';
@@ -31,6 +34,12 @@ class LoginScreenApi extends LoginScreenRepo {
             .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
             .update(loginScreenModel.toJson());
+        DocumentSnapshot<Map<String, dynamic>> currentUserData =
+            await ApiService.firestore
+                .collection(Collections.userCollection)
+                .doc(ApiService.user.uid)
+                .get();
+        CurrentUserData.fromJson(currentUserData.data()!);
         loginIsLodinge.value = false;
         Get.offAll(() => const MainHomeScreen());
         loginGetEmail.clear();

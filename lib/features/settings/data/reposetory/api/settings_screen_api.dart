@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../../../../core/constant/collections.dart';
 import '../../models/settings_exit_model.dart';
@@ -13,13 +12,5 @@ class SettingsScreenApi extends SettingsScreenRepo {
         .doc(ApiService.user.uid)
         .update(settingsExitModel.toJson())
         .then((value) => ApiService.auth.signOut());
-  }
-
-  @override
-  Stream<DocumentSnapshot<Map<String, dynamic>>> getuserDataToSettings() {
-    return ApiService.firestore
-        .collection(Collections.userCollection)
-        .doc(ApiService.user.uid)
-        .snapshots();
   }
 }

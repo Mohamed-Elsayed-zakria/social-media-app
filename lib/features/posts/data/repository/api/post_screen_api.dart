@@ -2,10 +2,10 @@ import '../../../../main_home/presentation/views/main_home_screen.dart';
 import '../../../presentation/controllers/post_screen_controller.dart';
 import '../../../../notifications/data/model/notice_model.dart';
 import '../../../../../core/api/api_firebase_messaging.dart';
+import '../../../../../core/model/current_user_data.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../../../core/api/api_dynamic_link.dart';
 import '../../../../../core/constant/collections.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/constant/constant.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../model/post_model.dart';
@@ -15,15 +15,6 @@ import 'package:get/get.dart';
 import 'dart:io';
 
 class PostScreenApi implements PostScreenRepo {
-  @override
-  Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(
-      {required String currentUserUid}) {
-    return ApiService.firestore
-        .collection(Collections.userCollection)
-        .doc(currentUserUid)
-        .get();
-  }
-
   @override
   Future createNewPost({
     required String description,
@@ -87,15 +78,13 @@ class PostScreenApi implements PostScreenRepo {
       type: NoticeType.post.name,
     );
 
-    String currentUsername = await ApiService.getCurrentUsername();
-
     return await ApiService.firestore
         .collection(Collections.postCollection)
         .doc(generatId)
         .set(postModel.toJson())
         .then((value) {
       ApiFirebaseMessaging.sendNotfiy(
-        username: currentUsername,
+        username: CurrentUserData.username,
         noticeModel: noticeModel,
       );
       getDescriptionText.clear();

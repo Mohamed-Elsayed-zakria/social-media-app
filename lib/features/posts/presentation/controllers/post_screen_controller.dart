@@ -1,7 +1,6 @@
 import 'package:video_player/video_player.dart';
 import '../../../../core/constant/colors.dart';
 import '../../data/repository/api/post_screen_api.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -78,12 +77,6 @@ String? addNewPostvalidator({required String? value}) {
   } else {
     return null;
   }
-}
-
-Future<DocumentSnapshot<Map<String, dynamic>>> getUserData({
-  required String currentUserUid,
-}) {
-  return PostScreenApi().getUserData(currentUserUid: currentUserUid);
 }
 
 Future createNewPost({

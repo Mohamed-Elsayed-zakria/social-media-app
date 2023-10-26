@@ -1,7 +1,6 @@
 import '../../../../core/constant/constant.dart';
 import '../../data/model/stories_model.dart';
 import '../../data/repository/story_screen_api.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:video_player/video_player.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../core/constant/colors.dart';
@@ -17,16 +16,6 @@ late VideoPlayerController? playerController;
 PageController pageController = PageController();
 
 File? vedioPath;
-
-Future<DocumentSnapshot<Map<String, dynamic>>> getuserDataToStory({
-  required String otherUid,
-}) async {
-  return StoryScreenApi().getuserDataToStory(otherUid: otherUid);
-}
-
-Future<String> getCurrentPersonalPicture() {
-  return StoryScreenApi().getCurrentPersonalPicture();
-}
 
 Future<void> uploadeStory({
   required String type,

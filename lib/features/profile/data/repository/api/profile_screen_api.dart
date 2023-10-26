@@ -1,3 +1,4 @@
+import '../../../../../core/model/current_user_data.dart';
 import '../../../../notifications/data/model/notice_model.dart';
 import 'package:flash/core/api/api_firebase_messaging.dart';
 import '../../../../../core/constant/collections.dart';
@@ -75,8 +76,6 @@ class ProfileScreenApi implements ProfileScreenRepo {
       "following": FieldValue.arrayUnion([userData.personalUid])
     });
 
-    String currentUsername = await ApiService.getCurrentUsername();
-
     NoticeModel noticeModel = NoticeModel(
       personUid: ApiService.user.uid,
       type: NoticeType.profile.name,
@@ -86,7 +85,7 @@ class ProfileScreenApi implements ProfileScreenRepo {
     );
 
     ApiFirebaseMessaging.sendNotfiy(
-      username: currentUsername,
+      username: CurrentUserData.username,
       noticeModel: noticeModel,
     );
   }

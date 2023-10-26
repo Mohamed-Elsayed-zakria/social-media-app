@@ -11,10 +11,6 @@ class HomeScreenController extends GetxController{
   
 }
 
-Future<String> getPersonalPicture() {
-  return HomeScreenApi().getPersonalPicture();
-}
-
 Future<List<StoriesModel>> getCurrentUserStory() {
   return HomeScreenApi().getCurrentUserStory();
 }

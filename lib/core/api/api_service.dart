@@ -58,11 +58,4 @@ abstract class ApiService {
       }
     }
   }
-
-  static Future<String> getCurrentUsername() async {
-    DocumentSnapshot<Map<String, dynamic>> snapshot =
-        await firestore.collection(Collections.userCollection).doc(user.uid).get();
-    String username = snapshot.data()!['username'];
-    return username;
-  }
 }

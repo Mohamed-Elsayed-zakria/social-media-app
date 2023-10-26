@@ -17,7 +17,6 @@ class CustomPostController extends GetxController {
   late VideoPlayerController videoPlayerController;
   @override
   void onInit() {
-    print('====================ccc');
     videoPlayerController =
         VideoPlayerController.networkUrl(Uri.parse(videoUrl))..initialize();
     super.onInit();

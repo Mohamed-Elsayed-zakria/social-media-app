@@ -2,7 +2,6 @@ import 'package:flash/features/main_home/presentation/views/main_home_screen.dar
 import '../../../home/presentaion/controller/home_sceen_controller.dart';
 import '../../presentation/controller/story_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../core/constant/collections.dart';
 import '../../../../core/constant/constant.dart';
 import '../../../../core/api/api_service.dart';
@@ -13,15 +12,6 @@ import 'package:get/get.dart';
 import 'dart:io';
 
 class StoryScreenApi extends StoryScreenRepo {
-  @override
-  Future<DocumentSnapshot<Map<String, dynamic>>> getuserDataToStory(
-      {required String otherUid}) {
-    return ApiService.firestore
-        .collection(Collections.userCollection)
-        .doc(otherUid)
-        .get();
-  }
-
   @override
   Future<void> uploadeStory({
     required String type,
@@ -74,20 +64,5 @@ class StoryScreenApi extends StoryScreenRepo {
     } catch (e) {
       uploadeStoryIsLoading.value = false;
     }
-  }
-
-  @override
-  Future<String> getCurrentPersonalPicture() async {
-    String personalPictureUrl = Constant.urlPhotoMale;
-    DocumentSnapshot<Map<String, dynamic>> currentUserData = await ApiService
-        .firestore
-        .collection(Collections.userCollection)
-        .doc(ApiService.user.uid)
-        .get();
-    Map<String, dynamic>? jsonAllData = currentUserData.data();
-    if (jsonAllData != null) {
-      personalPictureUrl = jsonAllData['personalPicture'];
-    }
-    return personalPictureUrl;
   }
 }

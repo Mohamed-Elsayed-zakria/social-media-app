@@ -44,20 +44,3 @@ Future<void> addLikeToReels({required String videoUid}) async {
 Future<void> removeLikeToReels({required String videoUid}) async {
   ShowReelsApi().removeLikeToReels(videoUid: videoUid);
 }
-
-
-// Stream<List> getReelsComments({required String videoUid}) {
-//   final StreamController<List> likesController = StreamController<List>();
-
-//   FirebaseFirestore.instance
-//       .collection(Collections.reelsCollection)
-//       .doc(videoUid)
-//       .collection(Collections.commentsCollection)
-//       .snapshots()
-//       .listen((QuerySnapshot<Map<String, dynamic>> querySnapshot) {
-//     List likesData = querySnapshot.docs.map((doc) => doc['personUid']).toList();
-//     likesController.add(likesData);
-//   });
-
-//   return likesController.stream;
-// }

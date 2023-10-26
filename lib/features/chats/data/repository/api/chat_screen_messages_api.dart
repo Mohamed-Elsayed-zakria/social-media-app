@@ -1,7 +1,8 @@
-import '../../../../../core/constant/collections.dart';
-import '../../../../notifications/data/model/notice_model.dart';
 import '../../../presentation/controllers/chat_screen_messages_controller.dart';
+import '../../../../notifications/data/model/notice_model.dart';
 import '../../../../../core/api/api_firebase_messaging.dart';
+import '../../../../../core/model/current_user_data.dart';
+import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/api/api_service.dart';
 import '../chat_screen_messages_repo.dart';
@@ -43,11 +44,10 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
       textBody: text,
       type: NoticeType.chat.name,
     );
-    String currentUsername = await ApiService.getCurrentUsername();
 
     ApiFirebaseMessaging.sendNotfiy(
       noticeModel: noticeModel,
-      username: currentUsername,
+      username: CurrentUserData.username,
     );
 
     await ApiService.firestore

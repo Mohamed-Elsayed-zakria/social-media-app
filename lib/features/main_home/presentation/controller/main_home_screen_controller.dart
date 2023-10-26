@@ -15,7 +15,6 @@ class MainHomeScreenController extends GetxController {
     ApiService.updateUserStatus(status: true);
     ApiService.updateUserLocation();
     SystemChannels.lifecycle.setMessageHandler((message) {
-      print('====================$message');
       if (message.toString().contains('resume')) {
         ApiService.updateUserStatus(status: true);
       }

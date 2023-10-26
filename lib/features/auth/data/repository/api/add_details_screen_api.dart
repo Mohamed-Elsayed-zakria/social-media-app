@@ -4,6 +4,7 @@ import '../../../../../core/api/api_dynamic_link.dart';
 import '../../../../../core/api/api_firebase_messaging.dart';
 import '../../../../../core/constant/collections.dart';
 import '../../../../../core/constant/colors.dart';
+import '../../../../../core/model/current_user_data.dart';
 import '../../../presentation/controllers/add_details_controller.dart';
 import '../../../../main_home/presentation/views/main_home_screen.dart';
 import '../../../../../core/constant/constant.dart';
@@ -87,7 +88,13 @@ class AddDetailsScreenApi extends AddDetailsScreenRepo {
           .doc(ApiService.user.uid)
           .set(createAccount.toJson())
           .then(
-        (value) {
+        (value) async {
+          DocumentSnapshot<Map<String, dynamic>> currentUserData =
+              await ApiService.firestore
+                  .collection(Collections.userCollection)
+                  .doc(ApiService.user.uid)
+                  .get();
+          CurrentUserData.fromJson(currentUserData.data()!);
           addDetailsIsLodinge.value = false;
           Get.offAll(() => const MainHomeScreen());
           addDetailsGetUsername.clear();
