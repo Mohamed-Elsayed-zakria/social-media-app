@@ -1,18 +1,18 @@
-import '../../../../controllers/comments_controller.dart';
+import '../../../../controller/show_reels_comments_controller.dart';
+import '../../../../../../../core/model/comment_model.dart';
 import '../../../../../../../core/api/api_service.dart';
 import '../../../../../../../core/constant/colors.dart';
-import '../../../../../../../core/model/comment_model.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 
-class CommentAddLike extends StatelessWidget {
+class ShowReelsCommentAddLike extends StatelessWidget {
   final CommentModel commentData;
-  final String postUid;
+  final String videoUid;
 
-  const CommentAddLike({
+  const ShowReelsCommentAddLike({
     super.key,
     required this.commentData,
-    required this.postUid,
+    required this.videoUid,
   });
 
   @override
@@ -26,13 +26,13 @@ class CommentAddLike extends StatelessWidget {
               commentData.likes.contains(
                 ApiService.user.uid,
               )
-                  ? removeLikeFromComment(
+                  ? removeReelsLikeFromComment(
                       commentUid: commentData.commentId,
-                      postUid: postUid,
+                      videoUid: videoUid,
                     )
-                  : addLikeComment(
+                  : addReelsLikeComment(
                       commentUid: commentData.commentId,
-                      postUid: postUid,
+                      videoUid: videoUid,
                     );
             },
             child: commentData.likes.contains(

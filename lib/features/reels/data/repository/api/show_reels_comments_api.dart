@@ -1,23 +1,25 @@
-import '../../../presentation/controllers/comments_controller.dart';
-import '../../../../../core/constant/collections.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../../../core/api/api_service.dart';
-import '../../../../../core/constant/colors.dart';
-import '../../../../../core/model/comment_model.dart';
-import 'package:uuid/uuid.dart';
-import '../comments_repo.dart';
-import 'package:get/get.dart';
 import 'dart:async';
 
-class CommentsApi extends CommentsRepo {
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../../../presentation/controller/show_reels_comments_controller.dart';
+import '../../../../../core/constant/collections.dart';
+import '../../../../../core/model/comment_model.dart';
+import '../../../../../core/api/api_service.dart';
+import '../../../../../core/constant/colors.dart';
+import '../show_reels_comments_repo.dart';
+import 'package:uuid/uuid.dart';
+import 'package:get/get.dart';
+
+class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
   @override
-  Stream<List<CommentModel>> getAllComments({required String postId}) {
+  Stream<List<CommentModel>> getAllReelsComments({required String videoUid}) {
     final StreamController<List<CommentModel>> commentsController =
         StreamController<List<CommentModel>>();
 
     ApiService.firestore
-        .collection(Collections.postCollection)
-        .doc(postId)
+        .collection(Collections.reelsCollection)
+        .doc(videoUid)
         .collection(Collections.commentsCollection)
         .orderBy("dataPublished", descending: false)
         .snapshots()
@@ -49,12 +51,11 @@ class CommentsApi extends CommentsRepo {
   }
 
   @override
-  Future<void> addNewComment({
-    required String postId,
+  Future<void> addNewReelsComment({
+    required String videoUid,
     required String text,
   }) async {
     String commentId = const Uuid().v1();
-
     CommentModel newComment = CommentModel(
       personUid: ApiService.user.uid,
       dataPublished: DateTime.timestamp().toString(),
@@ -62,11 +63,11 @@ class CommentsApi extends CommentsRepo {
       likes: [],
       commentId: commentId,
     );
-    commentController.clear();
+    addReelsComment.clear();
     try {
       await ApiService.firestore
-          .collection(Collections.postCollection)
-          .doc(postId)
+          .collection(Collections.reelsCollection)
+          .doc(videoUid)
           .collection(Collections.commentsCollection)
           .doc(commentId)
           .set(newComment.toJson());
@@ -81,13 +82,13 @@ class CommentsApi extends CommentsRepo {
   }
 
   @override
-  Future<void> addLikeComment({
-    required String postUid,
+  Future<void> addReelsLikeComment({
+    required String videoUid,
     required String commentUid,
   }) async {
     await ApiService.firestore
-        .collection(Collections.postCollection)
-        .doc(postUid)
+        .collection(Collections.reelsCollection)
+        .doc(videoUid)
         .collection(Collections.commentsCollection)
         .doc(commentUid)
         .update({
@@ -96,13 +97,13 @@ class CommentsApi extends CommentsRepo {
   }
 
   @override
-  Future<void> removeLikeFromComment({
-    required String postUid,
+  Future<void> removeReelsLikeFromComment({
+    required String videoUid,
     required String commentUid,
   }) async {
     await ApiService.firestore
-        .collection(Collections.postCollection)
-        .doc(postUid)
+        .collection(Collections.reelsCollection)
+        .doc(videoUid)
         .collection(Collections.commentsCollection)
         .doc(commentUid)
         .update({
@@ -111,47 +112,47 @@ class CommentsApi extends CommentsRepo {
   }
 
   @override
-  Future<void> deleteComment({
-    required String postUid,
+  Future<void> deleteReelsComment({
+    required String videoUid,
     required String commentUid,
   }) async {
     await ApiService.firestore
-        .collection(Collections.postCollection)
-        .doc(postUid)
+        .collection(Collections.reelsCollection)
+        .doc(videoUid)
         .collection(Collections.commentsCollection)
         .doc(commentUid)
         .delete();
   }
 
   @override
-  Future<void> updateComment({
+  Future<void> updateReelsComment({
     required String newTextComment,
     required String commentUid,
-    required String postUid,
+    required String videoUid,
   }) async {
     await ApiService.firestore
-        .collection(Collections.postCollection)
-        .doc(postUid)
+        .collection(Collections.reelsCollection)
+        .doc(videoUid)
         .collection(Collections.commentsCollection)
         .doc(commentUid)
         .update({'textComment': newTextComment});
   }
 
   @override
-  Future<void> reportComment({
+  Future<void> reportReelsComment({
     required CommentModel commentData,
-    required String postUid,
+    required String videoUid,
   }) async {
     Map<String, dynamic> additionalData = {
       'idMakeReport': ApiService.user.uid,
-      'postUid': postUid,
+      'postUid': videoUid,
     };
 
     Map<String, dynamic> dataToUpdate = commentData.toJson();
     dataToUpdate.addAll(additionalData);
 
     ApiService.firestore
-        .collection(Collections.reportPostCommentCollection)
+        .collection(Collections.reportReelsCommentCollection)
         .add(dataToUpdate);
   }
 }

@@ -1,25 +1,25 @@
+import '../../../../controller/show_reels_comments_controller.dart';
 import '../../../../../../../core/widgets/custom_form_field.dart';
-import '../../../../controllers/comments_controller.dart';
+import '../../../../../../../core/model/comment_model.dart';
 import '../../../../../../../core/constant/colors.dart';
 import '../../../../../../../core/constant/style.dart';
-import '../../../../../../../core/model/comment_model.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class OnLongPressCurrentComment extends StatelessWidget {
+class ShowReelsOnLongPressCurrentComment extends StatelessWidget {
   final CommentModel commentData;
-  final String postUid;
+  final String videoUid;
 
-  const OnLongPressCurrentComment({
+  const ShowReelsOnLongPressCurrentComment({
     super.key,
     required this.commentData,
-    required this.postUid,
+    required this.videoUid,
   });
 
   @override
   Widget build(BuildContext context) {
-    getTextComment.text = commentData.textComment;
+    getTextReelsComment.text = commentData.textComment;
     return Container(
       width: double.infinity,
       height: 140,
@@ -35,9 +35,9 @@ class OnLongPressCurrentComment extends StatelessWidget {
         children: [
           ListTile(
             onTap: () async {
-              await deleteComment(
+              await deleteReelsComment(
                 commentUid: commentData.commentId,
-                postUid: postUid,
+                videoUid: videoUid,
               );
               Get.back();
             },
@@ -56,11 +56,11 @@ class OnLongPressCurrentComment extends StatelessWidget {
                 title: "Edite".tr,
                 confirm: TextButton(
                   onPressed: () async {
-                    if (getTextComment.text.isNotEmpty) {
-                      await updateComment(
-                        newTextComment: getTextComment.text,
+                    if (getTextReelsComment.text.isNotEmpty) {
+                      await updateReelsComment(
+                        newTextComment: getTextReelsComment.text,
                         commentUid: commentData.commentId,
-                        postUid: postUid,
+                        videoUid: videoUid,
                       );
                       Get.back();
                     }
@@ -74,7 +74,7 @@ class OnLongPressCurrentComment extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   child: Center(
                     child: CustomFormField(
-                      controller: getTextComment,
+                      controller: getTextReelsComment,
                       keyboardType: TextInputType.multiline,
                       label: "Edite comment".tr,
                       hintText: "Write comment".tr,

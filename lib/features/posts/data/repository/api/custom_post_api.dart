@@ -10,10 +10,10 @@ import '../custom_post_repo.dart';
 class CustomPostApi implements CustomPostRepo {
   @override
   Stream<int> getCommentCount({required String postUid}) {
-    return FirebaseFirestore.instance
-        .collection('posts')
+    return ApiService.firestore
+        .collection(Collections.postCollection)
         .doc(postUid)
-        .collection('comments')
+        .collection(Collections.commentsCollection)
         .snapshots()
         .map((QuerySnapshot snapshot) {
       return snapshot.docs.length;
@@ -23,7 +23,7 @@ class CustomPostApi implements CustomPostRepo {
   @override
   Stream<List> getPostLikes({required String postUid}) {
     final StreamController<List> likesController = StreamController<List>();
-    FirebaseFirestore.instance
+    ApiService.firestore
         .collection(Collections.postCollection)
         .doc(postUid)
         .collection(Collections.likesCollection)

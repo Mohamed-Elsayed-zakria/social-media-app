@@ -14,7 +14,7 @@ class MessageModel {
   });
 
   MessageModel.fromJson(Map<String, dynamic> json) {
-    type = json['type'] ?? '';
+    type = json['text'] ?? '';
     senderId = json['senderId'] ?? '';
     message = json['message'] ?? '';
     receiverId = json['receiverId'] ?? '';

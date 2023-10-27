@@ -1,23 +1,23 @@
+import '../../../../../../../core/model/comment_model.dart';
 import '../../../../../../../core/utils/date_time.dart';
 import '../../../../../../../core/api/api_service.dart';
 import '../../../../../../../core/constant/colors.dart';
-import '../../../../../../../core/model/comment_model.dart';
-import 'on_long_press_current_comment.dart';
-import 'on_long_press_other_comment.dart';
+import 'show_reelson_long_press_current_comment.dart';
+import 'show_reels_on_long_press_other_comment.dart';
+import 'show_reels_comment_circal_avatar.dart';
+import 'show_reels_comment_description.dart';
+import 'show_reels_comment_add_like.dart';
 import 'package:flutter/material.dart';
-import 'comment_circle_avatar.dart';
-import 'comment_description.dart';
-import 'comment_add_like.dart';
 import 'package:get/get.dart';
 
-class CommentItem extends StatelessWidget {
+class ShowReelsCommentItem extends StatelessWidget {
   final CommentModel commentData;
-  final String postUid;
+  final String videoUid;
 
-  const CommentItem({
+  const ShowReelsCommentItem({
     super.key,
     required this.commentData,
-    required this.postUid,
+    required this.videoUid,
   });
 
   @override
@@ -26,13 +26,13 @@ class CommentItem extends StatelessWidget {
       onLongPress: () {
         Get.bottomSheet(
           commentData.personUid == ApiService.user.uid
-              ? OnLongPressCurrentComment(
+              ? ShowReelsOnLongPressCurrentComment(
                   commentData: commentData,
-                  postUid: postUid,
+                  videoUid: videoUid,
                 )
-              : OnLongPressOtherComment(
+              : ShowReelsOnLongPressOtherComment(
                   commentData: commentData,
-                  postUid: postUid,
+                  videoUid: videoUid,
                 ),
         );
       },
@@ -68,15 +68,15 @@ class CommentItem extends StatelessWidget {
                       historyAsText: commentData.dataPublished,
                     ),
                   ),
-                  CommentAddLike(
+                  ShowReelsCommentAddLike(
                     commentData: commentData,
-                    postUid: postUid,
+                    videoUid: videoUid,
                   ),
                 ],
               ),
-              leading: CommentCircleAvatar(commentData: commentData),
+              leading: ShowReelsCommentCircleAvatar(commentData: commentData),
             ),
-            CommentDescription(commentData: commentData)
+            ShowReelsCommentDescription(commentData: commentData)
           ],
         ),
       ),

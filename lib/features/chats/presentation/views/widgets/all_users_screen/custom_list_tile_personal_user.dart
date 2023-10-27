@@ -22,6 +22,7 @@ class CustomListTilePersonalUser extends StatelessWidget {
                 ?.map((element) => MessageModel.fromJson(element.data()))
                 .toList() ??
             [];
+
         if (list.isNotEmpty) messages = list[0];
         return Visibility(
           visible: messages != null,

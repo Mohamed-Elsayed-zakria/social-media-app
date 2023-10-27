@@ -1,5 +1,5 @@
 import '../../data/repository/api/comments_api.dart';
-import '../../data/model/comment_model.dart';
+import '../../../../core/model/comment_model.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 

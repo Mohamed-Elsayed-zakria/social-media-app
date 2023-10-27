@@ -14,25 +14,25 @@ class CustomPostAddComment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: getCommentCount(postUid: postData.postUid),
-      builder: (context, commentsSnapshot) {
-        int commentsCount = 0;
-        if (commentsSnapshot.hasData) {
-          commentsCount = commentsSnapshot.data!;
-        }
-        return Row(
-          children: [
-            IconButton(
-              onPressed: () => Get.to(
-                () => CustomPostDetails(postUid: postData.postUid),
-              ),
-              icon: const Icon(IconlyBroken.moreSquare),
-            ),
-            Text(commentsCount.toString()),
-          ],
-        );
-      },
+    return Row(
+      children: [
+        IconButton(
+          onPressed: () => Get.to(
+            () => CustomPostDetails(postUid: postData.postUid),
+          ),
+          icon: const Icon(IconlyBroken.moreSquare),
+        ),
+        StreamBuilder(
+          stream: getCommentCount(postUid: postData.postUid),
+          builder: (context, commentsSnapshot) {
+            int commentsCount = 0;
+            if (commentsSnapshot.hasData) {
+              commentsCount = commentsSnapshot.data!;
+            }
+            return Text(commentsCount.toString());
+          },
+        ),
+      ],
     );
   }
 }

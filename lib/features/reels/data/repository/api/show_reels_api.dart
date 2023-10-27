@@ -55,6 +55,18 @@ class ShowReelsApi implements ShowReelsRepo {
   }
 
   @override
+  Stream<int> getCommentReelsCount({required String videoUid}) {
+    return ApiService.firestore
+        .collection(Collections.reelsCollection)
+        .doc(videoUid)
+        .collection(Collections.commentsCollection)
+        .snapshots()
+        .map((QuerySnapshot snapshot) {
+      return snapshot.docs.length;
+    });
+  }
+
+  @override
   Future<void> addLikeToReels({required String videoUid}) async {
     await ApiService.firestore
         .collection(Collections.reelsCollection)

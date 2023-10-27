@@ -1,8 +1,12 @@
+import '../../../../../../core/model/comment_model.dart';
 import '../../../../data/model/video_reels_model.dart';
 import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/constant/colors.dart';
-import 'comments/show_video_comment_lower.dart';
+import '../../../controller/show_reels_comments_controller.dart';
+import 'comments/show_reels_comment_item.dart';
+import 'comments/show_reels_comment_lower.dart';
 import 'package:flutter/material.dart';
+import 'comments/show_reels_comments_not_fount.dart';
 
 class ShowVideoButtomSheetComments extends StatelessWidget {
   final VideoReelsModel allReels;
@@ -16,7 +20,7 @@ class ShowVideoButtomSheetComments extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = Constant.sizeScreen(context: context);
     return Container(
-      height: size.height * .75,
+      height: size.height * .7,
       decoration: const BoxDecoration(
         color: AppColors.kSurfaceColor,
         borderRadius: BorderRadius.only(
@@ -24,13 +28,40 @@ class ShowVideoButtomSheetComments extends StatelessWidget {
           topRight: Radius.circular(12),
         ),
       ),
-      child: Column(
-        children: [
-          Expanded(
-            child: Container(),
-          ),
-          ShowVideoCommentsLower(allReels: allReels),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: Column(
+          children: [
+            Expanded(
+              child: StreamBuilder(
+                stream: getAllReelsComments(videoUid: allReels.videoUid),
+                builder: (context, commentSnapshot) {
+                  if (commentSnapshot.hasData) {
+                    List<CommentModel> commentsList = commentSnapshot.data!;
+                    if (commentsList.isNotEmpty) {
+                      return ListView.builder(
+                        itemCount: commentsList.length,
+                        itemBuilder: (context, index) {
+                          return ShowReelsCommentItem(
+                            commentData: commentsList[index],
+                            videoUid: allReels.videoUid,
+                          );
+                        },
+                      );
+                    } else {
+                      return const ShowReelsCommentsNotFount();
+                    }
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ),
+            ),
+            ShowReelsCommentsLower(allReels: allReels),
+          ],
+        ),
       ),
     );
   }

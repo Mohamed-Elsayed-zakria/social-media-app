@@ -4,6 +4,8 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flash/core/api/api_service.dart';
 import 'package:get/get.dart';
 
+import '../../features/reels/presentation/views/show_reels_screen.dart';
+
 abstract class ApiDynamicLink {
   static Future<String> createDynamicLink({
     required bool short,
@@ -54,7 +56,7 @@ abstract class ApiDynamicLink {
     bool? isPersonalPage =
         deepLink?.pathSegments.contains('personalPageUrl') ?? false;
     bool? isReels = deepLink?.pathSegments.contains('reelsUid') ?? false;
-
+    
     if (deepLink != null) {
       final id = deepLink.queryParameters['id'];
       if (id != null && isPost) {
@@ -62,7 +64,7 @@ abstract class ApiDynamicLink {
       } else if (id != null && isPersonalPage) {
         Get.to(() => ProfileScreen(otherUid: id));
       } else if (id != null && isReels) {
-        // Get.to(() => ShowReelsItem(videoUrl: id));
+        Get.to(() => ShowReelsScreen(specificVideo: id));
       }
     }
   }

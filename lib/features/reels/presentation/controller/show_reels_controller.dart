@@ -37,6 +37,10 @@ Stream<List> getReelsLikes({required String videoUid}) {
   return ShowReelsApi().getReelsLikes(videoUid: videoUid);
 }
 
+Stream<int> getCommentReelsCount({required String videoUid}) {
+  return ShowReelsApi().getCommentReelsCount(videoUid: videoUid);
+}
+
 Future<void> addLikeToReels({required String videoUid}) async {
   ShowReelsApi().addLikeToReels(videoUid: videoUid);
 }

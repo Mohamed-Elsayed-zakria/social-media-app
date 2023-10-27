@@ -1,4 +1,4 @@
-import '../model/comment_model.dart';
+import '../../../../core/model/comment_model.dart';
 
 abstract class CommentsRepo {
   Stream<List<CommentModel>> getAllComments({required String postId});

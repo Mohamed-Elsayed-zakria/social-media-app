@@ -156,6 +156,7 @@ const Map<String, String> en = {
 
 //==================='Reels'===================
   'Next': 'Next',
+  "No internet connection": "No internet connection",
   'Write a description': 'Write a description',
 
 //===================profile===================
@@ -225,9 +226,9 @@ const Map<String, String> en = {
 //*******************verification****************
   "applyForVerification": "Apply for verification",
   "verificationAcount":
-      "The verification that appears next to the account name to indicate that the original account has been verified in accordance with the rules and regulations of this application. You can submit your verification request by submitting the following data",
+      "The verification that appears next to the account name to indicate that the original account has been verified according to the rules and regulations of this application, you must verify ownership of your email and after authenticating your account. You may submit your verification request by providing the following data.",
   "noteVerification":
-      "Note: You must verify ownership of your email after authenticating your account. You will not be able to change your name again",
+      "Note: After authentication of your account. You won't be able to change your username again.",
 
   "addYourPersonalPhoto": "Add your personal photo",
   "addPictureTheIdCard": "Add a picture of the ID card or passport",

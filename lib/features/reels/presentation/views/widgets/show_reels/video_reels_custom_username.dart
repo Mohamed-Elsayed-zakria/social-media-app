@@ -15,6 +15,7 @@ class VideoReelsCustomUsername extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 12),
       child: Text(
+        textDirection: TextDirection.ltr,
         "@${allReels.username}",
         style: const TextStyle(
           fontSize: AppStyle.kTextStyle16,

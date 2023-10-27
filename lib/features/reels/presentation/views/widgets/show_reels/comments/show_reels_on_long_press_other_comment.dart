@@ -1,5 +1,5 @@
+import '../../../../controller/show_reels_comments_controller.dart';
 import '../../../../../../../core/model/comment_model.dart';
-import '../../../../controllers/comments_controller.dart';
 import '../../../../../../../core/constant/colors.dart';
 import '../../../../../../../core/constant/style.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class OnLongPressOtherComment extends StatelessWidget {
+class ShowReelsOnLongPressOtherComment extends StatelessWidget {
   final CommentModel commentData;
-  final String postUid;
+  final String videoUid;
 
-  const OnLongPressOtherComment({
+  const ShowReelsOnLongPressOtherComment({
     super.key,
     required this.commentData,
-    required this.postUid,
+    required this.videoUid,
   });
 
   @override
@@ -35,9 +35,9 @@ class OnLongPressOtherComment extends StatelessWidget {
         children: [
           ListTile(
             onTap: () async {
-              await reportComment(
+              await reportReelsComment(
                 commentData: commentData,
-                postUid: postUid,
+                videoUid: videoUid,
               );
               Get.back();
               Fluttertoast.showToast(
