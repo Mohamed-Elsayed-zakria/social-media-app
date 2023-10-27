@@ -1,15 +1,13 @@
-import 'dart:async';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../../../presentation/controller/show_reels_comments_controller.dart';
 import '../../../../../core/constant/collections.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/model/comment_model.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../../../../core/constant/colors.dart';
 import '../show_reels_comments_repo.dart';
 import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
+import 'dart:async';
 
 class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
   @override
@@ -60,7 +58,6 @@ class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
       personUid: ApiService.user.uid,
       dataPublished: DateTime.timestamp().toString(),
       textComment: text,
-      likes: [],
       commentId: commentId,
     );
     addReelsComment.clear();
@@ -82,6 +79,28 @@ class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
   }
 
   @override
+  Stream<List> getReelsCommentsLikes({
+    required String videoUid,
+    required String commentUid,
+  }) {
+    final StreamController<List> likesController = StreamController<List>();
+    ApiService.firestore
+        .collection(Collections.postCollection)
+        .doc(videoUid)
+        .collection(Collections.commentsCollection)
+        .doc(commentUid)
+        .collection(Collections.likesCollection)
+        .snapshots()
+        .listen((QuerySnapshot<Map<String, dynamic>> querySnapshot) {
+      List likesData =
+          querySnapshot.docs.map((doc) => doc['personUid']).toList();
+      likesController.add(likesData);
+    });
+
+    return likesController.stream;
+  }
+
+  @override
   Future<void> addReelsLikeComment({
     required String videoUid,
     required String commentUid,
@@ -91,8 +110,10 @@ class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
         .doc(videoUid)
         .collection(Collections.commentsCollection)
         .doc(commentUid)
-        .update({
-      "likes": FieldValue.arrayUnion([ApiService.user.uid])
+        .collection(Collections.likesCollection)
+        .doc(ApiService.user.uid)
+        .set({
+      'personUid': ApiService.user.uid,
     });
   }
 
@@ -106,9 +127,9 @@ class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
         .doc(videoUid)
         .collection(Collections.commentsCollection)
         .doc(commentUid)
-        .update({
-      "likes": FieldValue.arrayRemove([ApiService.user.uid])
-    });
+        .collection(Collections.likesCollection)
+        .doc(ApiService.user.uid)
+        .delete();
   }
 
   @override

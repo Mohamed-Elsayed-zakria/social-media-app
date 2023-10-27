@@ -19,6 +19,16 @@ Future<void> addNewReelsComment({
   );
 }
 
+Stream<List> getReelsCommentsLikes({
+  required String videoUid,
+  required String commentUid,
+}) {
+  return ShowReelsCommentsApi().getReelsCommentsLikes(
+    videoUid: videoUid,
+    commentUid: commentUid,
+  );
+}
+
 Future<void> addReelsLikeComment({
   required String videoUid,
   required String commentUid,

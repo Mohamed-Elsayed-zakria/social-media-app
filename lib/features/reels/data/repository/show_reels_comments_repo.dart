@@ -6,6 +6,10 @@ abstract class ShowReelsCommentsRepo {
     required String videoUid,
     required String text,
   });
+  Stream<List> getReelsCommentsLikes({
+    required String videoUid,
+    required String commentUid,
+  });
   Future<void> addReelsLikeComment({
     required String videoUid,
     required String commentUid,

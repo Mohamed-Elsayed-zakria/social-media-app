@@ -59,7 +59,6 @@ class CommentsApi extends CommentsRepo {
       personUid: ApiService.user.uid,
       dataPublished: DateTime.timestamp().toString(),
       textComment: text,
-      likes: [],
       commentId: commentId,
     );
     commentController.clear();
@@ -81,6 +80,26 @@ class CommentsApi extends CommentsRepo {
   }
 
   @override
+  Stream<List> getPostCommentsLikes(
+      {required String postUid, required String commentUid,}) {
+    final StreamController<List> likesController = StreamController<List>();
+    ApiService.firestore
+        .collection(Collections.postCollection)
+        .doc(postUid)
+        .collection(Collections.commentsCollection)
+        .doc(commentUid)
+        .collection(Collections.likesCollection)
+        .snapshots()
+        .listen((QuerySnapshot<Map<String, dynamic>> querySnapshot) {
+      List likesData =
+          querySnapshot.docs.map((doc) => doc['personUid']).toList();
+      likesController.add(likesData);
+    });
+
+    return likesController.stream;
+  }
+
+  @override
   Future<void> addLikeComment({
     required String postUid,
     required String commentUid,
@@ -90,8 +109,10 @@ class CommentsApi extends CommentsRepo {
         .doc(postUid)
         .collection(Collections.commentsCollection)
         .doc(commentUid)
-        .update({
-      "likes": FieldValue.arrayUnion([ApiService.user.uid])
+        .collection(Collections.likesCollection)
+        .doc(ApiService.user.uid)
+        .set({
+      'personUid': ApiService.user.uid,
     });
   }
 
@@ -105,9 +126,9 @@ class CommentsApi extends CommentsRepo {
         .doc(postUid)
         .collection(Collections.commentsCollection)
         .doc(commentUid)
-        .update({
-      "likes": FieldValue.arrayRemove([ApiService.user.uid])
-    });
+        .collection(Collections.likesCollection)
+        .doc(ApiService.user.uid)
+        .delete();
   }
 
   @override

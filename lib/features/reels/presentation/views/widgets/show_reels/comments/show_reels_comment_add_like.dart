@@ -17,40 +17,48 @@ class ShowReelsCommentAddLike extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 8),
-          child: GestureDetector(
-            onTap: () {
-              commentData.likes.contains(
-                ApiService.user.uid,
-              )
-                  ? removeReelsLikeFromComment(
-                      commentUid: commentData.commentId,
-                      videoUid: videoUid,
-                    )
-                  : addReelsLikeComment(
-                      commentUid: commentData.commentId,
-                      videoUid: videoUid,
-                    );
-            },
-            child: commentData.likes.contains(
-              ApiService.user.uid,
-            )
-                ? const Icon(
-                    IconlyBold.heart,
-                    size: 22,
-                    color: AppColors.kPrimaryColor,
-                  )
-                : const Icon(
-                    IconlyBroken.heart,
-                    size: 22,
-                  ),
-          ),
-        ),
-        Text(commentData.likes.length.toString()),
-      ],
+    return StreamBuilder(
+      stream: getReelsCommentsLikes(
+        videoUid: videoUid,
+        commentUid: commentData.commentId,
+      ),
+      builder: (context, likesSnapshot) {
+        List allLikes = [];
+        if (likesSnapshot.hasData) {
+          allLikes = likesSnapshot.data!;
+        }
+        return Row(
+          children: [
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 8),
+              child: GestureDetector(
+                onTap: () {
+                  allLikes.contains(ApiService.user.uid)
+                      ? removeReelsLikeFromComment(
+                          commentUid: commentData.commentId,
+                          videoUid: videoUid,
+                        )
+                      : addReelsLikeComment(
+                          commentUid: commentData.commentId,
+                          videoUid: videoUid,
+                        );
+                },
+                child: allLikes.contains(ApiService.user.uid)
+                    ? const Icon(
+                        IconlyBold.heart,
+                        size: 22,
+                        color: AppColors.kPrimaryColor,
+                      )
+                    : const Icon(
+                        IconlyBroken.heart,
+                        size: 22,
+                      ),
+              ),
+            ),
+            Text('${allLikes.length}'),
+          ],
+        );
+      },
     );
   }
 }

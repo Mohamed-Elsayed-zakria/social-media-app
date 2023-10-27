@@ -1,7 +1,6 @@
 import '../../data/repository/api/comments_api.dart';
 import '../../../../core/model/comment_model.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
 
 TextEditingController commentController = TextEditingController();
 
@@ -16,6 +15,16 @@ Future<void> addNewComment({
   required String text,
 }) async {
   CommentsApi().addNewComment(postId: postId, text: text);
+}
+
+Stream<List> getPostCommentsLikes({
+  required String postUid,
+  required String commentUid,
+}) {
+  return CommentsApi().getPostCommentsLikes(
+    postUid: postUid,
+    commentUid: commentUid,
+  );
 }
 
 Future<void> addLikeComment({

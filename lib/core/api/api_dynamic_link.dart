@@ -56,7 +56,7 @@ abstract class ApiDynamicLink {
     bool? isPersonalPage =
         deepLink?.pathSegments.contains('personalPageUrl') ?? false;
     bool? isReels = deepLink?.pathSegments.contains('reelsUid') ?? false;
-    
+
     if (deepLink != null) {
       final id = deepLink.queryParameters['id'];
       if (id != null && isPost) {

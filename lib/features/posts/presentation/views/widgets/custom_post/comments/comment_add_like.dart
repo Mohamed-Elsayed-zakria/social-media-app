@@ -1,7 +1,7 @@
+import '../../../../../../../core/model/comment_model.dart';
 import '../../../../controllers/comments_controller.dart';
 import '../../../../../../../core/api/api_service.dart';
 import '../../../../../../../core/constant/colors.dart';
-import '../../../../../../../core/model/comment_model.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 
@@ -17,40 +17,48 @@ class CommentAddLike extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 8),
-          child: GestureDetector(
-            onTap: () {
-              commentData.likes.contains(
-                ApiService.user.uid,
-              )
-                  ? removeLikeFromComment(
-                      commentUid: commentData.commentId,
-                      postUid: postUid,
-                    )
-                  : addLikeComment(
-                      commentUid: commentData.commentId,
-                      postUid: postUid,
-                    );
-            },
-            child: commentData.likes.contains(
-              ApiService.user.uid,
-            )
-                ? const Icon(
-                    IconlyBold.heart,
-                    size: 22,
-                    color: AppColors.kPrimaryColor,
-                  )
-                : const Icon(
-                    IconlyBroken.heart,
-                    size: 22,
-                  ),
-          ),
-        ),
-        Text(commentData.likes.length.toString()),
-      ],
+    return StreamBuilder(
+      stream: getPostCommentsLikes(
+        postUid: postUid,
+        commentUid: commentData.commentId,
+      ),
+      builder: (context, likesSnapshot) {
+        List allLikes = [];
+        if (likesSnapshot.hasData) {
+          allLikes = likesSnapshot.data!;
+        }
+        return Row(
+          children: [
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 8),
+              child: GestureDetector(
+                onTap: () {
+                  allLikes.contains(ApiService.user.uid)
+                      ? removeLikeFromComment(
+                          commentUid: commentData.commentId,
+                          postUid: postUid,
+                        )
+                      : addLikeComment(
+                          commentUid: commentData.commentId,
+                          postUid: postUid,
+                        );
+                },
+                child: allLikes.contains(ApiService.user.uid)
+                    ? const Icon(
+                        IconlyBold.heart,
+                        size: 22,
+                        color: AppColors.kPrimaryColor,
+                      )
+                    : const Icon(
+                        IconlyBroken.heart,
+                        size: 22,
+                      ),
+              ),
+            ),
+            Text('${allLikes.length}'),
+          ],
+        );
+      },
     );
   }
 }

@@ -6,14 +6,12 @@ class CommentModel {
   late String dataPublished;
   late String commentId;
   late String personUid;
-  late List likes;
 
   CommentModel({
     required this.commentId,
     required this.textComment,
     required this.dataPublished,
     required this.personUid,
-    required this.likes,
   });
 
   CommentModel.fromJson(Map<String, dynamic> json) {
@@ -23,7 +21,6 @@ class CommentModel {
     textComment = json['textComment'] ?? '';
     dataPublished = json['dataPublished'] ?? '';
     commentId = json['commentId'] ?? '';
-    likes = json['likes'] ?? [];
     personUid = json['personUid'] ?? '';
   }
 
@@ -32,7 +29,6 @@ class CommentModel {
     data['textComment'] = textComment;
     data['dataPublished'] = dataPublished;
     data['commentId'] = commentId;
-    data['likes'] = likes;
     data['personUid'] = personUid;
     return data;
   }

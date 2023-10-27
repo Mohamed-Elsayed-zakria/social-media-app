@@ -8,6 +8,11 @@ abstract class CommentsRepo {
     required String text,
   });
 
+  Stream<List> getPostCommentsLikes({
+    required String postUid,
+    required String commentUid,
+  });
+
   Future<void> addLikeComment({
     required String postUid,
     required String commentUid,
