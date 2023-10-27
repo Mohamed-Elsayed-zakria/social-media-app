@@ -1,17 +1,17 @@
-import '../../../../../../core/utils/date_time.dart';
+import '../../../../../../core/widgets/custom_verified_in_circal_avatar.dart';
 import '../../../../../profile/presentation/views/profile_screen.dart';
+import 'custom_post_more_on_header/custom_post_more_current_user.dart';
+import 'custom_post_more_on_header/custom_post_more_other_user.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import '../../../../../../core/utils/date_time.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/api/api_service.dart';
 import '../../../../../../core/constant/style.dart';
-import '../../../../data/model/post_model.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'custom_post_more_on_header/custom_post_more_current_user.dart';
-import 'custom_post_more_on_header/custom_post_more_other_user.dart';
+import '../../../../data/model/post_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import 'custom_post_status_icon.dart';
+import 'package:get/get.dart';
 
 class CustomPostHeader extends StatelessWidget {
   final PostModel postData;
@@ -35,24 +35,7 @@ class CustomPostHeader extends StatelessWidget {
               backgroundImage:
                   CachedNetworkImageProvider(postData.personalPicture),
             ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: Visibility(
-                visible: postData.verified,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.kSurfaceColor,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: const Icon(
-                    Icons.verified,
-                    size: 18,
-                    color: AppColors.kPrimaryColor,
-                  ),
-                ),
-              ),
-            ),
+            CustomVerifiedInCircalAvatar(visible: postData.verified),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import '../../../../../../core/widgets/custom_verified_in_circal_avatar.dart';
 import '../../../../../profile/presentation/views/profile_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../../../../core/constant/colors.dart';
@@ -22,6 +23,18 @@ class MessageScreenCustomHeader extends StatelessWidget {
       ),
       child: ListTile(
         contentPadding: EdgeInsets.zero,
+        leading: Stack(
+          children: [
+            CircleAvatar(
+              radius: 28,
+              backgroundColor: AppColors.kBackgroundColor,
+              backgroundImage: CachedNetworkImageProvider(
+                userData.personalPicture,
+              ),
+            ),
+            CustomVerifiedInCircalAvatar(visible: userData.verified),
+          ],
+        ),
         title: Row(
           children: [
             Text(
@@ -45,13 +58,6 @@ class MessageScreenCustomHeader extends StatelessWidget {
         subtitle: Text(
           userData.isOnline ? "online".tr : "ofline".tr,
           style: const TextStyle(fontSize: AppStyle.kTextStyle16),
-        ),
-        leading: CircleAvatar(
-          radius: 24,
-          backgroundColor: AppColors.kBackgroundColor,
-          backgroundImage: CachedNetworkImageProvider(
-            userData.personalPicture,
-          ),
         ),
       ),
     );

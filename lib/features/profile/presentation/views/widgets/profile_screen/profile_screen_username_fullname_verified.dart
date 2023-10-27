@@ -17,11 +17,20 @@ class ProfileScreenUsernameAndFullnameAndVerified extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            "${userData.firstName} ${userData.lastName}",
+            style: const TextStyle(fontSize: 18),
+          ),
+          const SizedBox(height: 6),
           Row(
             children: [
               Text(
-                "${userData.firstName} ${userData.lastName}",
-                style: const TextStyle(fontSize: 18),
+                textDirection: TextDirection.ltr,
+                "@${userData.username}",
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(width: 6),
               Visibility(
@@ -33,15 +42,6 @@ class ProfileScreenUsernameAndFullnameAndVerified extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-          const SizedBox(height: 6),
-          Text(
-            textDirection: TextDirection.ltr,
-            "@${userData.username}",
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
           ),
         ],
       ),

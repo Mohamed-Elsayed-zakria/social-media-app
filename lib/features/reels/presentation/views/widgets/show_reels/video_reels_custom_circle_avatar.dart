@@ -1,3 +1,4 @@
+import '../../../../../../core/widgets/custom_verified_in_circal_avatar.dart';
 import '../../../../../profile/presentation/views/profile_screen.dart';
 import '../../../../data/model/video_reels_model.dart';
 import '../../../../../../core/constant/colors.dart';
@@ -31,24 +32,7 @@ class VideoReelsCustomCircleAvatar extends StatelessWidget {
                 backgroundImage: NetworkImage(allReels.personalPicture),
               ),
             ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: Visibility(
-                visible: allReels.verified,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.kSurfaceColor,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: const Icon(
-                    Icons.verified,
-                    size: 18,
-                    color: AppColors.kPrimaryColor,
-                  ),
-                ),
-              ),
-            ),
+            CustomVerifiedInCircalAvatar(visible: allReels.verified),
           ],
         ),
       ),

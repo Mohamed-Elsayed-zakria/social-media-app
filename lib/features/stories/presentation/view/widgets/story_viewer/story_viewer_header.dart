@@ -34,7 +34,8 @@ class StoryViewerHeader extends StatelessWidget {
           title: Row(
             children: [
               Text(
-                storyData.username,
+                textDirection: TextDirection.ltr,
+                '@${storyData.username}',
                 style: const TextStyle(
                   fontSize: AppStyle.kTextStyle16,
                   color: AppColors.kSurfaceColor,
@@ -51,12 +52,17 @@ class StoryViewerHeader extends StatelessWidget {
               ),
             ],
           ),
-          subtitle: Text(
-            textDirection: TextDirection.ltr,
-            MyDateUtil.convertDateTime(historyAsText: storyData.datePublish),
-            style: const TextStyle(
-              color: AppColors.kSurfaceColor,
-            ),
+          subtitle: Row(
+            children: [
+              Text(
+                textDirection: TextDirection.ltr,
+                MyDateUtil.convertDateTime(
+                    historyAsText: storyData.datePublish),
+                style: const TextStyle(
+                  color: AppColors.kSurfaceColor,
+                ),
+              ),
+            ],
           ),
           leading: GestureDetector(
             onTap: () => Get.to(

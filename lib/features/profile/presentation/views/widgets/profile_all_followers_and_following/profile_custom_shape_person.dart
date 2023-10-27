@@ -1,4 +1,5 @@
 import '../../../../../../core/constant/style.dart';
+import '../../../../../../core/widgets/custom_verified_in_circal_avatar.dart';
 import '../../../../data/models/profile_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../../../../core/constant/colors.dart';
@@ -21,12 +22,16 @@ class ProfileCustomShapePerson extends StatelessWidget {
         onTap: () => Get.to(
           () => ProfileScreen(otherUid: followerData.personalUid),
         ),
-        title: Text(
-          textDirection: TextDirection.ltr,
-          '@${followerData.username}',
-          style: const TextStyle(
-            fontSize: AppStyle.kTextStyle16,
-          ),
+        title: Row(
+          children: [
+            Text(
+              textDirection: TextDirection.ltr,
+              '@${followerData.username}',
+              style: const TextStyle(
+                fontSize: AppStyle.kTextStyle16,
+              ),
+            ),
+          ],
         ),
         leading: Stack(
           children: [
@@ -37,24 +42,7 @@ class ProfileCustomShapePerson extends StatelessWidget {
               ),
               radius: 28,
             ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: Visibility(
-                visible: followerData.verified,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.kSurfaceColor,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: const Icon(
-                    Icons.verified,
-                    size: 18,
-                    color: AppColors.kPrimaryColor,
-                  ),
-                ),
-              ),
-            ),
+            CustomVerifiedInCircalAvatar(visible: followerData.verified),
           ],
         ),
       ),

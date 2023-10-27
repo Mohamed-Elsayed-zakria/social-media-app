@@ -17,9 +17,13 @@ class PostScreenHeader extends StatelessWidget {
           CurrentUserData.personalPicture,
         ),
       ),
-      title: Text(
-        textDirection: TextDirection.ltr,
-        '@${CurrentUserData.username}',
+      title: Row(
+        children: [
+          Text(
+            textDirection: TextDirection.ltr,
+            '@${CurrentUserData.username}',
+          ),
+        ],
       ),
       subtitle: Text("uploade post".tr),
     );

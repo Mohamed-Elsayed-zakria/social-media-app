@@ -1,4 +1,5 @@
 import '../../../../../core/utils/date_time.dart';
+import '../../../../../core/widgets/custom_verified_in_circal_avatar.dart';
 import '../../../../profile/presentation/views/profile_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../data/model/notice_model.dart';
@@ -45,24 +46,7 @@ class CustomNotificationCard extends StatelessWidget {
               allNotification.personalPicture,
             ),
           ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: Visibility(
-              visible: allNotification.verified,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.kSurfaceColor,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: const Icon(
-                  Icons.verified,
-                  size: 18,
-                  color: AppColors.kPrimaryColor,
-                ),
-              ),
-            ),
-          ),
+          CustomVerifiedInCircalAvatar(visible: allNotification.verified),
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import '../../../../../core/constant/colors.dart';
+import '../../../../../core/widgets/custom_verified_in_circal_avatar.dart';
 import '../../../../profile/presentation/views/profile_screen.dart';
 import '../../../data/model/search_model.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,13 @@ class SearchCustomPerson extends StatelessWidget {
       onTap: () {
         Get.to(() => ProfileScreen(otherUid: userData.personUid));
       },
-      title: Text(
-        textDirection: TextDirection.ltr,
-        '@${userData.username}',
+      title: Row(
+        children: [
+          Text(
+            textDirection: TextDirection.ltr,
+            '@${userData.username}',
+          ),
+        ],
       ),
       leading: Stack(
         children: [
@@ -31,24 +36,7 @@ class SearchCustomPerson extends StatelessWidget {
               userData.personalPicture,
             ),
           ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: Visibility(
-              visible: userData.verified,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.kSurfaceColor,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: const Icon(
-                  Icons.verified,
-                  size: 18,
-                  color: AppColors.kPrimaryColor,
-                ),
-              ),
-            ),
-          ),
+          CustomVerifiedInCircalAvatar(visible: userData.verified),
         ],
       ),
     );
