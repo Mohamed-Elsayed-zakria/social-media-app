@@ -27,18 +27,24 @@ class ImageViewerBottomSheet extends StatelessWidget {
       child: Center(
         child: ListTile(
           onTap: () async {
+            Get.back();
             await GallerySaver.saveImage(
               imagePath,
               albumName: "Frinds App",
             ).then((success) {
               if (success != null && success) {
-                Get.back();
                 Fluttertoast.showToast(
-                  msg: 'Download image done'.tr,
+                  msg: 'Image downloaded'.tr,
                   toastLength: Toast.LENGTH_SHORT,
                   gravity: ToastGravity.BOTTOM,
                 );
               }
+            }).catchError((e) {
+              Fluttertoast.showToast(
+                msg: "Image failed to load".tr,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+              );
             });
           },
           title: Text('Download image'.tr),

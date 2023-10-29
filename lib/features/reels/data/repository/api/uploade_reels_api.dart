@@ -17,43 +17,50 @@ class UploadeReelsApi implements UploadeReelsRepo {
   }) async {
     String generatId = const Uuid().v1();
     String videoUrl;
+    try {
+      uploadeReelsIsLoading.value = true;
+      final storageRef = ApiService.fireStorage.ref(
+        Constant.userReelsPath(generatStoryId: generatId),
+      );
+      await storageRef.putFile(addVideoReelsPath!);
+      videoUrl = await storageRef.getDownloadURL();
 
-    final storageRef = ApiService.fireStorage.ref(Constant.reelsPath);
-    await storageRef.putFile(addVideoReelsPath!);
-    videoUrl = await storageRef.getDownloadURL();
+      String postUrl = await ApiDynamicLink.createDynamicLink(
+        type: TypeDynamicLink.reels.name,
+        short: false,
+        id: generatId,
+      );
 
-    String postUrl = await ApiDynamicLink.createDynamicLink(
-      type: TypeDynamicLink.reels.name,
-      short: false,
-      id: generatId,
-    );
+      if (postStatus == "عام") {
+        postStatus = "Public";
+      } else if (postStatus == "خاص") {
+        postStatus = "Private";
+      } else if (postStatus == "المتابعين") {
+        postStatus = "Followers";
+      }
 
-    if (postStatus == "عام") {
-      postStatus = "Public";
-    } else if (postStatus == "خاص") {
-      postStatus = "Private";
-    } else if (postStatus == "المتابعين") {
-      postStatus = "Followers";
+      VideoReelsModel videoReelsModel = VideoReelsModel(
+        datePublished: DateTime.timestamp().toString(),
+        personUid: ApiService.user.uid,
+        description: description,
+        postStatus: postStatus,
+        videoUid: generatId,
+        videoUrl: videoUrl,
+        postUrl: postUrl,
+      );
+
+      ApiService.firestore
+          .collection(Collections.reelsCollection)
+          .doc(generatId)
+          .set(videoReelsModel.toJson())
+          .then((value) {
+        uploadeReelsIsLoading.value = false;
+        getDescriptionReels?.clear();
+        addVideoReelsPath = null;
+        Get.off(() => const MainHomeScreen());
+      });
+    } catch (e) {
+      uploadeReelsIsLoading.value = false;
     }
-
-    VideoReelsModel videoReelsModel = VideoReelsModel(
-      datePublished: DateTime.timestamp().toString(),
-      personUid: ApiService.user.uid,
-      description: description,
-      postStatus: postStatus,
-      videoUid: generatId,
-      videoUrl: videoUrl,
-      postUrl: postUrl,
-    );
-
-    ApiService.firestore
-        .collection(Collections.reelsCollection)
-        .doc(generatId)
-        .set(videoReelsModel.toJson())
-        .then((value) {
-      getDescriptionReels?.clear();
-      addVideoReelsPath = null;
-      Get.off(() => const MainHomeScreen());
-    });
   }
 }

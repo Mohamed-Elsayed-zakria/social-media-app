@@ -25,14 +25,7 @@ class ChatScreenMessagesBody extends StatelessWidget {
             stream: getAllMessages(receiverId: userData.personUid),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                List<MessageModel> messageData = [];
-                final data = snapshot.data?.docs;
-                messageData = data
-                        ?.map(
-                          (element) => MessageModel.fromJson(element.data()),
-                        )
-                        .toList() ??
-                    [];
+                List<MessageModel> messageData = snapshot.data!;
                 if (messageData.isNotEmpty) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 6),

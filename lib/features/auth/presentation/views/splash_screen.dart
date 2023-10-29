@@ -1,5 +1,5 @@
-import 'package:flash/core/constant/colors.dart';
-import '../../../../core/constant/constant.dart';
+import '../../../../core/utils/size_screen.dart';
+import '../../../../core/constant/colors.dart';
 import '../../../../core/constant/assets.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +8,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
 
     return Scaffold(
       backgroundColor: AppColors.kPrimaryColor,

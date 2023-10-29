@@ -1,5 +1,5 @@
 import '../../../../../../../core/constant/colors.dart';
-import '../../../../../../../core/constant/constant.dart';
+import '../../../../../../../core/utils/size_screen.dart';
 import '../../../../../../../core/widgets/custom_shimmer.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +39,7 @@ class ProfileScreenCountFollowersFollowingShimmer extends StatelessWidget {
   }
 
   Widget buildCount({required BuildContext context}) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
 
     return Column(
       children: [

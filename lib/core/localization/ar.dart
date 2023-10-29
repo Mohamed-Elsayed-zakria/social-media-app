@@ -82,8 +82,12 @@ const Map<String, String> ar = {
   "Say hi": "قل مرحبا",
   "You can not message this person": "لا يمكنك مراسلة هذا الشخص",
   'Type your Message here': 'اكتب رسالتك هنا',
-  "Uploade image": "إضافة صوره",
-  "Uploade video": "إضافة فيديو",
+  "Video": "إضافة فيديو",
+  "Delete message": "حذف الرسالة",
+  "The message has been deleted": "تم حذف الرسالة",
+  "Report the message": "الإبلاغ عن الرسالة",
+  "The message has been reported": "تم الإبلاغ عن الرسالة",
+
 //===================home===================
   "Home": "الرئيسية",
   "uploade post": "إضافة منشور",
@@ -119,8 +123,9 @@ const Map<String, String> ar = {
   "Write comment": "اكتب تعليق",
   'All Likes': 'كل الاعجابات',
   'write something': 'أكتب شيئا',
-  'Download image done': "تم تنزيل الصورة",
+  'Image downloaded': "تم تنزيل الصورة",
   'Download image': "تنزيل الصورة",
+  "Image failed to load": "فشل تحميل الصورة",
   'Failed to load image': "فشل تحميل الصورة",
   "There are no posts yet": "لا توجد منشورات بعد",
   "There are no Vedios yet": "لا يوجد فيديوهات بعد",
@@ -137,7 +142,6 @@ const Map<String, String> ar = {
   'My status': 'قصصي',
   'Add new story': "إضافة قصة جديدة",
   'uploude story': "إضافة قصة",
-  'Video': 'فيديو',
   'Text': 'نص',
   'Add story': "إضافة قصة",
 //==================='Services'===================

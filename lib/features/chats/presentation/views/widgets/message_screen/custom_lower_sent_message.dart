@@ -7,6 +7,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
 class CustomLowerSentMessage extends StatelessWidget {
   final UserChatData userData;
   const CustomLowerSentMessage({
@@ -37,6 +38,19 @@ class CustomLowerSentMessage extends StatelessWidget {
             color: AppColors.kSurfaceColor,
             child: Row(
               children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: TextFormField(
+                      controller: getMessageChat,
+                      maxLines: null,
+                      decoration: InputDecoration(
+                        hintText: 'Type your Message here'.tr,
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                ),
                 IconButton(
                   onPressed: () {
                     Get.bottomSheet(
@@ -54,19 +68,6 @@ class CustomLowerSentMessage extends StatelessWidget {
                     FontAwesomeIcons.paperclip,
                     size: 20,
                     color: AppColors.kPrimaryColor,
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: TextFormField(
-                      controller: getMessageChat,
-                      maxLines: null,
-                      decoration: InputDecoration(
-                        hintText: 'Type your Message here'.tr,
-                        border: InputBorder.none,
-                      ),
-                    ),
                   ),
                 ),
               ],

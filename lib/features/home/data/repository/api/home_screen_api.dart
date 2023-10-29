@@ -18,7 +18,7 @@ class HomeScreenApi extends HomeScreenRepo {
     if (querySnapshot.docs.isNotEmpty) {
       Map<String, dynamic> allData = {};
       for (var doc in querySnapshot.docs) {
-        var data = doc.data();
+        Map<String, dynamic> data = doc.data();
         DocumentSnapshot<Map<String, dynamic>> userDataDoc = await ApiService
             .firestore
             .collection(Collections.userCollection)

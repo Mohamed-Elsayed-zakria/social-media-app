@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import '../../../../../core/constant/colors.dart';
-import '../../../../../core/constant/constant.dart';
+import '../../../../../core/utils/size_screen.dart';
+import 'package:flutter/material.dart';
 
 class CustomStoryCover extends StatelessWidget {
   final Widget child;
@@ -11,7 +11,7 @@ class CustomStoryCover extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return Container(
       padding: const EdgeInsets.fromLTRB(4, 12, 4, 0),
       margin: const EdgeInsets.only(bottom: 3),

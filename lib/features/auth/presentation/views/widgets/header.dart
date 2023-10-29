@@ -1,4 +1,4 @@
-import '../../../../../core/constant/constant.dart';
+import '../../../../../core/utils/size_screen.dart';
 import '../../../../../core/constant/assets.dart';
 import '../../../../../core/constant/colors.dart';
 import '../../../../../core/constant/style.dart';
@@ -10,7 +10,7 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       width: double.infinity,

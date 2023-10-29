@@ -1,10 +1,9 @@
 import '../../../../../../core/widgets/custom_read_more_text.dart';
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/constant/colors.dart';
-import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/constant/style.dart';
 import '../../../../data/model/stories_model.dart';
 import 'package:flutter/material.dart';
-
 
 class StoryViewerLower extends StatelessWidget {
   final StoriesModel storyData;
@@ -15,7 +14,7 @@ class StoryViewerLower extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return Visibility(
       visible: storyData.imgPath!.isNotEmpty || storyData.vedioUrl!.isNotEmpty,
       child: Positioned(

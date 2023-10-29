@@ -1,5 +1,5 @@
+import '../../../../../../core/utils/size_screen.dart';
 import '../../story_screen_viewer_current_users.dart';
-import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/style.dart';
 import '../../../../data/model/stories_model.dart';
@@ -17,7 +17,7 @@ class CustomStoryItemCurrentUsers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return InkWell(
       onTap: () => Get.to(
         () => StoryScreenViewerCurrentUsers(storyDatabasic: stories),

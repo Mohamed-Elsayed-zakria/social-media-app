@@ -85,7 +85,7 @@ class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
   }) {
     final StreamController<List> likesController = StreamController<List>();
     ApiService.firestore
-        .collection(Collections.postCollection)
+        .collection(Collections.reelsCollection)
         .doc(videoUid)
         .collection(Collections.commentsCollection)
         .doc(commentUid)

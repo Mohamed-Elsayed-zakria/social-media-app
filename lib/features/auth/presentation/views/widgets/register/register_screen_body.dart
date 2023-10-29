@@ -1,5 +1,5 @@
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/widgets/custom_buttom.dart';
-import '../../../../../../core/constant/constant.dart';
 import 'register_buttom_sent_data.dart';
 import 'package:flutter/material.dart';
 import 'register_usage_policy.dart';
@@ -12,7 +12,7 @@ class RegisterScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return Column(
       children: [
         const Header(),

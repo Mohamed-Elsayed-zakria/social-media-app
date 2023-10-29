@@ -1,4 +1,4 @@
-import '../../../../core/constant/constant.dart';
+import '../../../../core/utils/size_screen.dart';
 import '../../data/model/stories_model.dart';
 import '../../data/repository/story_screen_api.dart';
 import 'package:video_player/video_player.dart';
@@ -79,7 +79,7 @@ void pressOnTheScreen({
   required TapDownDetails details,
   required BuildContext context,
 }) {
-  final screenWidth = Constant.sizeScreen(context: context).width;
+  final screenWidth = sizeScreen(context: context).width;
   double tapPositionX = details.localPosition.dx;
 
   if (tapPositionX < screenWidth / 2) {

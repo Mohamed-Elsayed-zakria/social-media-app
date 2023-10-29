@@ -1,7 +1,7 @@
+import '../../controller/search_screen_controller.dart';
+import '../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../core/constant/colors.dart';
-import '../../controller/search_screen_controller.dart';
 
 class SearchCustomAppbar extends StatelessWidget {
   const SearchCustomAppbar({super.key});
@@ -12,15 +12,16 @@ class SearchCustomAppbar extends StatelessWidget {
       children: [
         Expanded(
           child: TextFormField(
+            controller: getSearchResultController,
             onChanged: (value) => getSearchResult.value = value,
-            decoration:  InputDecoration(
+            decoration: InputDecoration(
               border: InputBorder.none,
               hintText: "Enter your username".tr,
             ),
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () => scanQr(),
           icon: const Icon(
             Icons.qr_code_scanner_outlined,
             size: 30,

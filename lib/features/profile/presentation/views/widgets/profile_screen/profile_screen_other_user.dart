@@ -1,10 +1,10 @@
-import '../../../../../../core/api/api_service.dart';
-import '../../../../../chats/data/models/user_chat_data.dart';
 import '../../../../../chats/presentation/views/chat_screen_messages.dart';
-import '../../../../data/models/profile_model.dart';
+import '../../../../../chats/data/models/user_chat_data.dart';
 import '../../../controller/profile_screen_controller.dart';
 import '../../../../../../core/widgets/custom_buttom.dart';
-import '../../../../../../core/constant/constant.dart';
+import '../../../../../../core/utils/size_screen.dart';
+import '../../../../../../core/api/api_service.dart';
+import '../../../../data/models/profile_model.dart';
 import 'profile_screen_other_more_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +20,7 @@ class ProfileScreenOtherUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return Column(
       children: [
         const Divider(height: 6),

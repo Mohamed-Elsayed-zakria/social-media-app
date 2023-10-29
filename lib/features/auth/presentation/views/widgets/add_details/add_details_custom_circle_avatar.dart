@@ -1,6 +1,6 @@
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/widgets/custom_buttom_sheet_take_photo.dart';
 import '../../../controllers/add_details_controller.dart';
-import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/constant/assets.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/style.dart';
@@ -13,7 +13,7 @@ class AddDetailsCustomCircleAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return Container(
       margin: const EdgeInsets.only(top: 20),
       child: Column(

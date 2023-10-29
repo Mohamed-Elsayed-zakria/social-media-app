@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import '../model/search_model.dart';
 
 abstract class SearchScreenRepo {
-  Future<QuerySnapshot<Map<String, dynamic>>> getDataFuture();
+   Future<List<SearchModel>> getDataFuture();
 }

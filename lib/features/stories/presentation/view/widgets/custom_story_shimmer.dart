@@ -1,15 +1,14 @@
-import 'package:flash/core/constant/colors.dart';
-import 'package:flutter/material.dart';
-
-import '../../../../../core/constant/constant.dart';
 import '../../../../../core/widgets/custom_shimmer.dart';
+import '../../../../../core/utils/size_screen.dart';
+import '../../../../../core/constant/colors.dart';
+import 'package:flutter/material.dart';
 
 class CustomStoryShimmer extends StatelessWidget {
   const CustomStoryShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return SizedBox(
       width: size.width * .24,
       child: Column(

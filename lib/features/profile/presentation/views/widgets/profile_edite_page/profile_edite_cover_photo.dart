@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
-
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/widgets/custom_buttom.dart';
 import '../../../controller/profile_edite_controller.dart';
-import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/constant/style.dart';
 import 'profile_custom_buttom_edite.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,7 @@ class ProfileEditeCoverPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
 
     return Column(
       children: [
@@ -29,9 +28,9 @@ class ProfileEditeCoverPhoto extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 8),
-              child:  Text(
+              child: Text(
                 "cover Photo".tr,
-                style:const TextStyle(fontSize: AppStyle.kTextStyle18),
+                style: const TextStyle(fontSize: AppStyle.kTextStyle18),
               ),
             ),
           ],
@@ -61,18 +60,15 @@ class ProfileEditeCoverPhoto extends StatelessWidget {
                       ),
                     ),
               const SizedBox(height: 10),
-              coverUpdateIsLodinge.value
-                  ? const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: CircularProgressIndicator(),
-                    )
-                  : Visibility(
-                      visible: imgPathCover.value != null,
-                      child: CustomButton(
-                        text: 'Edite'.tr,
-                        onPressed: () => uploadImageCover(),
-                      ),
-                    ),
+              Visibility(
+                visible: imgPathCover.value != null,
+                child: CustomButton(
+                  text: 'Edite'.tr,
+                  onPressed: updateIsLodinge.value == false
+                      ? () => uploadImageCover()
+                      : null,
+                ),
+              ),
             ],
           ),
         ),

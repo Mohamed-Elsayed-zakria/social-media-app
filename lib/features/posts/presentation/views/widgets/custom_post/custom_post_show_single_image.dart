@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import '../../../../../../core/constant/constant.dart';
+import '../../../../../../core/utils/size_screen.dart';
 import '../../custom_post_image_viewer_page.dart';
 import 'custom_post_image_shimmer.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class CustomPostShowSingleImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return GestureDetector(
       onTap: () => Get.to(() => CustomPostImageViewerPage(imagePath: urlImage)),
       child: LimitedBox(

@@ -29,7 +29,7 @@ class CustomButtomSheetTakePhotoVedio extends StatelessWidget {
           ListTile(
             onTap: onTapUploadeImage,
             title: Text(
-              "Uploade image".tr,
+              "Image".tr,
               style: const TextStyle(fontSize: 18),
             ),
             leading: const Icon(
@@ -41,7 +41,7 @@ class CustomButtomSheetTakePhotoVedio extends StatelessWidget {
           ListTile(
             onTap: onTapUploadeVedio,
             title: Text(
-              "Uploade video".tr,
+              "Video".tr,
               style: const TextStyle(fontSize: 18),
             ),
             leading: const Icon(

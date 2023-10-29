@@ -59,22 +59,17 @@ class CommentItem extends StatelessWidget {
                   ),
                 ],
               ),
-              subtitle: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    textDirection: TextDirection.ltr,
-                    MyDateUtil.convertDateTime(
-                      historyAsText: commentData.dataPublished,
-                    ),
-                  ),
-                  CommentAddLike(
-                    commentData: commentData,
-                    postUid: postUid,
-                  ),
-                ],
+              subtitle: Text(
+                textDirection: TextDirection.ltr,
+                MyDateUtil.convertDateTime(
+                  historyAsText: commentData.dataPublished,
+                ),
               ),
               leading: CommentCircleAvatar(commentData: commentData),
+              trailing: CommentAddLike(
+                commentData: commentData,
+                postUid: postUid,
+              ),
             ),
             CommentDescription(commentData: commentData)
           ],

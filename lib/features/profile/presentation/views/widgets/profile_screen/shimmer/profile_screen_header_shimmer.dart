@@ -1,5 +1,5 @@
+import '../../../../../../../core/utils/size_screen.dart';
 import '../../../../../../../core/widgets/custom_shimmer.dart';
-import '../../../../../../../core/constant/constant.dart';
 import '../../../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +8,7 @@ class ProfileScreenHeaderShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
 
     return SizedBox(
       height: size.height * 0.31,

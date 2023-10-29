@@ -11,27 +11,24 @@ class PostScreenButtomShare extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Obx(
-        () => addPostLoading.value != true
-            ? TextButton(
-                onPressed: () async {
+        () => TextButton(
+          onPressed: addPostLoading.value == false
+              ? () {
                   if (addPostFormKey.currentState!.validate()) {
                     createNewPost(
                       postStatus: selectItem.value,
                       description: getDescriptionText.text,
                     );
                   }
-                },
-                child: Text(
-                  'Share'.tr,
-                  style:const TextStyle(
-                    fontSize: AppStyle.kTextStyle18,
-                  ),
-                ),
-              )
-            : const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: CircularProgressIndicator(strokeWidth: 3.5),
-              ),
+                }
+              : null,
+          child: Text(
+            'Share'.tr,
+            style: const TextStyle(
+              fontSize: AppStyle.kTextStyle18,
+            ),
+          ),
+        ),
       ),
     );
   }

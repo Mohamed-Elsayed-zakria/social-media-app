@@ -1,3 +1,4 @@
+import 'package:flash/core/utils/app_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -17,6 +18,7 @@ class SettingsScreenAppLanguage extends StatelessWidget {
             children: [
               ListTile(
                 onTap: () {
+                  appStorage.write('language', 'en');
                   Get.updateLocale(const Locale('en'));
                   Get.back();
                 },
@@ -26,6 +28,7 @@ class SettingsScreenAppLanguage extends StatelessWidget {
               ),
               ListTile(
                 onTap: () {
+                  appStorage.write('language', 'ar');
                   Get.updateLocale(const Locale('ar'));
                   Get.back();
                 },

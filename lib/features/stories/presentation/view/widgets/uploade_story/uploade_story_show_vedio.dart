@@ -1,4 +1,4 @@
-import '../../../../../../core/constant/constant.dart';
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../data/model/stories_model.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class UploadeStoryShowVedio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return playerControllerPlay != null && type == TypeStoryUploade.vedio
         ? Container(
             margin: const EdgeInsets.only(top: 8, left: 5, right: 5),

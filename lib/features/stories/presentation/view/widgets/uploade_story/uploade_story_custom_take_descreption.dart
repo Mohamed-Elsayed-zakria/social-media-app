@@ -1,5 +1,5 @@
 import '../../../../../home/presentaion/controller/home_sceen_controller.dart';
-import '../../../../../../core/constant/constant.dart';
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../data/model/stories_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +14,7 @@ class UploadeStoryCustomTakeDescreption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return type == TypeStoryUploade.image || type == TypeStoryUploade.vedio
         ? Container(
             margin: const EdgeInsets.only(top: 20, bottom: 10),

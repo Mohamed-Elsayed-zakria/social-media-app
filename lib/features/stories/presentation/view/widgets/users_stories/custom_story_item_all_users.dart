@@ -1,10 +1,10 @@
-import '../../../../../../core/constant/constant.dart';
-import '../../../../data/model/stories_model.dart';
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/constant/colors.dart';
-import 'package:flash/core/constant/style.dart';
+import '../../../../../../core/constant/style.dart';
+import '../../../../data/model/stories_model.dart';
+import '../../story_screen_viewer_all_users.dart';
 import '../custom_story_circle_avatar.dart';
 import 'package:flutter/material.dart';
-import '../../story_screen_viewer_all_users.dart';
 import 'package:get/get.dart';
 
 class CustomStoryItemAllUsers extends StatelessWidget {
@@ -21,7 +21,7 @@ class CustomStoryItemAllUsers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return InkWell(
       onTap: () => Get.to(() => StoryScreenViewerAllUsers(
             storyDatabasic: storyDatabasic,
@@ -32,8 +32,7 @@ class CustomStoryItemAllUsers extends StatelessWidget {
         child: Column(
           children: [
             CustomStoryCircleAvatar(
-              personalPicture: firstStory.personalPicture
-            ),
+                personalPicture: firstStory.personalPicture),
             const SizedBox(height: 6),
             RichText(
               textDirection: TextDirection.ltr,

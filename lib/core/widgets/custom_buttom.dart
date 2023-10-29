@@ -4,7 +4,7 @@ import '../constant/style.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
-  final Function() onPressed;
+  final Function()? onPressed;
   const CustomButton({
     super.key,
     required this.text,
@@ -24,14 +24,15 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
           ),
-          backgroundColor:
-              const MaterialStatePropertyAll(AppColors.kPrimaryColor),
+          backgroundColor: const MaterialStatePropertyAll(
+            AppColors.kPrimaryColor,
+          ),
         ),
         child: Text(
           text,
           style: const TextStyle(
             fontSize: AppStyle.kTextStyle18,
-             color: AppColors.kSurfaceColor,
+            color: AppColors.kSurfaceColor,
           ),
         ),
       ),

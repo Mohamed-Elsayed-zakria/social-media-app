@@ -28,32 +28,30 @@ class ShowReelsCommentAddLike extends StatelessWidget {
           allLikes = likesSnapshot.data!;
         }
         return Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 8),
-              child: GestureDetector(
-                onTap: () {
-                  allLikes.contains(ApiService.user.uid)
-                      ? removeReelsLikeFromComment(
-                          commentUid: commentData.commentId,
-                          videoUid: videoUid,
-                        )
-                      : addReelsLikeComment(
-                          commentUid: commentData.commentId,
-                          videoUid: videoUid,
-                        );
-                },
-                child: allLikes.contains(ApiService.user.uid)
-                    ? const Icon(
-                        IconlyBold.heart,
-                        size: 22,
-                        color: AppColors.kPrimaryColor,
+            IconButton(
+              onPressed: () {
+                allLikes.contains(ApiService.user.uid)
+                    ? removeReelsLikeFromComment(
+                        commentUid: commentData.commentId,
+                        videoUid: videoUid,
                       )
-                    : const Icon(
-                        IconlyBroken.heart,
-                        size: 22,
-                      ),
-              ),
+                    : addReelsLikeComment(
+                        commentUid: commentData.commentId,
+                        videoUid: videoUid,
+                      );
+              },
+              icon: allLikes.contains(ApiService.user.uid)
+                  ? const Icon(
+                      IconlyBold.heart,
+                      size: 22,
+                      color: AppColors.kPrimaryColor,
+                    )
+                  : const Icon(
+                      IconlyBroken.heart,
+                      size: 22,
+                    ),
             ),
             Text('${allLikes.length}'),
           ],

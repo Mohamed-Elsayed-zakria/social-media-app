@@ -1,5 +1,5 @@
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../controllers/post_screen_controller.dart';
-import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../post_screen_image_viewer_page.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -12,7 +12,7 @@ class PostScreenImages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
 
     return Obx(
       () => Visibility(
@@ -43,6 +43,7 @@ class PostScreenImages extends StatelessWidget {
                             maxHeight: size.height * 0.55,
                             child: Image.file(
                               File(imagePaths[index]),
+                              filterQuality: FilterQuality.high,
                               width: double.infinity,
                               fit: BoxFit.fill,
                             ),

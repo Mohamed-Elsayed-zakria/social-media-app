@@ -1,12 +1,12 @@
-import '../../../../../../core/model/comment_model.dart';
-import '../../../../data/model/video_reels_model.dart';
-import '../../../../../../core/constant/constant.dart';
-import '../../../../../../core/constant/colors.dart';
 import '../../../controller/show_reels_comments_controller.dart';
-import 'comments/show_reels_comment_item.dart';
-import 'comments/show_reels_comment_lower.dart';
-import 'package:flutter/material.dart';
+import '../../../../../../core/model/comment_model.dart';
+import '../../../../../../core/utils/size_screen.dart';
+import '../../../../data/model/video_reels_model.dart';
+import '../../../../../../core/constant/colors.dart';
 import 'comments/show_reels_comments_not_fount.dart';
+import 'comments/show_reels_comment_lower.dart';
+import 'comments/show_reels_comment_item.dart';
+import 'package:flutter/material.dart';
 
 class ShowVideoButtomSheetComments extends StatelessWidget {
   final VideoReelsModel allReels;
@@ -18,7 +18,7 @@ class ShowVideoButtomSheetComments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return Container(
       height: size.height * .7,
       decoration: const BoxDecoration(

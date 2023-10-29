@@ -1,5 +1,5 @@
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/widgets/custom_buttom.dart';
-import '../../../../../../core/constant/constant.dart';
 import '../../../../data/models/profile_model.dart';
 import 'profile_screen_current_more_buttom.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class ProfileScreenCurrentUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(

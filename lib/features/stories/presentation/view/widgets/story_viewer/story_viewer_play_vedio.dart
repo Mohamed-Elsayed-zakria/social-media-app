@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import '../../../../../../core/utils/size_screen.dart';
 import 'package:video_player/video_player.dart';
-import '../../../../../../core/constant/constant.dart';
+import 'package:flutter/material.dart';
 
 class StoryViewerPlayVedio extends StatefulWidget {
   final String videoUrl;
@@ -35,7 +35,7 @@ class _CustomPostVedioItemState extends State<StoryViewerPlayVedio> {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return LimitedBox(
       maxHeight: size.height * 0.6,
       child: InkWell(

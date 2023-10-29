@@ -1,5 +1,5 @@
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/widgets/custom_buttom.dart';
-import '../../../../../../core/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'login_forgot_password.dart';
 import '../../register_screen.dart';
@@ -13,7 +13,7 @@ class LoginScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return Column(
       children: [
         const Header(),

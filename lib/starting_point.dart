@@ -1,3 +1,5 @@
+import 'package:flash/core/utils/app_storage.dart';
+
 import 'features/main_home/presentation/views/main_home_screen.dart';
 import 'features/auth/presentation/views/add_details_screen.dart';
 import 'features/auth/presentation/views/splash_screen.dart';
@@ -16,7 +18,9 @@ class FlashApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       translations: AppLocalization(),
-      locale: Get.deviceLocale,
+      locale: appStorage.read('language') == null
+          ? Get.deviceLocale
+          : Locale(appStorage.read('language')),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(color: AppColors.kSurfaceColor),

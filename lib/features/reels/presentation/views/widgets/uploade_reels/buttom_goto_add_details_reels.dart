@@ -1,5 +1,5 @@
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/widgets/custom_buttom.dart';
-import '../../../../../../core/constant/constant.dart';
 import 'package:video_player/video_player.dart';
 import '../../add_details_reels.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class ButtomGotoAddDetailsReels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
       width: size.width * .30,

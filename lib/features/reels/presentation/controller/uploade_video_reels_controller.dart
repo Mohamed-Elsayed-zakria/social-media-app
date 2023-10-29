@@ -20,6 +20,7 @@ RxString selectItem = videoReelsListItem[0].obs;
 
 File? addVideoReelsPath;
 
+RxBool uploadeReelsIsLoading = false.obs;
 RxBool isPlaying = false.obs;
 RxBool isShow = false.obs;
 

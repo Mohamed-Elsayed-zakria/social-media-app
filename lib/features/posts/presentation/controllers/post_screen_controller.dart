@@ -28,13 +28,9 @@ Future<void> uploadeImage() async {
 
   if (pickedImages.isNotEmpty) {
     for (var image in pickedImages) {
-      addImage(image.path);
+      imagePaths.add(image.path);
     }
   }
-}
-
-void addImage(String path) {
-  imagePaths.add(path);
 }
 
 void removeImage(int index) {

@@ -1,6 +1,6 @@
 import '../../../../../../core/constant/colors.dart';
-import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/constant/style.dart';
+import '../../../../../../core/utils/size_screen.dart';
 import 'custom_story_current_personal_picture.dart';
 import 'package:flutter/material.dart';
 import '../dialog_uploade_story.dart';
@@ -11,7 +11,7 @@ class CustomStoryCurrentNotFount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return GestureDetector(
       onTap: () {
         Get.defaultDialog(

@@ -10,8 +10,6 @@ class SearchBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<SearchModel> listOfUserData;
-
     return Column(
       children: [
         Obx(
@@ -19,14 +17,10 @@ class SearchBody extends StatelessWidget {
             future: getDataFuture(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                final data = snapshot.data?.docs;
-                listOfUserData = data
-                        ?.map((element) => SearchModel.fromJson(element.data()))
-                        .toList() ??
-                    [];
+               List<SearchModel> listOfUserData = snapshot.data!;
                 return Expanded(
                   child: ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
+                    itemCount: listOfUserData.length,
                     itemBuilder: (context, index) {
                       return SearchCustomPerson(
                         userData: listOfUserData[index],

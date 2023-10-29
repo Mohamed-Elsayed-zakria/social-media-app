@@ -8,9 +8,6 @@ import 'dart:io';
 Rx<File?> imgPathPicture = Rx<File?>(null);
 Rx<File?> imgPathCover = Rx<File?>(null);
 
-RxBool pictureUpdateIsLodinge = false.obs;
-RxBool coverUpdateIsLodinge = false.obs;
-
 RxBool updateIsLodinge = false.obs;
 
 final TextEditingController getTextBio = TextEditingController();

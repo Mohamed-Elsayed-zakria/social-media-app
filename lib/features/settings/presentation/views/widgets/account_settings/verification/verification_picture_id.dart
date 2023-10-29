@@ -1,6 +1,6 @@
 import '../../../../../../../core/widgets/custom_buttom_sheet_take_photo.dart';
 import '../../../../controllers/verification_controller.dart';
-import '../../../../../../../core/constant/constant.dart';
+import '../../../../../../../core/utils/size_screen.dart';
 import '../../../../../../../core/constant/colors.dart';
 import '../../../../../../../core/constant/style.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,7 +12,7 @@ class VerificationPictureId extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
       child: InkWell(

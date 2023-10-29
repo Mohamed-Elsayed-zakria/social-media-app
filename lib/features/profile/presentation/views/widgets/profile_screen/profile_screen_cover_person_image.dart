@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import '../../../../../../core/constant/constant.dart';
 import '../../../../../../core/constant/colors.dart';
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../data/models/profile_model.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ class ProfileScreenCoverAndPersonImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return SizedBox(
       height: size.height * .31,
       child: Stack(

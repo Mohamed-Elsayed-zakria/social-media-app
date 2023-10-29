@@ -28,32 +28,30 @@ class CommentAddLike extends StatelessWidget {
           allLikes = likesSnapshot.data!;
         }
         return Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 8),
-              child: GestureDetector(
-                onTap: () {
-                  allLikes.contains(ApiService.user.uid)
-                      ? removeLikeFromComment(
-                          commentUid: commentData.commentId,
-                          postUid: postUid,
-                        )
-                      : addLikeComment(
-                          commentUid: commentData.commentId,
-                          postUid: postUid,
-                        );
-                },
-                child: allLikes.contains(ApiService.user.uid)
-                    ? const Icon(
-                        IconlyBold.heart,
-                        size: 22,
-                        color: AppColors.kPrimaryColor,
+            IconButton(
+              onPressed: () {
+                allLikes.contains(ApiService.user.uid)
+                    ? removeLikeFromComment(
+                        commentUid: commentData.commentId,
+                        postUid: postUid,
                       )
-                    : const Icon(
-                        IconlyBroken.heart,
-                        size: 22,
-                      ),
-              ),
+                    : addLikeComment(
+                        commentUid: commentData.commentId,
+                        postUid: postUid,
+                      );
+              },
+              icon: allLikes.contains(ApiService.user.uid)
+                  ? const Icon(
+                      IconlyBold.heart,
+                      size: 22,
+                      color: AppColors.kPrimaryColor,
+                    )
+                  : const Icon(
+                      IconlyBroken.heart,
+                      size: 22,
+                    ),
             ),
             Text('${allLikes.length}'),
           ],

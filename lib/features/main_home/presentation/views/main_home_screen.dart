@@ -1,4 +1,5 @@
 import '../controller/main_home_screen_controller.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../core/constant/colors.dart';
 import 'widgets/main_home_screen_body.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ class MainHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MainHomeScreenController controller = Get.put(MainHomeScreenController());
+    Get.put(MainHomeScreenController());
     return Scaffold(
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
@@ -21,7 +22,28 @@ class MainHomeScreen extends StatelessWidget {
           onTap: (value) {
             pageNumber.value = value;
           },
-          items: controller.itemBottomNavigationBar,
+          items: [
+            BottomNavigationBarItem(
+              icon: const Icon(IconlyBroken.home),
+              label: 'Home'.tr,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(IconlyBroken.notification),
+              label: 'Notice'.tr,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(IconlyBroken.video),
+              label: 'Videos'.tr,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(IconlyBroken.category),
+              label: 'Services'.tr,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(IconlyBroken.setting),
+              label: 'Settings'.tr,
+            ),
+          ],
         ),
       ),
       body: const MainHomeScreenBody(),

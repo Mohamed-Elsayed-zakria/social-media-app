@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get_storage/get_storage.dart';
 import 'core/api/api_firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'core/api/api_service.dart';
@@ -12,6 +13,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
   ApiService.firebaseMessaging.requestPermission();
   ApiFirebaseMessaging.initializeAwesomeNotifications();
   ApiFirebaseMessaging.firebaseMessagingForeground();

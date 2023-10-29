@@ -1,3 +1,4 @@
+import 'post_screen_header_loading.dart';
 import 'package:flutter/material.dart';
 import 'post_screen_description.dart';
 import 'post_screen_header.dart';
@@ -16,6 +17,7 @@ class PostScreenBody extends StatelessWidget {
         Expanded(
           child: ListView(
             children: const [
+              PostScreenHeaderLoading(),
               PostScreenHeader(),
               PostScreenDescription(),
               PostScreenVideo(),

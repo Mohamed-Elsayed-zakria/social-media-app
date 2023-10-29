@@ -36,7 +36,6 @@ class ProfileEditeApi extends ProfileEditeRepo {
     try {
       if (imgPathPicture.value != null) {
         updateIsLodinge.value = true;
-        pictureUpdateIsLodinge.value = true;
         final storageRef = ApiService.fireStorage.ref(Constant.userImagesPath);
         await storageRef.putFile(imgPathPicture.value!);
 
@@ -50,10 +49,8 @@ class ProfileEditeApi extends ProfileEditeRepo {
         });
         imgPathPicture.value = null;
         updateIsLodinge.value = false;
-        pictureUpdateIsLodinge.value = false;
       }
     } catch (e) {
-      pictureUpdateIsLodinge.value = false;
       updateIsLodinge.value = false;
       Get.snackbar(
         "Error".tr,
@@ -69,7 +66,6 @@ class ProfileEditeApi extends ProfileEditeRepo {
     try {
       if (imgPathCover.value != null) {
         updateIsLodinge.value = true;
-        coverUpdateIsLodinge.value = true;
         final storageRef = ApiService.fireStorage.ref(Constant.userImagesPath);
         await storageRef.putFile(imgPathCover.value!);
 
@@ -82,12 +78,9 @@ class ProfileEditeApi extends ProfileEditeRepo {
         });
         imgPathCover.value = null;
         updateIsLodinge.value = false;
-        coverUpdateIsLodinge.value = false;
       }
     } catch (e) {
       updateIsLodinge.value = false;
-      coverUpdateIsLodinge.value = false;
-
       Get.snackbar(
         "Error".tr,
         "$e",

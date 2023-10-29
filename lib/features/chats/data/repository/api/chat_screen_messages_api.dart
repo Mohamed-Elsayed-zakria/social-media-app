@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import '../../../presentation/controllers/chat_screen_messages_controller.dart';
 import '../../../../notifications/data/model/notice_model.dart';
 import '../../../../../core/api/api_firebase_messaging.dart';
@@ -11,17 +13,29 @@ import '../../models/message_model.dart';
 
 class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
   @override
-  Stream<QuerySnapshot<Map<String, dynamic>>> getAllMessages({
+  Stream<List<MessageModel>> getAllMessages({
     required String receiverId,
   }) {
-    return ApiService.firestore
+    final StreamController<List<MessageModel>> messagesController =
+        StreamController<List<MessageModel>>();
+    ApiService.firestore
         .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
         .collection(Collections.chatCollection)
         .doc(receiverId)
         .collection(Collections.messageCollection)
         .orderBy('dateTime', descending: true)
-        .snapshots();
+        .snapshots()
+        .listen((QuerySnapshot<Map<String, dynamic>> querySnapshot) {
+      List<MessageModel> allMessagelist = [];
+      for (var doc in querySnapshot.docs) {
+        MessageModel userChatData = MessageModel.fromJson(doc.data());
+        allMessagelist.add(userChatData);
+      }
+      messagesController.add(allMessagelist);
+    });
+
+    return messagesController.stream;
   }
 
   @override

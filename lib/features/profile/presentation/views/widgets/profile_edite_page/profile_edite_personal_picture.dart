@@ -1,13 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flash/core/widgets/custom_buttom.dart';
-import 'package:get/get.dart';
-
+import '../../../../../../core/utils/size_screen.dart';
+import '../../../../../../core/widgets/custom_buttom.dart';
 import '../../../controller/profile_edite_controller.dart';
-import '../../../../../../core/constant/constant.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/style.dart';
 import 'profile_custom_buttom_edite.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileEditePersonalPicture extends StatelessWidget {
   final String urlPersonalPicture;
@@ -19,7 +18,7 @@ class ProfileEditePersonalPicture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return Column(
       children: [
         Row(
@@ -30,9 +29,9 @@ class ProfileEditePersonalPicture extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 8),
-              child:  Text(
+              child: Text(
                 'personal picture'.tr,
-                style:const TextStyle(fontSize: AppStyle.kTextStyle18),
+                style: const TextStyle(fontSize: AppStyle.kTextStyle18),
               ),
             ),
           ],
@@ -60,18 +59,15 @@ class ProfileEditePersonalPicture extends StatelessWidget {
                         ),
                       ),
                 const SizedBox(height: 10),
-                pictureUpdateIsLodinge.value
-                    ? const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: CircularProgressIndicator(),
-                      )
-                    : Visibility(
-                        visible: imgPathPicture.value != null,
-                        child: CustomButton(
-                          text: 'Edite'.tr,
-                          onPressed: () => uploadImagePicture(),
-                        ),
-                      ),
+                Visibility(
+                  visible: imgPathPicture.value != null,
+                  child: CustomButton(
+                    text: 'Edite'.tr,
+                    onPressed: updateIsLodinge.value == false
+                        ? () => uploadImagePicture()
+                        : null,
+                  ),
+                ),
               ],
             )),
         const Divider(),

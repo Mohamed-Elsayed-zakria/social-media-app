@@ -1,22 +1,37 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../../../../core/constant/collections.dart';
+import '../../models/message_model.dart';
+import '../../models/user_chat_data.dart';
 import '../chat_screen_all_users_repo.dart';
 
 class ChatScreenAllUsersApi extends ChatScreenAllUsersRepo {
   @override
-  Future<QuerySnapshot<Map<String, dynamic>>> getUserDataToChat() {
-    return ApiService.firestore
+  Future<List<UserChatData>> getUserDataToChat() async {
+    List<UserChatData> allUserData = [];
+    QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
+        .firestore
         .collection(Collections.userCollection)
         .where('personUid', isNotEqualTo: ApiService.user.uid)
         .get();
+    if (querySnapshot.docs.isNotEmpty) {
+      for (var doc in querySnapshot.docs) {
+        UserChatData userChatData = UserChatData.fromJson(doc.data());
+        allUserData.add(userChatData);
+      }
+    }
+    return allUserData;
   }
 
   @override
-  Stream<QuerySnapshot<Map<String, dynamic>>> getLastMessages({
+  Stream<List<MessageModel>> getLastMessages({
     required String otherUserId,
   }) {
-    return ApiService.firestore
+    final StreamController<List<MessageModel>> messagesController =
+        StreamController<List<MessageModel>>();
+    ApiService.firestore
         .collection(Collections.userCollection)
         .doc(otherUserId)
         .collection(Collections.chatCollection)
@@ -24,6 +39,16 @@ class ChatScreenAllUsersApi extends ChatScreenAllUsersRepo {
         .collection(Collections.messageCollection)
         .orderBy("dateTime", descending: true)
         .limit(1)
-        .snapshots();
+        .snapshots()
+        .listen((QuerySnapshot<Map<String, dynamic>> querySnapshot) {
+      List<MessageModel> allMessagelist = [];
+      for (var doc in querySnapshot.docs) {
+        MessageModel userChatData = MessageModel.fromJson(doc.data());
+        allMessagelist.add(userChatData);
+      }
+      messagesController.add(allMessagelist);
+    });
+
+    return messagesController.stream;
   }
 }

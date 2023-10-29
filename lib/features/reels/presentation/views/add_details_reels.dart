@@ -1,12 +1,11 @@
-import 'package:get/get.dart';
-
 import 'widgets/uploade_reels/video_reels_drop_down_menu.dart';
 import '../controller/uploade_video_reels_controller.dart';
+import '../../../../core/widgets/custom_buttom.dart';
 import 'widgets/uploade_reels/take_description.dart';
-import 'package:flash/core/widgets/custom_buttom.dart';
-import 'package:flash/core/constant/constant.dart';
+import '../../../../core/utils/size_screen.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AddDetailsReels extends StatelessWidget {
   final VideoPlayerController playerControllerPlay;
@@ -18,7 +17,7 @@ class AddDetailsReels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = Constant.sizeScreen(context: context);
+    final size = sizeScreen(context: context);
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -46,15 +45,22 @@ class AddDetailsReels extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    width: size.width * .30,
-                    child: CustomButton(
-                      text: 'Share'.tr,
-                      onPressed: () => uploadeVideoReels(
-                        description: getDescriptionReels?.text,
-                        postStatus: selectItem.value,
-                      ),
-                    ),
+                  Obx(
+                    () => uploadeReelsIsLoading.value
+                        ? const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: CircularProgressIndicator(),
+                          )
+                        : SizedBox(
+                            width: size.width * .30,
+                            child: CustomButton(
+                              text: 'Share'.tr,
+                              onPressed: () => uploadeVideoReels(
+                                description: getDescriptionReels?.text,
+                                postStatus: selectItem.value,
+                              ),
+                            ),
+                          ),
                   ),
                   const VideoReelsDropDownMenu(),
                 ],

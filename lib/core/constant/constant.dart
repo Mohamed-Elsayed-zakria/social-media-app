@@ -1,11 +1,6 @@
-import 'package:flutter/material.dart';
 import '../api/api_service.dart';
 
 abstract class Constant {
-  static Size sizeScreen({required BuildContext context}) {
-    return MediaQuery.of(context).size;
-  }
-
   static String postImagesPath({
     required String generatId,
   }) =>
@@ -21,13 +16,15 @@ abstract class Constant {
   }) =>
       "stories/images/${ApiService.user.uid}/$generatStoryId/${DateTime.timestamp().millisecondsSinceEpoch}.jpg";
 
-static String userVideoStoryPath({
+  static String userVideoStoryPath({
     required String generatStoryId,
   }) =>
       "stories/videos/${ApiService.user.uid}/$generatStoryId/${DateTime.timestamp().millisecondsSinceEpoch}.mp4";
-
-static String reelsPath =
-"reels-user/${ApiService.user.uid}/reels-videos/${DateTime.timestamp().millisecondsSinceEpoch}.mp4";
+      
+  static String userReelsPath({
+    required String generatStoryId,
+  }) =>
+      "reels/${ApiService.user.uid}/$generatStoryId/${DateTime.timestamp().millisecondsSinceEpoch}.mp4";
 
   static String userImagesPath =
       "user-images/${ApiService.user.uid}/profile-image/${DateTime.timestamp().millisecondsSinceEpoch}.jpg";

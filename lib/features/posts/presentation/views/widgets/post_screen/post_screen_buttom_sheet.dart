@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../../../core/constant/colors.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PostScreenButtomSheet extends StatelessWidget {
   final Function() onTapUploadeImage;
