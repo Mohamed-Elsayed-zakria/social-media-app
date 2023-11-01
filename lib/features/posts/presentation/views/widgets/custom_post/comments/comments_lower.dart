@@ -1,9 +1,8 @@
-import 'package:get/get.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
-
-import '../../../../../../../core/constant/colors.dart';
 import '../../../../controllers/comments_controller.dart';
+import '../../../../../../../core/constant/colors.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CommentsLower extends StatelessWidget {
   final String postId;

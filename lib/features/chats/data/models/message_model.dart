@@ -4,6 +4,8 @@ class MessageModel {
   late String message;
   late String receiverId;
   late String dateTime;
+  late String? videoUrl;
+  late List imgUrl;
 
   MessageModel({
     required this.type,
@@ -11,6 +13,8 @@ class MessageModel {
     required this.message,
     required this.receiverId,
     required this.dateTime,
+    required this.videoUrl,
+    required this.imgUrl,
   });
 
   MessageModel.fromJson(Map<String, dynamic> json) {
@@ -19,6 +23,8 @@ class MessageModel {
     message = json['message'] ?? '';
     receiverId = json['receiverId'] ?? '';
     dateTime = json['dateTime'] ?? '';
+    videoUrl = json['videoUrl'] ?? '';
+    imgUrl = json['imgUrl'] ?? [];
   }
 
   Map<String, dynamic> toJson() {
@@ -28,8 +34,10 @@ class MessageModel {
       'message': message,
       'receiverId': receiverId,
       'dateTime': dateTime,
+      'videoUrl': videoUrl,
+      'imgUrl': imgUrl,
     };
   }
 }
 
-enum Type { text, image , video}
+enum TypeChatMessage { text, image , video}

@@ -1,5 +1,5 @@
-import '../../../../../../core/widgets/custom_buttom.dart';
 import '../../../../../home/presentaion/controller/home_sceen_controller.dart';
+import '../../../../../../core/widgets/custom_buttom.dart';
 import '../../../../data/model/stories_model.dart';
 import '../../../controller/story_controller.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,6 @@ class UploadeStoryButtomSent extends StatelessWidget {
                 onPressed: () => uploadeStory(
                   description: getTextStory.text,
                   imgPath: imagePathStory,
-                  vedioPath: vedioPath,
                   type: type.name,
                 ),
                 text: 'Share'.tr,

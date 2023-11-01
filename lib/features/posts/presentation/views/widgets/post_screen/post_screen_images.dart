@@ -42,8 +42,8 @@ class PostScreenImages extends StatelessWidget {
                         ? LimitedBox(
                             maxHeight: size.height * 0.55,
                             child: Image.file(
-                              File(imagePaths[index]),
                               filterQuality: FilterQuality.high,
+                              File(imagePaths[index]),
                               width: double.infinity,
                               fit: BoxFit.fill,
                             ),
@@ -51,6 +51,7 @@ class PostScreenImages extends StatelessWidget {
                         : SizedBox(
                             height: size.height * .3,
                             child: Image.file(
+                              filterQuality: FilterQuality.high,
                               File(imagePaths[index]),
                               width: double.infinity,
                               fit: BoxFit.cover,

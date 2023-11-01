@@ -32,7 +32,7 @@ class CustomListTilePersonalUserItem extends StatelessWidget {
         ],
       ),
       subtitle: messages != null
-          ? messages!.type == Type.text.name
+          ? messages!.type == TypeChatMessage.text.name
               ? Text(messages!.message)
               : Row(
                   children: [

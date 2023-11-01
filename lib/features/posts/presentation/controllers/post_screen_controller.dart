@@ -22,6 +22,10 @@ final GlobalKey<FormState> addPostFormKey = GlobalKey();
 
 final TextEditingController getDescriptionText = TextEditingController();
 
+VideoPlayerController? addNewPostplayerController;
+
+Rx<File?> addNewPostVedioPath = Rx<File?>(null);
+
 Future<void> uploadeImage() async {
   final picker = ImagePicker();
   final pickedImages = await picker.pickMultiImage();
@@ -36,10 +40,6 @@ Future<void> uploadeImage() async {
 void removeImage(int index) {
   imagePaths.removeAt(index);
 }
-
-Rx<File?> vedioPath = Rx<File?>(null);
-
-late VideoPlayerController? playerController;
 
 Future<void> uploadeVideo() async {
   final pickedVideo = await ImagePicker().pickVideo(
@@ -60,10 +60,12 @@ Future<void> uploadeVideo() async {
       );
       return;
     }
-    vedioPath.value = videoFile;
-    playerController = VideoPlayerController.file(vedioPath.value!);
-    await playerController!.initialize();
-    playerController!.play();
+    addNewPostVedioPath.value = videoFile;
+    addNewPostplayerController = VideoPlayerController.file(
+      addNewPostVedioPath.value!,
+    );
+    await addNewPostplayerController!.initialize();
+    addNewPostplayerController!.play();
   }
 }
 

@@ -85,9 +85,8 @@ const Map<String, String> ar = {
   "Video": "إضافة فيديو",
   "Delete message": "حذف الرسالة",
   "The message has been deleted": "تم حذف الرسالة",
-  "Report the message": "الإبلاغ عن الرسالة",
   "The message has been reported": "تم الإبلاغ عن الرسالة",
-
+  "Edite message": "تعديل الرسالة",
 //===================home===================
   "Home": "الرئيسية",
   "uploade post": "إضافة منشور",
@@ -118,7 +117,6 @@ const Map<String, String> ar = {
   "The Post has been deleted": "تم حذف المنشور",
   "Deletet the Post": "حذف المنشور",
   "Edite post": "تعديل المنشور",
-  "Report the post": "الإبلاغ عن المنشور",
   "Save post": "حفظ المنشور",
   "Write comment": "اكتب تعليق",
   'All Likes': 'كل الاعجابات',

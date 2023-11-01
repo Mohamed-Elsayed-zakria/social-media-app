@@ -2,7 +2,6 @@ import '../../../presentation/controller/uploade_video_reels_controller.dart';
 import '../../../../main_home/presentation/views/main_home_screen.dart';
 import '../../../../../core/constant/collections.dart';
 import '../../../../../core/api/api_dynamic_link.dart';
-import '../../../../../core/constant/constant.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../model/video_reels_model.dart';
 import '../uploade_reels_repo.dart';
@@ -20,7 +19,7 @@ class UploadeReelsApi implements UploadeReelsRepo {
     try {
       uploadeReelsIsLoading.value = true;
       final storageRef = ApiService.fireStorage.ref(
-        Constant.userReelsPath(generatStoryId: generatId),
+        "reels/${ApiService.user.uid}/$generatId/$generatId.mp4",
       );
       await storageRef.putFile(addVideoReelsPath!);
       videoUrl = await storageRef.getDownloadURL();
@@ -56,7 +55,10 @@ class UploadeReelsApi implements UploadeReelsRepo {
           .then((value) {
         uploadeReelsIsLoading.value = false;
         getDescriptionReels?.clear();
-        addVideoReelsPath = null;
+        if (addVideoReelsPath != null) {
+          addVideoReelsPath = null;
+          addVideoReelsController!.dispose();
+        }
         Get.off(() => const MainHomeScreen());
       });
     } catch (e) {

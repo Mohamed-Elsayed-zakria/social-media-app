@@ -41,7 +41,7 @@ class CustomPostMoreOtherUser extends StatelessWidget {
               color: AppColors.kPrimaryColor,
             ),
             title: Text(
-              "Report the post".tr,
+              "Report".tr,
               style: const TextStyle(fontSize: AppStyle.kTextStyle18),
             ),
           ),

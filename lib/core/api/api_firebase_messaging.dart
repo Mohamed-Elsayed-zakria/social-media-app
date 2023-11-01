@@ -26,7 +26,7 @@ abstract class ApiFirebaseMessaging {
       body: jsonEncode(
         {
           'notification': {
-            'title': '$username ${noticeModel.textTitle}',
+            'title': noticeModel.textTitle,
             'body': noticeModel.textBody,
           },
           'priority': 'high',

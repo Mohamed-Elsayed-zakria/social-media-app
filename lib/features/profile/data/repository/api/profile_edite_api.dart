@@ -1,10 +1,10 @@
-import '../../../../../core/constant/collections.dart';
 import '../../../presentation/controller/profile_edite_controller.dart';
+import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../../../core/constant/constant.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../../../../core/constant/colors.dart';
 import '../profile_edite_repo.dart';
+import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
 
 class ProfileEditeApi extends ProfileEditeRepo {
@@ -36,7 +36,10 @@ class ProfileEditeApi extends ProfileEditeRepo {
     try {
       if (imgPathPicture.value != null) {
         updateIsLodinge.value = true;
-        final storageRef = ApiService.fireStorage.ref(Constant.userImagesPath);
+        String generatPersonalImageId = const Uuid().v1();
+        final storageRef = ApiService.fireStorage.ref(
+          "user-images/${ApiService.user.uid}/personal-image/$generatPersonalImageId.jpg",
+        );
         await storageRef.putFile(imgPathPicture.value!);
 
         String url = await storageRef.getDownloadURL();
@@ -66,7 +69,10 @@ class ProfileEditeApi extends ProfileEditeRepo {
     try {
       if (imgPathCover.value != null) {
         updateIsLodinge.value = true;
-        final storageRef = ApiService.fireStorage.ref(Constant.userImagesPath);
+        String generatCoverImageId = const Uuid().v1();
+        final storageRef = ApiService.fireStorage.ref(
+          "user-images/${ApiService.user.uid}/personal-image/$generatCoverImageId.jpg",
+        );
         await storageRef.putFile(imgPathCover.value!);
 
         String url = await storageRef.getDownloadURL();

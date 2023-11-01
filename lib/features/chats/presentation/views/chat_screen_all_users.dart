@@ -1,5 +1,5 @@
-import '../../../search/presentation/view/search_screen.dart';
 import 'widgets/all_users_screen/chat_screen_all_users_body.dart';
+import '../../../search/presentation/view/search_screen.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

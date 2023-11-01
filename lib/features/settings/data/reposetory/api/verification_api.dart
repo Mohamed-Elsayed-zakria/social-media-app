@@ -1,10 +1,10 @@
-import '../../../../../core/api/api_service.dart';
+import '../../../presentation/controllers/verification_controller.dart';
 import '../../../../../core/constant/collections.dart';
 import '../../../../../core/constant/colors.dart';
-import '../../../../../core/constant/constant.dart';
-import '../../../presentation/controllers/verification_controller.dart';
+import '../../../../../core/api/api_service.dart';
 import '../../models/verification_model.dart';
 import '../verification_repo.dart';
+import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
 
 class VerificationApi extends VerificationRepo {
@@ -19,8 +19,10 @@ class VerificationApi extends VerificationRepo {
 
     try {
       if (imgPathPick.value != null) {
+        String generatPersonalImageVerificationId = const Uuid().v1();
+
         final storageRefImgPathPick = ApiService.fireStorage.ref(
-          Constant.userPersonalPictureVerificationPath,
+          "user-images/${ApiService.user.uid}/user-Verification/personal-picture/$generatPersonalImageVerificationId.jpg",
         );
         await storageRefImgPathPick.putFile(imgPathPick.value!);
 
@@ -32,8 +34,10 @@ class VerificationApi extends VerificationRepo {
 
     try {
       if (imgPathId.value != null) {
+        String generatIdCardVerificationId = const Uuid().v1();
+
         final storageRefImgPathId = ApiService.fireStorage.ref(
-          Constant.userImageIdVerificationPath,
+          "user-images/${ApiService.user.uid}/user-Verification/id-picture/$generatIdCardVerificationId.jpg",
         );
         await storageRefImgPathId.putFile(imgPathId.value!);
 

@@ -1,6 +1,6 @@
 import '../../../../../../core/constant/style.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import '../../account_settings/account_settings_screen.dart';
+import '../../account_settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

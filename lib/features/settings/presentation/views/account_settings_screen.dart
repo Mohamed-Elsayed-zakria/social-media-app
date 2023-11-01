@@ -1,7 +1,6 @@
-import 'package:get/get.dart';
-
-import '../widgets/account_settings/account_settings_screen_body.dart';
+import 'widgets/account_settings/account_settings_screen_body.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AccountSettingsScreen extends StatelessWidget {
   const AccountSettingsScreen({super.key});

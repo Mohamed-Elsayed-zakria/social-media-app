@@ -32,7 +32,7 @@ class VideoCustomHeader extends StatelessWidget {
               Expanded(
                 child: TextButton(
                   onPressed: () => Get.to(() => const VideoScreen()),
-                  child: Text('Video'.tr),
+                  child: Text('Videos'.tr),
                 ),
               ),
               Expanded(

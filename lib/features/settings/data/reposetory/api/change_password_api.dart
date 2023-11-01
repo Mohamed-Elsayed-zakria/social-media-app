@@ -1,7 +1,7 @@
 import '../../../../../core/api/api_service.dart';
 import '../../../../../core/constant/colors.dart';
 import '../../../presentation/controllers/change_password_controller.dart';
-import '../../../presentation/views/account_settings/account_settings_screen.dart';
+import '../../../presentation/views/account_settings_screen.dart';
 import '../change_password_repo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';

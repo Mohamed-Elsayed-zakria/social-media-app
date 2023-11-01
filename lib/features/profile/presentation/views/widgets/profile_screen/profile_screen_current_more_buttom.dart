@@ -1,4 +1,4 @@
-import '../../../../../settings/presentation/views/account_settings/account_settings_screen.dart';
+import '../../../../../settings/presentation/views/account_settings_screen.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';

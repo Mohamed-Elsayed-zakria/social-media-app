@@ -26,7 +26,7 @@ class MessageScreenCustomHeader extends StatelessWidget {
         leading: Stack(
           children: [
             CircleAvatar(
-              radius: 28,
+              radius: 27,
               backgroundColor: AppColors.kBackgroundColor,
               backgroundImage: CachedNetworkImageProvider(
                 userData.personalPicture,

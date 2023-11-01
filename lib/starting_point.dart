@@ -1,5 +1,3 @@
-import 'package:flash/core/utils/app_storage.dart';
-
 import 'features/main_home/presentation/views/main_home_screen.dart';
 import 'features/auth/presentation/views/add_details_screen.dart';
 import 'features/auth/presentation/views/splash_screen.dart';
@@ -8,6 +6,7 @@ import 'core/localization/app_locale.dart';
 import 'core/model/current_user_data.dart';
 import 'core/constant/collections.dart';
 import 'package:flutter/material.dart';
+import 'core/utils/app_storage.dart';
 import 'core/api/api_service.dart';
 import 'core/constant/colors.dart';
 import 'package:get/get.dart';
@@ -16,11 +15,11 @@ class FlashApp extends StatelessWidget {
   const FlashApp({super.key});
   @override
   Widget build(BuildContext context) {
+    String? currentLanguage = appStorage.read('language');
     return GetMaterialApp(
       translations: AppLocalization(),
-      locale: appStorage.read('language') == null
-          ? Get.deviceLocale
-          : Locale(appStorage.read('language')),
+      locale:
+          currentLanguage == null ? Get.deviceLocale : Locale(currentLanguage),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(color: AppColors.kSurfaceColor),
@@ -32,7 +31,6 @@ class FlashApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      // home: const MainHomeScreen(),
       home: StreamBuilder(
         stream: ApiService.auth.authStateChanges(),
         builder: (context, hasAccountSnapshot) {

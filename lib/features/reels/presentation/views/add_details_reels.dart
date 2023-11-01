@@ -30,11 +30,14 @@ class AddDetailsReels extends StatelessWidget {
                 children: [
                   const TakeDescription(),
                   const SizedBox(width: 10),
-                  SizedBox(
-                    width: size.width * .4,
-                    child: AspectRatio(
-                      aspectRatio: 2.5 / 4,
-                      child: VideoPlayer(playerControllerPlay),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: SizedBox(
+                      width: size.width * .4,
+                      child: AspectRatio(
+                        aspectRatio: 2.5 / 4,
+                        child: VideoPlayer(playerControllerPlay),
+                      ),
                     ),
                   ),
                 ],

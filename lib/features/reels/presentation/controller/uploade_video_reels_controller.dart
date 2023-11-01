@@ -7,18 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 
-VideoPlayerController? addVideoReelsController;
-TextEditingController? getDescriptionReels = TextEditingController();
-
 List<String> videoReelsListItem = [
   "Public".tr,
   "Followers".tr,
   "Private".tr,
 ];
 
+TextEditingController? getDescriptionReels = TextEditingController();
+
+VideoPlayerController? addVideoReelsController;
+File? addVideoReelsPath;
+
 RxString selectItem = videoReelsListItem[0].obs;
 
-File? addVideoReelsPath;
 
 RxBool uploadeReelsIsLoading = false.obs;
 RxBool isPlaying = false.obs;

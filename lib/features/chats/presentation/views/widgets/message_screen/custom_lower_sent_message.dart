@@ -1,12 +1,13 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../../data/models/message_model.dart';
 import '../../../controllers/chat_screen_messages_controller.dart';
+import '../../chat_uploade_images_screen.dart';
 import 'custom_buttom_sheet_take_photo_vedio.dart';
 import '../../../../data/models/user_chat_data.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class CustomLowerSentMessage extends StatelessWidget {
   final UserChatData userData;
@@ -25,6 +26,7 @@ class CustomLowerSentMessage extends StatelessWidget {
               sentNewMessage(
                 text: getMessageChat.text,
                 userData: userData,
+                type: TypeChatMessage.text.name,
               );
             }
           },
@@ -55,11 +57,19 @@ class CustomLowerSentMessage extends StatelessWidget {
                   onPressed: () {
                     Get.bottomSheet(
                       CustomButtomSheetTakePhotoVedio(
-                        onTapUploadeImage: () {
+                        onTapUploadeImage: () async {
                           Get.back();
+                          chatImagePaths.value = [];
+                          await chatUploadeImage();
+                          if (chatImagePaths.isNotEmpty) {
+                            Get.to(
+                              () => ChatUploadeImagesScreen(userData: userData),
+                            );
+                          }
                         },
                         onTapUploadeVedio: () {
                           Get.back();
+                          addVideoChatOpenGalary(userData: userData);
                         },
                       ),
                     );

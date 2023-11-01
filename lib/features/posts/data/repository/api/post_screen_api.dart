@@ -6,7 +6,6 @@ import '../../../../../core/model/current_user_data.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../../../core/api/api_dynamic_link.dart';
 import '../../../../../core/constant/collections.dart';
-import '../../../../../core/constant/constant.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../model/post_model.dart';
 import '../post_screen_repo.dart';
@@ -31,8 +30,9 @@ class PostScreenApi implements PostScreenRepo {
     );
     if (imagePaths.isNotEmpty) {
       for (var imageFile in imagePaths) {
+        String generatImageId = const Uuid().v1();
         final ref = ApiService.fireStorage.ref().child(
-              Constant.postImagesPath(generatId: generatId),
+              'posts/images/${ApiService.user.uid}/$generatId/$generatImageId.jpg',
             );
         final task = await ref.putFile(File(imageFile));
         if (task.state == TaskState.success) {
@@ -42,11 +42,12 @@ class PostScreenApi implements PostScreenRepo {
       }
     }
 
-    if (vedioPath.value != null) {
+    if (addNewPostVedioPath.value != null) {
+      String generatVideoId = const Uuid().v1();
       final storageRef = FirebaseStorage.instance.ref(
-       Constant.postVideoPath(generatId: generatId),
+        "posts/videos/${ApiService.user.uid}/$generatId/$generatVideoId.mp4",
       );
-      await storageRef.putFile(vedioPath.value!);
+      await storageRef.putFile(addNewPostVedioPath.value!);
       videoUrl = await storageRef.getDownloadURL();
     } else {
       videoUrl = '';
@@ -88,7 +89,10 @@ class PostScreenApi implements PostScreenRepo {
         noticeModel: noticeModel,
       );
       getDescriptionText.clear();
-      vedioPath.value = null;
+      if (addNewPostVedioPath.value != null) {
+        addNewPostplayerController!.dispose();
+        addNewPostVedioPath.value = null;
+      }
       imagePaths.removeRange(0, imagePaths.length);
       addPostLoading.value = false;
       Get.offAll(() => const MainHomeScreen());

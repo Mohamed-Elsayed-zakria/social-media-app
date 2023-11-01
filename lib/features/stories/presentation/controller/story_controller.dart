@@ -1,32 +1,29 @@
-import '../../../../core/utils/size_screen.dart';
-import '../../data/model/stories_model.dart';
 import '../../data/repository/story_screen_api.dart';
+import '../../../../core/utils/size_screen.dart';
 import 'package:video_player/video_player.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../core/constant/colors.dart';
+import '../../data/model/stories_model.dart';
 import '../view/uploade_story_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 
-RxBool uploadeStoryIsLoading = false.obs;
-
-late VideoPlayerController? playerController;
-
 PageController pageController = PageController();
 
-File? vedioPath;
+RxBool uploadeStoryIsLoading = false.obs;
+
+VideoPlayerController? addNewStoryPlayerController;
+File? addNewStoryVedioPath;
 
 Future<void> uploadeStory({
   required String type,
   String? description,
   String? imgPath,
-  File? vedioPath,
 }) async {
   StoryScreenApi().uploadeStory(
     imgPath: imgPath,
     description: description,
-    vedioPath: vedioPath,
     type: type,
   );
 }
@@ -62,13 +59,15 @@ Future<void> videoStoryOpenGalary() async {
       );
       return;
     }
-    vedioPath = videoFile;
-    playerController = VideoPlayerController.file(vedioPath!);
-    await playerController!.initialize();
-    playerController!.play();
+    addNewStoryVedioPath = videoFile;
+    addNewStoryPlayerController = VideoPlayerController.file(
+      addNewStoryVedioPath!,
+    );
+    await addNewStoryPlayerController!.initialize();
+    addNewStoryPlayerController!.play();
     Get.to(
       () => UploadeStoryScreen(
-        playerControllerPlay: playerController,
+        playerControllerPlay: addNewStoryPlayerController,
         type: TypeStoryUploade.vedio,
       ),
     );

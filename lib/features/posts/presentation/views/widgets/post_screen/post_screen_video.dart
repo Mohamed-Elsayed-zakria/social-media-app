@@ -11,14 +11,14 @@ class PostScreenVideo extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = sizeScreen(context: context);
     return Obx(
-      () => vedioPath.value != null
+      () => addNewPostVedioPath.value != null
           ? Container(
               margin: const EdgeInsets.only(top: 8, left: 5, right: 5),
               child: LimitedBox(
                 maxHeight: size.height * 0.40,
                 child: Chewie(
                   controller: ChewieController(
-                    videoPlayerController: playerController!,
+                    videoPlayerController: addNewPostplayerController!,
                     autoPlay: false,
                     looping: false,
                     allowFullScreen: false,

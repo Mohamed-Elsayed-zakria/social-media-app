@@ -85,8 +85,8 @@ const Map<String, String> en = {
   "Video": "Video",
   "Delete message" :"Delete message",
   "The message has been deleted" :"The message has been deleted",
-  "Report the message"  :"Report the message" ,
   "The message has been reported":"The message has been reported",
+  "Edite message":"Edite message",
 //===================home===================
   "Home": "Home",
   "uploade post": "uploade post",
@@ -119,7 +119,6 @@ const Map<String, String> en = {
   "The Post has been deleted": "The Post has been deleted",
   "Deletet the Post": "Deletet the Post",
   "Edite post": "Edite post",
-  "Report the post": "Report the post",
   "Save post": "Save post",
   "Write comment": "Write comment",
   'All Likes': 'All Likes',

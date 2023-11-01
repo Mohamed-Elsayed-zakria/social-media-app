@@ -57,12 +57,12 @@ class OnLongPressCurrentComment extends StatelessWidget {
                 confirm: TextButton(
                   onPressed: () async {
                     if (getTextComment.text.isNotEmpty) {
-                      await updateComment(
+                      Get.back();
+                      updateComment(
                         newTextComment: getTextComment.text,
                         commentUid: commentData.commentId,
                         postUid: postUid,
                       );
-                      Get.back();
                     }
                   },
                   child: Text(

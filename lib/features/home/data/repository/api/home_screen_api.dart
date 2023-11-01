@@ -39,7 +39,9 @@ class HomeScreenApi extends HomeScreenRepo {
     List<PostModel> allPosts = [];
 
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await ApiService.firestore.collection(Collections.postCollection).get();
+        await ApiService.firestore.collection(Collections.postCollection)
+        .where('postStatus', isNotEqualTo: "Private")
+        .get();
 
     if (querySnapshot.docs.isNotEmpty) {
       Map<String, dynamic> allData = {};
