@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../../custom_post_image_viewer_page.dart';
 import 'custom_post_image_shimmer.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomPostShowMultiImage extends StatelessWidget {
   final String urlImage;

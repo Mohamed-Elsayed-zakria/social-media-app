@@ -82,7 +82,7 @@ const Map<String, String> ar = {
   "Say hi": "قل مرحبا",
   "You can not message this person": "لا يمكنك مراسلة هذا الشخص",
   'Type your Message here': 'اكتب رسالتك هنا',
-  "Video": "إضافة فيديو",
+  "Video": "فيديو",
   "Delete message": "حذف الرسالة",
   "The message has been deleted": "تم حذف الرسالة",
   "The message has been reported": "تم الإبلاغ عن الرسالة",

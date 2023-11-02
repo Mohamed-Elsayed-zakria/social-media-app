@@ -1,4 +1,4 @@
-abstract class Constant {
+abstract class DefaultPersonalImage {
 
   static const String urlCoverPhoto =
       "https://firebasestorage.googleapis.com/v0/b/social-frinds.appspot.com/o/defulte-cover%2Fcover.jpg?alt=media&token=cfed2d09-7e9b-4f9f-855f-ec0df1344d71";

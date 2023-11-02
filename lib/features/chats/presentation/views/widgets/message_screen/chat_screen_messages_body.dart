@@ -5,8 +5,8 @@ import '../../../../../../core/constant/style.dart';
 import '../../../../data/models/message_model.dart';
 import 'custom_lower_sent_message.dart';
 import 'package:flutter/material.dart';
-import 'custom_message/custom_current_message.dart';
-import 'custom_message/custom_other_message.dart';
+import 'custom_message/current_message/custom_current_message.dart';
+import 'custom_message/other_message/custom_other_message.dart';
 import 'package:get/get.dart';
 
 class ChatScreenMessagesBody extends StatelessWidget {

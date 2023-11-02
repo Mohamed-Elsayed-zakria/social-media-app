@@ -16,26 +16,21 @@ class CustomPostItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      builder: (context, commentsSnapshot) {
-        Widget postContent = Column(
-          children: [
-            CustomPostHeader(postData: postData),
-            CustomPostContent(postData: postData),
-            CustomPostLower(postData: postData),
-          ],
-        );
-        
-        return detailsPage
-            ? Container(
-                color: AppColors.kSurfaceColor,
-                child: postContent,
-              )
-            : Card(
-                color: AppColors.kSurfaceColor,
-                child: postContent,
-              );
-      },
+    Widget postContent = Column(
+      children: [
+        CustomPostHeader(postData: postData),
+        CustomPostContent(postData: postData),
+        CustomPostLower(postData: postData),
+      ],
     );
+    return detailsPage
+        ? Container(
+            color: AppColors.kSurfaceColor,
+            child: postContent,
+          )
+        : Card(
+            color: AppColors.kSurfaceColor,
+            child: postContent,
+          );
   }
 }

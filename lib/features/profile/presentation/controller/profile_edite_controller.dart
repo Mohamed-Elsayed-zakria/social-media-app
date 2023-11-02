@@ -1,12 +1,14 @@
 import '../../data/repository/api/profile_edite_api.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 
-Rx<File?> imgPathPicture = Rx<File?>(null);
-Rx<File?> imgPathCover = Rx<File?>(null);
+Rx<File?> updateImgPathPicture = Rx<File?>(null);
+Rx<File?> updateImgPathCover = Rx<File?>(null);
+
+Rx<File?> imgPathPictureLoding = Rx<File?>(null);
+Rx<File?> imgPathCoverLoding = Rx<File?>(null);
 
 RxBool updateIsLodinge = false.obs;
 
@@ -22,21 +24,19 @@ String? profilevalidatorBio({required String? value}) {
   }
 }
 
-Stream<DocumentSnapshot<Map<String, dynamic>>> getUserDataProfileEdite() {
-  return ProfileEditeApi().getUserDataProfileEdite();
-}
-
 Future<void> chooseImagePictureFromGalary() async {
   final pickedImg = await ImagePicker().pickImage(source: ImageSource.gallery);
   if (pickedImg != null) {
-    imgPathPicture.value = File(pickedImg.path);
+    updateImgPathPicture.value = File(pickedImg.path);
+    imgPathPictureLoding.value = File(pickedImg.path);
   }
 }
 
 Future<void> chooseImageCoverFromGalary() async {
   final pickedImg = await ImagePicker().pickImage(source: ImageSource.gallery);
   if (pickedImg != null) {
-    imgPathCover.value = File(pickedImg.path);
+    updateImgPathCover.value = File(pickedImg.path);
+    imgPathCoverLoding.value = File(pickedImg.path);
   }
 }
 
@@ -48,6 +48,9 @@ Future<void> uploadImageCover() async {
   ProfileEditeApi().uploadImageCover();
 }
 
-Future<void> updateBio({required String text}) async {
-  ProfileEditeApi().updateBio(text: text);
+class ProfileEditeController extends GetxController {
+  Future<void> updateBio({required String text}) async {
+    await ProfileEditeApi().updateBio(text: text);
+    update();
+  }
 }

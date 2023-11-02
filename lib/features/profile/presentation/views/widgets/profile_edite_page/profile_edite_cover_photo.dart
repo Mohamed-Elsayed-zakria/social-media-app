@@ -39,29 +39,32 @@ class ProfileEditeCoverPhoto extends StatelessWidget {
         Obx(
           () => Column(
             children: [
-              imgPathCover.value == null
+              updateImgPathCover.value == null
                   ? Container(
                       height: size.height * 0.20,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(8),
                         image: DecorationImage(
                           image: CachedNetworkImageProvider(urlCoverPhoto),
                           fit: BoxFit.cover,
                         ),
                       ),
                     )
-                  : SizedBox(
-                      height: size.height * 0.20,
-                      width: double.infinity,
-                      child: Image.file(
-                        imgPathCover.value!,
-                        fit: BoxFit.cover,
+                  : ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: SizedBox(
+                        height: size.height * 0.20,
+                        width: double.infinity,
+                        child: Image.file(
+                          updateImgPathCover.value!,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
               const SizedBox(height: 10),
               Visibility(
-                visible: imgPathCover.value != null,
+                visible: imgPathCoverLoding.value != null,
                 child: CustomButton(
                   text: 'Edite'.tr,
                   onPressed: updateIsLodinge.value == false

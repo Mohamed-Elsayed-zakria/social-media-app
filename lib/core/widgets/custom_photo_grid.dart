@@ -33,8 +33,8 @@ class CustomPhotoGrid extends StatelessWidget {
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent:
               imageUrls.length <= 3 ? size.width * .6 : size.width * .3,
-          crossAxisSpacing: 3,
-          mainAxisSpacing: 3,
+          crossAxisSpacing: 2,
+          mainAxisSpacing: 2,
         ),
         children: images,
       ),

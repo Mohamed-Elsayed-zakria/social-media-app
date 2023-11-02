@@ -39,7 +39,7 @@ class ProfileEditePersonalPicture extends StatelessWidget {
         const SizedBox(height: 10),
         Obx(() => Column(
               children: [
-                imgPathPicture.value == null
+                updateImgPathPicture.value == null
                     ? CircleAvatar(
                         radius: size.width * .18,
                         backgroundColor: AppColors.kBackgroundColor,
@@ -52,7 +52,7 @@ class ProfileEditePersonalPicture extends StatelessWidget {
                       )
                     : ClipOval(
                         child: Image.file(
-                          imgPathPicture.value!,
+                          updateImgPathPicture.value!,
                           width: size.width * .4,
                           height: size.width * .4,
                           fit: BoxFit.cover,
@@ -60,7 +60,7 @@ class ProfileEditePersonalPicture extends StatelessWidget {
                       ),
                 const SizedBox(height: 10),
                 Visibility(
-                  visible: imgPathPicture.value != null,
+                  visible: imgPathPictureLoding.value != null,
                   child: CustomButton(
                     text: 'Edite'.tr,
                     onPressed: updateIsLodinge.value == false

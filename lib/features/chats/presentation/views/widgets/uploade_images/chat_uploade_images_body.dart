@@ -37,6 +37,7 @@ class ChatUplaodeImagesBody extends StatelessWidget {
                       filterQuality: FilterQuality.high,
                       File(chatImagePaths[index]),
                       width: double.infinity,
+                      fit: BoxFit.fitWidth,
                       // fit: BoxFit.fill,
                     ),
                   ),

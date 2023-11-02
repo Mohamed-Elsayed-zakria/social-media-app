@@ -1,6 +1,6 @@
-import '../../../../controllers/chat_screen_messages_controller.dart';
-import '../../../../../../../core/constant/colors.dart';
-import '../../../../../data/models/message_model.dart';
+import '../../../../../controllers/chat_screen_messages_controller.dart';
+import '../../../../../../../../core/constant/colors.dart';
+import '../../../../../../data/models/message_model.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

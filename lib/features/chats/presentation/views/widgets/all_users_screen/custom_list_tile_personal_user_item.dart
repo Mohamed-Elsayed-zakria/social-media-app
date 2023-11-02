@@ -7,6 +7,8 @@ import '../../chat_screen_messages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'determine_message_type.dart';
+
 class CustomListTilePersonalUserItem extends StatelessWidget {
   final UserChatData userData;
   final MessageModel? messages;
@@ -31,20 +33,7 @@ class CustomListTilePersonalUserItem extends StatelessWidget {
           ),
         ],
       ),
-      subtitle: messages != null
-          ? messages!.type == TypeChatMessage.text.name
-              ? Text(messages!.message)
-              : Row(
-                  children: [
-                    const Icon(
-                      Icons.image_outlined,
-                      size: 18,
-                    ),
-                    const SizedBox(width: 4),
-                    Text("Image".tr),
-                  ],
-                )
-          : Text("No messages".tr),
+      subtitle: DetermineTheMessageType(messages: messages),
       leading: Stack(
         children: [
           CircleAvatar(

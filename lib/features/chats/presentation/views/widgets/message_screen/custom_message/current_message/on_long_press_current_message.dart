@@ -1,14 +1,15 @@
-import '../../../../../../../core/constant/colors.dart';
-import '../../../../../data/models/message_model.dart';
+import '../../../../../../../../core/constant/colors.dart';
+import '../../../../../../data/models/message_model.dart';
 import 'package:flutter/material.dart';
-import 'chat_copy_text.dart';
-import 'chat_download_image.dart';
-import 'chat_report_message.dart';
+import '../chat_download_image.dart';
+import 'chat_delete_message.dart';
+import 'chat_edite_message.dart';
+import '../chat_copy_text.dart';
 
-class OnLongPressOtherMessage extends StatelessWidget {
+class OnLongPressCurrentMessage extends StatelessWidget {
   final MessageModel messageData;
 
-  const OnLongPressOtherMessage({
+  const OnLongPressCurrentMessage({
     super.key,
     required this.messageData,
   });
@@ -16,7 +17,11 @@ class OnLongPressOtherMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 140,
+      height: messageData.type == TypeChatMessage.text.name
+          ? 185
+          : messageData.type == TypeChatMessage.video.name
+              ? 75
+              : 140,
       decoration: const BoxDecoration(
         color: AppColors.kSurfaceColor,
         borderRadius: BorderRadius.only(
@@ -35,7 +40,11 @@ class OnLongPressOtherMessage extends StatelessWidget {
             visible: messageData.type == TypeChatMessage.image.name,
             child: ChatDownloadImages(imgUrl: messageData.imgUrl),
           ),
-          ChatReportMessage(messageData: messageData),
+          Visibility(
+            visible: messageData.type == TypeChatMessage.text.name,
+            child: ChstEditeMessage(messageData: messageData),
+          ),
+          ChatDeleteMessage(messageData: messageData),
         ],
       ),
     );

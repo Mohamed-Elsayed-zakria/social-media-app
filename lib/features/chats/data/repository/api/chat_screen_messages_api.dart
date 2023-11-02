@@ -43,6 +43,21 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
   }
 
   @override
+  Future<void> updateMessagesReadStatus({
+    required MessageModel messageData,
+  }) async {
+    String currentDateTime = DateTime.timestamp().toString();
+    await ApiService.firestore
+        .collection(Collections.userCollection)
+        .doc(messageData.senderId)
+        .collection(Collections.chatCollection)
+        .doc(ApiService.user.uid)
+        .collection(Collections.messageCollection)
+        .doc(messageData.dateTime)
+        .update({'isRead': currentDateTime});
+  }
+
+  @override
   Future<void> sentNewMessage({
     required UserChatData userData,
     required String text,
@@ -94,6 +109,8 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
       imgUrl: imageUrls,
       message: text,
       type: type,
+      isDelivered: false,
+      isRead: '',
     );
 
     try {
@@ -103,7 +120,8 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
           .collection(Collections.chatCollection)
           .doc(userData.personUid)
           .collection(Collections.messageCollection)
-          .add(messageModel.toJson());
+          .doc(currentDateTime)
+          .set(messageModel.toJson());
 
       await ApiService.firestore
           .collection(Collections.userCollection)
@@ -111,11 +129,14 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
           .collection(Collections.chatCollection)
           .doc(ApiService.user.uid)
           .collection(Collections.messageCollection)
-          .add(messageModel.toJson());
+          .doc(currentDateTime)
+          .set(messageModel.toJson());
+
       if (chatImagePaths.isNotEmpty) {
         chatImagePaths.value = [];
       }
       if (addVideoChatPath != null) {
+        addVideoChatController!.dispose();
         addVideoChatPath = null;
       }
     } catch (e) {
@@ -123,6 +144,7 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
         chatImagePaths.value = [];
       }
       if (addVideoChatPath != null) {
+        addVideoChatController!.dispose();
         addVideoChatPath = null;
       }
     }

@@ -36,11 +36,14 @@ class ChatUploadeVideoBody extends StatelessWidget {
           userData: userData,
           onPressed: () {
             Get.back();
-            sentNewMessage(
-              type: TypeChatMessage.video.name,
-              userData: userData,
-              text: '',
-            );
+            if (addVideoChatPath != null) {
+              addVideoChatController!.pause();
+              sentNewMessage(
+                type: TypeChatMessage.video.name,
+                userData: userData,
+                text: '',
+              );
+            }
           },
         ),
       ],

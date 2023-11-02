@@ -15,66 +15,70 @@ class ProfileEditeElbio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ProfileCustomButtomEdite(
-              onPressed: () {
-                Get.defaultDialog(
-                  backgroundColor: AppColors.kSurfaceColor,
-                  titlePadding: const EdgeInsets.only(top: 20),
-                  title: "Bio".tr,
-                  confirm: TextButton(
-                    onPressed: () {
-                      if (profileKeyLogin.currentState!.validate()) {
-                        updateBio(text: getTextBio.text);
-                        Get.back();
-                      }
-                    },
-                    child:  Text(
-                      "Edite".tr,
-                      style:const TextStyle(fontSize: AppStyle.kTextStyle16),
+    getTextBio.text = elbio;
+    return GetBuilder<ProfileEditeController>(
+      init: ProfileEditeController(),
+      builder: (controller) => Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ProfileCustomButtomEdite(
+                onPressed: () {
+                  Get.defaultDialog(
+                    backgroundColor: AppColors.kSurfaceColor,
+                    titlePadding: const EdgeInsets.only(top: 20),
+                    title: "Bio".tr,
+                    confirm: TextButton(
+                      onPressed: () {
+                        if (profileKeyLogin.currentState!.validate()) {
+                          controller.updateBio(text: getTextBio.text);
+                          Get.back();
+                        }
+                      },
+                      child: Text(
+                        "Edite".tr,
+                        style: const TextStyle(fontSize: AppStyle.kTextStyle16),
+                      ),
                     ),
-                  ),
-                  content: Container(
-                    padding: const EdgeInsets.all(10),
-                    child: Center(
-                      child: Form(
-                        key: profileKeyLogin,
-                        child: CustomFormField(
-                          validator: (value) =>
-                              profilevalidatorBio(value: value),
-                          controller: getTextBio,
-                          keyboardType: TextInputType.multiline,
-                          label: "Bio".tr,
-                          hintText: "Enter New Bio".tr,
+                    content: Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Center(
+                        child: Form(
+                          key: profileKeyLogin,
+                          child: CustomFormField(
+                            controller: getTextBio,
+                            validator: (value) =>
+                                profilevalidatorBio(value: value),
+                            keyboardType: TextInputType.multiline,
+                            label: "Bio".tr,
+                            hintText: "Enter New Bio".tr,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                );
-              },
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 8),
-              child:  Text(
-                "Bio".tr,
-                style:const TextStyle(fontSize: AppStyle.kTextStyle18),
+                  );
+                },
               ),
-            ),
-          ],
-        ),
-        Text(
-          elbio,
-          style: const TextStyle(
-            fontSize: AppStyle.kTextStyle16,
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  "Bio".tr,
+                  style: const TextStyle(fontSize: AppStyle.kTextStyle18),
+                ),
+              ),
+            ],
           ),
-        ),
-        const SizedBox(height: 10),
-        const Divider(),
-      ],
+          Text(
+            getTextBio.text,
+            style: const TextStyle(
+              fontSize: AppStyle.kTextStyle16,
+            ),
+          ),
+          const SizedBox(height: 10),
+          const Divider(),
+        ],
+      ),
     );
   }
 }

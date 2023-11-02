@@ -1,7 +1,9 @@
-import '../../../../../data/models/message_model.dart';
+import '../../../../../../data/models/message_model.dart';
 import 'on_long_press_current_message.dart';
+import 'chat_current_message_image.dart';
+import 'chat_current_message_text.dart';
+import 'chat_current_message_video.dart';
 import 'package:flutter/material.dart';
-import 'chat_custom_message.dart';
 import 'package:get/get.dart';
 
 class CustomCurrentMessage extends StatelessWidget {
@@ -26,7 +28,11 @@ class CustomCurrentMessage extends StatelessWidget {
             color: Colors.grey[300],
             borderRadius: BorderRadius.circular(10),
           ),
-          child: ChatCustomMessage(messageData: messageData),
+          child: messageData.type == TypeChatMessage.text.name
+              ? ChatCurrentMessageText(messageData: messageData)
+              : messageData.type == TypeChatMessage.image.name
+                  ? ChatCurrentMessageImage(messageData: messageData)
+                  : ChatCurrentMessageVideo(messageData: messageData),
         ),
       ),
     );

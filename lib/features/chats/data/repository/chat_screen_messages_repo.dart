@@ -3,6 +3,7 @@ import '../models/message_model.dart';
 
 abstract class ChatScreenMessagesRepo {
   Stream<List<MessageModel>> getAllMessages({required String receiverId});
+  Future<void> updateMessagesReadStatus({required MessageModel messageData});
   Future<void> sentNewMessage({
     required UserChatData userData,
     required String text,

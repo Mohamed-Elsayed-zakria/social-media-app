@@ -1,13 +1,12 @@
-import 'package:get/get.dart';
-
-import '../../../../../../core/constant/style.dart';
 import '../../../../../../core/widgets/custom_read_more_text.dart';
+import '../../../../../../core/constant/style.dart';
 import '../../../../data/model/post_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'custom_post_vedio_item.dart';
 import 'custom_post_images.dart';
+import 'package:get/get.dart';
 
 class CustomPostContent extends StatelessWidget {
   final PostModel postData;

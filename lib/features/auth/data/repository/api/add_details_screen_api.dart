@@ -1,11 +1,11 @@
 import '../../../../main_home/presentation/views/main_home_screen.dart';
 import '../../../presentation/controllers/add_details_controller.dart';
+import '../../../../../core/constant/default_personal_images.dart';
 import '../../../../../core/api/api_firebase_messaging.dart';
 import '../../../../../core/model/current_user_data.dart';
 import '../../../../../core/api/api_dynamic_link.dart';
 import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../../../core/constant/constant.dart';
 import '../../models/add_details_screen_model.dart';
 import '../../../../../core/constant/colors.dart';
 import '../../../../../core/api/api_service.dart';
@@ -41,9 +41,9 @@ class AddDetailsScreenApi extends AddDetailsScreenRepo {
       urlPersonalPicture = await storageRef.getDownloadURL();
     } else {
       if (gender.value == "FeMale") {
-        urlPersonalPicture = Constant.urlPhotoFemale;
+        urlPersonalPicture = DefaultPersonalImage.urlPhotoFemale;
       } else {
-        urlPersonalPicture = Constant.urlPhotoMale;
+        urlPersonalPicture = DefaultPersonalImage.urlPhotoMale;
       }
     }
     if (await isUsernameTaken(username: username)) {
@@ -70,7 +70,7 @@ class AddDetailsScreenApi extends AddDetailsScreenRepo {
         firstName: addDetailsGetFirstName.text,
         lastName: addDetailsGetLastName.text,
         personalPicture: urlPersonalPicture,
-        coverPhoto: Constant.urlCoverPhoto,
+        coverPhoto: DefaultPersonalImage.urlCoverPhoto,
         personUid: ApiService.user.uid,
         personalPageUrl: personalPageUrl,
         bio: 'welcome to my profile',
