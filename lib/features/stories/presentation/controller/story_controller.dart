@@ -1,5 +1,4 @@
 import '../../data/repository/story_screen_api.dart';
-import '../../../../core/utils/size_screen.dart';
 import 'package:video_player/video_player.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../core/constant/colors.dart';
@@ -17,13 +16,15 @@ VideoPlayerController? addNewStoryPlayerController;
 File? addNewStoryVedioPath;
 
 Future<void> uploadeStory({
+  required int durationTime,
   required String type,
   String? description,
   String? imgPath,
 }) async {
   StoryScreenApi().uploadeStory(
-    imgPath: imgPath,
+    durationTime: durationTime,
     description: description,
+    imgPath: imgPath,
     type: type,
   );
 }
@@ -33,6 +34,7 @@ Future<void> imageStoryOpenGalary() async {
   if (pickedImg != null) {
     Get.to(
       () => UploadeStoryScreen(
+        durationTime: 10,
         imagePathStory: pickedImg.path,
         type: TypeStoryUploade.image,
       ),
@@ -64,32 +66,15 @@ Future<void> videoStoryOpenGalary() async {
       addNewStoryVedioPath!,
     );
     await addNewStoryPlayerController!.initialize();
+    Duration videoDuration = addNewStoryPlayerController!.value.duration;
+    int videoDurationTime = videoDuration.inSeconds.toInt();
     addNewStoryPlayerController!.play();
     Get.to(
       () => UploadeStoryScreen(
         playerControllerPlay: addNewStoryPlayerController,
         type: TypeStoryUploade.vedio,
+        durationTime: videoDurationTime,
       ),
-    );
-  }
-}
-
-void pressOnTheScreen({
-  required TapDownDetails details,
-  required BuildContext context,
-}) {
-  final screenWidth = sizeScreen(context: context).width;
-  double tapPositionX = details.localPosition.dx;
-
-  if (tapPositionX < screenWidth / 2) {
-    pageController.nextPage(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.ease,
-    );
-  } else {
-    pageController.previousPage(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.ease,
     );
   }
 }

@@ -59,11 +59,15 @@ class ShowReelsCommentItem extends StatelessWidget {
                   ),
                 ],
               ),
-              subtitle: Text(
-                textDirection: TextDirection.ltr,
-                MyDateUtil.convertDateTime(
-                  historyAsText: commentData.dataPublished,
-                ),
+              subtitle: Row(
+                children: [
+                  Text(
+                    textDirection: TextDirection.ltr,
+                    MyDateUtil.convertDateTime(
+                      historyAsText: commentData.dataPublished,
+                    ),
+                  ),
+                ],
               ),
               leading: ShowReelsCommentCircleAvatar(commentData: commentData),
               trailing: ShowReelsCommentAddLike(

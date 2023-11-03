@@ -31,11 +31,15 @@ class CustomNotificationCard extends StatelessWidget {
           ),
         ],
       ),
-      subtitle: Text(
-        textDirection: TextDirection.ltr,
-        MyDateUtil.convertDateTime(
-          historyAsText: allNotification.datePublished,
-        ),
+      subtitle: Row(
+        children: [
+          Text(
+            textDirection: TextDirection.ltr,
+            MyDateUtil.convertDateTime(
+              historyAsText: allNotification.datePublished,
+            ),
+          ),
+        ],
       ),
       leading: Stack(
         children: [

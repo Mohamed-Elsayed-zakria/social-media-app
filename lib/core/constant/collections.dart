@@ -9,6 +9,8 @@ abstract class Collections{
 
   static const String commentsCollection = 'comments';
 
+  static const String controllerCollection = 'controller';
+
   static const String likesCollection = 'likes';
 
   static const String messageCollection = 'message';

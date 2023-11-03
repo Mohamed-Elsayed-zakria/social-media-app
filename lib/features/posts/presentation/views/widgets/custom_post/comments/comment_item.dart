@@ -59,11 +59,15 @@ class CommentItem extends StatelessWidget {
                   ),
                 ],
               ),
-              subtitle: Text(
-                textDirection: TextDirection.ltr,
-                MyDateUtil.convertDateTime(
-                  historyAsText: commentData.dataPublished,
-                ),
+              subtitle: Row(
+                children: [
+                  Text(
+                    textDirection: TextDirection.ltr,
+                    MyDateUtil.convertDateTime(
+                      historyAsText: commentData.dataPublished,
+                    ),
+                  ),
+                ],
               ),
               leading: CommentCircleAvatar(commentData: commentData),
               trailing: CommentAddLike(

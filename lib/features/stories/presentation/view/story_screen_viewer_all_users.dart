@@ -1,10 +1,11 @@
+import '../controller/story_viewer_controller.dart';
+import 'widgets/story_viewer/story_viewer_header.dart';
 import '../../data/model/stories_model.dart';
-import '../controller/story_controller.dart';
-import 'widgets/story_viewer/story_viewer_body.dart';
+import 'package:story_view/story_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class StoryScreenViewerAllUsers extends StatelessWidget {
+class StoryScreenViewerAllUsers extends StatefulWidget {
   final List<List<StoriesModel>> storyDatabasic;
   final int initialPage;
 
@@ -15,9 +16,23 @@ class StoryScreenViewerAllUsers extends StatelessWidget {
   });
 
   @override
+  State<StoryScreenViewerAllUsers> createState() =>
+      _StoryScreenViewerAllUsersState();
+}
+
+class _StoryScreenViewerAllUsersState extends State<StoryScreenViewerAllUsers> {
+  final storyController = StoryController();
+
+  @override
+  void dispose() {
+    storyController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     PageController pageControllerStory = PageController(
-      initialPage: initialPage,
+      initialPage: widget.initialPage,
     );
     return GestureDetector(
       onVerticalDragUpdate: (details) {
@@ -25,19 +40,34 @@ class StoryScreenViewerAllUsers extends StatelessWidget {
           Get.back();
         }
       },
-      onTapDown: (details) => pressOnTheScreen(
-        context: context,
-        details: details,
-      ),
-      child: PageView.builder(
-        controller: pageControllerStory,
-        itemCount: storyDatabasic.length,
-        itemBuilder: (context, userIndex) => PageView.builder(
-          controller: pageController,
-          itemCount: storyDatabasic[userIndex].length,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, storyIndex) => StoryViewerBody(
-            storyData: storyDatabasic[userIndex][storyIndex],
+      child: Scaffold(
+        body: PageView.builder(
+          controller: pageControllerStory,
+          itemCount: widget.storyDatabasic.length,
+          itemBuilder: (context, index) => Stack(
+            children: [
+              StoryView(
+                inline: true,
+                controller: storyController,
+                progressPosition: ProgressPosition.top,
+                storyItems: handleStory(
+                  storiesModel: widget.storyDatabasic[index],
+                  storyController: storyController,
+                ),
+                onComplete: () {
+                  if (index <= widget.storyDatabasic.length - 1) {
+                    pageControllerStory.animateToPage(
+                      index + 1,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.ease,
+                    );
+                  }
+                },
+              ),
+              StoryViewerHeader(
+                storyData: widget.storyDatabasic[index][0],
+              )
+            ],
           ),
         ),
       ),

@@ -165,6 +165,7 @@ const Map<String, String> en = {
 
   "Followers": "Followers",
   "Following": "Following",
+  "Otherfollowing": "Following",
   'Edite': 'Edite',
   "chat": "Message",
   "unFolow": "unFolow",

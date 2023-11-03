@@ -13,6 +13,7 @@ import 'dart:io';
 class StoryScreenApi extends StoryScreenRepo {
   @override
   Future<void> uploadeStory({
+    required int durationTime,
     required String type,
     String? description,
     String? imgPath,
@@ -43,6 +44,7 @@ class StoryScreenApi extends StoryScreenRepo {
       StoriesModel storyModel = StoriesModel(
         datePublish: DateTime.timestamp().toString(),
         personUid: ApiService.user.uid,
+        durationTime: durationTime,
         description: description,
         imgPath: urlImgPath,
         vedioUrl: videoUrl,

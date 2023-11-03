@@ -23,10 +23,12 @@ class CustomStoryItemAllUsers extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = sizeScreen(context: context);
     return InkWell(
-      onTap: () => Get.to(() => StoryScreenViewerAllUsers(
-            storyDatabasic: storyDatabasic,
-            initialPage: initialPage,
-          )),
+      onTap: () => Get.to(
+        () => StoryScreenViewerAllUsers(
+          storyDatabasic: storyDatabasic,
+          initialPage: initialPage,
+        ),
+      ),
       child: SizedBox(
         width: size.width * .24,
         child: Column(

@@ -1,5 +1,4 @@
 import '../../../../../controllers/chat_screen_messages_controller.dart';
-import '../../../../../../../../core/constant/colors.dart';
 import '../../../../../../data/models/message_model.dart';
 import 'on_long_press_other_message.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +30,7 @@ class CustomOtherMessage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 6),
           margin: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
-            color: AppColors.kPrimaryColor.withOpacity(.2),
+            color: Colors.purple,
             borderRadius: BorderRadius.circular(10),
           ),
           child: messageData.type == TypeChatMessage.text.name

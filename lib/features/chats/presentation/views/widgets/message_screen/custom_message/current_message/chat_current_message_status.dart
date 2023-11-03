@@ -16,10 +16,8 @@ class ChatCurrentMessageStatus extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(right: 4),
       child: Icon(
-        Icons.done_all_outlined,
-        color: messageData.isRead.isNotEmpty
-            ? AppColors.kPrimaryColor
-            : Colors.black54,
+        messageData.isRead.isNotEmpty ? Icons.done_all_outlined : Icons.done,
+        color: AppColors.kOnSurfaceColor,
         size: AppStyle.kTextStyle16,
       ),
     );

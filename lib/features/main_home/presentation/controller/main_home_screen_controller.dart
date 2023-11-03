@@ -7,8 +7,7 @@ RxInt pageNumber = 0.obs;
 
 class MainHomeScreenController extends GetxController {
   @override
-  void onInit() {
-    super.onInit();
+  void onInit() async {
     ApiDynamicLink.initDynamicLinks();
     ApiService.updateUserStatus(status: true);
     ApiService.updateUserLocation();
@@ -24,5 +23,6 @@ class MainHomeScreenController extends GetxController {
       }
       return Future.value(message);
     });
+    super.onInit();
   }
 }

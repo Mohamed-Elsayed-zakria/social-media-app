@@ -34,7 +34,7 @@ class VerificationPictureId extends StatelessWidget {
           width: double.infinity,
           height: size.height * 0.25,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(8),
             border: Border.all(
               color: AppColors.kOnSurfaceColor,
               width: 1,
@@ -61,11 +61,14 @@ class VerificationPictureId extends StatelessWidget {
                       ),
                     ],
                   )
-                : Image.file(
-                    imgPathId.value!,
-                    width: double.infinity,
-                    height: size.height * 0.25,
-                    fit: BoxFit.cover,
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.file(
+                      imgPathId.value!,
+                      width: double.infinity,
+                      height: size.height * 0.25,
+                      fit: BoxFit.cover,
+                    ),
                   ),
           ),
         ),

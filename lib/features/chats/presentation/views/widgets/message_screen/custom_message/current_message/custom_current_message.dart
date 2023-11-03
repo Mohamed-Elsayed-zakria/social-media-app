@@ -1,3 +1,5 @@
+import 'package:flash/core/constant/colors.dart';
+
 import '../../../../../../data/models/message_model.dart';
 import 'on_long_press_current_message.dart';
 import 'chat_current_message_image.dart';
@@ -25,7 +27,7 @@ class CustomCurrentMessage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 6),
           margin: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
-            color: Colors.grey[300],
+            color: AppColors.kPrimaryColor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: messageData.type == TypeChatMessage.text.name

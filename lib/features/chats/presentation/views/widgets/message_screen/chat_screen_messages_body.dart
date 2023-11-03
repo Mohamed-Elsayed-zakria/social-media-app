@@ -1,12 +1,11 @@
 import '../../../controllers/chat_screen_messages_controller.dart';
+import 'custom_message/chat_custom_message_item.dart';
 import '../../../../../../core/api/api_service.dart';
 import '../../../../data/models/user_chat_data.dart';
 import '../../../../../../core/constant/style.dart';
 import '../../../../data/models/message_model.dart';
 import 'custom_lower_sent_message.dart';
 import 'package:flutter/material.dart';
-import 'custom_message/current_message/custom_current_message.dart';
-import 'custom_message/other_message/custom_other_message.dart';
 import 'package:get/get.dart';
 
 class ChatScreenMessagesBody extends StatelessWidget {
@@ -30,18 +29,11 @@ class ChatScreenMessagesBody extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 6),
                     child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
                       reverse: true,
                       itemCount: messageData.length,
-                      itemBuilder: (context, index) => Column(
-                        children: [
-                          messageData[index].senderId == ApiService.user.uid
-                              ? CustomCurrentMessage(
-                                  messageData: messageData[index],
-                                )
-                              : CustomOtherMessage(
-                                  messageData: messageData[index],
-                                ),
-                        ],
+                      itemBuilder: (context, index) => ChatCustomMessage(
+                        messageData: messageData[index],
                       ),
                     ),
                   );

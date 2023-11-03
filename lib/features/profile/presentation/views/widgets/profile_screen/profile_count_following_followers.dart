@@ -1,10 +1,10 @@
-import 'package:flash/core/constant/style.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
+import '../../../../../../core/api/api_service.dart';
+import '../../../../../../core/constant/style.dart';
 import '../../../../data/models/profile_model.dart';
 import '../../profile_all_followers_screen.dart';
 import '../../profile_all_following_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileScreenCountFollowingFollowers extends StatelessWidget {
   final ProfileScreenModel userData;
@@ -58,7 +58,9 @@ class ProfileScreenCountFollowingFollowers extends StatelessWidget {
                       style: const TextStyle(fontSize: AppStyle.kTextStyle16),
                     ),
                     Text(
-                      "Following".tr,
+                      userData.personalUid == ApiService.user.uid
+                          ? "Following".tr
+                          : "Otherfollowing".tr,
                       style: const TextStyle(fontSize: AppStyle.kTextStyle16),
                     ),
                   ],

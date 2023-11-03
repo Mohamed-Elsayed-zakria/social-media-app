@@ -11,6 +11,7 @@ class VerificationHeaderMessage extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [

@@ -19,7 +19,7 @@ class MessageOfTypeText extends StatelessWidget {
         messageData.message,
         style: const TextStyle(
           fontSize: AppStyle.kTextStyle16,
-          color: AppColors.kOnSurfaceColor,
+          color: AppColors.kSurfaceColor,
         ),
       ),
     );

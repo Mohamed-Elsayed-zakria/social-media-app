@@ -40,6 +40,7 @@ class DialogUploadeStory extends StatelessWidget {
             Get.back();
             Get.to(
               () => const UploadeStoryScreen(
+                durationTime: 10,
                 type: TypeStoryUploade.text,
               ),
             );

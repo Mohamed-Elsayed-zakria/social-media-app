@@ -18,7 +18,7 @@ class ChatDateTime extends StatelessWidget {
       ),
       style: const TextStyle(
         fontSize: AppStyle.kTextStyle12,
-        color: AppColors.kOnSurfaceColor,
+        color: AppColors.kSurfaceColor,
       ),
     );
   }

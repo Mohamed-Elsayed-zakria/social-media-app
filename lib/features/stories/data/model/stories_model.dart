@@ -9,6 +9,7 @@ class StoriesModel {
   late List followingList;
   late String username;
   late bool verified;
+  late int durationTime;
 
   StoriesModel({
     required this.imgPath,
@@ -17,6 +18,7 @@ class StoriesModel {
     required this.datePublish,
     required this.type,
     this.description,
+    required this.durationTime,
   });
   StoriesModel.fromJson(Map<String, dynamic> json) {
     imgPath = json['imgPath'] ?? '';
@@ -30,6 +32,7 @@ class StoriesModel {
     personUid = json['personUid'] ?? '';
     verified = json['verified'] ?? false;
     type = json['type'] ?? '';
+    durationTime = json['durationTime'] ?? 10;
   }
 
   Map<String, dynamic> toJson() {
@@ -40,6 +43,7 @@ class StoriesModel {
     data['datePublish'] = datePublish;
     data['personUid'] = personUid;
     data['type'] = type;
+    data['durationTime'] = durationTime;
     return data;
   }
 }

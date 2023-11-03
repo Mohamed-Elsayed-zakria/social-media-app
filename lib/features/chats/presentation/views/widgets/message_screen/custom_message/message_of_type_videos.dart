@@ -41,7 +41,7 @@ class _MessageOfTypeVideosState extends State<MessageOfTypeVideos> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: SizedBox(
-          width: size.width * .8,
+          width: size.width * .7,
           child: AspectRatio(
             aspectRatio: 4 / 4,
             child: Chewie(

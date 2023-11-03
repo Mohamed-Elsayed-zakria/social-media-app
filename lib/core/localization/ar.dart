@@ -164,6 +164,7 @@ const Map<String, String> ar = {
 
   "Followers": "المتابعين",
   "Following": "أتابعهم",
+  "Otherfollowing": "يتابع",
   'Edite': 'تعديل',
   "chat": "تواصل",
   "unFolow": "الغاء",
