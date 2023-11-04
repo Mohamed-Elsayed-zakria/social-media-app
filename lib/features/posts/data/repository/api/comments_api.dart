@@ -1,9 +1,9 @@
 import '../../../presentation/controllers/comments_controller.dart';
 import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../../../core/model/comment_model.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../../../../core/constant/colors.dart';
-import '../../../../../core/model/comment_model.dart';
 import 'package:uuid/uuid.dart';
 import '../comments_repo.dart';
 import 'package:get/get.dart';

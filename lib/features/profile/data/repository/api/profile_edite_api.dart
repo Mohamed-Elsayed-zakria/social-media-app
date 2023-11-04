@@ -1,3 +1,4 @@
+import '../../../../../core/model/current_user_data.dart';
 import '../../../presentation/controller/profile_edite_controller.dart';
 import '../../../../../core/constant/collections.dart';
 import '../../../../../core/api/api_service.dart';
@@ -19,6 +20,8 @@ class ProfileEditeApi extends ProfileEditeRepo {
         await storageRef.putFile(updateImgPathPicture.value!);
 
         String url = await storageRef.getDownloadURL();
+
+        CurrentUserData.takePersonalPicture(url);
 
         await ApiService.firestore
             .collection(Collections.userCollection)
@@ -71,7 +74,8 @@ class ProfileEditeApi extends ProfileEditeRepo {
       );
     }
   }
-    @override
+
+  @override
   Future<void> updateBio({required String text}) async {
     try {
       updateIsLodinge.value = true;

@@ -92,6 +92,8 @@ const Map<String, String> ar = {
   "uploade post": "إضافة منشور",
   "uploade story": "إضافة قصة",
   "uploade reels": "إضافة ريلز",
+  //===================main home===================
+  "Press back again to exit": "اضغط مرة أخرى للخروج",
 
 //===================Notice===================
   "Notice": "اشعارات",
@@ -107,7 +109,7 @@ const Map<String, String> ar = {
   "What are you thinking about": "بم تفكر",
   'Uploade Image': 'إضافة صوره',
   'Uploade Video': 'إضافة فيديو',
-  "Video is too long": "الفيديو طويل جدًا",
+  "The allowed video size is 30 MB": "حجم الفيديو المسموح به هو ٣٠ ميجابايت",
   'You must add a description to the post': "يجب عليك إضافة وصف إلى المنشور",
   'update post': 'تحديث المنشور',
   'Show more': 'شاهد المزيد',
@@ -142,6 +144,10 @@ const Map<String, String> ar = {
   'uploude story': "إضافة قصة",
   'Text': 'نص',
   'Add story': "إضافة قصة",
+  "The story has been deleted": "تم حذف القصة",
+  "The story has been reported": "تم الإبلاغ عن القصة",
+  "The allowed video size is 20 MB": "حجم الفيديو المسموح به هو ٢٠ ميجابايت",
+
 //==================='Services'===================
   'Services': 'خدمات',
   'People nearby': "أشخاص قريبين",
@@ -199,7 +205,7 @@ const Map<String, String> ar = {
   'Do you want to log out ?': 'هل ترغب بالخروج ؟',
   'Yes': 'نعم',
   'No': 'لا',
-  'Language': "اللغة",
+  'Language': "لغة التطبيق",
   "English": "انجليزي",
   'Arabic': 'عربي',
   //***************'General settings'*************

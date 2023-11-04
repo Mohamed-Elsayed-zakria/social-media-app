@@ -3,6 +3,8 @@ import '../../../../core/api/api_service.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+bool isBackPressed = false;
+
 RxInt pageNumber = 0.obs;
 
 class MainHomeScreenController extends GetxController {

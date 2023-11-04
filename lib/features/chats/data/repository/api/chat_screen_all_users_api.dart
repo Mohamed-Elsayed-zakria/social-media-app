@@ -1,11 +1,10 @@
-import 'dart:async';
-
+import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/api/api_service.dart';
-import '../../../../../core/constant/collections.dart';
-import '../../models/message_model.dart';
-import '../../models/user_chat_data.dart';
 import '../chat_screen_all_users_repo.dart';
+import '../../models/user_chat_data.dart';
+import '../../models/message_model.dart';
+import 'dart:async';
 
 class ChatScreenAllUsersApi extends ChatScreenAllUsersRepo {
   @override

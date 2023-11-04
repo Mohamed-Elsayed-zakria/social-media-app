@@ -1,8 +1,8 @@
+import 'package:flutter_iconly/flutter_iconly.dart';
+import '../../../../../../core/constant/style.dart';
 import 'package:flash/core/utils/app_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
-import '../../../../../../core/constant/style.dart';
 
 class SettingsScreenAppLanguage extends StatelessWidget {
   const SettingsScreenAppLanguage({super.key});
@@ -48,7 +48,6 @@ class SettingsScreenAppLanguage extends StatelessWidget {
       ),
       leading: const Icon(
         Icons.language_outlined,
-        color: Colors.black54,
         size: 26,
       ),
       trailing: const Icon(IconlyBroken.arrowRight2),

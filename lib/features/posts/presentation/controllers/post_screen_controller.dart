@@ -54,7 +54,7 @@ Future<void> uploadeVideo() async {
     if (videoSizeInMB > 30) {
       Get.snackbar(
         "Error".tr,
-        "Video is too long".tr,
+        "The allowed video size is 30 MB".tr,
         backgroundColor: AppColors.kErrorColor,
         colorText: AppColors.kSurfaceColor,
       );

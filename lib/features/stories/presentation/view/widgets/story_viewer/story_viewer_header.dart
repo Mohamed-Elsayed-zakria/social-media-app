@@ -2,10 +2,14 @@ import '../../../../../profile/presentation/views/profile_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../../../../core/utils/date_time.dart';
 import '../../../../../../core/constant/colors.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../../../core/constant/style.dart';
 import '../../../../data/model/stories_model.dart';
+import 'package:flash/core/api/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'delete_story.dart';
+import 'report_story.dart';
 
 class StoryViewerHeader extends StatelessWidget {
   final StoriesModel storyData;
@@ -66,6 +70,17 @@ class StoryViewerHeader extends StatelessWidget {
                 storyData.personalPicture,
               ),
             ),
+          ),
+        ),
+        trailing: IconButton(
+          onPressed: () {
+            storyData.personUid == ApiService.user.uid
+                ? Get.bottomSheet(DeleteStory(storyData: storyData))
+                : Get.bottomSheet(ReportStory(storyData: storyData));
+          },
+          icon: const Icon(
+            color: AppColors.kSurfaceColor,
+            IconlyBroken.moreCircle,
           ),
         ),
       ),

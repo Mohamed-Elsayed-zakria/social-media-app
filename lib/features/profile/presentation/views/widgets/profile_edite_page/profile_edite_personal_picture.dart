@@ -1,7 +1,7 @@
-import '../../../../../../core/utils/size_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../../../../core/widgets/custom_buttom.dart';
 import '../../../controller/profile_edite_controller.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/style.dart';
 import 'profile_custom_buttom_edite.dart';

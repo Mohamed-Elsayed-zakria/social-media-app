@@ -14,6 +14,7 @@ class NotificationApi implements NotificationRepo {
         .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
         .collection(Collections.notificationCollection)
+        .orderBy('datePublished', descending: true)
         .get();
 
     if (querySnapshot.docs.isNotEmpty) {
@@ -27,7 +28,7 @@ class NotificationApi implements NotificationRepo {
             .get();
 
         if (userDataDoc.exists) {
-          var userData = userDataDoc.data();
+          Map<String, dynamic>? userData = userDataDoc.data();
           data.addAll(userData!);
           allData = data;
           NoticeModel noteData = NoticeModel.fromJson(allData);

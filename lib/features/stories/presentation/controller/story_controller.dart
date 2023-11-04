@@ -29,6 +29,14 @@ Future<void> uploadeStory({
   );
 }
 
+Future<void> deleteStory({required String storyUid}) async {
+  StoryScreenApi().deleteStory(storyUid: storyUid);
+}
+
+Future<void> reportStory({required StoriesModel storyData}) async {
+  StoryScreenApi().reportStory(storyData: storyData);
+}
+
 Future<void> imageStoryOpenGalary() async {
   final pickedImg = await ImagePicker().pickImage(source: ImageSource.gallery);
   if (pickedImg != null) {
@@ -52,10 +60,10 @@ Future<void> videoStoryOpenGalary() async {
     final videoSize = await videoFile.length();
 
     final double videoSizeInMB = videoSize / (1024 * 1024);
-    if (videoSizeInMB > 30) {
+    if (videoSizeInMB > 20) {
       Get.snackbar(
         "Error".tr,
-        "Video is too long".tr,
+        "The allowed video size is 20 MB".tr,
         backgroundColor: AppColors.kErrorColor,
         colorText: AppColors.kSurfaceColor,
       );

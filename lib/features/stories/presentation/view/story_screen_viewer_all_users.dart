@@ -1,5 +1,5 @@
-import '../controller/story_viewer_controller.dart';
 import 'widgets/story_viewer/story_viewer_header.dart';
+import '../controller/story_viewer_controller.dart';
 import '../../data/model/stories_model.dart';
 import 'package:story_view/story_view.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +31,8 @@ class _StoryScreenViewerAllUsersState extends State<StoryScreenViewerAllUsers> {
 
   @override
   Widget build(BuildContext context) {
+    storyPosition.value = 0;
+    allStory = [];
     PageController pageControllerStory = PageController(
       initialPage: widget.initialPage,
     );
@@ -54,18 +56,23 @@ class _StoryScreenViewerAllUsersState extends State<StoryScreenViewerAllUsers> {
                   storiesModel: widget.storyDatabasic[index],
                   storyController: storyController,
                 ),
+                onStoryShow: (storyItem) {
+                  storyPosition.value = allStory.indexOf(storyItem);
+                },
                 onComplete: () {
                   if (index <= widget.storyDatabasic.length - 1) {
                     pageControllerStory.animateToPage(
-                      index + 1,
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.ease,
+                      index + 1,
                     );
                   }
                 },
               ),
-              StoryViewerHeader(
-                storyData: widget.storyDatabasic[index][0],
+              Obx(
+                () => StoryViewerHeader(
+                  storyData: widget.storyDatabasic[index][storyPosition.value],
+                ),
               )
             ],
           ),

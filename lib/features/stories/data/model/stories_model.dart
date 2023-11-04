@@ -8,11 +8,13 @@ class StoriesModel {
   late String personalPicture;
   late List followingList;
   late String username;
+  late String storyUid;
   late bool verified;
   late int durationTime;
 
   StoriesModel({
     required this.imgPath,
+    required this.storyUid,
     required this.vedioUrl,
     required this.personUid,
     required this.datePublish,
@@ -29,6 +31,7 @@ class StoriesModel {
     personalPicture = json['personalPicture'] ?? '';
     followingList = json['following'] ?? [];
     username = json['username'] ?? '';
+    storyUid = json['storyUid'] ?? '';
     personUid = json['personUid'] ?? '';
     verified = json['verified'] ?? false;
     type = json['type'] ?? '';
@@ -39,6 +42,7 @@ class StoriesModel {
     final Map<String, dynamic> data = {};
     data['imgPath'] = imgPath;
     data['vedioUrl'] = vedioUrl;
+    data['storyUid'] = storyUid;
     data['description'] = description;
     data['datePublish'] = datePublish;
     data['personUid'] = personUid;

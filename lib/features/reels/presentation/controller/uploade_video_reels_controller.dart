@@ -20,7 +20,6 @@ File? addVideoReelsPath;
 
 RxString selectItem = videoReelsListItem[0].obs;
 
-
 RxBool uploadeReelsIsLoading = false.obs;
 RxBool isPlaying = false.obs;
 RxBool isShow = false.obs;
@@ -38,7 +37,7 @@ Future<void> addVideoReelsOpenGalary() async {
     if (videoSizeInMB > 30) {
       Get.snackbar(
         "Error".tr,
-        "Video is too long".tr,
+        "The allowed video size is 30 MB".tr,
         backgroundColor: AppColors.kErrorColor,
         colorText: AppColors.kSurfaceColor,
       );

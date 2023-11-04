@@ -83,15 +83,17 @@ const Map<String, String> en = {
   "You can not message this person": "You can not message this person",
   'Type your Message here': 'Type your Message here ...',
   "Video": "Video",
-  "Delete message" :"Delete message",
-  "The message has been deleted" :"The message has been deleted",
-  "The message has been reported":"The message has been reported",
-  "Edite message":"Edite message",
+  "Delete message": "Delete message",
+  "The message has been deleted": "The message has been deleted",
+  "The message has been reported": "The message has been reported",
+  "Edite message": "Edite message",
 //===================home===================
   "Home": "Home",
   "uploade post": "uploade post",
   "uploade story": "uploade story",
   "uploade reels": "uploade reels",
+//===================main home===================
+  "Press back again to exit": "Press back again to exit",
 //===================Notice===================
   "Notice": "Notice",
   "You have no notifications": "You have no notifications",
@@ -108,7 +110,7 @@ const Map<String, String> en = {
   'Uploade Image': 'Uploade Image',
   'Uploade Video': 'Uploade Video',
 
-  "Video is too long": "Video is too long",
+  "The allowed video size is 30 MB": "The allowed video size is 30 MB",
   'You must add a description to the post':
       'You must add a description to the post',
   'update post': 'update post',
@@ -143,7 +145,9 @@ const Map<String, String> en = {
   'uploude story': 'uploude story',
   'Text': 'Text',
   'Add story': 'Add story',
-
+  "The story has been deleted": "The story has been deleted",
+  "The story has been reported": "The story has been reported",
+  "The allowed video size is 20 MB": "The allowed video size is 20 MB",
 //==================='Services'===================
   'Services': 'Services',
   'People nearby': 'People nearby',
@@ -201,7 +205,7 @@ const Map<String, String> en = {
   'Do you want to log out ?': 'Do you want to log out ?',
   'Yes': 'Yes',
   'No': 'No',
-  'Language': 'Language',
+  'Language': 'Application language',
   "English": "English",
   'Arabic': 'Arabic',
   //***************'General settings'*************

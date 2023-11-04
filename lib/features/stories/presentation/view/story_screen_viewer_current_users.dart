@@ -29,6 +29,8 @@ class _StoryScreenViewerCurrentUsersState
 
   @override
   Widget build(BuildContext context) {
+    storyPosition.value = 0;
+    allStory = [];
     return GestureDetector(
       onVerticalDragUpdate: (details) {
         if (details.primaryDelta! > 20 || details.primaryDelta! < -20) {
@@ -45,10 +47,15 @@ class _StoryScreenViewerCurrentUsersState
                 storiesModel: widget.storyDatabasic,
                 storyController: storyController,
               ),
+              onStoryShow: (storyItem) {
+                storyPosition.value = allStory.indexOf(storyItem);
+              },
               onComplete: () => Get.back(),
             ),
-            StoryViewerHeader(
-              storyData: widget.storyDatabasic[0],
+            Obx(
+              () => StoryViewerHeader(
+                storyData: widget.storyDatabasic[storyPosition.value],
+              ),
             )
           ],
         ),
