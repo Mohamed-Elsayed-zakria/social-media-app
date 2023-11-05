@@ -1,4 +1,4 @@
-import '../../../controller/uploade_video_reels_controller.dart';
+import '../../../controller/uploade_reels_controller.dart';
 import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';

@@ -226,7 +226,7 @@ const Map<String, String> en = {
   "Created date": "Created date",
   "Last signed in": "Last signed in",
   //**********'Edite personal information'***** */
-  'Update': 'Update',
+  'update': 'update',
   "username already taken": "username already taken",
   "Wrong password provided for that user":
       "Wrong password provided for that user",

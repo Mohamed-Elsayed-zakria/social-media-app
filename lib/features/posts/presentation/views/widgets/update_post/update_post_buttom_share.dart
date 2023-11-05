@@ -17,24 +17,21 @@ class UpdatePostButtomShare extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Obx(
-        () => updatePostLoading.value != true
-            ? TextButton(
-                onPressed: () {
+        () => TextButton(
+          onPressed: updatePostLoading.value != true
+              ? () {
                   if (updatePostFormKey.currentState!.validate()) {
                     updatePost(postUid: postData.postUid);
                   }
-                },
-                child: Text(
-                  'Update'.tr,
-                  style: const TextStyle(
-                    fontSize: AppStyle.kTextStyle18,
-                  ),
-                ),
-              )
-            : const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: CircularProgressIndicator(strokeWidth: 3.5),
-              ),
+                }
+              : null,
+          child: Text(
+            'update'.tr,
+            style: const TextStyle(
+              fontSize: AppStyle.kTextStyle18,
+            ),
+          ),
+        ),
       ),
     );
   }

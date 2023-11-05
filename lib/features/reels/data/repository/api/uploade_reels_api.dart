@@ -1,5 +1,4 @@
-import '../../../presentation/controller/uploade_video_reels_controller.dart';
-import '../../../../main_home/presentation/views/main_home_screen.dart';
+import '../../../presentation/controller/uploade_reels_controller.dart';
 import '../../../../../core/constant/collections.dart';
 import '../../../../../core/api/api_dynamic_link.dart';
 import '../../../../../core/api/api_service.dart';
@@ -34,8 +33,8 @@ class UploadeReelsApi implements UploadeReelsRepo {
         postStatus = "Public";
       } else if (postStatus == "خاص") {
         postStatus = "Private";
-      } else if (postStatus == "المتابعين") {
-        postStatus = "Followers";
+      } else if (postStatus == "أتابعهم") {
+        postStatus = "Following";
       }
 
       VideoReelsModel videoReelsModel = VideoReelsModel(
@@ -59,7 +58,7 @@ class UploadeReelsApi implements UploadeReelsRepo {
           addVideoReelsPath = null;
           addVideoReelsController!.dispose();
         }
-        Get.off(() => const MainHomeScreen());
+        Get.back();
       });
     } catch (e) {
       uploadeReelsIsLoading.value = false;

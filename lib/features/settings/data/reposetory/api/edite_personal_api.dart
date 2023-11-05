@@ -1,11 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
-import '../../../../../core/api/api_service.dart';
-import '../../../../../core/constant/collections.dart';
-import '../../../../../core/constant/colors.dart';
 import '../../../presentation/controllers/edite_personal_controller.dart';
+import '../../../../../core/model/current_user_data.dart';
+import '../../../../../core/constant/collections.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../../../core/api/api_service.dart';
+import '../../../../../core/constant/colors.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../edite_personal_repo.dart';
+import 'package:get/get.dart';
 
 class EditePersonalApi extends EditePersonalRepo {
   @override
@@ -38,18 +39,19 @@ class EditePersonalApi extends EditePersonalRepo {
         );
       } else {
         editePersonUpdateUserData.value = true;
-
         await ApiService.firestore
             .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
-            .update({'username': username});
-        editePersonGetUsername.clear();
-        editePersonUpdateUserData.value = false;
-        Fluttertoast.showToast(
-          msg: "Done".tr,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-        );
+            .update({'username': username}).then((value) {
+          editePersonGetUsername.clear();
+          CurrentUserData.takeUsername(username);
+          editePersonUpdateUserData.value = false;
+          Fluttertoast.showToast(
+            msg: "Done".tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+          );
+        });
       }
     }
 
@@ -60,15 +62,15 @@ class EditePersonalApi extends EditePersonalRepo {
         await ApiService.firestore
             .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
-            .update({'firstName': firstname});
-
-        editePersonGetFirstName.clear();
-        editePersonUpdateUserData.value = false;
-        Fluttertoast.showToast(
-          msg: "Done".tr,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-        );
+            .update({'firstName': firstname}).then((value) {
+          editePersonGetFirstName.clear();
+          editePersonUpdateUserData.value = false;
+          Fluttertoast.showToast(
+            msg: "Done".tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+          );
+        });
       } catch (e) {
         editePersonUpdateUserData.value = false;
       }
@@ -80,14 +82,15 @@ class EditePersonalApi extends EditePersonalRepo {
         await ApiService.firestore
             .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
-            .update({'lastName': lastname});
-        editePersonGetLastName.clear();
-        editePersonUpdateUserData.value = false;
-        Fluttertoast.showToast(
-          msg: "Done".tr,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-        );
+            .update({'lastName': lastname}).then((value) {
+          editePersonGetLastName.clear();
+          editePersonUpdateUserData.value = false;
+          Fluttertoast.showToast(
+            msg: "Done".tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+          );
+        });
       } catch (e) {
         editePersonUpdateUserData.value = false;
       }
@@ -98,14 +101,15 @@ class EditePersonalApi extends EditePersonalRepo {
         await ApiService.firestore
             .collection(Collections.userCollection)
             .doc(ApiService.user.uid)
-            .update({'age': dateTime});
-        editePersonUpdateUserData.value = false;
-        editePersonDateOfBirth.value = null;
-        Fluttertoast.showToast(
-          msg: "Done".tr,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-        );
+            .update({'age': dateTime}).then((value) {
+          editePersonUpdateUserData.value = false;
+          editePersonDateOfBirth.value = null;
+          Fluttertoast.showToast(
+            msg: "Done".tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+          );
+        });
       } catch (e) {
         editePersonUpdateUserData.value = false;
       }

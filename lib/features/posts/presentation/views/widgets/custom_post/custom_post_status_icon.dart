@@ -16,7 +16,7 @@ class CustomPostStatusIcon extends StatelessWidget {
             Icons.public,
             size: 17,
           )
-        : postData.postStatus == "Followers"
+        : postData.postStatus == "Following"
             ? const Icon(
                 Icons.people_outline,
                 size: 18,

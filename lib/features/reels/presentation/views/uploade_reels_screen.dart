@@ -1,6 +1,6 @@
 import 'widgets/uploade_reels/show_play_and_pause_in_video.dart';
 import 'widgets/uploade_reels/buttom_goto_add_details_reels.dart';
-import '../controller/uploade_video_reels_controller.dart';
+import '../controller/uploade_reels_controller.dart';
 import 'package:video_player/video_player.dart';
 import '../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';

@@ -1,15 +1,14 @@
 import '../../../../../../../core/utils/size_screen.dart';
-import '../../../../../data/models/message_model.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 
 class MessageOfTypeVideos extends StatefulWidget {
-  final MessageModel messageData;
+  final String videoUrl;
 
   const MessageOfTypeVideos({
     super.key,
-    required this.messageData,
+    required this.videoUrl,
   });
 
   @override
@@ -21,10 +20,10 @@ class _MessageOfTypeVideosState extends State<MessageOfTypeVideos> {
 
   @override
   void initState() {
-    super.initState();
     videoPlayerController = VideoPlayerController.networkUrl(
-        Uri.parse(widget.messageData.videoUrl!))
+        Uri.parse(widget.videoUrl))
       ..initialize();
+    super.initState();
   }
 
   @override

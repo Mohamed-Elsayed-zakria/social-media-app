@@ -1,5 +1,6 @@
 import '../../../../controller/show_reels_comments_controller.dart';
 import '../../../../../../../core/model/comment_model.dart';
+import '../../../../../../../core/constant/style.dart';
 import '../../../../../../../core/api/api_service.dart';
 import '../../../../../../../core/constant/colors.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -53,7 +54,12 @@ class ShowReelsCommentAddLike extends StatelessWidget {
                       size: 22,
                     ),
             ),
-            Text('${allLikes.length}'),
+            Text(
+              '${allLikes.length}',
+              style: const TextStyle(
+                fontSize: AppStyle.kTextStyle16,
+              ),
+            ),
           ],
         );
       },

@@ -1,4 +1,3 @@
-import '../../../../main_home/presentation/views/main_home_screen.dart';
 import '../../../presentation/controllers/post_screen_controller.dart';
 import '../../../../notifications/data/model/notice_model.dart';
 import '../../../../../core/api/api_firebase_messaging.dart';
@@ -57,8 +56,8 @@ class PostScreenApi implements PostScreenRepo {
       postStatus = "Public";
     } else if (postStatus == "خاص") {
       postStatus = "Private";
-    } else if (postStatus == "المتابعين") {
-      postStatus = "Followers";
+    } else if (postStatus == "أتابعهم") {
+      postStatus = "Following";
     }
 
     PostModel postModel = PostModel(
@@ -84,18 +83,18 @@ class PostScreenApi implements PostScreenRepo {
         .doc(generatId)
         .set(postModel.toJson())
         .then((value) {
+      getDescriptionText.clear();
       ApiFirebaseMessaging.sendNotfiy(
         username: CurrentUserData.username,
         noticeModel: noticeModel,
       );
-      getDescriptionText.clear();
       if (addNewPostVedioPath.value != null) {
         addNewPostplayerController!.dispose();
         addNewPostVedioPath.value = null;
       }
       imagePaths.removeRange(0, imagePaths.length);
       addPostLoading.value = false;
-      Get.offAll(() => const MainHomeScreen());
+      Get.back();
     }).catchError((e) {
       addPostLoading.value = false;
     });

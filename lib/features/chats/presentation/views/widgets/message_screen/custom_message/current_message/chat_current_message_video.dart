@@ -17,7 +17,7 @@ class ChatCurrentMessageVideo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MessageOfTypeVideos(messageData: messageData),
+        MessageOfTypeVideos(videoUrl: messageData.videoUrl!),
         Row(
           mainAxisSize: MainAxisSize.min,
           textDirection: TextDirection.ltr,

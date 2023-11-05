@@ -226,7 +226,7 @@ const Map<String, String> ar = {
   "Created date": "تاريخ الإنشاء",
   "Last signed in": "آخر تسجيل دخول",
   //**********'Edite personal information'***** */
-  'Update': 'تحديث',
+  'update': 'تحديث',
   "username already taken": "الاسم مستخدم من قبل",
   "Wrong password provided for that user": "كلمة المرور غير صحيحة",
 //*******************verification****************

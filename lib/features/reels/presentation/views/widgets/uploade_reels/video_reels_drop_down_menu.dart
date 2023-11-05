@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../core/constant/style.dart';
-import '../../../controller/uploade_video_reels_controller.dart';
+import '../../../controller/uploade_reels_controller.dart';
 
 class VideoReelsDropDownMenu extends StatelessWidget {
   const VideoReelsDropDownMenu({super.key});

@@ -1,10 +1,9 @@
+import 'widgets/uploade_story/uploade_story_buttom_sent.dart';
 import 'widgets/uploade_story/uploade_story_body.dart';
 import 'package:video_player/video_player.dart';
 import '../../data/model/stories_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'widgets/uploade_story/uploade_story_buttom_sent.dart';
 
 class UploadeStoryScreen extends StatelessWidget {
   final VideoPlayerController? playerControllerPlay;

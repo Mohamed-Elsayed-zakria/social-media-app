@@ -10,6 +10,16 @@ class ShowReelsApi implements ShowReelsRepo {
   Future<List<VideoReelsModel>> getAllReels() async {
     List<VideoReelsModel> allReels = [];
 
+    DocumentSnapshot<Map<String, dynamic>> currentUserData = await ApiService
+        .firestore
+        .collection(Collections.userCollection)
+        .doc(ApiService.user.uid)
+        .get();
+
+    List<String> followers = List<String>.from(
+      currentUserData['followers'],
+    );
+
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
         .firestore
         .collection(Collections.reelsCollection)
@@ -28,8 +38,18 @@ class ShowReelsApi implements ShowReelsRepo {
           var userData = userDataDoc.data();
           data.addAll(userData!);
           allData = data;
-          VideoReelsModel postModel = VideoReelsModel.fromJson(allData);
-          allReels.add(postModel);
+          if (allData['personUid'] == ApiService.user.uid) {
+            VideoReelsModel postModel = VideoReelsModel.fromJson(allData);
+            allReels.add(postModel);
+          } else if (allData['postStatus'] == "Following") {
+            if (followers.contains(allData['personUid'])) {
+              VideoReelsModel postModel = VideoReelsModel.fromJson(allData);
+              allReels.add(postModel);
+            }
+          } else {
+            VideoReelsModel postModel = VideoReelsModel.fromJson(allData);
+            allReels.add(postModel);
+          }
         }
       }
     }

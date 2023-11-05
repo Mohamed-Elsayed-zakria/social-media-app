@@ -1,3 +1,4 @@
+import '../../../../../../../core/constant/style.dart';
 import '../../../../../../../core/model/comment_model.dart';
 import '../../../../controllers/comments_controller.dart';
 import '../../../../../../../core/api/api_service.dart';
@@ -53,7 +54,12 @@ class CommentAddLike extends StatelessWidget {
                       size: 22,
                     ),
             ),
-            Text('${allLikes.length}'),
+            Text(
+              '${allLikes.length}',
+              style: const TextStyle(
+                fontSize: AppStyle.kTextStyle16,
+              ),
+            ),
           ],
         );
       },

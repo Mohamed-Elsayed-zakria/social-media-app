@@ -45,6 +45,16 @@ class HomeScreenApi extends HomeScreenRepo {
   Future<List<PostModel>> getAllPosts() async {
     List<PostModel> allPosts = [];
 
+    DocumentSnapshot<Map<String, dynamic>> currentUserData = await ApiService
+        .firestore
+        .collection(Collections.userCollection)
+        .doc(ApiService.user.uid)
+        .get();
+
+    List<String> followers = List<String>.from(
+      currentUserData['followers'],
+    );
+    
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
         .firestore
         .collection(Collections.postCollection)
@@ -54,18 +64,29 @@ class HomeScreenApi extends HomeScreenRepo {
     if (querySnapshot.docs.isNotEmpty) {
       Map<String, dynamic> allData = {};
       for (var doc in querySnapshot.docs) {
-        var data = doc.data();
+        Map<String, dynamic> data = doc.data();
+
         DocumentSnapshot<Map<String, dynamic>> userDataDoc = await ApiService
             .firestore
             .collection(Collections.userCollection)
             .doc(data['personUid'])
             .get();
         if (userDataDoc.exists) {
-          var userData = userDataDoc.data();
+          Map<String, dynamic>? userData = userDataDoc.data();
           data.addAll(userData!);
           allData = data;
-          PostModel postModel = PostModel.fromJson(allData);
-          allPosts.add(postModel);
+          if (allData['personUid'] == ApiService.user.uid) {
+            PostModel postModel = PostModel.fromJson(allData);
+            allPosts.add(postModel);
+          } else if (allData['postStatus'] == "Following") {
+            if (followers.contains(allData['personUid'])) {
+              PostModel postModel = PostModel.fromJson(allData);
+              allPosts.add(postModel);
+            }
+          } else {
+            PostModel postModel = PostModel.fromJson(allData);
+            allPosts.add(postModel);
+          }
         }
       }
     }

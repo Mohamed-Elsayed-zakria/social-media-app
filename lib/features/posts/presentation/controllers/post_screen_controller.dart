@@ -8,7 +8,7 @@ import 'dart:io';
 
 List<String> listItem = [
   "Public".tr,
-  "Followers".tr,
+  "Following".tr,
   "Private".tr,
 ];
 

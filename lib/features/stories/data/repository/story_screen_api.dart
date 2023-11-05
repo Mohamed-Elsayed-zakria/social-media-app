@@ -1,5 +1,4 @@
 import '../../../home/presentaion/controller/home_sceen_controller.dart';
-import '../../../main_home/presentation/views/main_home_screen.dart';
 import '../../presentation/controller/story_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../../core/constant/collections.dart';
@@ -66,7 +65,7 @@ class StoryScreenApi extends StoryScreenRepo {
           addNewStoryVedioPath = null;
           addNewStoryPlayerController!.dispose();
         }
-        Get.offAll(() => const MainHomeScreen());
+        Get.back();
       });
     } catch (e) {
       uploadeStoryIsLoading.value = false;

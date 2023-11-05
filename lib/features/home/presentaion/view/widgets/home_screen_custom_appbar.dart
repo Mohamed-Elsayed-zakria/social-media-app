@@ -1,4 +1,4 @@
-import '../../../../reels/presentation/controller/uploade_video_reels_controller.dart';
+import '../../../../reels/presentation/controller/uploade_reels_controller.dart';
 import '../../../../stories/presentation/view/widgets/dialog_uploade_story.dart';
 import '../../../../chats/presentation/views/chat_screen_all_users.dart';
 import '../../../../profile/presentation/views/profile_screen.dart';

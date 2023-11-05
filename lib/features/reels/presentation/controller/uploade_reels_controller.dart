@@ -7,12 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 
-List<String> videoReelsListItem = [
-  "Public".tr,
-  "Followers".tr,
-  "Private".tr,
-];
-
 TextEditingController? getDescriptionReels = TextEditingController();
 
 VideoPlayerController? addVideoReelsController;
@@ -23,6 +17,12 @@ RxString selectItem = videoReelsListItem[0].obs;
 RxBool uploadeReelsIsLoading = false.obs;
 RxBool isPlaying = false.obs;
 RxBool isShow = false.obs;
+
+List<String> videoReelsListItem = [
+  "Public".tr,
+  "Following".tr,
+  "Private".tr,
+];
 
 Future<void> addVideoReelsOpenGalary() async {
   final pickedVideo = await ImagePicker().pickVideo(

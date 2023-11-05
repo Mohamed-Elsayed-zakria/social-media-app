@@ -15,7 +15,7 @@ class EditePersonalButtomUpdate extends StatelessWidget {
               child: const CircularProgressIndicator(),
             )
           : CustomButton(
-              text: 'Update'.tr,
+              text: 'update'.tr,
               onPressed: () async {
                 if (formKeyeditePerson.currentState!.validate()) {
                   updateUserData(

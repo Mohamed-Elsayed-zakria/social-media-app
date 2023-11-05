@@ -1,3 +1,4 @@
+import 'widgets/update_post/uplate_post_header_loading.dart';
 import 'widgets/update_post/update_post_buttom_share.dart';
 import 'widgets/update_post/update_post_description.dart';
 import 'widgets/post_screen/post_screen_header.dart';
@@ -23,6 +24,7 @@ class UpdatePostScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
+          const UpdatePostHeaderLoading(),
           const PostScreenHeader(),
           UpdatePostDescription(postData: postData),
         ],
