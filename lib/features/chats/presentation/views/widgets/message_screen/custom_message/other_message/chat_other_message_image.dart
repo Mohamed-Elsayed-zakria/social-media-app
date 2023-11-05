@@ -17,7 +17,7 @@ class ChatOtherMessageImage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         MessageOfTypeImages(messageData: messageData),
-        ChatDateTime(dateTime: messageData.dateTime),
+        ChatDateTime(dateTime: messageData.dateTime,currentMessage: false),
       ],
     );
   }

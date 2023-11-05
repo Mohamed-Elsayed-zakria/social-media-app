@@ -17,7 +17,7 @@ class ChatOtherMessageVideo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         MessageOfTypeVideos(videoUrl: messageData.videoUrl!),
-        ChatDateTime(dateTime: messageData.dateTime),
+        ChatDateTime(dateTime: messageData.dateTime, currentMessage: false),
       ],
     );
   }

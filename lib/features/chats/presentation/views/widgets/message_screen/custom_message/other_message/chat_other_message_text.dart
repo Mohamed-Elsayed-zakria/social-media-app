@@ -16,8 +16,8 @@ class ChatOtherMessageText extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MessageOfTypeText(messageData: messageData),
-        ChatDateTime(dateTime: messageData.dateTime),
+        MessageOfTypeText(messageData: messageData, currentMessage: false),
+        ChatDateTime(dateTime: messageData.dateTime, currentMessage: false),
       ],
     );
   }

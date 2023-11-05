@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 
 class MessageOfTypeText extends StatelessWidget {
   final MessageModel messageData;
+  final bool currentMessage;
 
   const MessageOfTypeText({
     super.key,
     required this.messageData,
+    this.currentMessage = true,
   });
 
   @override
@@ -17,9 +19,11 @@ class MessageOfTypeText extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
       child: Text(
         messageData.message,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: AppStyle.kTextStyle16,
-          color: AppColors.kSurfaceColor,
+          color: currentMessage
+              ? AppColors.kSurfaceColor
+              : AppColors.kOnSurfaceColor,
         ),
       ),
     );

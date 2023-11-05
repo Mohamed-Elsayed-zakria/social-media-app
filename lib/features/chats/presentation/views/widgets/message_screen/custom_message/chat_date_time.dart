@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 
 class ChatDateTime extends StatelessWidget {
   final String dateTime;
+  final bool currentMessage;
   const ChatDateTime({
     super.key,
     required this.dateTime,
+    this.currentMessage = true,
   });
 
   @override
@@ -16,9 +18,11 @@ class ChatDateTime extends StatelessWidget {
       MyDateUtil.convertDateTime(
         historyAsText: dateTime,
       ),
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: AppStyle.kTextStyle12,
-        color: AppColors.kSurfaceColor,
+        color: currentMessage
+            ? AppColors.kSurfaceColor
+            : AppColors.kOnSurfaceColor,
       ),
     );
   }

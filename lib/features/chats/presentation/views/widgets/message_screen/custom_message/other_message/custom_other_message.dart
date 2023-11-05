@@ -30,7 +30,7 @@ class CustomOtherMessage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 6),
           margin: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
-            color: Colors.purple,
+            color: Colors.grey[300],
             borderRadius: BorderRadius.circular(10),
           ),
           child: messageData.type == TypeChatMessage.text.name
