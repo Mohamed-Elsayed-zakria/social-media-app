@@ -11,21 +11,16 @@ import 'dart:async';
 
 class ProfileScreenApi implements ProfileScreenRepo {
   @override
-  Stream<Map<String, dynamic>> getCurrentUserData({
+  Future<Map<String, dynamic>> getCurrentUserData({
     required String otherUid,
-  }) {
-    StreamController<Map<String, dynamic>> userDataController =
-        StreamController();
-    ApiService.firestore
+  }) async {
+    Map<String, dynamic> currentUserData = {};
+    DocumentSnapshot<Map<String, dynamic>> jsonData = await ApiService.firestore
         .collection(Collections.userCollection)
         .doc(otherUid)
-        .snapshots()
-        .listen((DocumentSnapshot<Map<String, dynamic>> data) {
-      Map<String, dynamic> currentUserData = data.data()!;
-      userDataController.add(currentUserData);
-    });
-
-    return userDataController.stream;
+        .get();
+    currentUserData = jsonData.data()!;
+    return currentUserData;
   }
 
   @override

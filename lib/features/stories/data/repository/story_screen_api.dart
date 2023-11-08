@@ -2,7 +2,7 @@ import '../../../home/presentaion/controller/home_sceen_controller.dart';
 import '../../presentation/controller/story_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../../core/constant/collections.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import '../../../../core/utils/show_toast.dart';
 import '../../../../core/api/api_service.dart';
 import '../model/stories_model.dart';
 import 'story_screen_repo.dart';
@@ -81,11 +81,7 @@ class StoryScreenApi extends StoryScreenRepo {
         .doc(storyUid)
         .delete()
         .then(
-          (value) => Fluttertoast.showToast(
-            msg: "The story has been deleted".tr,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-          ),
+          (value) => showToast(msg: "The story has been deleted".tr),
         );
   }
 
@@ -102,11 +98,7 @@ class StoryScreenApi extends StoryScreenRepo {
         .collection(Collections.reportStoryCollection)
         .add(dataToUpdate)
         .then(
-          (value) => Fluttertoast.showToast(
-            msg: "The story has been reported".tr,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-          ),
+          (value) => showToast(msg: "The story has been reported".tr),
         );
   }
 }

@@ -1,3 +1,4 @@
+import '../../../../../core/utils/show_toast.dart';
 import '../../../presentation/controller/show_reels_comments_controller.dart';
 import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -174,6 +175,9 @@ class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
 
     ApiService.firestore
         .collection(Collections.reportReelsCommentCollection)
-        .add(dataToUpdate);
+        .add(dataToUpdate)
+        .then(
+          (value) => showToast(msg: "The comment has been reported".tr),
+        );
   }
 }

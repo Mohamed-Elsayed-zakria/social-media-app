@@ -1,7 +1,7 @@
+import '../../../../../../core/utils/show_toast.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:gallery_saver/gallery_saver.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,18 +33,10 @@ class ChatShowImagesButtomSheetDownloadImage extends StatelessWidget {
               albumName: "Frinds App",
             ).then((success) {
               if (success != null && success) {
-                Fluttertoast.showToast(
-                  msg: 'Image downloaded'.tr,
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.BOTTOM,
-                );
+                showToast(msg: 'Image downloaded'.tr);
               }
             }).catchError((e) {
-              Fluttertoast.showToast(
-                msg: "Image failed to load".tr,
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
-              );
+              showToast(msg: "Image failed to load".tr);
             });
           },
           title: Text('Download image'.tr),

@@ -1,7 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../../../core/api/api_service.dart';
 import '../../../../../core/constant/collections.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../../../core/utils/show_toast.dart';
+import '../../../../../core/api/api_service.dart';
 import '../profile_edite_more_repo.dart';
+import 'package:get/get.dart';
 
 class ProfileEditeMoreApi extends ProfileEditeMoreRepo {
   @override
@@ -11,14 +13,11 @@ class ProfileEditeMoreApi extends ProfileEditeMoreRepo {
         .doc(ApiService.user.uid)
         .update({
       'listBlock': FieldValue.arrayUnion([otherUid]),
-    });
-
-    await ApiService.firestore
-        .collection(Collections.userCollection)
-        .doc(otherUid)
-        .update({
-      'listBlock': FieldValue.arrayUnion([ApiService.user.uid]),
-    });
+    }).then(
+      (value) => showToast(
+        msg: "The user has been blocked".tr,
+      ),
+    );
   }
 
   @override
@@ -28,13 +27,10 @@ class ProfileEditeMoreApi extends ProfileEditeMoreRepo {
         .doc(ApiService.user.uid)
         .update({
       'listBlock': FieldValue.arrayRemove([otherUid]),
-    });
-
-    await ApiService.firestore
-        .collection(Collections.userCollection)
-        .doc(otherUid)
-        .update({
-      'listBlock': FieldValue.arrayRemove([ApiService.user.uid]),
-    });
+    }).then(
+      (value) => showToast(
+        msg: "Done unBlock the user".tr,
+      ),
+    );
   }
 }

@@ -87,6 +87,8 @@ const Map<String, String> ar = {
   "The message has been deleted": "تم حذف الرسالة",
   "The message has been reported": "تم الإبلاغ عن الرسالة",
   "Edite message": "تعديل الرسالة",
+  "You have blocked this user": "لقد قمت بحظر هذا المستخدم",
+
 //===================home===================
   "Home": "الرئيسية",
   "uploade post": "إضافة منشور",
@@ -209,7 +211,6 @@ const Map<String, String> ar = {
   "English": "انجليزي",
   'Arabic': 'عربي',
   //***************'General settings'*************
-
   'Account information': 'معلومات الحساب',
   'Edite personal information': 'تعديل المعلومات الشخصيه',
   'Verification': "شارة التحقق",
@@ -229,6 +230,8 @@ const Map<String, String> ar = {
   'update': 'تحديث',
   "username already taken": "الاسم مستخدم من قبل",
   "Wrong password provided for that user": "كلمة المرور غير صحيحة",
+  'Cannot change username':
+      "لم يعد بإمكانك تغيير اسم المستخدم الخاص بك لأنك قمت بالتحقق من ملكية حسابك",
 //*******************verification****************
   "applyForVerification": "التقدم بطلب التحقق",
   "verificationAcount":

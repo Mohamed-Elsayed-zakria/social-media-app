@@ -1,9 +1,9 @@
 import '../../../../controller/show_reels_comments_controller.dart';
 import '../../../../../../../core/model/comment_model.dart';
+import '../../../../../../../core/utils/show_toast.dart';
 import '../../../../../../../core/constant/colors.dart';
 import '../../../../../../../core/constant/style.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -40,11 +40,6 @@ class ShowReelsOnLongPressOtherComment extends StatelessWidget {
                 videoUid: videoUid,
               );
               Get.back();
-              Fluttertoast.showToast(
-                msg: "The comment has been reported".tr,
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
-              );
             },
             title: Text(
               "Report".tr,
@@ -58,11 +53,9 @@ class ShowReelsOnLongPressOtherComment extends StatelessWidget {
           ListTile(
             onTap: () {
               Get.back();
-              Clipboard.setData(ClipboardData(text: commentData.textComment));
-              Fluttertoast.showToast(
-                msg: "The text has been copied".tr,
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
+              Clipboard.setData(ClipboardData(text: commentData.textComment))
+                  .then(
+                (value) => showToast(msg: "The text has been copied".tr),
               );
             },
             leading: const Icon(

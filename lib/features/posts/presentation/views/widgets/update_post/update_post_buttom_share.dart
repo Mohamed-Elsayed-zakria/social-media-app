@@ -21,7 +21,10 @@ class UpdatePostButtomShare extends StatelessWidget {
           onPressed: updatePostLoading.value != true
               ? () {
                   if (updatePostFormKey.currentState!.validate()) {
-                    updatePost(postUid: postData.postUid);
+                    updatePost(
+                      postUid: postData.postUid,
+                      postStatus: updatePostSelectItem.value,
+                    );
                   }
                 }
               : null,

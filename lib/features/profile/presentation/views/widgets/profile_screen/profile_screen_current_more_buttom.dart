@@ -1,12 +1,11 @@
 import '../../../../../settings/presentation/views/account_settings_screen.dart';
+import '../../../../../../core/utils/show_toast.dart';
 import '../../../../../../core/constant/colors.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import '../../../../data/models/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
-import '../../../../data/models/profile_model.dart';
 
 class ProfileScreenCurrentMoreButtom extends StatelessWidget {
   final ProfileScreenModel userData;
@@ -42,16 +41,11 @@ class ProfileScreenCurrentMoreButtom extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Clipboard.setData(
-                ClipboardData(
-                  text: userData.personalPageUrl,
-                ),
+              Clipboard.setData(ClipboardData(text: userData.personalPageUrl))
+                  .then(
+                (value) => showToast(msg: "The text has been copied".tr),
               );
-              Fluttertoast.showToast(
-                msg: "The text has been copied".tr,
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
-              );
+
               Get.back();
             },
             leading: const Icon(

@@ -1,3 +1,4 @@
+import '../../../../../core/utils/show_toast.dart';
 import '../../../presentation/controllers/comments_controller.dart';
 import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -80,8 +81,10 @@ class CommentsApi extends CommentsRepo {
   }
 
   @override
-  Stream<List> getPostCommentsLikes(
-      {required String postUid, required String commentUid,}) {
+  Stream<List> getPostCommentsLikes({
+    required String postUid,
+    required String commentUid,
+  }) {
     final StreamController<List> likesController = StreamController<List>();
     ApiService.firestore
         .collection(Collections.postCollection)
@@ -173,6 +176,9 @@ class CommentsApi extends CommentsRepo {
 
     ApiService.firestore
         .collection(Collections.reportPostCommentCollection)
-        .add(dataToUpdate);
+        .add(dataToUpdate)
+        .then(
+          (value) => showToast(msg: "The comment has been reported".tr),
+        );
   }
 }

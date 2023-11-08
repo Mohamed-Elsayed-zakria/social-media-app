@@ -6,6 +6,14 @@ TextEditingController updatePostController = TextEditingController();
 GlobalKey<FormState> updatePostFormKey = GlobalKey();
 RxBool updatePostLoading = false.obs;
 
+List<String> updatePostListItem = [
+  "Public".tr,
+  "Following".tr,
+  "Private".tr,
+];
+
+RxString updatePostSelectItem = updatePostListItem[0].obs;
+
 String? updatePostvalidator({required String? value}) {
   if (value!.isEmpty) {
     return 'You must add a description to the post'.tr;
@@ -14,6 +22,12 @@ String? updatePostvalidator({required String? value}) {
   }
 }
 
-Future<void> updatePost({required String postUid}) async {
-  UpdatePostApi().updatePost(postUid: postUid);
+Future<void> updatePost({
+  required String postUid,
+  required String postStatus,
+}) async {
+  UpdatePostApi().updatePost(
+    postUid: postUid,
+    postStatus: postStatus,
+  );
 }

@@ -1,7 +1,7 @@
 import '../../../../../../core/widgets/custom_read_more_text.dart';
+import '../../../../../../core/utils/show_toast.dart';
 import '../../../../../../core/constant/style.dart';
 import '../../../../data/model/post_model.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'custom_post_vedio_item.dart';
@@ -25,11 +25,8 @@ class CustomPostContent extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 3),
           child: InkWell(
             onLongPress: () {
-              Clipboard.setData(ClipboardData(text: postData.description));
-              Fluttertoast.showToast(
-                msg: "The text has been copied".tr,
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
+              Clipboard.setData(ClipboardData(text: postData.description)).then(
+                (value) => showToast(msg: "The text has been copied".tr),
               );
             },
             child: SizedBox(

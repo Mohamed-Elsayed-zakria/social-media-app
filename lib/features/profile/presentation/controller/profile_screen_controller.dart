@@ -1,8 +1,13 @@
 import '../../data/repository/api/profile_screen_api.dart';
 import '../../../posts/data/model/post_model.dart';
 import '../../data/models/profile_model.dart';
+import 'package:get/get.dart';
 
-Stream<Map<String, dynamic>> getCurrentUserData({
+class ProfileScreenController extends GetxController{
+  
+}
+
+Future<Map<String, dynamic>> getCurrentUserData({
   required String otherUid,
 }) {
   return ProfileScreenApi().getCurrentUserData(otherUid: otherUid);

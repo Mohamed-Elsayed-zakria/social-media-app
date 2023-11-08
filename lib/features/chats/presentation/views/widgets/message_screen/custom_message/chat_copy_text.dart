@@ -1,9 +1,8 @@
+import '../../../../../../../core/utils/show_toast.dart';
 import '../../../../../../../core/constant/colors.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 
 class ChatCopyText extends StatelessWidget {
   final String textMessage;
@@ -20,11 +19,8 @@ class ChatCopyText extends StatelessWidget {
         Get.back();
         Clipboard.setData(
           ClipboardData(text: textMessage),
-        );
-        Fluttertoast.showToast(
-          msg: "The text has been copied".tr,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
+        ).then(
+          (value) => showToast(msg: "The text has been copied".tr),
         );
       },
       title: Text("Copy text".tr),

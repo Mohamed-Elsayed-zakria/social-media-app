@@ -1,6 +1,6 @@
 import '../controller/main_home_screen_controller.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import '../../../../core/utils/show_toast.dart';
 import '../../../../core/constant/colors.dart';
 import 'widgets/main_home_screen_body.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +17,7 @@ class MainHomeScreen extends StatelessWidget {
         if (isBackPressed) {
           return true;
         } else {
-          Fluttertoast.showToast(
-            msg: "Press back again to exit".tr,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-          );
+          showToast(msg: "Press back again to exit".tr);
           isBackPressed = true;
           Future.delayed(
             const Duration(seconds: 3),

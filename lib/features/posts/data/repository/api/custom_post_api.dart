@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import '../../../../../core/constant/collections.dart';
 import '../../../../../core/api/api_service.dart';
+import '../../../../../core/utils/show_toast.dart';
 import '../../model/post_model.dart';
 import '../../model/report_post.dart';
 import '../custom_post_repo.dart';
@@ -81,7 +83,9 @@ class CustomPostApi implements CustomPostRepo {
         .collection(Collections.postCollection)
         .doc(data.postUid);
 
-    await postRef.delete();
+    await postRef.delete().then(
+          (value) => showToast(msg: "The Post has been deleted".tr),
+        );
 
     final subCollection1Ref =
         postRef.collection(Collections.commentsCollection);

@@ -2,9 +2,9 @@ import '../../../presentation/controllers/edite_personal_controller.dart';
 import '../../../../../core/model/current_user_data.dart';
 import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../../../core/utils/show_toast.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../../../../core/constant/colors.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import '../edite_personal_repo.dart';
 import 'package:get/get.dart';
 
@@ -29,29 +29,34 @@ class EditePersonalApi extends EditePersonalRepo {
     required String? dateTime,
   }) async {
     if (username.isNotEmpty) {
-      if (await isUsernameTaken(username: username)) {
-        editePersonUpdateUserData.value = false;
+      if (CurrentUserData.verified == false) {
+        if (await isUsernameTaken(username: username)) {
+          editePersonUpdateUserData.value = false;
+          Get.snackbar(
+            "Error".tr,
+            "username already taken".tr,
+            backgroundColor: AppColors.kErrorColor,
+            colorText: AppColors.kSurfaceColor,
+          );
+        } else {
+          editePersonUpdateUserData.value = true;
+          await ApiService.firestore
+              .collection(Collections.userCollection)
+              .doc(ApiService.user.uid)
+              .update({'username': username}).then((value) {
+            editePersonGetUsername.clear();
+            CurrentUserData.takeUsername(username);
+            editePersonUpdateUserData.value = false;
+            showToast(msg: "Done".tr);
+          });
+        }
+      } else {
         Get.snackbar(
-          "Error".tr,
-          "username already taken".tr,
+          'Error'.tr,
+          'Cannot change username'.tr,
           backgroundColor: AppColors.kErrorColor,
           colorText: AppColors.kSurfaceColor,
         );
-      } else {
-        editePersonUpdateUserData.value = true;
-        await ApiService.firestore
-            .collection(Collections.userCollection)
-            .doc(ApiService.user.uid)
-            .update({'username': username}).then((value) {
-          editePersonGetUsername.clear();
-          CurrentUserData.takeUsername(username);
-          editePersonUpdateUserData.value = false;
-          Fluttertoast.showToast(
-            msg: "Done".tr,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-          );
-        });
       }
     }
 
@@ -65,11 +70,7 @@ class EditePersonalApi extends EditePersonalRepo {
             .update({'firstName': firstname}).then((value) {
           editePersonGetFirstName.clear();
           editePersonUpdateUserData.value = false;
-          Fluttertoast.showToast(
-            msg: "Done".tr,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-          );
+          showToast(msg: "Done".tr);
         });
       } catch (e) {
         editePersonUpdateUserData.value = false;
@@ -85,11 +86,7 @@ class EditePersonalApi extends EditePersonalRepo {
             .update({'lastName': lastname}).then((value) {
           editePersonGetLastName.clear();
           editePersonUpdateUserData.value = false;
-          Fluttertoast.showToast(
-            msg: "Done".tr,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-          );
+          showToast(msg: "Done".tr);
         });
       } catch (e) {
         editePersonUpdateUserData.value = false;
@@ -104,11 +101,7 @@ class EditePersonalApi extends EditePersonalRepo {
             .update({'age': dateTime}).then((value) {
           editePersonUpdateUserData.value = false;
           editePersonDateOfBirth.value = null;
-          Fluttertoast.showToast(
-            msg: "Done".tr,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-          );
+          showToast(msg: "Done".tr);
         });
       } catch (e) {
         editePersonUpdateUserData.value = false;

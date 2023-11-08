@@ -3,7 +3,6 @@ import '../../../../../../../core/constant/colors.dart';
 import '../../../../../../../core/constant/style.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../../data/model/post_model.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import '../../../update_post_screen.dart';
 import 'custom_post_more_all_likes.dart';
 import 'package:flutter/material.dart';
@@ -34,11 +33,6 @@ class CustomPostMoreCurrentUser extends StatelessWidget {
           ListTile(
             onTap: () async {
               await deletePost(data: postData);
-              Fluttertoast.showToast(
-                msg: "The Post has been deleted".tr,
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
-              );
               Get.back();
             },
             leading: const Icon(

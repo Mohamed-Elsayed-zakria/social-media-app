@@ -5,8 +5,8 @@ import '../../../../../core/model/current_user_data.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../../../core/utils/show_toast.dart';
 import '../../../../../core/api/api_service.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import '../chat_screen_messages_repo.dart';
 import '../../models/user_chat_data.dart';
 import '../../models/message_model.dart';
@@ -172,11 +172,7 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
         .doc(messageData.dateTime)
         .delete()
         .then(
-          (value) => Fluttertoast.showToast(
-            msg: "The message has been deleted".tr,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-          ),
+          (value) => showToast(msg: "The message has been deleted".tr),
         );
   }
 
@@ -198,11 +194,7 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
         .collection(Collections.reportMessageCollection)
         .add(messageData.toJson())
         .then(
-          (value) => Fluttertoast.showToast(
-            msg: "The message has been reported".tr,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-          ),
+          (value) => showToast(msg: "The message has been reported".tr),
         );
   }
 

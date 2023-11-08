@@ -87,6 +87,7 @@ const Map<String, String> en = {
   "The message has been deleted": "The message has been deleted",
   "The message has been reported": "The message has been reported",
   "Edite message": "Edite message",
+  "You have blocked this user":"You have blocked this user",
 //===================home===================
   "Home": "Home",
   "uploade post": "uploade post",
@@ -230,6 +231,7 @@ const Map<String, String> en = {
   "username already taken": "username already taken",
   "Wrong password provided for that user":
       "Wrong password provided for that user",
+  'Cannot change username' :'You can no longer change your username because you have verified ownership of your account',
 //*******************verification****************
   "applyForVerification": "Apply for verification",
   "verificationAcount":

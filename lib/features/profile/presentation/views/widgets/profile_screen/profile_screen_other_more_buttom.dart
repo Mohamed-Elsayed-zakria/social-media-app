@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
-import '../../../../../../core/api/api_service.dart';
+import '../../../controller/profile_edite_more_controller.dart';
+import '../../../../../../core/model/current_user_data.dart';
+import '../../../../../../core/utils/show_toast.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../data/models/profile_model.dart';
-import '../../../controller/profile_edite_more_controller.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 class ProfileScreenOtherMoreButtom extends StatelessWidget {
   final ProfileScreenModel userData;
@@ -30,18 +30,14 @@ class ProfileScreenOtherMoreButtom extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          userData.listBlock.contains(ApiService.user.uid)
+          CurrentUserData.listBlock.contains(userData.personalUid)
               ? ListTile(
                   onTap: () async {
+                    Get.back();
                     await deleteUserFromListBlock(
                       otherUid: userData.personalUid,
                     );
-                    Fluttertoast.showToast(
-                      msg: "Done unBlock the user".tr,
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                    );
-                    Get.back();
+                    CurrentUserData.listBlock.remove(userData.personalUid);
                   },
                   leading: const Icon(
                     IconlyBroken.infoSquare,
@@ -51,13 +47,9 @@ class ProfileScreenOtherMoreButtom extends StatelessWidget {
                 )
               : ListTile(
                   onTap: () async {
-                    await addUserToListBlock(otherUid: userData.personalUid);
-                    Fluttertoast.showToast(
-                      msg: "The user has been blocked".tr,
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                    );
                     Get.back();
+                    await addUserToListBlock(otherUid: userData.personalUid);
+                    CurrentUserData.listBlock.add(userData.personalUid);
                   },
                   leading: const Icon(
                     IconlyBroken.infoSquare,
@@ -68,14 +60,9 @@ class ProfileScreenOtherMoreButtom extends StatelessWidget {
           ListTile(
             onTap: () {
               Clipboard.setData(
-                ClipboardData(
-                  text: userData.personalPageUrl,
-                ),
-              );
-              Fluttertoast.showToast(
-                msg: "The text has been copied".tr,
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
+                ClipboardData(text: userData.personalPageUrl),
+              ).then(
+                (value) => showToast(msg: "The text has been copied".tr),
               );
               Get.back();
             },
