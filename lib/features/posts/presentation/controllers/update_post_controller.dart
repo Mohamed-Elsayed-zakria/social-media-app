@@ -6,13 +6,7 @@ TextEditingController updatePostController = TextEditingController();
 GlobalKey<FormState> updatePostFormKey = GlobalKey();
 RxBool updatePostLoading = false.obs;
 
-List<String> updatePostListItem = [
-  "Public".tr,
-  "Following".tr,
-  "Private".tr,
-];
-
-RxString updatePostSelectItem = updatePostListItem[0].obs;
+RxString updatePostSelectItem = ''.obs;
 
 String? updatePostvalidator({required String? value}) {
   if (value!.isEmpty) {

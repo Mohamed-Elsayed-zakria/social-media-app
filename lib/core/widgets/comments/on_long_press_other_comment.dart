@@ -1,21 +1,17 @@
-import '../../../../controller/show_reels_comments_controller.dart';
-import '../../../../../../../core/model/comment_model.dart';
-import '../../../../../../../core/utils/show_toast.dart';
-import '../../../../../../../core/constant/colors.dart';
-import '../../../../../../../core/constant/style.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import '../../constant/colors.dart';
+import '../../constant/style.dart';
 import 'package:get/get.dart';
 
-class ShowReelsOnLongPressOtherComment extends StatelessWidget {
-  final CommentModel commentData;
-  final String videoUid;
+class OnLongPressOtherComment extends StatelessWidget {
+  final Function() onTapReport;
+  final Function() onTapCopy;
 
-  const ShowReelsOnLongPressOtherComment({
+  const OnLongPressOtherComment({
     super.key,
-    required this.commentData,
-    required this.videoUid,
+    required this.onTapReport,
+    required this.onTapCopy,
   });
 
   @override
@@ -34,13 +30,7 @@ class ShowReelsOnLongPressOtherComment extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ListTile(
-            onTap: () async {
-              await reportReelsComment(
-                commentData: commentData,
-                videoUid: videoUid,
-              );
-              Get.back();
-            },
+            onTap: onTapReport,
             title: Text(
               "Report".tr,
               style: const TextStyle(fontSize: AppStyle.kTextStyle18),
@@ -51,13 +41,7 @@ class ShowReelsOnLongPressOtherComment extends StatelessWidget {
             ),
           ),
           ListTile(
-            onTap: () {
-              Get.back();
-              Clipboard.setData(ClipboardData(text: commentData.textComment))
-                  .then(
-                (value) => showToast(msg: "The text has been copied".tr),
-              );
-            },
+            onTap:onTapCopy,
             leading: const Icon(
               color: AppColors.kPrimaryColor,
               Icons.copy_all_outlined,

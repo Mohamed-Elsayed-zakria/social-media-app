@@ -1,12 +1,12 @@
-import '../../../../../../../core/widgets/custom_read_more_text.dart';
-import '../../../../../../../core/model/comment_model.dart';
-import '../../../../../../../core/constant/style.dart';
+import '../../model/comment_model.dart';
+import '../custom_read_more_text.dart';
 import 'package:flutter/material.dart';
+import '../../constant/style.dart';
 
-class ShowReelsCommentDescription extends StatelessWidget {
+class CommentOfTypeText extends StatelessWidget {
   final CommentModel commentData;
 
-  const ShowReelsCommentDescription({
+  const CommentOfTypeText({
     super.key,
     required this.commentData,
   });

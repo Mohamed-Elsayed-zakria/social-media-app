@@ -1,11 +1,9 @@
-import '../../../../../core/model/current_user_data.dart';
 import '../../../presentation/controller/profile_edite_controller.dart';
+import '../../../../../core/model/current_user_data.dart';
 import '../../../../../core/constant/collections.dart';
 import '../../../../../core/api/api_service.dart';
-import '../../../../../core/constant/colors.dart';
 import '../profile_edite_repo.dart';
 import 'package:uuid/uuid.dart';
-import 'package:get/get.dart';
 
 class ProfileEditeApi extends ProfileEditeRepo {
   @override
@@ -34,12 +32,6 @@ class ProfileEditeApi extends ProfileEditeRepo {
       }
     } catch (e) {
       updateIsLodinge.value = false;
-      Get.snackbar(
-        "Error".tr,
-        "$e",
-        backgroundColor: AppColors.kErrorColor,
-        colorText: AppColors.kSurfaceColor,
-      );
     }
   }
 
@@ -66,12 +58,6 @@ class ProfileEditeApi extends ProfileEditeRepo {
       }
     } catch (e) {
       updateIsLodinge.value = false;
-      Get.snackbar(
-        "Error".tr,
-        "$e",
-        backgroundColor: AppColors.kErrorColor,
-        colorText: AppColors.kSurfaceColor,
-      );
     }
   }
 

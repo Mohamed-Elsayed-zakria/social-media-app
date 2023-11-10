@@ -3,11 +3,11 @@ import '../../data/model/stories_model.dart';
 import 'package:story_view/story_view.dart';
 import 'package:get/get.dart';
 
-List<StoryItem> allStory = [];
 RxInt storyPosition = 0.obs;
 
 List<StoryItem> handleStory({
   required StoryController storyController,
+  required List<StoryItem> allStory,
   required List<StoriesModel> storiesModel,
 }) {
   for (var element in storiesModel) {

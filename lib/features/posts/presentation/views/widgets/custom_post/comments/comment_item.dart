@@ -1,12 +1,11 @@
-import '../../../../../../../core/utils/date_time.dart';
-import '../../../../../../../core/api/api_service.dart';
-import '../../../../../../../core/constant/colors.dart';
+import '../../../../../../../core/widgets/comments/comment_circle_avatar.dart';
+import '../../../../../../../core/widgets/comments/comment_of_type_image.dart';
+import '../../../../../../../core/widgets/comments/comment_of_type_text.dart';
 import '../../../../../../../core/model/comment_model.dart';
-import 'on_long_press_current_comment.dart';
-import 'on_long_press_other_comment.dart';
+import '../../../../../../../core/utils/date_time.dart';
+import '../../../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
-import 'comment_circle_avatar.dart';
-import 'comment_description.dart';
+import 'on_long_press_comment.dart';
 import 'comment_add_like.dart';
 import 'package:get/get.dart';
 
@@ -25,21 +24,13 @@ class CommentItem extends StatelessWidget {
     return GestureDetector(
       onLongPress: () {
         Get.bottomSheet(
-          commentData.personUid == ApiService.user.uid
-              ? OnLongPressCurrentComment(
-                  commentData: commentData,
-                  postUid: postUid,
-                )
-              : OnLongPressOtherComment(
-                  commentData: commentData,
-                  postUid: postUid,
-                ),
+          OnLongPressComment(commentData: commentData, postUid: postUid),
         );
       },
       child: Card(
         color: AppColors.kSurfaceColor,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
               title: Row(
@@ -75,7 +66,13 @@ class CommentItem extends StatelessWidget {
                 postUid: postUid,
               ),
             ),
-            CommentDescription(commentData: commentData)
+            Visibility(
+              visible: commentData.commentType == CommentType.text.name,
+              replacement: CommentOfTypeImage(
+                urlImage: commentData.imageUrlComment,
+              ),
+              child: CommentOfTypeText(commentData: commentData),
+            ),
           ],
         ),
       ),

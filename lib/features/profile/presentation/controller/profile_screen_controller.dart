@@ -7,7 +7,7 @@ class ProfileScreenController extends GetxController{
   
 }
 
-Future<Map<String, dynamic>> getCurrentUserData({
+Stream<Map<String, dynamic>> getCurrentUserData({
   required String otherUid,
 }) {
   return ProfileScreenApi().getCurrentUserData(otherUid: otherUid);

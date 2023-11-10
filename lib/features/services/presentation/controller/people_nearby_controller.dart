@@ -1,5 +1,6 @@
 import '../../data/repository/api/people_nearby_api.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../data/model/people_nearby_model.dart';
+import '../../../../core/utils/snack_bar.dart';
 import 'package:geolocator/geolocator.dart';
 import '../view/people_nearby_screen.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,7 @@ RxBool getPeopleNearbyIsLoding = true.obs;
 late double currentLatitude;
 late double currentLongitude;
 
-Future<QuerySnapshot<Map<String, dynamic>>> getUserDataToPeopleNearby() {
+Future<List<PeopleNearbyModel>> getUserDataToPeopleNearby() {
   return PeopleNearbyApi().getUserDataToPeopleNearby();
 }
 
@@ -23,9 +24,9 @@ Future checkLocationSettings() async {
       permission = await Geolocator.requestPermission();
     }
   } else {
-    Get.snackbar(
-      'Error'.tr,
-      'You must activate the location service first'.tr,
+    snackBar(
+      message: 'You must activate the location service first'.tr,
+      isError: true,
     );
   }
 }

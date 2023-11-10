@@ -1,7 +1,7 @@
 import '../../data/repository/story_screen_api.dart';
 import 'package:video_player/video_player.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../../core/constant/colors.dart';
+import '../../../../core/utils/snack_bar.dart';
 import '../../data/model/stories_model.dart';
 import '../view/uploade_story_screen.dart';
 import 'package:flutter/material.dart';
@@ -61,12 +61,11 @@ Future<void> videoStoryOpenGalary() async {
 
     final double videoSizeInMB = videoSize / (1024 * 1024);
     if (videoSizeInMB > 20) {
-      Get.snackbar(
-        "Error".tr,
-        "The allowed video size is 20 MB".tr,
-        backgroundColor: AppColors.kErrorColor,
-        colorText: AppColors.kSurfaceColor,
+      snackBar(
+        message: "The allowed video size is 20 MB".tr,
+        isError: true,
       );
+
       return;
     }
     addNewStoryVedioPath = videoFile;

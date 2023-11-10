@@ -41,17 +41,7 @@ class _PeopleNearbyScreenState extends State<PeopleNearbyScreen> {
                       ],
                     );
                   } else {
-                    List<PeopleNearbyModel> userData = [];
-
-                    final allUserData = snapshot.data!.docs;
-                    userData = allUserData
-                        .map((element) =>
-                            PeopleNearbyModel.fromJson(element.data()))
-                        .where(
-                          (model) =>
-                              model.latitude != '0' && model.longitude != '0',
-                        )
-                        .toList();
+                    List<PeopleNearbyModel> userData = snapshot.data!;
                     return ListView.builder(
                       itemCount: userData.length,
                       itemBuilder: (context, index) => PeopleNearbyScreenBody(

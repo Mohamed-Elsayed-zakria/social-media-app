@@ -3,6 +3,7 @@ import '../../../../core/model/comment_model.dart';
 abstract class ShowReelsCommentsRepo {
   Stream<List<CommentModel>> getAllReelsComments({required String videoUid});
   Future<void> addNewReelsComment({
+    required CommentType commentType,
     required String videoUid,
     required String text,
   });

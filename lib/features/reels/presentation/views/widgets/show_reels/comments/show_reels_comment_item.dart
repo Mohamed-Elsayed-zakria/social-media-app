@@ -1,13 +1,12 @@
+import '../../../../../../../core/widgets/comments/comment_circle_avatar.dart';
+import '../../../../../../../core/widgets/comments/comment_of_type_image.dart';
+import '../../../../../../../core/widgets/comments/comment_of_type_text.dart';
 import '../../../../../../../core/model/comment_model.dart';
 import '../../../../../../../core/utils/date_time.dart';
-import '../../../../../../../core/api/api_service.dart';
 import '../../../../../../../core/constant/colors.dart';
-import 'show_reelson_long_press_current_comment.dart';
-import 'show_reels_on_long_press_other_comment.dart';
-import 'show_reels_comment_circal_avatar.dart';
-import 'show_reels_comment_description.dart';
 import 'show_reels_comment_add_like.dart';
 import 'package:flutter/material.dart';
+import 'show_reels_on_long_press_comment.dart';
 import 'package:get/get.dart';
 
 class ShowReelsCommentItem extends StatelessWidget {
@@ -25,15 +24,10 @@ class ShowReelsCommentItem extends StatelessWidget {
     return GestureDetector(
       onLongPress: () {
         Get.bottomSheet(
-          commentData.personUid == ApiService.user.uid
-              ? ShowReelsOnLongPressCurrentComment(
-                  commentData: commentData,
-                  videoUid: videoUid,
-                )
-              : ShowReelsOnLongPressOtherComment(
-                  commentData: commentData,
-                  videoUid: videoUid,
-                ),
+          ShowReelsOnLongPressComment(
+            commentData: commentData,
+            videoUid: videoUid,
+          ),
         );
       },
       child: Card(
@@ -69,13 +63,19 @@ class ShowReelsCommentItem extends StatelessWidget {
                   ),
                 ],
               ),
-              leading: ShowReelsCommentCircleAvatar(commentData: commentData),
+              leading: CommentCircleAvatar(commentData: commentData),
               trailing: ShowReelsCommentAddLike(
                 commentData: commentData,
                 videoUid: videoUid,
               ),
             ),
-            ShowReelsCommentDescription(commentData: commentData)
+            Visibility(
+              visible: commentData.commentType == CommentType.text.name,
+              replacement: CommentOfTypeImage(
+                urlImage: commentData.imageUrlComment,
+              ),
+              child: CommentOfTypeText(commentData: commentData),
+            ),
           ],
         ),
       ),

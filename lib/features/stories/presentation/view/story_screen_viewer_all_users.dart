@@ -31,28 +31,24 @@ class _StoryScreenViewerAllUsersState extends State<StoryScreenViewerAllUsers> {
 
   @override
   Widget build(BuildContext context) {
-    storyPosition.value = 0;
-    allStory = [];
     PageController pageControllerStory = PageController(
       initialPage: widget.initialPage,
     );
-    return GestureDetector(
-      onVerticalDragUpdate: (details) {
-        if (details.primaryDelta! > 20 || details.primaryDelta! < -20) {
-          Get.back();
-        }
-      },
-      child: Scaffold(
-        body: PageView.builder(
-          controller: pageControllerStory,
-          itemCount: widget.storyDatabasic.length,
-          itemBuilder: (context, index) => Stack(
+    return Scaffold(
+      body: PageView.builder(
+        controller: pageControllerStory,
+        itemCount: widget.storyDatabasic.length,
+        itemBuilder: (context, index) {
+          List<StoryItem> allStory = [];
+          storyPosition.value = 0;
+          return Stack(
             children: [
               StoryView(
                 inline: true,
                 controller: storyController,
                 progressPosition: ProgressPosition.top,
                 storyItems: handleStory(
+                  allStory: allStory,
                   storiesModel: widget.storyDatabasic[index],
                   storyController: storyController,
                 ),
@@ -68,15 +64,21 @@ class _StoryScreenViewerAllUsersState extends State<StoryScreenViewerAllUsers> {
                     );
                   }
                 },
+                onVerticalSwipeComplete: (direction) {
+                  if (direction == Direction.down) {
+                    Get.back();
+                  }
+                },
               ),
               Obx(
                 () => StoryViewerHeader(
-                  storyData: widget.storyDatabasic[index][storyPosition.value],
+                  storyData: widget.storyDatabasic[index]
+                      [storyPosition.value],
                 ),
               )
             ],
-          ),
-        ),
+          );
+        },
       ),
     );
   }

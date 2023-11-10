@@ -1,7 +1,7 @@
 import '../../../presentation/controllers/register_screen_controller.dart';
 import '../../../presentation/views/add_details_screen.dart';
+import '../../../../../core/utils/snack_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../../../../core/constant/colors.dart';
 import '../../../../../core/api/api_service.dart';
 import '../register_screen_repo.dart';
 import 'package:get/get.dart';
@@ -29,19 +29,15 @@ class RegisterScreenApi extends RegisterScreenRepo {
     } on FirebaseAuthException catch (e) {
       registerIsLodinge.value = false;
       if (e.code == 'email-already-in-use') {
-        Get.snackbar(
-          'Error'.tr,
-          'The account already exists for that email.'.tr,
-          backgroundColor: AppColors.kErrorColor,
-          colorText: AppColors.kSurfaceColor,
+        snackBar(
+          message: 'The account already exists for that email.'.tr,
+          isError: true,
         );
       }
     } catch (e) {
-      Get.snackbar(
-        'Error'.tr,
-        '$e.',
-        backgroundColor: AppColors.kErrorColor,
-        colorText: AppColors.kSurfaceColor,
+      snackBar(
+        message: '$e.'.tr,
+        isError: true,
       );
     }
   }

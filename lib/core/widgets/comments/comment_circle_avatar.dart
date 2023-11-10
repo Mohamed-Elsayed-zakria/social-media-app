@@ -1,8 +1,8 @@
-import '../../../../../../profile/presentation/views/profile_screen.dart';
+import '../../../features/profile/presentation/views/profile_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import '../../../../../../../core/constant/colors.dart';
-import '../../../../../../../core/model/comment_model.dart';
+import '../../model/comment_model.dart';
 import 'package:flutter/material.dart';
+import '../../constant/colors.dart';
 import 'package:get/get.dart';
 
 class CommentCircleAvatar extends StatelessWidget {

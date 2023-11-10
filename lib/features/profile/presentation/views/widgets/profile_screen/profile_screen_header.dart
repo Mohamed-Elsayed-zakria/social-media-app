@@ -37,8 +37,8 @@ class ProfileScreenHeader extends StatelessWidget {
             ),
           ],
         ),
-        child: FutureBuilder(
-          future: getCurrentUserData(otherUid: otherUid),
+        child: StreamBuilder(
+          stream: getCurrentUserData(otherUid: otherUid),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const ProfileScreenShimmer();

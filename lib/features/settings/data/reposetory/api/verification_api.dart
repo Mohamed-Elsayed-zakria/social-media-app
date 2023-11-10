@@ -1,6 +1,6 @@
 import '../../../presentation/controllers/verification_controller.dart';
 import '../../../../../core/constant/collections.dart';
-import '../../../../../core/constant/colors.dart';
+import '../../../../../core/utils/snack_bar.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../models/verification_model.dart';
 import '../verification_repo.dart';
@@ -66,12 +66,10 @@ class VerificationApi extends VerificationRepo {
               getMessage.clear(),
               imgPathPick.value = null,
               imgPathId.value = null,
-              Get.snackbar(
-                "Done".tr,
-                "The request has been sent successfully".tr,
-                backgroundColor: AppColors.kSecondeColor,
-                colorText: AppColors.kSurfaceColor,
-              )
+              snackBar(
+                message: "The request has been sent successfully".tr,
+                isError: false,
+              ),
             },
           );
     } catch (e) {

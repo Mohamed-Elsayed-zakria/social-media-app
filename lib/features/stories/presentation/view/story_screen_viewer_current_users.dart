@@ -29,36 +29,35 @@ class _StoryScreenViewerCurrentUsersState
 
   @override
   Widget build(BuildContext context) {
+    List<StoryItem> allStory = [];
     storyPosition.value = 0;
-    allStory = [];
-    return GestureDetector(
-      onVerticalDragUpdate: (details) {
-        if (details.primaryDelta! > 20 || details.primaryDelta! < -20) {
-          Get.back();
-        }
-      },
-      child: Scaffold(
-        body: Stack(
-          children: [
-            StoryView(
-              inline: true,
-              controller: storyController,
-              storyItems: handleStory(
-                storiesModel: widget.storyDatabasic,
-                storyController: storyController,
-              ),
-              onStoryShow: (storyItem) {
-                storyPosition.value = allStory.indexOf(storyItem);
-              },
-              onComplete: () => Get.back(),
+    return Scaffold(
+      body: Stack(
+        children: [
+          StoryView(
+            inline: true,
+            controller: storyController,
+            storyItems: handleStory(
+              allStory: allStory,
+              storiesModel: widget.storyDatabasic,
+              storyController: storyController,
             ),
-            Obx(
-              () => StoryViewerHeader(
-                storyData: widget.storyDatabasic[storyPosition.value],
-              ),
-            )
-          ],
-        ),
+            onStoryShow: (storyItem) {
+              storyPosition.value = allStory.indexOf(storyItem);
+            },
+            onComplete: () => Get.back(),
+            onVerticalSwipeComplete: (direction) {
+              if (direction == Direction.down) {
+                Get.back();
+              }
+            },
+          ),
+          Obx(
+            () => StoryViewerHeader(
+              storyData: widget.storyDatabasic[storyPosition.value],
+            ),
+          )
+        ],
       ),
     );
   }

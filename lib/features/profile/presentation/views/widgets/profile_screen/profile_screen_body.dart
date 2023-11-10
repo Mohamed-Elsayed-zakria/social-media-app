@@ -20,11 +20,7 @@ class ProfileScreenBody extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             ProfileScreenHeader(otherUid: otherUid),
-            CustomPost(
-              future: getPostsForSpecificPerson(
-                otherUid: otherUid,
-              ),
-            )
+            CustomPost(future: getPostsForSpecificPerson(otherUid: otherUid))
           ],
         ),
       ),

@@ -1,8 +1,8 @@
-import '../../../../../../../core/constant/style.dart';
 import '../../../../../../../core/model/comment_model.dart';
 import '../../../../controllers/comments_controller.dart';
 import '../../../../../../../core/api/api_service.dart';
 import '../../../../../../../core/constant/colors.dart';
+import '../../../../../../../core/constant/style.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 
@@ -57,7 +57,7 @@ class CommentAddLike extends StatelessWidget {
             Text(
               '${allLikes.length}',
               style: const TextStyle(
-                fontSize: AppStyle.kTextStyle16,
+                fontSize: AppStyle.kTextStyle14,
               ),
             ),
           ],

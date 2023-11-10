@@ -1,6 +1,5 @@
 import '../../data/repository/api/add_details_screen_api.dart';
 import 'package:image_picker/image_picker.dart';
-import "package:path/path.dart" show basename;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
@@ -25,7 +24,6 @@ RxString gender = 'Gender'.obs;
 RxBool addDetailsIsLodinge = false.obs;
 
 File? addDetailsImgPath;
-String? addDetailsImgName;
 late String urlPersonalPicture;
 
 String? addDetailsValidatorUsername({required String? value}) {
@@ -81,11 +79,10 @@ Future<void> addUserDataToDatabase({required String username}) async {
 
 class AddDetailsController extends GetxController {
   Future<void> uploadImage({required ImageSource source}) async {
-    final pickedImg = await ImagePicker().pickImage(source: source);
+    XFile? pickedImg = await ImagePicker().pickImage(source: source);
 
     if (pickedImg != null) {
       addDetailsImgPath = File(pickedImg.path);
-      addDetailsImgName = basename(pickedImg.path);
     }
 
     update();

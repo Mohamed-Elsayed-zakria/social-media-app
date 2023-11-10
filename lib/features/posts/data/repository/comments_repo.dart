@@ -4,6 +4,7 @@ abstract class CommentsRepo {
   Stream<List<CommentModel>> getAllComments({required String postId});
 
   Future<void> addNewComment({
+    required CommentType commentType,
     required String postId,
     required String text,
   });

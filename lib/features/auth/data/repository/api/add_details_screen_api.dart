@@ -7,8 +7,8 @@ import '../../../../../core/api/api_dynamic_link.dart';
 import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../models/add_details_screen_model.dart';
-import '../../../../../core/constant/colors.dart';
 import '../../../../../core/api/api_service.dart';
+import '../../../../../core/utils/snack_bar.dart';
 import '../add_details_screen_repo.dart';
 import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
@@ -48,12 +48,7 @@ class AddDetailsScreenApi extends AddDetailsScreenRepo {
     }
     if (await isUsernameTaken(username: username)) {
       addDetailsIsLodinge.value = false;
-      Get.snackbar(
-        "Error".tr,
-        "username Already Taken".tr,
-        backgroundColor: AppColors.kErrorColor,
-        colorText: AppColors.kSurfaceColor,
-      );
+      snackBar(isError: true,message: "username Already Taken".tr);
     } else {
       if (gender.value == "ذكر") {
         gender.value = "Male";

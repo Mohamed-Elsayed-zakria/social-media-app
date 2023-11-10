@@ -8,6 +8,12 @@ class PostCustomDropDownMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> listItem = [
+      "Public".tr,
+      "Following".tr,
+      "Private".tr,
+    ];
+    selectItem.value = listItem[0];
     return Obx(
       () => DropdownButtonHideUnderline(
         child: DropdownButton(

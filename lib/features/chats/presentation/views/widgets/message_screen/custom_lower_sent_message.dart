@@ -5,7 +5,6 @@ import '../../../../../../core/constant/colors.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../data/models/message_model.dart';
 import 'custom_buttom_sheet_take_photo_vedio.dart';
-import '../../chat_uploade_images_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -53,32 +52,40 @@ class CustomLowerSentMessage extends StatelessWidget {
                     ),
                   ),
                 ),
-                IconButton(
-                  onPressed: () {
-                    Get.bottomSheet(
-                      CustomButtomSheetTakePhotoVedio(
-                        onTapUploadeImage: () async {
-                          Get.back();
-                          chatImagePaths.value = [];
-                          await chatUploadeImage();
-                          if (chatImagePaths.isNotEmpty) {
-                            Get.to(
-                              () => ChatUploadeImagesScreen(userData: userData),
-                            );
-                          }
-                        },
-                        onTapUploadeVedio: () {
-                          Get.back();
-                          addVideoChatOpenGalary(userData: userData);
-                        },
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.bottomSheet(
+                          CustomButtomSheetTakePhotoVedio(
+                            onTapUploadeImage: () {
+                              Get.back();
+                              chatUploadeImageFromGalary(userData: userData);
+                            },
+                            onTapUploadeVedio: () {
+                              Get.back();
+                              addVideoChatOpenGalary(userData: userData);
+                            },
+                          ),
+                        );
+                      },
+                      icon: const Icon(
+                        FontAwesomeIcons.paperclip,
+                        size: 20,
+                        color: AppColors.kPrimaryColor,
                       ),
-                    );
-                  },
-                  icon: const Icon(
-                    FontAwesomeIcons.paperclip,
-                    size: 20,
-                    color: AppColors.kPrimaryColor,
-                  ),
+                    ),
+                    IconButton(
+                      onPressed: () => chatUploadeImageFromCamera(
+                        userData: userData,
+                      ),
+                      icon: const Icon(
+                        color: AppColors.kPrimaryColor,
+                        IconlyBroken.camera,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

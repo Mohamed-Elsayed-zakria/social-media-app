@@ -1,11 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'custom_photo_grid_shimmer.dart';
 import 'package:flutter/material.dart';
+import '../../utils/size_screen.dart';
+import '../../constant/colors.dart';
 import 'package:get/get.dart';
-import '../../features/posts/presentation/views/widgets/custom_post/custom_post_image_shimmer.dart';
-import '../constant/colors.dart';
 import 'dart:math';
-
-import '../utils/size_screen.dart';
 
 class CustomPhotoGrid extends StatelessWidget {
   final Function(int) onImageClicked;
@@ -97,7 +96,7 @@ class CustomPhotoGrid extends StatelessWidget {
       width: double.infinity,
       fit: BoxFit.cover,
       filterQuality: FilterQuality.high,
-      placeholder: (context, url) => const CustomPostImageShimmer(),
+      placeholder: (context, url) => const CustomPhotoGridShimmer(),
       errorWidget: (context, url, error) => Center(
         child: Text('Failed to load image'.tr),
       ),

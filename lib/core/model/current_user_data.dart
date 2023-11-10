@@ -3,9 +3,13 @@ import '../constant/default_personal_images.dart';
 class CurrentUserData {
   static String personalPicture = DefaultPersonalImage.urlPhotoMale;
   static String coverPhoto = DefaultPersonalImage.urlCoverPhoto;
-  static String username = "username";
+  static late String username;
+  static late String firstName;
+  static late String lastName;
   static bool verified = false;
   static String bio = "welcome to my profile";
+  static List followers = [];
+  static List following = [];
   static List listBlock = [];
 
   CurrentUserData.fromJson(Map<String, dynamic> json) {
@@ -13,7 +17,11 @@ class CurrentUserData {
     coverPhoto = json['coverPhoto'];
     listBlock = json['listBlock'];
     username = json['username'];
+    firstName = json['firstName'];
+    lastName = json['lastName'];
     verified = json['verified'];
+    followers = json['followers'];
+    following = json['following'];
     bio = json['bio'];
   }
   CurrentUserData.takePersonalPicture(String newPersonalPicture) {
@@ -25,6 +33,14 @@ class CurrentUserData {
   CurrentUserData.takeUsername(String newUsername) {
     username = newUsername;
   }
+
+  CurrentUserData.takeFirstName(String newFirstName) {
+    firstName = newFirstName;
+  }
+  CurrentUserData.takeLastName(String newLastName) {
+    lastName = newLastName;
+  }
+
   CurrentUserData.takeVerified(bool newVerified) {
     verified = newVerified;
   }
@@ -33,5 +49,13 @@ class CurrentUserData {
   }
   CurrentUserData.takeListBlock(List newListBlock) {
     listBlock = newListBlock;
+  }
+
+  CurrentUserData.takeFollowers(List newFollowers) {
+    followers = newFollowers;
+  }
+
+  CurrentUserData.takeFollowing(List newFollowing) {
+    following = newFollowing;
   }
 }

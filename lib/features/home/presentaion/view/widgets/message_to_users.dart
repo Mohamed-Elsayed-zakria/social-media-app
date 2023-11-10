@@ -9,23 +9,25 @@ class MessageToUsers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Visibility(
-        visible: AppController.messageToUsers.isNotEmpty,
-        child: Card(
-          color: AppColors.kSurfaceColor,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                AppController.messageToUsers,
-                style: const TextStyle(
-                  fontSize: AppStyle.kTextStyle16,
+      child: AppController.messageToUsers != null
+          ? Visibility(
+              visible: AppController.messageToUsers!.isNotEmpty,
+              child: Card(
+                color: AppColors.kSurfaceColor,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      AppController.messageToUsers!,
+                      style: const TextStyle(
+                        fontSize: AppStyle.kTextStyle16,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        ),
-      ),
+            )
+          : const SizedBox(),
     );
   }
 }

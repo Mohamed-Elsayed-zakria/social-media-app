@@ -18,7 +18,7 @@ class UploadeReelsApi implements UploadeReelsRepo {
     try {
       uploadeReelsIsLoading.value = true;
       final storageRef = ApiService.fireStorage.ref(
-        "reels/${ApiService.user.uid}/$generatId/$generatId.mp4",
+        "reels/${ApiService.user.uid}/video_reels/$generatId/$generatId.mp4",
       );
       await storageRef.putFile(addVideoReelsPath!);
       videoUrl = await storageRef.getDownloadURL();

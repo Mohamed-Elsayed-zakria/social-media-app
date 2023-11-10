@@ -1,8 +1,8 @@
-import '../../../../controllers/comments_controller.dart';
+import '../../../../../../../core/widgets/comments/comments_not_fount.dart';
 import '../../../../../../../core/model/comment_model.dart';
-import 'package:flash/core/constant/colors.dart';
+import '../../../../controllers/comments_controller.dart';
+import '../../../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
-import 'comments_not_fount.dart';
 import 'comment_item.dart';
 
 class CustomComments extends StatelessWidget {

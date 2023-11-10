@@ -1,18 +1,12 @@
-import 'package:video_player/video_player.dart';
-import '../../../../core/constant/colors.dart';
 import '../../data/repository/api/post_screen_api.dart';
+import 'package:video_player/video_player.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../../core/utils/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 
-List<String> listItem = [
-  "Public".tr,
-  "Following".tr,
-  "Private".tr,
-];
-
-RxString selectItem = listItem[0].obs;
+RxString selectItem = ''.obs;
 
 RxList<String> imagePaths = <String>[].obs;
 
@@ -52,11 +46,9 @@ Future<void> uploadeVideo() async {
 
     final double videoSizeInMB = videoSize / (1024 * 1024);
     if (videoSizeInMB > 30) {
-      Get.snackbar(
-        "Error".tr,
-        "The allowed video size is 30 MB".tr,
-        backgroundColor: AppColors.kErrorColor,
-        colorText: AppColors.kSurfaceColor,
+      snackBar(
+        message: "The allowed video size is 30 MB".tr,
+        isError: true,
       );
       return;
     }

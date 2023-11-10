@@ -1,10 +1,10 @@
+import '../../../../../../core/widgets/comments/comments_not_fount.dart';
+import '../../../../../../core/widgets/comments/comments_lower.dart';
 import '../../../controller/show_reels_comments_controller.dart';
 import '../../../../../../core/model/comment_model.dart';
 import '../../../../../../core/utils/size_screen.dart';
 import '../../../../data/model/video_reels_model.dart';
 import '../../../../../../core/constant/colors.dart';
-import 'comments/show_reels_comments_not_fount.dart';
-import 'comments/show_reels_comment_lower.dart';
 import 'comments/show_reels_comment_item.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +49,7 @@ class ShowVideoButtomSheetComments extends StatelessWidget {
                         },
                       );
                     } else {
-                      return const ShowReelsCommentsNotFount();
+                      return const CommentsNotFount();
                     }
                   } else {
                     return const Center(
@@ -59,7 +59,23 @@ class ShowVideoButtomSheetComments extends StatelessWidget {
                 },
               ),
             ),
-            ShowReelsCommentsLower(allReels: allReels),
+            CommentsLower(
+              commentController: addReelsComment,
+              onTapSendComment: () {
+                if (addReelsComment.text.isNotEmpty) {
+                  addNewReelsComment(
+                    commentType: CommentType.text,
+                    videoUid: allReels.videoUid,
+                    text: addReelsComment.text,
+                  );
+                }
+              },
+              onTapSendImage: () => reelsCommentUploadImage(
+                commentType: CommentType.image,
+                videoUid: allReels.videoUid,
+                text: addReelsComment.text,
+              ),
+            ),
           ],
         ),
       ),

@@ -4,7 +4,6 @@ import '../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class CustomPostImageViewerPage extends StatelessWidget {
   final String imagePath;
 

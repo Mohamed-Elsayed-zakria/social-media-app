@@ -1,6 +1,6 @@
-import '../../../../../core/model/current_user_data.dart';
+import '../../../../../core/api/api_firebase_messaging.dart';
 import '../../../../notifications/data/model/notice_model.dart';
-import 'package:flash/core/api/api_firebase_messaging.dart';
+import '../../../../../core/model/current_user_data.dart';
 import '../../../../../core/constant/collections.dart';
 import '../../../../posts/data/model/post_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,16 +11,21 @@ import 'dart:async';
 
 class ProfileScreenApi implements ProfileScreenRepo {
   @override
-  Future<Map<String, dynamic>> getCurrentUserData({
+  Stream<Map<String, dynamic>> getCurrentUserData({
     required String otherUid,
-  }) async {
-    Map<String, dynamic> currentUserData = {};
-    DocumentSnapshot<Map<String, dynamic>> jsonData = await ApiService.firestore
+  }) {
+    StreamController<Map<String, dynamic>> userDataController =
+        StreamController();
+    ApiService.firestore
         .collection(Collections.userCollection)
         .doc(otherUid)
-        .get();
-    currentUserData = jsonData.data()!;
-    return currentUserData;
+        .snapshots()
+        .listen((DocumentSnapshot<Map<String, dynamic>> data) {
+      Map<String, dynamic> currentUserData = data.data()!;
+      userDataController.add(currentUserData);
+    });
+
+    return userDataController.stream;
   }
 
   @override

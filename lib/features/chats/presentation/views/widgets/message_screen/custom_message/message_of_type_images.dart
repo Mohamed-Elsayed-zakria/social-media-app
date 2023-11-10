@@ -1,4 +1,4 @@
-import '../../../../../../../core/widgets/custom_photo_grid.dart';
+import '../../../../../../../core/widgets/photo_grid/custom_photo_grid.dart';
 import '../../../../../../../core/utils/size_screen.dart';
 import '../../../../../data/models/message_model.dart';
 import '../../../chat_screen_show_images.dart';

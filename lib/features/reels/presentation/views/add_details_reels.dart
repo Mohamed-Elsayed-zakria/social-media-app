@@ -69,7 +69,7 @@ class AddDetailsReels extends StatelessWidget {
                         onPressed: uploadeReelsIsLoading.value != true
                             ? () => uploadeVideoReels(
                                   description: getDescriptionReels?.text,
-                                  postStatus: selectItem.value,
+                                  postStatus: uploadeReelsSelectItem.value,
                                 )
                             : null,
                       ),

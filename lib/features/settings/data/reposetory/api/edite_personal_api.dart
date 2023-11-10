@@ -4,7 +4,7 @@ import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/utils/show_toast.dart';
 import '../../../../../core/api/api_service.dart';
-import '../../../../../core/constant/colors.dart';
+import '../../../../../core/utils/snack_bar.dart';
 import '../edite_personal_repo.dart';
 import 'package:get/get.dart';
 
@@ -32,11 +32,9 @@ class EditePersonalApi extends EditePersonalRepo {
       if (CurrentUserData.verified == false) {
         if (await isUsernameTaken(username: username)) {
           editePersonUpdateUserData.value = false;
-          Get.snackbar(
-            "Error".tr,
-            "username already taken".tr,
-            backgroundColor: AppColors.kErrorColor,
-            colorText: AppColors.kSurfaceColor,
+          snackBar(
+            message: "username already taken".tr,
+            isError: true,
           );
         } else {
           editePersonUpdateUserData.value = true;
@@ -51,11 +49,9 @@ class EditePersonalApi extends EditePersonalRepo {
           });
         }
       } else {
-        Get.snackbar(
-          'Error'.tr,
-          'Cannot change username'.tr,
-          backgroundColor: AppColors.kErrorColor,
-          colorText: AppColors.kSurfaceColor,
+        snackBar(
+          message: 'Cannot change username'.tr,
+          isError: true,
         );
       }
     }

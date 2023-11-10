@@ -1,4 +1,5 @@
 import '../../../../../../../core/widgets/custom_buttom.dart';
+import '../../../../../../../core/utils/snack_bar.dart';
 import '../../../../../../../core/api/api_service.dart';
 import '../../../../../../../core/constant/colors.dart';
 import '../../../../../../../core/constant/style.dart';
@@ -15,7 +16,7 @@ class AccountConfirmation extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text(
+          Text(
             "Email".tr,
             style: const TextStyle(
               fontSize: AppStyle.kTextStyle16,
@@ -41,17 +42,17 @@ class AccountConfirmation extends StatelessWidget {
                       ),
                       Visibility(
                         visible: !ApiService.user.emailVerified,
-                        child:  Row(
+                        child: Row(
                           children: [
                             Text(
                               "No confirmed".tr,
-                              style:const TextStyle(
+                              style: const TextStyle(
                                 color: AppColors.kErrorColor,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
                             const SizedBox(width: 5),
-                           const Icon(
+                            const Icon(
                               Icons.warning_amber_outlined,
                               color: AppColors.kErrorColor,
                               size: 20,
@@ -68,11 +69,11 @@ class AccountConfirmation extends StatelessWidget {
           const SizedBox(height: 8),
           Visibility(
             visible: !ApiService.user.emailVerified,
-            child:  Padding(
-              padding:const EdgeInsets.symmetric(horizontal: 2),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2),
               child: Text(
                 'After confirming the account'.tr,
-                style:const TextStyle(
+                style: const TextStyle(
                   color: AppColors.kErrorColor,
                   fontWeight: FontWeight.w500,
                 ),
@@ -84,11 +85,9 @@ class AccountConfirmation extends StatelessWidget {
             child: CustomButton(
               onPressed: () async {
                 await ApiService.user.sendEmailVerification();
-                Get.snackbar(
-                  "Done".tr,
-                  "A verification link has been sent email".tr,
-                  backgroundColor: AppColors.kSecondeColor,
-                  colorText: AppColors.kSurfaceColor,
+                snackBar(
+                  message: "A verification link has been sent email".tr,
+                  isError: false,
                 );
               },
               text: 'Account confirmation'.tr,

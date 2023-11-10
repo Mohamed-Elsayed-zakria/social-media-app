@@ -1,10 +1,10 @@
-import '../../../../../core/utils/show_toast.dart';
 import '../../../presentation/controller/show_reels_comments_controller.dart';
 import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/model/comment_model.dart';
+import '../../../../../core/utils/show_toast.dart';
+import '../../../../../core/utils/snack_bar.dart';
 import '../../../../../core/api/api_service.dart';
-import '../../../../../core/constant/colors.dart';
 import '../show_reels_comments_repo.dart';
 import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
@@ -51,13 +51,24 @@ class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
 
   @override
   Future<void> addNewReelsComment({
+    required CommentType commentType,
     required String videoUid,
     required String text,
   }) async {
     String commentId = const Uuid().v1();
+    String commentImgPathUrl = '';
+    if (reelsCommentImgPath != null && commentType == CommentType.image) {
+      final storageRef = ApiService.fireStorage.ref(
+        "reels/${ApiService.user.uid}/comments-image/$commentId/$commentId.jpg",
+      );
+      await storageRef.putFile(reelsCommentImgPath!);
+      commentImgPathUrl = await storageRef.getDownloadURL();
+    }
     CommentModel newComment = CommentModel(
-      personUid: ApiService.user.uid,
       dataPublished: DateTime.timestamp().toString(),
+      imageUrlComment: commentImgPathUrl,
+      personUid: ApiService.user.uid,
+      commentType: commentType.name,
       textComment: text,
       commentId: commentId,
     );
@@ -68,13 +79,16 @@ class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
           .doc(videoUid)
           .collection(Collections.commentsCollection)
           .doc(commentId)
-          .set(newComment.toJson());
+          .set(newComment.toJson())
+          .then((value) {
+        if (reelsCommentImgPath != null) {
+          reelsCommentImgPath = null;
+        }
+      });
     } catch (e) {
-      Get.snackbar(
-        "Error".tr,
-        "$e".tr,
-        backgroundColor: AppColors.kErrorColor,
-        colorText: AppColors.kSurfaceColor,
+      snackBar(
+        message: '$e.'.tr,
+        isError: true,
       );
     }
   }

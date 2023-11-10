@@ -57,7 +57,7 @@ class ShowReelsCommentAddLike extends StatelessWidget {
             Text(
               '${allLikes.length}',
               style: const TextStyle(
-                fontSize: AppStyle.kTextStyle16,
+                fontSize: AppStyle.kTextStyle14,
               ),
             ),
           ],

@@ -1,7 +1,9 @@
+import '../../../../../../core/widgets/comments/comments_lower.dart';
 import '../../../controllers/custom_post_controller.dart';
+import '../../../../../../core/model/comment_model.dart';
+import '../../../controllers/comments_controller.dart';
 import 'package:flutter/material.dart';
 import 'comments/custom_comments.dart';
-import 'comments/comments_lower.dart';
 import 'custom_post.dart';
 
 class CustomPostDetails extends StatelessWidget {
@@ -34,7 +36,23 @@ class CustomPostDetails extends StatelessWidget {
               ],
             ),
           ),
-          CommentsLower(postId: postUid),
+          CommentsLower(
+            commentController: commentController,
+            onTapSendComment: () {
+              if (commentController.text.isNotEmpty) {
+                addNewComment(
+                  commentType: CommentType.text,
+                  text: commentController.text,
+                  postId: postUid,
+                );
+              }
+            },
+            onTapSendImage: () => commentUploadImage(
+              commentType: CommentType.image,
+              postId: postUid,
+              text: commentController.text,
+            ),
+          ),
         ],
       ),
     );

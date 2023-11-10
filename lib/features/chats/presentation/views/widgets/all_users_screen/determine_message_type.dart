@@ -17,7 +17,7 @@ class DetermineTheMessageType extends StatelessWidget {
             ? Text(
                 messages!.message,
                 overflow: TextOverflow.ellipsis,
-                maxLines: 2,
+                maxLines: 1,
               )
             : messages!.type == TypeChatMessage.image.name
                 ? Row(

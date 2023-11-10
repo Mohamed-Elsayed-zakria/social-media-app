@@ -1,7 +1,7 @@
 import '../../data/reposetory/api/verification_api.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../../core/utils/snack_bar.dart';
 import '../../../../core/api/api_service.dart';
-import '../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
@@ -36,29 +36,23 @@ Future<void> submitVerification({
   required String message,
 }) async {
   if (ApiService.user.emailVerified == false) {
-    Get.snackbar(
-      "Error".tr,
-      "The email is not verified".tr,
-      backgroundColor: AppColors.kErrorColor,
-      colorText: AppColors.kSurfaceColor,
+    snackBar(
+      message: "The email is not verified".tr,
+      isError: true,
     );
     return;
   }
 
   if (imgPathId.value == null) {
-    Get.snackbar(
-      "Error".tr,
-      "Id photo was not selected".tr,
-      backgroundColor: AppColors.kErrorColor,
-      colorText: AppColors.kSurfaceColor,
+    snackBar(
+      message: "Id photo was not selected".tr,
+      isError: true,
     );
   }
   if (imgPathPick.value == null) {
-    Get.snackbar(
-      "Error".tr,
-      "Personal picture not selected".tr,
-      backgroundColor: AppColors.kErrorColor,
-      colorText: AppColors.kSurfaceColor,
+    snackBar(
+      message: "Personal picture not selected".tr,
+      isError: true,
     );
   }
 

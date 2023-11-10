@@ -2,7 +2,7 @@ import '../../../posts/data/model/post_model.dart';
 import '../models/profile_model.dart';
 
 abstract class ProfileScreenRepo {
-  Future<Map<String, dynamic>> getCurrentUserData({required String otherUid});
+  Stream<Map<String, dynamic>> getCurrentUserData({required String otherUid});
 
   Future<void> tapFolow({required ProfileScreenModel userData});
 

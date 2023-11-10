@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import '../model/people_nearby_model.dart';
 
 abstract class PeopleNearbyRepo {
-  Future<QuerySnapshot<Map<String, dynamic>>> getUserDataToPeopleNearby();
-  
+  Future<List<PeopleNearbyModel>> getUserDataToPeopleNearby();
 }

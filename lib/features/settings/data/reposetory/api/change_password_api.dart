@@ -1,9 +1,9 @@
-import '../../../../../core/api/api_service.dart';
-import '../../../../../core/constant/colors.dart';
 import '../../../presentation/controllers/change_password_controller.dart';
 import '../../../presentation/views/account_settings_screen.dart';
-import '../change_password_repo.dart';
+import '../../../../../core/api/api_service.dart';
+import '../../../../../core/utils/snack_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../change_password_repo.dart';
 import 'package:get/get.dart';
 
 class ChangePasswordApi extends ChangePasswordRepo {
@@ -19,11 +19,9 @@ class ChangePasswordApi extends ChangePasswordRepo {
           .then((value) {
         ApiService.auth.sendPasswordResetEmail(email: ApiService.user.email!);
         changePasswordIsLodinge.value = true;
-        Get.snackbar(
-          "Done".tr,
-          "Verification link has been sent email".tr,
-          backgroundColor: AppColors.kSecondeColor,
-          colorText: AppColors.kSurfaceColor,
+        snackBar(
+          message: "Verification link has been sent email".tr,
+          isError: false,
         );
         changePasswordGetPassword.clear();
         Get.off(() => const AccountSettingsScreen());
@@ -31,11 +29,9 @@ class ChangePasswordApi extends ChangePasswordRepo {
     } on FirebaseAuthException catch (e) {
       changePasswordIsLodinge.value = false;
       if (e.code == 'wrong-password') {
-        Get.snackbar(
-          "Error".tr,
-          "Wrong password provided for that user".tr,
-          backgroundColor: AppColors.kErrorColor,
-          colorText: AppColors.kSurfaceColor,
+        snackBar(
+          message: "Wrong password provided for that user".tr,
+          isError: true,
         );
       }
     }
