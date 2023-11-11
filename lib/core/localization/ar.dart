@@ -131,6 +131,8 @@ const Map<String, String> ar = {
   'Failed to load image': "فشل تحميل الصورة",
   "There are no posts yet": "لا توجد منشورات بعد",
   "There are no Vedios yet": "لا يوجد فيديوهات بعد",
+  //================'Post details'==============
+  'Post details': 'تفاصيل المنشور',
   //=====================comments==================
   'Delete': 'حذف',
   "Report": "إبلاغ",
@@ -203,7 +205,7 @@ const Map<String, String> ar = {
   "Usage policy": "سياسة الاستخدام",
   "Report problem": "أبلغ عن مشكلة",
   "About us": "معلومات عنا",
-  'log out': 'تسجيل خروج',
+  'Log out': 'تسجيل الخروج',
   'Do you want to log out ?': 'هل ترغب بالخروج ؟',
   'Yes': 'نعم',
   'No': 'لا',
@@ -261,6 +263,11 @@ const Map<String, String> ar = {
   'Type your old password':
       'اكتب كلمة المرور القديمة وسيتم إرسال رابط عبر بريدك الإلكتروني لإعادة تعيين كلمة المرور الخاصة بك',
   "Change": "تغيير",
+
+  //****************'Delete account'************
+  'Delete account': 'حذف الحساب',
+  'Are you sure you want to delete the account ?':
+      "هل أنت متأكد أنك تريد حذف الحساب ؟",
 
   //************'About us'***************
   'It was designed and developed':

@@ -1,5 +1,4 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../controllers/post_screen_controller.dart';
 import 'post_custom_drop_down_menu.dart';
 import 'package:flutter/material.dart';
@@ -31,10 +30,7 @@ class PostScreenLower extends StatelessWidget {
                 ),
               );
             },
-            icon: const Icon(
-              FontAwesomeIcons.paperclip,
-              size: 23,
-            ),
+            icon: const Icon(FontAwesomeIcons.paperclip),
           ),
           const PostCustomDropDownMenu(),
         ],

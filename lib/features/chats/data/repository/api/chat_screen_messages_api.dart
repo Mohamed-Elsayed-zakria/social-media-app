@@ -83,9 +83,9 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
     if (chatImagePaths.isNotEmpty) {
       for (var imageFile in chatImagePaths) {
         String generatChatImageId = const Uuid().v1();
-        final ref = ApiService.fireStorage.ref().child(
-              "user-chat/${ApiService.user.uid}/chats-images/$generatChatImageId.jpg",
-            );
+        final ref = ApiService.fireStorage.ref(
+          'user-files/${ApiService.user.uid}/images/chats/$generatChatImageId.jpg',
+        );
         await ref.putFile(File(imageFile));
         final downloadUrl = await ref.getDownloadURL();
         imageUrls.add(downloadUrl);
@@ -95,7 +95,7 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
     if (addVideoChatPath != null) {
       String generatChatVideoId = const Uuid().v1();
       final storageRef = FirebaseStorage.instance.ref(
-        "user-chat/${ApiService.user.uid}/chats-videos/$generatChatVideoId.mp4",
+        'user-files/${ApiService.user.uid}/video/chat/$generatChatVideoId.mp4',
       );
       await storageRef.putFile(addVideoChatPath!);
       videoUrl = await storageRef.getDownloadURL();

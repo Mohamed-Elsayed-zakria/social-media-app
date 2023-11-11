@@ -1,4 +1,5 @@
 import '../../account_settings/account_information_screen.dart';
+import '../../account_settings/delete_account_screen.dart';
 import '../../account_settings/edite_personal_information.dart';
 import '../../account_settings/change_password_screen.dart';
 import '../../account_settings/blocked_users_screen.dart';
@@ -26,16 +27,20 @@ class AccountSettingsScreenBody extends StatelessWidget {
               text: 'Edite personal information'.tr,
             ),
             AccountSettingCard(
-              onTap: () => Get.to(() => const VerificationScreen()),
-              text: 'Verification'.tr,
-            ),
-            AccountSettingCard(
               onTap: () => Get.to(() => const BlockedUsersScreen()),
               text: 'Blocked users'.tr,
             ),
             AccountSettingCard(
+              onTap: () => Get.to(() => const VerificationScreen()),
+              text: 'Verification'.tr,
+            ),
+            AccountSettingCard(
               onTap: () => Get.to(() => const ChangePasswordScreen()),
               text: 'Change password'.tr,
+            ),
+            AccountSettingCard(
+              onTap: () => Get.to(() => const DeleteAccountScreen()),
+              text: 'Delete account'.tr,
             ),
           ],
         ),

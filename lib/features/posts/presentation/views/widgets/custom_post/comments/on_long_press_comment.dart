@@ -2,10 +2,8 @@ import '../../../../../../../core/widgets/comments/on_long_press_current_comment
 import '../../../../../../../core/widgets/comments/on_long_press_other_comment.dart';
 import '../../../../../../../core/model/comment_model.dart';
 import '../../../../controllers/comments_controller.dart';
-import '../../../../../../../core/utils/show_toast.dart';
 import '../../../../../../../core/api/api_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class OnLongPressComment extends StatelessWidget {
@@ -42,13 +40,7 @@ class OnLongPressComment extends StatelessWidget {
             commentData: commentData,
           )
         : OnLongPressOtherComment(
-            onTapCopy: () {
-              Get.back();
-              Clipboard.setData(ClipboardData(text: commentData.textComment))
-                  .then(
-                (value) => showToast(msg: "The text has been copied".tr),
-              );
-            },
+           commentData: commentData,
             onTapReport: () {
               Get.back();
               reportComment(

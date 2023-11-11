@@ -35,7 +35,7 @@ class AddDetailsScreenApi extends AddDetailsScreenRepo {
     String generatPersonalImageId = const Uuid().v1();
     if (addDetailsImgPath != null) {
       final storageRef = ApiService.fireStorage.ref(
-        "user-images/${ApiService.user.uid}/personal-image/$generatPersonalImageId.jpg",
+        "user-files/${ApiService.user.uid}/images/personal-image/$generatPersonalImageId.jpg",
       );
       await storageRef.putFile(addDetailsImgPath!);
       urlPersonalPicture = await storageRef.getDownloadURL();

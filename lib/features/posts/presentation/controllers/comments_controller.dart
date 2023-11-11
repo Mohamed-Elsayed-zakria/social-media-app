@@ -16,18 +16,20 @@ Future<void> commentUploadImage({
   required String postId,
   required String text,
 }) async {
-  Get.back();
   final pickedImg = await ImagePicker().pickImage(source: ImageSource.gallery);
   if (pickedImg != null) {
     commentImgPath = File(pickedImg.path);
     Get.to(
       () => CommentUploadeImageShow(
         imageUrl: commentImgPath!.path,
-        onTapSendImage: () => addNewComment(
-          commentType: commentType,
-          postId: postId,
-          text: text,
-        ),
+        onTapSendImage: () {
+          Get.back();
+          addNewComment(
+            commentType: commentType,
+            postId: postId,
+            text: text,
+          );
+        },
       ),
     );
   }

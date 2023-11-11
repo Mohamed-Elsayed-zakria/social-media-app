@@ -14,7 +14,14 @@ class PostScreenButtomShare extends StatelessWidget {
         () => TextButton(
           onPressed: addPostLoading.value == false
               ? () {
-                  if (addPostFormKey.currentState!.validate()) {
+                  if (imagePaths.isEmpty && addNewPostVedioPath.value == null) {
+                    if (addPostFormKey.currentState!.validate()) {
+                      createNewPost(
+                        postStatus: selectItem.value,
+                        description: getDescriptionText.text,
+                      );
+                    }
+                  } else {
                     createNewPost(
                       postStatus: selectItem.value,
                       description: getDescriptionText.text,

@@ -13,7 +13,7 @@ class ProfileEditeApi extends ProfileEditeRepo {
         updateIsLodinge.value = true;
         String generatPersonalImageId = const Uuid().v1();
         final storageRef = ApiService.fireStorage.ref(
-          "user-images/${ApiService.user.uid}/personal-image/$generatPersonalImageId.jpg",
+          "user-files/${ApiService.user.uid}/images/personal-image/$generatPersonalImageId.jpg",
         );
         await storageRef.putFile(updateImgPathPicture.value!);
 
@@ -42,7 +42,7 @@ class ProfileEditeApi extends ProfileEditeRepo {
         updateIsLodinge.value = true;
         String generatCoverImageId = const Uuid().v1();
         final storageRef = ApiService.fireStorage.ref(
-          "user-images/${ApiService.user.uid}/personal-image/$generatCoverImageId.jpg",
+          "user-files/${ApiService.user.uid}/images/personal-image/$generatCoverImageId.jpg",
         );
         await storageRef.putFile(updateImgPathCover.value!);
 

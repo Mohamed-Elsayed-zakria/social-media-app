@@ -15,7 +15,6 @@ class AddDetailsTakingGender extends StatelessWidget {
         errorMessage: 'Gender Field Empty'.tr,
         onTap: () {
           Get.defaultDialog(
-            backgroundColor: Colors.white,
             titlePadding: const EdgeInsets.only(top: 22),
             title: "Gender".tr,
             content: Column(

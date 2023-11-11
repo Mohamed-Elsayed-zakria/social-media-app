@@ -50,8 +50,7 @@ class CommentsLower extends StatelessWidget {
                 IconButton(
                   onPressed: onTapSendImage,
                   icon: const Icon(
-                    color: AppColors.kPrimaryColor,
-                    IconlyBroken.image2,
+                    IconlyBroken.image,
                   ),
                 ),
               ],

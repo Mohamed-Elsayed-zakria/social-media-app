@@ -15,10 +15,10 @@ class PeopleNearbyApi extends PeopleNearbyRepo {
         .where('personUid', isNotEqualTo: ApiService.user.uid)
         .get();
     if (querySnapshot.docs.isNotEmpty) {
-      for (var doc in querySnapshot.docs) {
-        Map<String, dynamic> jsonData = doc.data();
-        userData.add(PeopleNearbyModel.fromJson(jsonData));
-      }
+      userData = querySnapshot.docs
+          .map((element) => PeopleNearbyModel.fromJson(element.data()))
+          .where((model) => model.latitude != '0' && model.longitude != '0')
+          .toList();
     }
 
     return userData;

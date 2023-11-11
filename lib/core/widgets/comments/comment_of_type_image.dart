@@ -17,7 +17,7 @@ class CommentOfTypeImage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = sizeScreen(context: context);
     return Container(
-      margin: const EdgeInsets.only(right: 25, left: 20, bottom: 14, top: 6),
+      margin: const EdgeInsets.only(right: 17, left: 17, bottom: 14, top: 6),
       height: size.width * .4,
       width: size.width * .4,
       child: ClipRRect(

@@ -16,18 +16,20 @@ Future<void> reelsCommentUploadImage({
   required String videoUid,
   required String text,
 }) async {
-  Get.back();
   final pickedImg = await ImagePicker().pickImage(source: ImageSource.gallery);
   if (pickedImg != null) {
     reelsCommentImgPath = File(pickedImg.path);
     Get.to(
       () => CommentUploadeImageShow(
         imageUrl: reelsCommentImgPath!.path,
-        onTapSendImage: () => addNewReelsComment(
-          commentType: commentType,
-          text: text,
-          videoUid: videoUid,
-        ),
+        onTapSendImage: () {
+          Get.back();
+          addNewReelsComment(
+            commentType: commentType,
+            text: text,
+            videoUid: videoUid,
+          );
+        },
       ),
     );
   }

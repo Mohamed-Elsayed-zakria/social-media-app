@@ -87,7 +87,7 @@ const Map<String, String> en = {
   "The message has been deleted": "The message has been deleted",
   "The message has been reported": "The message has been reported",
   "Edite message": "Edite message",
-  "You have blocked this user":"You have blocked this user",
+  "You have blocked this user": "You have blocked this user",
 //===================home===================
   "Home": "Home",
   "uploade post": "uploade post",
@@ -132,6 +132,8 @@ const Map<String, String> en = {
   'Failed to load image': 'Failed to load image',
   "There are no posts yet": "There are no posts yet",
   "There are no Vedios yet": "There are no Vedios yet",
+  //================'Post details'==============
+  'Post details':'Post details',
 //=====================comments==================
   'Delete': 'Delete',
   "Report": "Report",
@@ -202,7 +204,7 @@ const Map<String, String> en = {
   "Usage policy": "Usage policy",
   "Report problem": "Report problem",
   "About us": "About us",
-  'log out': 'log out',
+  'Log out': 'Log out',
   'Do you want to log out ?': 'Do you want to log out ?',
   'Yes': 'Yes',
   'No': 'No',
@@ -231,7 +233,8 @@ const Map<String, String> en = {
   "username already taken": "username already taken",
   "Wrong password provided for that user":
       "Wrong password provided for that user",
-  'Cannot change username' :'You can no longer change your username because you have verified ownership of your account',
+  'Cannot change username':
+      'You can no longer change your username because you have verified ownership of your account',
 //*******************verification****************
   "applyForVerification": "Apply for verification",
   "verificationAcount":
@@ -262,6 +265,10 @@ const Map<String, String> en = {
   'Type your old password':
       'Type your old password and a link will be sent via your email to reset your password',
   "Change": "Change",
+  //****************'Delete account'************
+  'Delete account': 'Delete account',
+  'Are you sure you want to delete the account ?':
+      'Are you sure you want to delete the account ?',
 
   //************'About us'***************
   'It was designed and developed':

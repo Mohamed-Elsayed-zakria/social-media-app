@@ -30,8 +30,8 @@ class PostScreenApi implements PostScreenRepo {
     if (imagePaths.isNotEmpty) {
       for (var imageFile in imagePaths) {
         String generatImageId = const Uuid().v1();
-        final ref = ApiService.fireStorage.ref().child(
-              'posts/images/${ApiService.user.uid}/$generatId/$generatImageId.jpg',
+        final ref = ApiService.fireStorage.ref(
+              'user-files/${ApiService.user.uid}/images/posts/$generatId/$generatImageId.jpg',
             );
         final task = await ref.putFile(File(imageFile));
         if (task.state == TaskState.success) {
@@ -44,7 +44,7 @@ class PostScreenApi implements PostScreenRepo {
     if (addNewPostVedioPath.value != null) {
       String generatVideoId = const Uuid().v1();
       final storageRef = FirebaseStorage.instance.ref(
-        "posts/videos/${ApiService.user.uid}/$generatId/$generatVideoId.mp4",
+        'user-files/${ApiService.user.uid}/video/posts/$generatId/$generatVideoId.mp4'
       );
       await storageRef.putFile(addNewPostVedioPath.value!);
       videoUrl = await storageRef.getDownloadURL();

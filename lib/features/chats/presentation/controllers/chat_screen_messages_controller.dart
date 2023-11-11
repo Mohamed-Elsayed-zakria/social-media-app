@@ -35,7 +35,7 @@ Future<void> chatUploadeImageFromGalary({
 
 void chatRemoveImage(int index) {
   chatImagePaths.removeAt(index);
-  if (index == 0) {
+  if (chatImagePaths.isEmpty) {
     Get.back();
   }
 }

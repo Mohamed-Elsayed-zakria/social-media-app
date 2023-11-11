@@ -71,9 +71,9 @@ class CustomLowerSentMessage extends StatelessWidget {
                         );
                       },
                       icon: const Icon(
+                        color: Colors.black54,
                         FontAwesomeIcons.paperclip,
                         size: 20,
-                        color: AppColors.kPrimaryColor,
                       ),
                     ),
                     IconButton(
@@ -81,8 +81,8 @@ class CustomLowerSentMessage extends StatelessWidget {
                         userData: userData,
                       ),
                       icon: const Icon(
-                        color: AppColors.kPrimaryColor,
-                        IconlyBroken.camera,
+                        color: Colors.black54,
+                        Icons.camera_alt_outlined,
                       ),
                     ),
                   ],

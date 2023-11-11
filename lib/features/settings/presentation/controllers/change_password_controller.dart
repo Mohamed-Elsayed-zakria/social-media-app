@@ -10,7 +10,7 @@ GlobalKey<FormState> formKeyChangePassword = GlobalKey();
 final TextEditingController changePasswordGetPassword = TextEditingController();
 
 class ChangePasswordController extends GetxController {
-  RxBool hindText = true.obs;
+  RxBool hindText = false.obs;
 
   void changeHindText() {
     hindText.value = !hindText.value;

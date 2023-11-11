@@ -12,13 +12,11 @@ class SettingsScreenExitFromApp extends StatelessWidget {
     return ListTile(
       onTap: () {
         Get.defaultDialog(
-          title: 'log out'.tr,
+          title: 'Log out'.tr,
           titlePadding: const EdgeInsets.only(top: 25, bottom: 15),
-          content: Text(
-            'Do you want to log out ?'.tr,
-            style: const TextStyle(
-              fontSize: AppStyle.kTextStyle16,
-            ),
+          middleText: 'Do you want to log out ?'.tr,
+          middleTextStyle: const TextStyle(
+            fontSize: AppStyle.kTextStyle16,
           ),
           confirm: TextButton(
             onPressed: () => exitFromApp(),
@@ -31,7 +29,7 @@ class SettingsScreenExitFromApp extends StatelessWidget {
         );
       },
       title: Text(
-        "log out".tr,
+        'Log out'.tr,
         style: const TextStyle(
           fontSize: AppStyle.kTextStyle18,
         ),

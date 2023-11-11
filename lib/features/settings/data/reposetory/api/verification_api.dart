@@ -22,7 +22,7 @@ class VerificationApi extends VerificationRepo {
         String generatPersonalImageVerificationId = const Uuid().v1();
 
         final storageRefImgPathPick = ApiService.fireStorage.ref(
-          "user-images/${ApiService.user.uid}/user-Verification/personal-picture/$generatPersonalImageVerificationId.jpg",
+          "user-files/${ApiService.user.uid}/images/user-Verification/personal-picture/$generatPersonalImageVerificationId.jpg",
         );
         await storageRefImgPathPick.putFile(imgPathPick.value!);
 
@@ -37,7 +37,7 @@ class VerificationApi extends VerificationRepo {
         String generatIdCardVerificationId = const Uuid().v1();
 
         final storageRefImgPathId = ApiService.fireStorage.ref(
-          "user-images/${ApiService.user.uid}/user-Verification/id-picture/$generatIdCardVerificationId.jpg",
+          "user-files/${ApiService.user.uid}/images/user-Verification/id-picture/$generatIdCardVerificationId.jpg",
         );
         await storageRefImgPathId.putFile(imgPathId.value!);
 

@@ -17,7 +17,7 @@ class CustomStoryAllUsers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<StoriesModel> allCurrnetStories = [];
+    List<StoriesModel>? allCurrnetStories = [];
     return SliverToBoxAdapter(
       child: CustomStoryCover(
         child: FutureBuilder(
@@ -29,22 +29,16 @@ class CustomStoryAllUsers extends StatelessWidget {
             return FutureBuilder(
               future: future,
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return ListView.builder(
-                    itemCount: 4,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => const CustomStoryShimmer(),
-                  );
-                } else {
+                if (snapshot.hasData) {
                   List<List<StoriesModel>> storyDataList = snapshot.data!;
                   return ListView.builder(
                     itemCount: storyDataList.length + 1,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      if (index == 0) {
-                        return allCurrnetStories.isNotEmpty
+                      if (index == 0 && allCurrnetStories != null) {
+                        return allCurrnetStories!.isNotEmpty
                             ? CustomStoryItemCurrentUsers(
-                                stories: allCurrnetStories,
+                                stories: allCurrnetStories!,
                               )
                             : const CustomStoryCurrentNotFount();
                       }
@@ -54,6 +48,12 @@ class CustomStoryAllUsers extends StatelessWidget {
                         initialPage: index - 1,
                       );
                     },
+                  );
+                } else {
+                  return ListView.builder(
+                    itemCount: 4,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => const CustomStoryShimmer(),
                   );
                 }
               },

@@ -1,5 +1,5 @@
-import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/widgets/custom_shimmer.dart';
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 

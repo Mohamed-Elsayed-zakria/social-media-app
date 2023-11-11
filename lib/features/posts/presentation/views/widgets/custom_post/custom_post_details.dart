@@ -4,6 +4,7 @@ import '../../../../../../core/model/comment_model.dart';
 import '../../../controllers/comments_controller.dart';
 import 'package:flutter/material.dart';
 import 'comments/custom_comments.dart';
+import 'package:get/get.dart';
 import 'custom_post.dart';
 
 class CustomPostDetails extends StatelessWidget {
@@ -17,7 +18,7 @@ class CustomPostDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Post details'),
+        title: Text('Post details'.tr),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

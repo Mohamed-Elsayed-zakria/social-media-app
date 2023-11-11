@@ -27,7 +27,7 @@ class StoryScreenApi extends StoryScreenRepo {
       if (imgPath != null) {
         String generatStoryImageId = const Uuid().v1();
         final storageRef = ApiService.fireStorage.ref(
-          "stories/images/${ApiService.user.uid}/$generatStoryId/$generatStoryImageId.jpg",
+          'user-files/${ApiService.user.uid}/images/stories/$generatStoryId/$generatStoryImageId.jpg',
         );
         await storageRef.putFile(File(imgPath));
         urlImgPath = await storageRef.getDownloadURL();
@@ -36,7 +36,7 @@ class StoryScreenApi extends StoryScreenRepo {
       if (addNewStoryVedioPath != null) {
         String generatStoryVideoId = const Uuid().v1();
         final storageRef = FirebaseStorage.instance.ref(
-          "stories/videos/${ApiService.user.uid}/$generatStoryId/$generatStoryVideoId.mp4",
+          'user-files/${ApiService.user.uid}/video/stories/$generatStoryId/$generatStoryVideoId.mp4',
         );
         await storageRef.putFile(addNewStoryVedioPath!);
         videoUrl = await storageRef.getDownloadURL();

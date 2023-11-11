@@ -22,19 +22,26 @@ class CustomPostContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 3),
-          child: InkWell(
-            onLongPress: () {
-              Clipboard.setData(ClipboardData(text: postData.description)).then(
-                (value) => showToast(msg: "The text has been copied".tr),
-              );
-            },
-            child: SizedBox(
-              width: double.infinity,
-              child: CustomReadMoreText(
-                text: postData.description,
-                trimLines: postData.imgUrl.isEmpty ? 12 : 6,
-                style: const TextStyle(fontSize: AppStyle.kTextStyle18),
+          padding: EdgeInsets.symmetric(
+            vertical: postData.description.isEmpty ? 4 : 8,
+            horizontal: 3,
+          ),
+          child: Visibility(
+            visible: postData.description.isNotEmpty,
+            child: InkWell(
+              onLongPress: () {
+                Clipboard.setData(ClipboardData(text: postData.description))
+                    .then(
+                  (value) => showToast(msg: "The text has been copied".tr),
+                );
+              },
+              child: SizedBox(
+                width: double.infinity,
+                child: CustomReadMoreText(
+                  text: postData.description,
+                  trimLines: postData.imgUrl.isEmpty ? 12 : 6,
+                  style: const TextStyle(fontSize: AppStyle.kTextStyle18),
+                ),
               ),
             ),
           ),
