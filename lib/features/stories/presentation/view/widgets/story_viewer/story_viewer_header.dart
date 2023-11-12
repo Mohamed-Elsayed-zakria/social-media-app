@@ -8,8 +8,8 @@ import '../../../../data/model/stories_model.dart';
 import 'package:flash/core/api/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'delete_story.dart';
-import 'report_story.dart';
+import 'on_long_current_story.dart';
+import 'on_long_other_story.dart';
 
 class StoryViewerHeader extends StatelessWidget {
   final StoriesModel storyData;
@@ -75,8 +75,8 @@ class StoryViewerHeader extends StatelessWidget {
         trailing: IconButton(
           onPressed: () {
             storyData.personUid == ApiService.user.uid
-                ? Get.bottomSheet(DeleteStory(storyData: storyData))
-                : Get.bottomSheet(ReportStory(storyData: storyData));
+                ? Get.bottomSheet(OnLongCurrentStory(storyData: storyData))
+                : Get.bottomSheet(OnLongOtherStory(storyData: storyData));
           },
           icon: const Icon(
             color: AppColors.kSurfaceColor,

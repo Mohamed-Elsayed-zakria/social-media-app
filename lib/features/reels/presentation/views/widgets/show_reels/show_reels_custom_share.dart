@@ -1,13 +1,13 @@
-import '../../../../data/model/video_reels_model.dart';
+import '../../../../data/model/reels_model.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter/material.dart';
 
-class VideoReelsCustomShare extends StatelessWidget {
-  final VideoReelsModel allReels;
+class ShowReelsCustomShare extends StatelessWidget {
+  final ReelsModel allReels;
 
-  const VideoReelsCustomShare({
+  const ShowReelsCustomShare({
     super.key,
     required this.allReels,
   });

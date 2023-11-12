@@ -26,6 +26,7 @@ class AllLikesCustomPerson extends StatelessWidget {
         title: Row(
           children: [
             Text(
+              textDirection: TextDirection.ltr,
               '@${likesModel.username}',
               style: const TextStyle(
                 fontSize: AppStyle.kTextStyle16,

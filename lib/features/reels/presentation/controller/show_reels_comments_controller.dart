@@ -13,7 +13,7 @@ File? reelsCommentImgPath;
 
 Future<void> reelsCommentUploadImage({
   required CommentType commentType,
-  required String videoUid,
+  required String reelUid,
   required String text,
 }) async {
   final pickedImg = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -27,7 +27,7 @@ Future<void> reelsCommentUploadImage({
           addNewReelsComment(
             commentType: commentType,
             text: text,
-            videoUid: videoUid,
+            reelUid: reelUid,
           );
         },
       ),
@@ -35,58 +35,58 @@ Future<void> reelsCommentUploadImage({
   }
 }
 
-Stream<List<CommentModel>> getAllReelsComments({required String videoUid}) {
-  return ShowReelsCommentsApi().getAllReelsComments(videoUid: videoUid);
+Stream<List<CommentModel>> getAllReelsComments({required String reelUid}) {
+  return ShowReelsCommentsApi().getAllReelsComments(reelUid: reelUid);
 }
 
 Future<void> addNewReelsComment({
   required CommentType commentType,
-  required String videoUid,
+  required String reelUid,
   required String text,
 }) async {
   await ShowReelsCommentsApi().addNewReelsComment(
-    videoUid: videoUid,
+    reelUid: reelUid,
     text: text,
     commentType: commentType,
   );
 }
 
 Stream<List> getReelsCommentsLikes({
-  required String videoUid,
+  required String reelUid,
   required String commentUid,
 }) {
   return ShowReelsCommentsApi().getReelsCommentsLikes(
-    videoUid: videoUid,
+    reelUid: reelUid,
     commentUid: commentUid,
   );
 }
 
 Future<void> addReelsLikeComment({
-  required String videoUid,
+  required String reelUid,
   required String commentUid,
 }) async {
   await ShowReelsCommentsApi().addReelsLikeComment(
-    videoUid: videoUid,
+    reelUid: reelUid,
     commentUid: commentUid,
   );
 }
 
 Future<void> removeReelsLikeFromComment({
-  required String videoUid,
+  required String reelUid,
   required String commentUid,
 }) async {
   await ShowReelsCommentsApi().removeReelsLikeFromComment(
-    videoUid: videoUid,
+    reelUid: reelUid,
     commentUid: commentUid,
   );
 }
 
 Future<void> deleteReelsComment({
-  required String videoUid,
+  required String reelUid,
   required String commentUid,
 }) async {
   await ShowReelsCommentsApi().deleteReelsComment(
-    videoUid: videoUid,
+    reelUid: reelUid,
     commentUid: commentUid,
   );
 }
@@ -94,21 +94,21 @@ Future<void> deleteReelsComment({
 Future<void> updateReelsComment({
   required String newTextComment,
   required String commentUid,
-  required String videoUid,
+  required String reelUid,
 }) async {
   await ShowReelsCommentsApi().updateReelsComment(
     newTextComment: newTextComment,
     commentUid: commentUid,
-    videoUid: videoUid,
+    reelUid: reelUid,
   );
 }
 
 Future<void> reportReelsComment({
   required CommentModel commentData,
-  required String videoUid,
+  required String reelUid,
 }) async {
   await ShowReelsCommentsApi().reportReelsComment(
     commentData: commentData,
-    videoUid: videoUid,
+    reelUid: reelUid,
   );
 }

@@ -3,15 +3,15 @@ import '../../../../../../core/widgets/comments/comments_lower.dart';
 import '../../../controller/show_reels_comments_controller.dart';
 import '../../../../../../core/model/comment_model.dart';
 import '../../../../../../core/utils/size_screen.dart';
-import '../../../../data/model/video_reels_model.dart';
+import '../../../../data/model/reels_model.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'comments/show_reels_comment_item.dart';
 import 'package:flutter/material.dart';
 
-class ShowVideoButtomSheetComments extends StatelessWidget {
-  final VideoReelsModel allReels;
+class ShowReelsButtomSheetComments extends StatelessWidget {
+  final ReelsModel allReels;
 
-  const ShowVideoButtomSheetComments({
+  const ShowReelsButtomSheetComments({
     super.key,
     required this.allReels,
   });
@@ -34,7 +34,7 @@ class ShowVideoButtomSheetComments extends StatelessWidget {
           children: [
             Expanded(
               child: StreamBuilder(
-                stream: getAllReelsComments(videoUid: allReels.videoUid),
+                stream: getAllReelsComments(reelUid: allReels.reelUid),
                 builder: (context, commentSnapshot) {
                   if (commentSnapshot.hasData) {
                     List<CommentModel> commentsList = commentSnapshot.data!;
@@ -44,7 +44,7 @@ class ShowVideoButtomSheetComments extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return ShowReelsCommentItem(
                             commentData: commentsList[index],
-                            videoUid: allReels.videoUid,
+                            reelUid: allReels.reelUid,
                           );
                         },
                       );
@@ -65,14 +65,14 @@ class ShowVideoButtomSheetComments extends StatelessWidget {
                 if (addReelsComment.text.isNotEmpty) {
                   addNewReelsComment(
                     commentType: CommentType.text,
-                    videoUid: allReels.videoUid,
+                    reelUid: allReels.reelUid,
                     text: addReelsComment.text,
                   );
                 }
               },
               onTapSendImage: () => reelsCommentUploadImage(
                 commentType: CommentType.image,
-                videoUid: allReels.videoUid,
+                reelUid: allReels.reelUid,
                 text: addReelsComment.text,
               ),
             ),

@@ -2,7 +2,7 @@ import '../../../presentation/controller/uploade_reels_controller.dart';
 import '../../../../../core/constant/collections.dart';
 import '../../../../../core/api/api_dynamic_link.dart';
 import '../../../../../core/api/api_service.dart';
-import '../../model/video_reels_model.dart';
+import '../../model/reels_model.dart';
 import '../uploade_reels_repo.dart';
 import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
@@ -37,12 +37,12 @@ class UploadeReelsApi implements UploadeReelsRepo {
         postStatus = "Following";
       }
 
-      VideoReelsModel videoReelsModel = VideoReelsModel(
+      ReelsModel videoReelsModel = ReelsModel(
         datePublished: DateTime.timestamp().toString(),
         personUid: ApiService.user.uid,
         description: description,
         postStatus: postStatus,
-        videoUid: generatId,
+        reelUid: generatId,
         videoUrl: videoUrl,
         postUrl: postUrl,
       );

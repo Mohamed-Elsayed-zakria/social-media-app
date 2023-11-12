@@ -5,10 +5,10 @@ import '../../../controller/story_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ReportStory extends StatelessWidget {
+class OnLongOtherStory extends StatelessWidget {
   final StoriesModel storyData;
 
-  const ReportStory({
+  const OnLongOtherStory({
     super.key,
     required this.storyData,
   });

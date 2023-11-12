@@ -1,16 +1,16 @@
+import '../../../controller/show_reels_controller.dart';
+import '../../../../data/model/reels_model.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import '../../../../data/model/stories_model.dart';
-import '../../../controller/story_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DeleteStory extends StatelessWidget {
-  final StoriesModel storyData;
+class OnLongOtherReels extends StatelessWidget {
+  final ReelsModel allReels;
 
-  const DeleteStory({
+  const OnLongOtherReels({
     super.key,
-    required this.storyData,
+    required this.allReels,
   });
 
   @override
@@ -29,12 +29,12 @@ class DeleteStory extends StatelessWidget {
         child: ListTile(
           onTap: () {
             Get.back();
-            deleteStory(storyUid: storyData.storyUid);
+            reportReels(reelsModel: allReels);
           },
-          title: Text('Delete'.tr),
+          title: Text("Report".tr),
           leading: const Icon(
+            IconlyBroken.infoSquare,
             color: AppColors.kPrimaryColor,
-            IconlyBroken.delete,
           ),
         ),
       ),

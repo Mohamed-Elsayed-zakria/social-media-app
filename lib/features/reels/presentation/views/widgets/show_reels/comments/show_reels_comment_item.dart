@@ -11,12 +11,12 @@ import 'package:get/get.dart';
 
 class ShowReelsCommentItem extends StatelessWidget {
   final CommentModel commentData;
-  final String videoUid;
+  final String reelUid;
 
   const ShowReelsCommentItem({
     super.key,
     required this.commentData,
-    required this.videoUid,
+    required this.reelUid,
   });
 
   @override
@@ -26,7 +26,7 @@ class ShowReelsCommentItem extends StatelessWidget {
         Get.bottomSheet(
           ShowReelsOnLongPressComment(
             commentData: commentData,
-            videoUid: videoUid,
+            reelUid: reelUid,
           ),
         );
       },
@@ -66,7 +66,7 @@ class ShowReelsCommentItem extends StatelessWidget {
               leading: CommentCircleAvatar(commentData: commentData),
               trailing: ShowReelsCommentAddLike(
                 commentData: commentData,
-                videoUid: videoUid,
+                reelsUid: reelUid,
               ),
             ),
             Visibility(

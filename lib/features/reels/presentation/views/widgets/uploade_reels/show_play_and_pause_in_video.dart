@@ -11,21 +11,16 @@ class ShowPlayAndPauseInVideo extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = sizeScreen(context: context);
     return Obx(
-      () => isShow.value
-          ? Center(
-              child: isPlaying.value
-                  ? Icon(
-                      Icons.play_arrow,
-                      color: AppColors.kBackgroundColor,
-                      size: size.width * .24,
-                    )
-                  : Icon(
-                      Icons.pause,
-                      color: AppColors.kBackgroundColor,
-                      size: size.width * .24,
-                    ),
-            )
-          : const SizedBox(),
+      () => Visibility(
+        visible: isShow.value,
+        child: Center(
+          child: Icon(
+            isPlaying.value ? Icons.play_arrow : Icons.pause,
+            color: AppColors.kBackgroundColor,
+            size: size.width * .24,
+          ),
+        ),
+      ),
     );
   }
 }

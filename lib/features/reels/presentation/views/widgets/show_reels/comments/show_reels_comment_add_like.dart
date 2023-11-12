@@ -8,19 +8,19 @@ import 'package:flutter/material.dart';
 
 class ShowReelsCommentAddLike extends StatelessWidget {
   final CommentModel commentData;
-  final String videoUid;
+  final String reelsUid;
 
   const ShowReelsCommentAddLike({
     super.key,
     required this.commentData,
-    required this.videoUid,
+    required this.reelsUid,
   });
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: getReelsCommentsLikes(
-        videoUid: videoUid,
+        reelUid: reelsUid,
         commentUid: commentData.commentId,
       ),
       builder: (context, likesSnapshot) {
@@ -36,11 +36,11 @@ class ShowReelsCommentAddLike extends StatelessWidget {
                 allLikes.contains(ApiService.user.uid)
                     ? removeReelsLikeFromComment(
                         commentUid: commentData.commentId,
-                        videoUid: videoUid,
+                        reelUid: reelsUid,
                       )
                     : addReelsLikeComment(
                         commentUid: commentData.commentId,
-                        videoUid: videoUid,
+                        reelUid: reelsUid,
                       );
               },
               icon: allLikes.contains(ApiService.user.uid)

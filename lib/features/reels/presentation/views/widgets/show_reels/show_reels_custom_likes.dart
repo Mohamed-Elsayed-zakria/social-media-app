@@ -1,13 +1,13 @@
 import '../../../controller/show_reels_controller.dart';
-import '../../../../data/model/video_reels_model.dart';
+import '../../../../data/model/reels_model.dart';
 import '../../../../../../core/api/api_service.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
 
-class VideoReelsCustomLikes extends StatelessWidget {
-  final VideoReelsModel allReels;
-  const VideoReelsCustomLikes({
+class ShowReelsCustomLikes extends StatelessWidget {
+  final ReelsModel allReels;
+  const ShowReelsCustomLikes({
     super.key,
     required this.allReels,
   });
@@ -15,7 +15,7 @@ class VideoReelsCustomLikes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: getReelsLikes(videoUid: allReels.videoUid),
+      stream: getReelsLikes(reelsUid: allReels.reelUid),
       builder: (context, snapshot) {
         List allLikes = [];
         int countLikes = 0;
@@ -28,8 +28,8 @@ class VideoReelsCustomLikes extends StatelessWidget {
             IconButton(
               onPressed: () {
                 allLikes.contains(ApiService.user.uid)
-                    ? removeLikeToReels(videoUid: allReels.videoUid)
-                    : addLikeToReels(videoUid: allReels.videoUid);
+                    ? removeLikeToReels(reelsUid: allReels.reelUid)
+                    : addLikeToReels(reelsUid: allReels.reelUid);
               },
               icon: allLikes.contains(ApiService.user.uid)
                   ? const Icon(

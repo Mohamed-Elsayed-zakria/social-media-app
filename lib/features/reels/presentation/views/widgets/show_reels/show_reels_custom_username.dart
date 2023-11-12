@@ -1,11 +1,11 @@
-import '../../../../data/model/video_reels_model.dart';
+import '../../../../data/model/reels_model.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/style.dart';
 import 'package:flutter/material.dart';
 
-class VideoReelsCustomUsername extends StatelessWidget {
-  final VideoReelsModel allReels;
-  const VideoReelsCustomUsername({
+class ShowReelsCustomUsername extends StatelessWidget {
+  final ReelsModel allReels;
+  const ShowReelsCustomUsername({
     super.key,
     required this.allReels,
   });

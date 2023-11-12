@@ -2,6 +2,7 @@ const String appname = "Flash";
 const Map<String, String> en = {
   "Appname": "Flash",
   "Error": "Error",
+
   //=============auth==================
 
   //************login******************
@@ -167,6 +168,8 @@ const Map<String, String> en = {
   'Next': 'Next',
   "No internet connection": "No internet connection",
   'Write a description': 'Write a description',
+  'The reel clip has been reported':'The reel clip has been reported',
+  "The reel has been deleted":"The reel has been deleted",
 
 //===================profile===================
 

@@ -1,13 +1,12 @@
-import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
 import '../../../../../core/constant/collections.dart';
-import '../../../../../core/api/api_service.dart';
 import '../../../../../core/utils/show_toast.dart';
-import '../../model/post_model.dart';
+import '../../../../../core/api/api_service.dart';
 import '../../model/report_post.dart';
+import '../../model/post_model.dart';
 import '../custom_post_repo.dart';
+import 'package:get/get.dart';
+import 'dart:async';
 
 class CustomPostApi implements CustomPostRepo {
   @override

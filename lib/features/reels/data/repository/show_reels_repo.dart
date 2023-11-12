@@ -1,9 +1,11 @@
-import '../model/video_reels_model.dart';
+import '../model/reels_model.dart';
 
 abstract class ShowReelsRepo {
-  Future<List<VideoReelsModel>> getAllReels();
-  Stream<List> getReelsLikes({required String videoUid});
-  Stream<int> getCommentReelsCount({required String videoUid});
-  Future<void> addLikeToReels({required String videoUid});
-  Future<void> removeLikeToReels({required String videoUid});
+  Future<List<ReelsModel>> getAllReels();
+  Stream<List> getReelsLikes({required String reelsUid});
+  Stream<int> getCommentReelsCount({required String reelsUid});
+  Future<void> addLikeToReels({required String reelsUid});
+  Future<void> removeLikeToReels({required String reelsUid});
+Future<void> reportReels({required ReelsModel reelsModel});
+  Future<void> deleteReels({required String reelsUid});
 }

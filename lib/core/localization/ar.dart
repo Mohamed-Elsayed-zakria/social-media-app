@@ -169,6 +169,8 @@ const Map<String, String> ar = {
   'Next': 'التالي',
   'Write a description': 'اكتب وصف',
   "No internet connection": "لا يوجد اتصال بالإنترنت",
+  'The reel clip has been reported': "تم الإبلاغ عن مقطع الريلز",
+  "The reel has been deleted": "تم حذف مقطع الريلز",
 
   //===================profile===================
 

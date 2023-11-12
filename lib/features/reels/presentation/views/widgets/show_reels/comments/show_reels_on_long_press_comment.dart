@@ -8,12 +8,12 @@ import 'package:get/get.dart';
 
 class ShowReelsOnLongPressComment extends StatelessWidget {
   final CommentModel commentData;
-  final String videoUid;
+  final String reelUid;
 
   const ShowReelsOnLongPressComment({
     super.key,
     required this.commentData,
-    required this.videoUid,
+    required this.reelUid,
   });
 
   @override
@@ -25,7 +25,7 @@ class ShowReelsOnLongPressComment extends StatelessWidget {
             onTapDelete: () {
               deleteReelsComment(
                 commentUid: commentData.commentId,
-                videoUid: videoUid,
+                reelUid: reelUid,
               );
               Get.back();
             },
@@ -35,7 +35,7 @@ class ShowReelsOnLongPressComment extends StatelessWidget {
                 updateReelsComment(
                   newTextComment: getTextReelsComment.text,
                   commentUid: commentData.commentId,
-                  videoUid: videoUid,
+                  reelUid: reelUid,
                 );
               }
             },
@@ -46,7 +46,7 @@ class ShowReelsOnLongPressComment extends StatelessWidget {
               Get.back();
               reportReelsComment(
                 commentData: commentData,
-                videoUid: videoUid,
+                reelUid: reelUid,
               );
             },
           );

@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import '../../../../core/constant/colors.dart';
-import '../../data/model/video_reels_model.dart';
-import '../controller/show_reels_controller.dart';
 import 'widgets/show_reels/show_reels_no_internet.dart';
 import 'widgets/show_reels/show_reels_not_fount.dart';
-import 'widgets/show_reels/show_video_reels_body.dart';
+import '../controller/show_reels_controller.dart';
+import 'widgets/show_reels/show_reels_body.dart';
+import '../../data/model/reels_model.dart';
+import '../../../../core/constant/colors.dart';
+import 'package:flutter/material.dart';
 
 class ShowReelsScreen extends StatelessWidget {
   final String? specificVideo;
@@ -28,10 +28,10 @@ class ShowReelsScreen extends StatelessWidget {
           } else if (!snapshot.hasData || snapshot.hasError) {
             return const ShowReelsNoInternet();
           } else {
-            List<VideoReelsModel> allReels = snapshot.data ?? [];
+            List<ReelsModel> allReels = snapshot.data ?? [];
             if (specificVideo != null) {
               for (int i = 0; i < allReels.length; i++) {
-                if (allReels[i].videoUid == specificVideo) {
+                if (allReels[i].reelUid == specificVideo) {
                   initialPage = i;
                 }
               }
@@ -41,7 +41,7 @@ class ShowReelsScreen extends StatelessWidget {
               itemCount: allReels.length,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
-                return ShowVideoReelsBody(allReels: allReels[index]);
+                return ShowReelsBody(allReels: allReels[index]);
               },
             );
           }

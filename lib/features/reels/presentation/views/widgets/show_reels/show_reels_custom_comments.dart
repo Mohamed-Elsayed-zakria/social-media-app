@@ -1,15 +1,15 @@
-import '../../../../data/model/video_reels_model.dart';
+import '../../../../data/model/reels_model.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../controller/show_reels_controller.dart';
-import 'show_video_buttom_sheet_comments.dart';
+import 'show_reels_buttom_sheet_comments.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class VideoReelsCustomComments extends StatelessWidget {
-  final VideoReelsModel allReels;
+class ShowReelsCustomComments extends StatelessWidget {
+  final ReelsModel allReels;
 
-  const VideoReelsCustomComments({
+  const ShowReelsCustomComments({
     super.key,
     required this.allReels,
   });
@@ -22,7 +22,7 @@ class VideoReelsCustomComments extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () => Get.bottomSheet(
-              ShowVideoButtomSheetComments(allReels: allReels),
+              ShowReelsButtomSheetComments(allReels: allReels),
               isScrollControlled: true,
             ),
             icon: const Icon(
@@ -32,7 +32,7 @@ class VideoReelsCustomComments extends StatelessWidget {
             ),
           ),
           StreamBuilder(
-            stream: getCommentReelsCount(videoUid: allReels.videoUid),
+            stream: getCommentReelsCount(reelsUid: allReels.reelUid),
             builder: (context, snapshot) {
               int? countComments = 0;
               if (snapshot.hasData) {

@@ -1,5 +1,5 @@
 import '../../data/repository/api/show_reels_api.dart';
-import '../../data/model/video_reels_model.dart';
+import '../../data/model/reels_model.dart';
 import 'package:video_player/video_player.dart';
 import 'package:get/get.dart';
 import 'dart:async';
@@ -29,22 +29,30 @@ void showVideoPlayAndPauseVideo({
   }
 }
 
-Future<List<VideoReelsModel>> getAllReels() async {
+Future<List<ReelsModel>> getAllReels() async {
   return ShowReelsApi().getAllReels();
 }
 
-Stream<List> getReelsLikes({required String videoUid}) {
-  return ShowReelsApi().getReelsLikes(videoUid: videoUid);
+Stream<List> getReelsLikes({required String reelsUid}) {
+  return ShowReelsApi().getReelsLikes(reelsUid: reelsUid);
 }
 
-Stream<int> getCommentReelsCount({required String videoUid}) {
-  return ShowReelsApi().getCommentReelsCount(videoUid: videoUid);
+Stream<int> getCommentReelsCount({required String reelsUid}) {
+  return ShowReelsApi().getCommentReelsCount(reelsUid: reelsUid);
 }
 
-Future<void> addLikeToReels({required String videoUid}) async {
-  ShowReelsApi().addLikeToReels(videoUid: videoUid);
+Future<void> addLikeToReels({required String reelsUid}) async {
+  ShowReelsApi().addLikeToReels(reelsUid: reelsUid);
 }
 
-Future<void> removeLikeToReels({required String videoUid}) async {
-  ShowReelsApi().removeLikeToReels(videoUid: videoUid);
+Future<void> removeLikeToReels({required String reelsUid}) async {
+  ShowReelsApi().removeLikeToReels(reelsUid: reelsUid);
+}
+
+Future<void> reportReels({required ReelsModel reelsModel}) async {
+  ShowReelsApi().reportReels(reelsModel: reelsModel);
+}
+
+Future<void> deleteReels({required String reelsUid}) async {
+  ShowReelsApi().deleteReels(reelsUid: reelsUid);
 }

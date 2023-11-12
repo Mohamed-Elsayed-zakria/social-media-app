@@ -1,16 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
-
 import '../../../../../../core/widgets/custom_verified_in_circal_avatar.dart';
 import '../../../../../profile/presentation/views/profile_screen.dart';
-import '../../../../data/model/video_reels_model.dart';
+import '../../../../data/model/reels_model.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class VideoReelsCustomCircleAvatar extends StatelessWidget {
-  final VideoReelsModel allReels;
+class ShowReelsCustomCircleAvatar extends StatelessWidget {
+  final ReelsModel allReels;
 
-  const VideoReelsCustomCircleAvatar({
+  const ShowReelsCustomCircleAvatar({
     super.key,
     required this.allReels,
   });

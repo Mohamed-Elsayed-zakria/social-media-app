@@ -35,26 +35,17 @@ class DeleteAccountApi implements DeleteAccountRepo {
                 userRef.collection(Collections.storyCollection);
 
             final subCollection2Ref =
-                userRef.collection(Collections.reelsCollection);
-
-            final subCollection3Ref =
                 userRef.collection(Collections.notificationCollection);
 
             final subCollection1Docs = await subCollection1Ref.get();
 
             final subCollection2Docs = await subCollection2Ref.get();
 
-            final subCollection3Docs = await subCollection3Ref.get();
-
             for (final doc in subCollection1Docs.docs) {
               await doc.reference.delete();
             }
 
             for (final doc in subCollection2Docs.docs) {
-              await doc.reference.delete();
-            }
-
-            for (final doc in subCollection3Docs.docs) {
               await doc.reference.delete();
             }
 
