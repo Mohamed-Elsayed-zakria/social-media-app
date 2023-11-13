@@ -1,3 +1,4 @@
+import '../../../../core/utils/get_current_date_time.dart';
 import '../../data/reposetory/api/edite_personal_api.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,8 @@ final GlobalKey<FormState> formKeyeditePerson = GlobalKey();
 
 final RegExp validCharacters = RegExp(r'^[a-z0-9_]+$');
 
-DateTime editePersonDateNow = DateTime.timestamp();
+DateTime editePersonDateNow = currentTimeDevice();
+
 DateTime editePersonInitialDate = editePersonDateNow.subtract(
   const Duration(days: 365 * 10),
 );

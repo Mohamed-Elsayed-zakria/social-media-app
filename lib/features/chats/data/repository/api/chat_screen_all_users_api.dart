@@ -9,7 +9,7 @@ import 'dart:async';
 class ChatScreenAllUsersApi extends ChatScreenAllUsersRepo {
   @override
   Future<List<UserChatData>> getUserDataToChat() async {
-    List<UserChatData> allUserData = [];
+    List<Map<String, dynamic>> allUserData = [];
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
         .firestore
         .collection(Collections.userCollection)
@@ -17,11 +17,47 @@ class ChatScreenAllUsersApi extends ChatScreenAllUsersRepo {
         .get();
     if (querySnapshot.docs.isNotEmpty) {
       for (var doc in querySnapshot.docs) {
-        UserChatData userChatData = UserChatData.fromJson(doc.data());
-        allUserData.add(userChatData);
+        Map<String, dynamic> userData = doc.data();
+        QuerySnapshot<Map<String, dynamic>> lastMessageSnapshot =
+            await ApiService.firestore
+                .collection(Collections.userCollection)
+                .doc(ApiService.user.uid)
+                .collection(Collections.chatCollection)
+                .doc(userData['personUid'])
+                .collection(Collections.messageCollection)
+                .orderBy('dateTime', descending: true)
+                .limit(1)
+                .get();
+        DateTime lastMessageTime;
+        if (lastMessageSnapshot.docs.isNotEmpty) {
+          Map<String, dynamic> lastMessageData =
+              lastMessageSnapshot.docs.first.data();
+          lastMessageTime = DateTime.parse(lastMessageData['dateTime']);
+        } else {
+          // If there are no messages, set a default time (e.g., the user creation time).
+          DateTime userCreationTime = ApiService.user.metadata.creationTime!;
+          lastMessageTime = DateTime.parse(userData[userCreationTime]);
+        }
+
+        userData['lastMessageTime'] = lastMessageTime;
+        allUserData.add(userData);
       }
+
+      // Sort the list based on last message time in descending order
+      allUserData.sort(
+        (a, b) => (b['lastMessageTime'] as DateTime)
+            .compareTo(a['lastMessageTime'] as DateTime),
+      );
+
+      // Convert the list of maps to a list of UserChatData
+      List<UserChatData> sortedUserData = allUserData
+          .map((userData) => UserChatData.fromJson(userData))
+          .toList();
+
+      return sortedUserData;
     }
-    return allUserData;
+
+    return [];
   }
 
   @override

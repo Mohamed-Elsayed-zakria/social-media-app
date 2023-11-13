@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
 import '../../../controllers/add_details_controller.dart';
 import 'add_details_custom_list_tile.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddDetailsTakingAge extends StatelessWidget {
   const AddDetailsTakingAge({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Obx(

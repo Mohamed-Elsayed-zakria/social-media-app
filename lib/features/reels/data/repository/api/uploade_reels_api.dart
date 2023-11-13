@@ -1,4 +1,5 @@
 import '../../../presentation/controller/uploade_reels_controller.dart';
+import '../../../../../core/utils/get_current_date_time.dart';
 import '../../../../../core/constant/collections.dart';
 import '../../../../../core/api/api_dynamic_link.dart';
 import '../../../../../core/api/api_service.dart';
@@ -13,6 +14,8 @@ class UploadeReelsApi implements UploadeReelsRepo {
     required String postStatus,
     String? description,
   }) async {
+    DateTime getCurrentDateTime = currentTimeDevice();
+
     String generatId = const Uuid().v1();
     String videoUrl;
     try {
@@ -38,7 +41,7 @@ class UploadeReelsApi implements UploadeReelsRepo {
       }
 
       ReelsModel videoReelsModel = ReelsModel(
-        datePublished: DateTime.timestamp().toString(),
+        datePublished: getCurrentDateTime.toString(),
         personUid: ApiService.user.uid,
         description: description,
         postStatus: postStatus,

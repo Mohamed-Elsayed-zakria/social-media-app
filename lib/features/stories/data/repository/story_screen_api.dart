@@ -1,5 +1,6 @@
 import '../../../home/presentaion/controller/home_sceen_controller.dart';
 import '../../presentation/controller/story_controller.dart';
+import '../../../../core/utils/get_current_date_time.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../../core/constant/collections.dart';
 import '../../../../core/utils/show_toast.dart';
@@ -18,7 +19,9 @@ class StoryScreenApi extends StoryScreenRepo {
     String? description,
     String? imgPath,
   }) async {
-    String currentDate = DateTime.timestamp().toString();
+    DateTime getCurrentDateTime = currentTimeDevice();
+
+    String currentDate = getCurrentDateTime.toString();
     String generatStoryId = const Uuid().v1();
     uploadeStoryIsLoading.value = true;
     String? urlImgPath;

@@ -88,6 +88,7 @@ const Map<String, String> ar = {
   "The message has been reported": "تم الإبلاغ عن الرسالة",
   "Edite message": "تعديل الرسالة",
   "You have blocked this user": "لقد قمت بحظر هذا المستخدم",
+  'You can no longer edite the message': 'لم يعد بإمكانك تعديل الرسالة',
 
 //===================home===================
   "Home": "الرئيسية",

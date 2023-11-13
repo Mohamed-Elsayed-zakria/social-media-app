@@ -1,4 +1,5 @@
 import '../../data/repository/api/add_details_screen_api.dart';
+import '../../../../core/utils/get_current_date_time.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,9 +12,10 @@ final GlobalKey<FormState> formKeyAddDetails = GlobalKey();
 
 final RegExp validCharacters = RegExp(r'^[a-z0-9_]+$');
 
-DateTime dateNow = DateTime.timestamp();
+DateTime dateNow = currentTimeDevice();
 DateTime initialDate = dateNow.subtract(const Duration(days: 365 * 10));
 DateTime firstDate = dateNow.subtract(const Duration(days: 365 * 100));
+
 Rx<DateTime?> dateOfBirth = Rx<DateTime?>(null);
 
 RxBool validatorAge = true.obs;

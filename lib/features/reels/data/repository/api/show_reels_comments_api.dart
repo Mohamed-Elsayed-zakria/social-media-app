@@ -1,4 +1,5 @@
 import '../../../presentation/controller/show_reels_comments_controller.dart';
+import '../../../../../core/utils/get_current_date_time.dart';
 import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/model/comment_model.dart';
@@ -55,8 +56,10 @@ class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
     required String reelUid,
     required String text,
   }) async {
+    DateTime getCurrentDateTime = currentTimeDevice();
     String commentId = const Uuid().v1();
     String commentImgPathUrl = '';
+    
     if (reelsCommentImgPath != null && commentType == CommentType.image) {
       final storageRef = ApiService.fireStorage.ref(
         "reels/${ApiService.user.uid}/comments-image/$commentId/$commentId.jpg",
@@ -65,7 +68,7 @@ class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
       commentImgPathUrl = await storageRef.getDownloadURL();
     }
     CommentModel newComment = CommentModel(
-      dataPublished: DateTime.timestamp().toString(),
+      dataPublished: getCurrentDateTime.toString(),
       imageUrlComment: commentImgPathUrl,
       personUid: ApiService.user.uid,
       commentType: commentType.name,

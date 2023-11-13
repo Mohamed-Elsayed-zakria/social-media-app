@@ -40,8 +40,9 @@ void chatRemoveImage(int index) {
   }
 }
 
-Future<void> chatUploadeImageFromCamera(
-    {required UserChatData userData}) async {
+Future<void> chatUploadeImageFromCamera({
+  required UserChatData userData,
+}) async {
   chatImagePaths.value = [];
   XFile? pickedImg = await ImagePicker().pickImage(source: ImageSource.camera);
   if (pickedImg != null) {

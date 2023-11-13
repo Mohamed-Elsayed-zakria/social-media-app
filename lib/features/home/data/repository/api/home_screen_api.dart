@@ -1,3 +1,4 @@
+import '../../../../../core/utils/get_current_date_time.dart';
 import '../../../../stories/data/model/stories_model.dart';
 import '../../../../../core/constant/collections.dart';
 import '../../../../posts/data/model/post_model.dart';
@@ -10,7 +11,8 @@ class HomeScreenApi extends HomeScreenRepo {
   Future<List<StoriesModel>> getCurrentUserStory() async {
     List<StoriesModel> storiesData = [];
 
-    DateTime currentTime = DateTime.timestamp();
+    DateTime currentTime = currentTimeDevice();
+
     DateTime twentyFourHoursAgo = currentTime.subtract(
       const Duration(hours: 24),
     );
@@ -54,7 +56,7 @@ class HomeScreenApi extends HomeScreenRepo {
     List<String> followers = List<String>.from(
       currentUserData['followers'],
     );
-    
+
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
         .firestore
         .collection(Collections.postCollection)
@@ -96,7 +98,7 @@ class HomeScreenApi extends HomeScreenRepo {
   @override
   Future<List<List<StoriesModel>>> getAllUsersStories() async {
     List<List<StoriesModel>> allStoriesList = [];
-    DateTime currentTime = DateTime.timestamp();
+    DateTime currentTime = currentTimeDevice();
 
     DateTime twentyFourHoursAgo = currentTime.subtract(
       const Duration(hours: 24),

@@ -1,4 +1,5 @@
 import '../../../presentation/controllers/comments_controller.dart';
+import '../../../../../core/utils/get_current_date_time.dart';
 import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/model/comment_model.dart';
@@ -59,15 +60,17 @@ class CommentsApi extends CommentsRepo {
     String commentId = const Uuid().v1();
     String commentImgPathUrl = '';
 
+    DateTime getCurrentDateTime = currentTimeDevice();
+
     if (commentImgPath != null && commentType == CommentType.image) {
       final storageRef = ApiService.fireStorage.ref(
-        "posts/comments-image/${ApiService.user.uid}/$commentId.jpg",
+        'user-files/${ApiService.user.uid}/images/posts/comments/$commentId.jpg',
       );
       await storageRef.putFile(commentImgPath!);
       commentImgPathUrl = await storageRef.getDownloadURL();
     }
     CommentModel newComment = CommentModel(
-      dataPublished: DateTime.timestamp().toString(),
+      dataPublished: getCurrentDateTime.toString(),
       imageUrlComment: commentImgPathUrl,
       personUid: ApiService.user.uid,
       commentType: commentType.name,

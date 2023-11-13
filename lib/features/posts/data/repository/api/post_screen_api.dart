@@ -1,5 +1,6 @@
 import '../../../presentation/controllers/post_screen_controller.dart';
 import '../../../../notifications/data/model/notice_model.dart';
+import '../../../../../core/utils/get_current_date_time.dart';
 import '../../../../../core/api/api_firebase_messaging.dart';
 import '../../../../../core/model/current_user_data.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -18,6 +19,8 @@ class PostScreenApi implements PostScreenRepo {
     required String description,
     required String postStatus,
   }) async {
+    DateTime getCurrentDateTime =currentTimeDevice();
+
     addPostLoading.value = true;
     String generatId = const Uuid().v1();
     List<String> imageUrls = [];
@@ -31,8 +34,8 @@ class PostScreenApi implements PostScreenRepo {
       for (var imageFile in imagePaths) {
         String generatImageId = const Uuid().v1();
         final ref = ApiService.fireStorage.ref(
-              'user-files/${ApiService.user.uid}/images/posts/$generatId/$generatImageId.jpg',
-            );
+          'user-files/${ApiService.user.uid}/images/posts/$generatId/$generatImageId.jpg',
+        );
         final task = await ref.putFile(File(imageFile));
         if (task.state == TaskState.success) {
           final downloadUrl = await ref.getDownloadURL();
@@ -44,8 +47,7 @@ class PostScreenApi implements PostScreenRepo {
     if (addNewPostVedioPath.value != null) {
       String generatVideoId = const Uuid().v1();
       final storageRef = FirebaseStorage.instance.ref(
-        'user-files/${ApiService.user.uid}/video/posts/$generatId/$generatVideoId.mp4'
-      );
+          'user-files/${ApiService.user.uid}/video/posts/$generatId/$generatVideoId.mp4');
       await storageRef.putFile(addNewPostVedioPath.value!);
       videoUrl = await storageRef.getDownloadURL();
     } else {
@@ -61,7 +63,7 @@ class PostScreenApi implements PostScreenRepo {
     }
 
     PostModel postModel = PostModel(
-      datePublished: DateTime.timestamp().toString(),
+      datePublished: getCurrentDateTime.toString(),
       personUid: ApiService.user.uid,
       description: description,
       postStatus: postStatus,
@@ -85,6 +87,7 @@ class PostScreenApi implements PostScreenRepo {
         .then((value) {
       getDescriptionText.clear();
       ApiFirebaseMessaging.sendNotfiy(
+        postId: generatId,
         username: CurrentUserData.username,
         noticeModel: noticeModel,
       );

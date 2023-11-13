@@ -1,5 +1,6 @@
 import '../../../presentation/controllers/chat_screen_messages_controller.dart';
 import '../../../../notifications/data/model/notice_model.dart';
+import '../../../../../core/utils/get_current_date_time.dart';
 import '../../../../../core/api/api_firebase_messaging.dart';
 import '../../../../../core/model/current_user_data.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -43,28 +44,14 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
   }
 
   @override
-  Future<void> updateMessagesReadStatus({
-    required MessageModel messageData,
-  }) async {
-    String currentDateTime = DateTime.timestamp().toString();
-    await ApiService.firestore
-        .collection(Collections.userCollection)
-        .doc(messageData.senderId)
-        .collection(Collections.chatCollection)
-        .doc(ApiService.user.uid)
-        .collection(Collections.messageCollection)
-        .doc(messageData.dateTime)
-        .update({'isRead': currentDateTime});
-  }
-
-  @override
   Future<void> sentNewMessage({
     required UserChatData userData,
     required String text,
     required String type,
   }) async {
     getMessageChat.clear();
-    String currentDateTime = DateTime.timestamp().toString();
+    DateTime getCurrentDateTime = currentTimeDevice();
+    String currentDateTime = getCurrentDateTime.toString();
     List<String> imageUrls = [];
     String videoUrl = '';
     NoticeModel noticeModel = NoticeModel(
@@ -151,6 +138,21 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
   }
 
   @override
+  Future<void> updateMessagesReadStatus({
+    required MessageModel messageData,
+  }) async {
+    String currentDateTime = currentTimeDevice().toString();
+    await ApiService.firestore
+        .collection(Collections.userCollection)
+        .doc(messageData.senderId)
+        .collection(Collections.chatCollection)
+        .doc(ApiService.user.uid)
+        .collection(Collections.messageCollection)
+        .doc(messageData.dateTime)
+        .update({'isRead': currentDateTime});
+  }
+
+  @override
   Future<void> deleteMessageForEveryone({
     required MessageModel messageData,
   }) async {
@@ -203,22 +205,32 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
     required MessageModel messageData,
     required String newMessage,
   }) async {
-    await ApiService.firestore
-        .collection(Collections.userCollection)
-        .doc(ApiService.user.uid)
-        .collection(Collections.chatCollection)
-        .doc(messageData.receiverId)
-        .collection(Collections.messageCollection)
-        .doc(messageData.dateTime)
-        .update({'message': newMessage});
+    DateTime getCurrentDateTime = DateTime.now();
+    DateTime messageTime = DateTime.parse(messageData.dateTime);
 
-    await ApiService.firestore
-        .collection(Collections.userCollection)
-        .doc(messageData.receiverId)
-        .collection(Collections.chatCollection)
-        .doc(ApiService.user.uid)
-        .collection(Collections.messageCollection)
-        .doc(messageData.dateTime)
-        .update({'message': newMessage});
+    int minutesDifference =
+        getCurrentDateTime.difference(messageTime).inMinutes;
+
+    if (minutesDifference <= 30) {
+      await ApiService.firestore
+          .collection(Collections.userCollection)
+          .doc(ApiService.user.uid)
+          .collection(Collections.chatCollection)
+          .doc(messageData.receiverId)
+          .collection(Collections.messageCollection)
+          .doc(messageData.dateTime)
+          .update({'message': newMessage});
+
+      await ApiService.firestore
+          .collection(Collections.userCollection)
+          .doc(messageData.receiverId)
+          .collection(Collections.chatCollection)
+          .doc(ApiService.user.uid)
+          .collection(Collections.messageCollection)
+          .doc(messageData.dateTime)
+          .update({'message': newMessage});
+    } else {
+      showToast(msg: 'You can no longer edite the message'.tr);
+    }
   }
 }

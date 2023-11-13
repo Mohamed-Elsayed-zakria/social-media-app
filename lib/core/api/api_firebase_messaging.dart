@@ -1,11 +1,12 @@
 import '../../features/chats/presentation/views/chat_screen_all_users.dart';
-import '../../features/notifications/data/model/notice_model.dart';
 import '../../features/profile/presentation/views/profile_screen.dart';
+import '../../features/notifications/data/model/notice_model.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
 import '../constant/collections.dart';
 import 'package:get/get.dart';
+import '../utils/get_current_date_time.dart';
 import 'api_service.dart';
 import 'dart:convert';
 
@@ -14,9 +15,11 @@ abstract class ApiFirebaseMessaging {
       'AAAAq_AsTMA:APA91bFDTSROZ94mLjbnwAYtMsMGsfkiAjEaB_eaub5bcHEAFi-hsRf60vrUu8_Vv-g-Hzxw9Zu0JBXaU9AHmoYCeOXOwcf3rWgXiHXqoA24X37O7aDc_xmh5HVZX1XbCShzcFchoeW2';
 
   static void sendNotfiy({
+    String postId = '',
     required NoticeModel noticeModel,
     required String username,
   }) async {
+    DateTime getCurrentDateTime = currentTimeDevice();
     await http.post(
       Uri.parse('https://fcm.googleapis.com/fcm/send'),
       headers: {
@@ -31,9 +34,10 @@ abstract class ApiFirebaseMessaging {
           },
           'priority': 'high',
           'data': {
-            'datePublished': DateTime.timestamp().toString(),
+            'datePublished': getCurrentDateTime.toString(),
             'type': noticeModel.type.toString(),
             'userUid': noticeModel.personUid,
+            'postId': postId,
             'username': username,
           },
           'to': noticeModel.sentTo,
@@ -64,12 +68,10 @@ abstract class ApiFirebaseMessaging {
 
   static Future<void> onMessageOpenedApp() async {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      if (message.notification != null) {
-        if (message.data['type'] == 'chat') {
-          Get.to(() => const ChatScreenAllUsers());
-        } else if (message.data['type'] == 'profile') {
-          Get.to(() => ProfileScreen(otherUid: message.data['userUid']));
-        }
+      if (message.data['type'] == NoticeType.chat.name) {
+        Get.to(() => const ChatScreenAllUsers());
+      } else if (message.data['type'] == NoticeType.profile.name) {
+        Get.to(() => ProfileScreen(otherUid: message.data['userUid']));
       }
     });
   }
@@ -90,9 +92,9 @@ abstract class ApiFirebaseMessaging {
           );
           AwesomeNotifications().setListeners(
             onActionReceivedMethod: (receivedAction) async {
-              if (message.data['type'] == 'chat') {
+              if (message.data['type'] == NoticeType.chat.name) {
                 Get.to(() => const ChatScreenAllUsers());
-              } else if (message.data['type'] == 'profile') {
+              } else if (message.data['type'] == NoticeType.profile.name) {
                 Get.to(() => ProfileScreen(otherUid: message.data['userUid']));
               }
             },

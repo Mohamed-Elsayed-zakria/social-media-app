@@ -1,9 +1,11 @@
+import 'get_current_date_time.dart';
 import 'package:intl/intl.dart';
+
 
 abstract class MyDateUtil {
   static String convertDateTime({required String historyAsText}) {
     final DateTime dateTime = DateTime.parse(historyAsText);
-    final DateTime now = DateTime.timestamp();
+    final DateTime now = currentTimeDevice();
     final Duration difference = now.difference(dateTime);
     if (difference.inSeconds < 3) {
       return 'now';
