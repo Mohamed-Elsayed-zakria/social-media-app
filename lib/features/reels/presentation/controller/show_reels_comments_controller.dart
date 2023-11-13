@@ -24,11 +24,7 @@ Future<void> reelsCommentUploadImage({
         imageUrl: reelsCommentImgPath!.path,
         onTapSendImage: () {
           Get.back();
-          addNewReelsComment(
-            commentType: commentType,
-            text: text,
-            reelUid: reelUid,
-          );
+          addNewReelsCommentOfTypeImage(reelUid: reelUid);
         },
       ),
     );
@@ -39,15 +35,21 @@ Stream<List<CommentModel>> getAllReelsComments({required String reelUid}) {
   return ShowReelsCommentsApi().getAllReelsComments(reelUid: reelUid);
 }
 
-Future<void> addNewReelsComment({
-  required CommentType commentType,
+Future<void> addNewReelsCommentOfTypeText({
   required String reelUid,
   required String text,
 }) async {
-  await ShowReelsCommentsApi().addNewReelsComment(
+  ShowReelsCommentsApi().addNewReelsCommentOfTypeText(
     reelUid: reelUid,
     text: text,
-    commentType: commentType,
+  );
+}
+
+Future<void> addNewReelsCommentOfTypeImage({
+  required String reelUid,
+}) async {
+  ShowReelsCommentsApi().addNewReelsCommentOfTypeImage(
+    reelUid: reelUid,
   );
 }
 

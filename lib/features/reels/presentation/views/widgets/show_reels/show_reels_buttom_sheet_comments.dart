@@ -63,8 +63,7 @@ class ShowReelsButtomSheetComments extends StatelessWidget {
               commentController: addReelsComment,
               onTapSendComment: () {
                 if (addReelsComment.text.isNotEmpty) {
-                  addNewReelsComment(
-                    commentType: CommentType.text,
+                  addNewReelsCommentOfTypeText(
                     reelUid: allReels.reelUid,
                     text: addReelsComment.text,
                   );

@@ -41,8 +41,7 @@ class CustomPostDetails extends StatelessWidget {
             commentController: commentController,
             onTapSendComment: () {
               if (commentController.text.isNotEmpty) {
-                addNewComment(
-                  commentType: CommentType.text,
+                addNewCommentOfTypeText(
                   text: commentController.text,
                   postId: postUid,
                 );

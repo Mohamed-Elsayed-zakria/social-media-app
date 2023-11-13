@@ -3,10 +3,15 @@ import '../models/message_model.dart';
 
 abstract class ChatScreenMessagesRepo {
   Stream<List<MessageModel>> getAllMessages({required String receiverId});
-  Future<void> sentNewMessage({
+  Future<void> sentNewMessageOfTypeText({
     required UserChatData userData,
     required String text,
-    required String type,
+  });
+  Future<void> sentNewMessageOfTypeImage({
+    required UserChatData userData,
+  });
+  Future<void> sentNewMessageOfTypeVideo({
+    required UserChatData userData,
   });
   Future<void> updateMessagesReadStatus({required MessageModel messageData});
   Future<void> deleteMessageForEveryone({required MessageModel messageData});

@@ -96,15 +96,29 @@ Future<void> updateMessagesReadStatus({
   ChatScreenMessagesApi().updateMessagesReadStatus(messageData: messageData);
 }
 
-Future<void> sentNewMessage({
+Future<void> sentNewMessageOfTypeText({
   required UserChatData userData,
   required String text,
-  required String type,
 }) async {
-  ChatScreenMessagesApi().sentNewMessage(
+  ChatScreenMessagesApi().sentNewMessageOfTypeText(
     userData: userData,
     text: text,
-    type: type,
+  );
+}
+
+Future<void> sentNewMessageOfTypeImage({
+  required UserChatData userData,
+}) async {
+  ChatScreenMessagesApi().sentNewMessageOfTypeImage(
+    userData: userData,
+  );
+}
+
+Future<void> sentNewMessageOfTypeVideo({
+  required UserChatData userData,
+}) async {
+  ChatScreenMessagesApi().sentNewMessageOfTypeVideo(
+    userData: userData,
   );
 }
 

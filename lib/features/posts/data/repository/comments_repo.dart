@@ -3,10 +3,12 @@ import '../../../../core/model/comment_model.dart';
 abstract class CommentsRepo {
   Stream<List<CommentModel>> getAllComments({required String postId});
 
-  Future<void> addNewComment({
-    required CommentType commentType,
+  Future<void> addNewCommentOfTypeText({
     required String postId,
     required String text,
+  });
+  Future<void> addNewCommentOfTypeImage({
+    required String postId,
   });
 
   Stream<List> getPostCommentsLikes({

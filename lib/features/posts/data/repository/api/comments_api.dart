@@ -4,7 +4,6 @@ import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/model/comment_model.dart';
 import '../../../../../core/utils/show_toast.dart';
-import '../../../../../core/utils/snack_bar.dart';
 import '../../../../../core/api/api_service.dart';
 import 'package:uuid/uuid.dart';
 import '../comments_repo.dart';
@@ -51,18 +50,41 @@ class CommentsApi extends CommentsRepo {
   }
 
   @override
-  Future<void> addNewComment({
-    required CommentType commentType,
+  Future<void> addNewCommentOfTypeText({
     required String postId,
     required String text,
   }) async {
     commentController.clear();
     String commentId = const Uuid().v1();
+    DateTime getCurrentDateTime = currentTimeDevice();
+
+    CommentModel newComment = CommentModel(
+      dataPublished: getCurrentDateTime.toString(),
+      imageUrlComment: '',
+      personUid: ApiService.user.uid,
+      commentType: CommentType.text.name,
+      textComment: text,
+      commentId: commentId,
+    );
+
+    await ApiService.firestore
+        .collection(Collections.postCollection)
+        .doc(postId)
+        .collection(Collections.commentsCollection)
+        .doc(commentId)
+        .set(newComment.toJson());
+  }
+
+  @override
+  Future<void> addNewCommentOfTypeImage({
+    required String postId,
+  }) async {
+    String commentId = const Uuid().v1();
     String commentImgPathUrl = '';
 
     DateTime getCurrentDateTime = currentTimeDevice();
 
-    if (commentImgPath != null && commentType == CommentType.image) {
+    if (commentImgPath != null) {
       final storageRef = ApiService.fireStorage.ref(
         'user-files/${ApiService.user.uid}/images/posts/comments/$commentId.jpg',
       );
@@ -73,28 +95,22 @@ class CommentsApi extends CommentsRepo {
       dataPublished: getCurrentDateTime.toString(),
       imageUrlComment: commentImgPathUrl,
       personUid: ApiService.user.uid,
-      commentType: commentType.name,
-      textComment: text,
+      commentType: CommentType.image.name,
+      textComment: '',
       commentId: commentId,
     );
-    try {
-      await ApiService.firestore
-          .collection(Collections.postCollection)
-          .doc(postId)
-          .collection(Collections.commentsCollection)
-          .doc(commentId)
-          .set(newComment.toJson())
-          .then((value) {
-        if (commentImgPath != null) {
-          commentImgPath = null;
-        }
-      });
-    } catch (e) {
-      snackBar(
-        message: '$e.'.tr,
-        isError: true,
-      );
-    }
+
+    await ApiService.firestore
+        .collection(Collections.postCollection)
+        .doc(postId)
+        .collection(Collections.commentsCollection)
+        .doc(commentId)
+        .set(newComment.toJson())
+        .then((value) {
+      if (commentImgPath != null) {
+        commentImgPath = null;
+      }
+    });
   }
 
   @override

@@ -1,6 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flash/core/utils/size_screen.dart';
 import 'package:flutter/material.dart';
+import '../../utils/size_screen.dart';
 import '../../constant/colors.dart';
 import '../custom_shimmer.dart';
 import 'package:get/get.dart';
@@ -22,18 +21,18 @@ class CommentOfTypeImage extends StatelessWidget {
       width: size.width * .4,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: CachedNetworkImage(
-          imageUrl: urlImage,
+        child: Image.network(
+          urlImage,
           filterQuality: FilterQuality.high,
           fit: BoxFit.cover,
-          placeholder: (context, url) => CustomShimmer(
+          loadingBuilder: (context, child, loadingProgress) => CustomShimmer(
             child: Container(
               height: size.width * .4,
               width: size.width * .4,
               color: AppColors.kSurfaceColor,
             ),
           ),
-          errorWidget: (context, url, error) => SizedBox(
+          errorBuilder: (context, url, error) => SizedBox(
             height: size.width * .4,
             width: size.width * .4,
             child: Center(

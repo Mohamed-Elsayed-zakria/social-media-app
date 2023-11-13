@@ -4,7 +4,6 @@ import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/model/comment_model.dart';
 import '../../../../../core/utils/show_toast.dart';
-import '../../../../../core/utils/snack_bar.dart';
 import '../../../../../core/api/api_service.dart';
 import '../show_reels_comments_repo.dart';
 import 'package:uuid/uuid.dart';
@@ -51,18 +50,42 @@ class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
   }
 
   @override
-  Future<void> addNewReelsComment({
-    required CommentType commentType,
+  Future<void> addNewReelsCommentOfTypeText({
     required String reelUid,
     required String text,
+  }) async {
+    addReelsComment.clear();
+    DateTime getCurrentDateTime = currentTimeDevice();
+    String commentId = const Uuid().v1();
+
+    CommentModel newComment = CommentModel(
+      dataPublished: getCurrentDateTime.toString(),
+      imageUrlComment: '',
+      personUid: ApiService.user.uid,
+      commentType: CommentType.text.name,
+      textComment: text,
+      commentId: commentId,
+    );
+
+    await ApiService.firestore
+        .collection(Collections.reelsCollection)
+        .doc(reelUid)
+        .collection(Collections.commentsCollection)
+        .doc(commentId)
+        .set(newComment.toJson());
+  }
+
+  @override
+  Future<void> addNewReelsCommentOfTypeImage({
+    required String reelUid,
   }) async {
     DateTime getCurrentDateTime = currentTimeDevice();
     String commentId = const Uuid().v1();
     String commentImgPathUrl = '';
-    
-    if (reelsCommentImgPath != null && commentType == CommentType.image) {
+
+    if (reelsCommentImgPath != null) {
       final storageRef = ApiService.fireStorage.ref(
-        "reels/${ApiService.user.uid}/comments-image/$commentId/$commentId.jpg",
+        'user-files/${ApiService.user.uid}/images/reels/$commentId.jpg',
       );
       await storageRef.putFile(reelsCommentImgPath!);
       commentImgPathUrl = await storageRef.getDownloadURL();
@@ -71,29 +94,22 @@ class ShowReelsCommentsApi implements ShowReelsCommentsRepo {
       dataPublished: getCurrentDateTime.toString(),
       imageUrlComment: commentImgPathUrl,
       personUid: ApiService.user.uid,
-      commentType: commentType.name,
-      textComment: text,
+      commentType: CommentType.image.name,
+      textComment: '',
       commentId: commentId,
     );
-    addReelsComment.clear();
-    try {
-      await ApiService.firestore
-          .collection(Collections.reelsCollection)
-          .doc(reelUid)
-          .collection(Collections.commentsCollection)
-          .doc(commentId)
-          .set(newComment.toJson())
-          .then((value) {
-        if (reelsCommentImgPath != null) {
-          reelsCommentImgPath = null;
-        }
-      });
-    } catch (e) {
-      snackBar(
-        message: '$e.'.tr,
-        isError: true,
-      );
-    }
+
+    await ApiService.firestore
+        .collection(Collections.reelsCollection)
+        .doc(reelUid)
+        .collection(Collections.commentsCollection)
+        .doc(commentId)
+        .set(newComment.toJson())
+        .then((value) {
+      if (reelsCommentImgPath != null) {
+        reelsCommentImgPath = null;
+      }
+    });
   }
 
   @override

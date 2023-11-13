@@ -45,7 +45,7 @@ class OnLongPressOtherComment extends StatelessWidget {
             ),
           ),
           Visibility(
-            visible: commentData.textComment == CommentType.text.name,
+            visible: commentData.commentType == CommentType.text.name,
             replacement: ListTile(
               onTap: () {
                 Get.back();

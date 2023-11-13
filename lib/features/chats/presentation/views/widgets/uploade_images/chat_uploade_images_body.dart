@@ -2,7 +2,6 @@ import '../../../controllers/chat_screen_messages_controller.dart';
 import '../../../../data/models/user_chat_data.dart';
 import '../../../../../../core/constant/colors.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import '../../../../data/models/message_model.dart';
 import '../chat_custom_icon_buttom_close.dart';
 import 'package:flutter/material.dart';
 import '../chat_uploade_lower.dart';
@@ -58,11 +57,7 @@ class ChatUplaodeImagesBody extends StatelessWidget {
           onPressed: () {
             Get.back();
             if (chatImagePaths.isNotEmpty) {
-              sentNewMessage(
-                type: TypeChatMessage.image.name,
-                userData: userData,
-                text: '',
-              );
+              sentNewMessageOfTypeImage(userData: userData);
             }
           },
         ),

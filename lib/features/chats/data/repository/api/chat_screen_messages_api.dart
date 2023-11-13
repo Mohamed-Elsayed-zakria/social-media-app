@@ -44,16 +44,26 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
   }
 
   @override
-  Future<void> sentNewMessage({
+  Future<void> sentNewMessageOfTypeText({
     required UserChatData userData,
     required String text,
-    required String type,
   }) async {
     getMessageChat.clear();
     DateTime getCurrentDateTime = currentTimeDevice();
     String currentDateTime = getCurrentDateTime.toString();
-    List<String> imageUrls = [];
-    String videoUrl = '';
+
+    MessageModel messageModel = MessageModel(
+      type: TypeChatMessage.text.name,
+      receiverId: userData.personUid,
+      senderId: ApiService.user.uid,
+      dateTime: currentDateTime,
+      videoUrl: '',
+      imgUrl: [],
+      message: text,
+      isDelivered: false,
+      isRead: '',
+    );
+
     NoticeModel noticeModel = NoticeModel(
       personUid: ApiService.user.uid,
       sentTo: userData.token,
@@ -67,6 +77,33 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
       username: CurrentUserData.username,
     );
 
+    await ApiService.firestore
+        .collection(Collections.userCollection)
+        .doc(ApiService.user.uid)
+        .collection(Collections.chatCollection)
+        .doc(userData.personUid)
+        .collection(Collections.messageCollection)
+        .doc(currentDateTime)
+        .set(messageModel.toJson());
+
+    await ApiService.firestore
+        .collection(Collections.userCollection)
+        .doc(userData.personUid)
+        .collection(Collections.chatCollection)
+        .doc(ApiService.user.uid)
+        .collection(Collections.messageCollection)
+        .doc(currentDateTime)
+        .set(messageModel.toJson());
+  }
+
+  @override
+  Future<void> sentNewMessageOfTypeImage({
+    required UserChatData userData,
+  }) async {
+    DateTime getCurrentDateTime = currentTimeDevice();
+    String currentDateTime = getCurrentDateTime.toString();
+    List<String> imageUrls = [];
+
     if (chatImagePaths.isNotEmpty) {
       for (var imageFile in chatImagePaths) {
         String generatChatImageId = const Uuid().v1();
@@ -78,6 +115,60 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
         imageUrls.add(downloadUrl);
       }
     }
+    MessageModel messageModel = MessageModel(
+      type: TypeChatMessage.image.name,
+      receiverId: userData.personUid,
+      senderId: ApiService.user.uid,
+      dateTime: currentDateTime,
+      videoUrl: '',
+      imgUrl: imageUrls,
+      message: '',
+      isDelivered: false,
+      isRead: '',
+    );
+
+    NoticeModel noticeModel = NoticeModel(
+      personUid: ApiService.user.uid,
+      sentTo: userData.token,
+      textTitle: 'sent you a message',
+      textBody: 'image',
+      type: NoticeType.chat.name,
+    );
+
+    ApiFirebaseMessaging.sendNotfiy(
+      noticeModel: noticeModel,
+      username: CurrentUserData.username,
+    );
+
+    await ApiService.firestore
+        .collection(Collections.userCollection)
+        .doc(ApiService.user.uid)
+        .collection(Collections.chatCollection)
+        .doc(userData.personUid)
+        .collection(Collections.messageCollection)
+        .doc(currentDateTime)
+        .set(messageModel.toJson());
+
+    await ApiService.firestore
+        .collection(Collections.userCollection)
+        .doc(userData.personUid)
+        .collection(Collections.chatCollection)
+        .doc(ApiService.user.uid)
+        .collection(Collections.messageCollection)
+        .doc(currentDateTime)
+        .set(messageModel.toJson());
+    if (chatImagePaths.isNotEmpty) {
+      chatImagePaths.value = [];
+    }
+  }
+
+  @override
+  Future<void> sentNewMessageOfTypeVideo({
+    required UserChatData userData,
+  }) async {
+    DateTime getCurrentDateTime = currentTimeDevice();
+    String currentDateTime = getCurrentDateTime.toString();
+    String videoUrl = '';
 
     if (addVideoChatPath != null) {
       String generatChatVideoId = const Uuid().v1();
@@ -93,47 +184,47 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
       senderId: ApiService.user.uid,
       dateTime: currentDateTime,
       videoUrl: videoUrl,
-      imgUrl: imageUrls,
-      message: text,
-      type: type,
+      imgUrl: [],
+      message: '',
+      type: TypeChatMessage.video.name,
       isDelivered: false,
       isRead: '',
     );
 
-    try {
-      await ApiService.firestore
-          .collection(Collections.userCollection)
-          .doc(ApiService.user.uid)
-          .collection(Collections.chatCollection)
-          .doc(userData.personUid)
-          .collection(Collections.messageCollection)
-          .doc(currentDateTime)
-          .set(messageModel.toJson());
+    NoticeModel noticeModel = NoticeModel(
+      personUid: ApiService.user.uid,
+      sentTo: userData.token,
+      textTitle: 'sent you a message',
+      textBody: 'video',
+      type: NoticeType.chat.name,
+    );
 
-      await ApiService.firestore
-          .collection(Collections.userCollection)
-          .doc(userData.personUid)
-          .collection(Collections.chatCollection)
-          .doc(ApiService.user.uid)
-          .collection(Collections.messageCollection)
-          .doc(currentDateTime)
-          .set(messageModel.toJson());
+    ApiFirebaseMessaging.sendNotfiy(
+      noticeModel: noticeModel,
+      username: CurrentUserData.username,
+    );
 
-      if (chatImagePaths.isNotEmpty) {
-        chatImagePaths.value = [];
-      }
-      if (addVideoChatPath != null) {
-        addVideoChatController!.dispose();
-        addVideoChatPath = null;
-      }
-    } catch (e) {
-      if (chatImagePaths.isNotEmpty) {
-        chatImagePaths.value = [];
-      }
-      if (addVideoChatPath != null) {
-        addVideoChatController!.dispose();
-        addVideoChatPath = null;
-      }
+    await ApiService.firestore
+        .collection(Collections.userCollection)
+        .doc(ApiService.user.uid)
+        .collection(Collections.chatCollection)
+        .doc(userData.personUid)
+        .collection(Collections.messageCollection)
+        .doc(currentDateTime)
+        .set(messageModel.toJson());
+
+    await ApiService.firestore
+        .collection(Collections.userCollection)
+        .doc(userData.personUid)
+        .collection(Collections.chatCollection)
+        .doc(ApiService.user.uid)
+        .collection(Collections.messageCollection)
+        .doc(currentDateTime)
+        .set(messageModel.toJson());
+
+    if (addVideoChatPath != null) {
+      addVideoChatController!.dispose();
+      addVideoChatPath = null;
     }
   }
 

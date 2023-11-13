@@ -1,5 +1,4 @@
 import '../../../features/profile/presentation/views/profile_screen.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import '../../model/comment_model.dart';
 import 'package:flutter/material.dart';
 import '../../constant/colors.dart';
@@ -23,7 +22,7 @@ class CommentCircleAvatar extends StatelessWidget {
       child: CircleAvatar(
         radius: 28,
         backgroundColor: AppColors.kBackgroundColor,
-        backgroundImage: CachedNetworkImageProvider(
+        backgroundImage: NetworkImage(
           commentData.personalPicture,
         ),
       ),

@@ -1,11 +1,13 @@
 import '../../../controllers/chat_screen_messages_controller.dart';
 import '../../../../data/models/user_chat_data.dart';
-import '../../../../data/models/message_model.dart';
 import 'package:video_player/video_player.dart';
+import '../../../controllers/chat_uploade_video_controller.dart';
 import '../chat_custom_icon_buttom_close.dart';
 import 'package:flutter/material.dart';
 import '../chat_uploade_lower.dart';
 import 'package:get/get.dart';
+
+import 'chat_show_video_play_and_pause.dart';
 
 class ChatUploadeVideoBody extends StatelessWidget {
   final VideoPlayerController playerControllerPlay;
@@ -23,12 +25,23 @@ class ChatUploadeVideoBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const ChatCustomIconButtomClose(),
-        Expanded(
-          child: Container(
-            margin: const EdgeInsets.only(bottom: 10),
-            child: AspectRatio(
-              aspectRatio: playerControllerPlay.value.aspectRatio,
-              child: VideoPlayer(playerControllerPlay),
+        GestureDetector(
+          onTap: () => chatShowVideoPlayAndPauseVideo(
+            playerControllerPlay: playerControllerPlay,
+          ),
+          child: Expanded(
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  child: AspectRatio(
+                    aspectRatio: playerControllerPlay.value.aspectRatio,
+                    child: VideoPlayer(playerControllerPlay),
+                  ),
+                ),
+                const ChatShowVideoPlayAndPause(),
+              ],
             ),
           ),
         ),
@@ -38,11 +51,7 @@ class ChatUploadeVideoBody extends StatelessWidget {
             Get.back();
             if (addVideoChatPath != null) {
               addVideoChatController!.pause();
-              sentNewMessage(
-                type: TypeChatMessage.video.name,
-                userData: userData,
-                text: '',
-              );
+              sentNewMessageOfTypeVideo(userData: userData);
             }
           },
         ),

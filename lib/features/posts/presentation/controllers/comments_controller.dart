@@ -24,10 +24,8 @@ Future<void> commentUploadImage({
         imageUrl: commentImgPath!.path,
         onTapSendImage: () {
           Get.back();
-          addNewComment(
-            commentType: commentType,
+          addNewCommentOfTypeImage(
             postId: postId,
-            text: text,
           );
         },
       ),
@@ -43,15 +41,21 @@ Stream<List<CommentModel>> getAllComments({
   );
 }
 
-Future<void> addNewComment({
-  required CommentType commentType,
+Future<void> addNewCommentOfTypeText({
   required String postId,
   required String text,
 }) async {
-  CommentsApi().addNewComment(
-    commentType: commentType,
+  CommentsApi().addNewCommentOfTypeText(
     postId: postId,
     text: text,
+  );
+}
+
+Future<void> addNewCommentOfTypeImage({
+  required String postId,
+}) async {
+  CommentsApi().addNewCommentOfTypeImage(
+    postId: postId,
   );
 }
 
