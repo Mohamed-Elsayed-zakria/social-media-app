@@ -125,6 +125,7 @@ const Map<String, String> en = {
   "Deletet the Post": "Deletet the Post",
   "Edite post": "Edite post",
   "Save post": "Save post",
+  "Remove save post":"Remove save post",
   "Write comment": "Write comment",
   'All Likes': 'All Likes',
   'write something': 'write something...',

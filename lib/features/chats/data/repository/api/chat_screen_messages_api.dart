@@ -296,7 +296,7 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
     required MessageModel messageData,
     required String newMessage,
   }) async {
-    DateTime getCurrentDateTime = DateTime.now();
+    DateTime getCurrentDateTime = await getServerTime();
     DateTime messageTime = DateTime.parse(messageData.dateTime);
 
     int minutesDifference =

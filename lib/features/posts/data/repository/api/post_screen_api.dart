@@ -19,9 +19,8 @@ class PostScreenApi implements PostScreenRepo {
     required String description,
     required String postStatus,
   }) async {
-    DateTime getCurrentDateTime =currentTimeDevice();
-
     addPostLoading.value = true;
+    DateTime getCurrentDateTime = await getServerTime();
     String generatId = const Uuid().v1();
     List<String> imageUrls = [];
     String videoUrl;

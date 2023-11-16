@@ -1,5 +1,7 @@
 import '../../data/repository/api/profile_edite_api.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
@@ -27,16 +29,49 @@ String? profilevalidatorBio({required String? value}) {
 Future<void> chooseImagePictureFromGalary() async {
   final pickedImg = await ImagePicker().pickImage(source: ImageSource.gallery);
   if (pickedImg != null) {
-    updateImgPathPicture.value = File(pickedImg.path);
-    imgPathPictureLoding.value = File(pickedImg.path);
+    CroppedFile? croppedFile = await ImageCropper().cropImage(
+      sourcePath: pickedImg.path,
+      compressQuality: 100,
+      uiSettings: [
+        AndroidUiSettings(
+          toolbarTitle: 'Edite'.tr,
+          toolbarColor: AppColors.kPrimaryColor,
+          toolbarWidgetColor: Colors.white,
+          initAspectRatio: CropAspectRatioPreset.original,
+          lockAspectRatio: false,
+        ),
+      ],
+    );
+
+    if (croppedFile != null) {
+      updateImgPathPicture.value = File(croppedFile.path);
+      imgPathPictureLoding.value = File(croppedFile.path);
+    }
   }
 }
 
 Future<void> chooseImageCoverFromGalary() async {
   final pickedImg = await ImagePicker().pickImage(source: ImageSource.gallery);
   if (pickedImg != null) {
-    updateImgPathCover.value = File(pickedImg.path);
-    imgPathCoverLoding.value = File(pickedImg.path);
+    CroppedFile? croppedFile = await ImageCropper().cropImage(
+      sourcePath: pickedImg.path,
+      compressQuality: 100,
+      uiSettings: [
+        AndroidUiSettings(
+          toolbarTitle: 'Edite'.tr,
+          toolbarColor: AppColors.kPrimaryColor,
+          toolbarWidgetColor: Colors.white,
+          initAspectRatio: CropAspectRatioPreset.original,
+          lockAspectRatio: false,
+          activeControlsWidgetColor: AppColors.kPrimaryColor,
+        ),
+      ],
+    );
+
+    if (croppedFile != null) {
+      updateImgPathCover.value = File(croppedFile.path);
+      imgPathCoverLoding.value = File(croppedFile.path);
+    }
   }
 }
 

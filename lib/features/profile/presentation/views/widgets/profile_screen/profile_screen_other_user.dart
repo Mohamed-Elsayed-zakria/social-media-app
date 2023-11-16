@@ -48,21 +48,18 @@ class ProfileScreenOtherUser extends StatelessWidget {
                 text: "chat".tr,
               ),
             ),
-            userData.followersList.contains(ApiService.user.uid)
-                ? SizedBox(
-                    width: size.width * 0.33,
-                    child: CustomButton(
-                      onPressed: () => tapUnfolow(userData: userData),
-                      text: "unFolow".tr,
-                    ),
-                  )
-                : SizedBox(
-                    width: size.width * 0.33,
-                    child: CustomButton(
-                      onPressed: () => tapFolow(userData: userData),
-                      text: "Folow".tr,
-                    ),
-                  ),
+            SizedBox(
+              width: size.width * 0.33,
+              child: CustomButton(
+                onPressed: () =>
+                    userData.followersList.contains(ApiService.user.uid)
+                        ? tapUnfolow(userData: userData)
+                        : tapFolow(userData: userData),
+                text: userData.followersList.contains(ApiService.user.uid)
+                    ? "unFolow".tr
+                    : "Folow".tr,
+              ),
+            ),
           ],
         ),
         const Divider(height: 6),

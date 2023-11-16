@@ -1,5 +1,5 @@
+import '../../../../../../../core/widgets/custom_verified_in_circal_avatar.dart';
 import '../../../../../../profile/presentation/views/profile_screen.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import '../../../../../../../core/constant/colors.dart';
 import '../../../../../../../core/constant/style.dart';
 import '../../../../../data/model/likes_model.dart';
@@ -43,12 +43,17 @@ class AllLikesCustomPerson extends StatelessWidget {
             ),
           ],
         ),
-        leading: CircleAvatar(
-          radius: 28,
-          backgroundColor: AppColors.kBackgroundColor,
-          backgroundImage: CachedNetworkImageProvider(
-            likesModel.personalPicture,
-          ),
+        leading: Stack(
+          children: [
+            CircleAvatar(
+              radius: 28,
+              backgroundColor: AppColors.kBackgroundColor,
+              backgroundImage: NetworkImage(
+                likesModel.personalPicture,
+              ),
+            ),
+            CustomVerifiedInCircalAvatar(visible: likesModel.verified),
+          ],
         ),
         trailing: const Icon(
           color: AppColors.kPrimaryColor,

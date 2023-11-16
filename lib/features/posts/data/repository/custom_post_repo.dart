@@ -15,5 +15,7 @@ abstract class CustomPostRepo {
 
   Future<void> deletePost({required PostModel data});
 
-  Future<void> addSavedItems({required PostModel data});
+  Future<void> addPostSavedItems({required PostModel data});
+  
+  Future<void> removePostSavedItems({required PostModel data});
 }

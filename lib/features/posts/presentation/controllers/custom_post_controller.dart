@@ -36,6 +36,10 @@ Future<void> deletePost({required PostModel data}) async {
   CustomPostApi().deletePost(data: data);
 }
 
-Future<void> addSavedItems({required PostModel data}) async {
-  CustomPostApi().addSavedItems(data: data);
+Future<void> addPostSavedItems({required PostModel data}) async {
+  CustomPostApi().addPostSavedItems(data: data);
+}
+
+Future<void> removePostSavedItems({required PostModel data}) async {
+  CustomPostApi().removePostSavedItems(data: data);
 }

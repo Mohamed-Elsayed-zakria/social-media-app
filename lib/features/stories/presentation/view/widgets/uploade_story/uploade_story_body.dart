@@ -1,5 +1,5 @@
 import '../../../../data/model/stories_model.dart';
-import '../../../controller/story_controller.dart';
+import '../../../controller/uploade_story_controller.dart';
 import 'uploade_story_custom_take_descreption.dart';
 import 'package:video_player/video_player.dart';
 import 'uploade_story_custom_header.dart';

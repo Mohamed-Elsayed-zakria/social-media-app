@@ -14,12 +14,11 @@ class UploadeReelsApi implements UploadeReelsRepo {
     required String postStatus,
     String? description,
   }) async {
-    DateTime getCurrentDateTime = currentTimeDevice();
-
+    uploadeReelsIsLoading.value = true;
+    DateTime getCurrentDateTime = await getServerTime();
     String generatId = const Uuid().v1();
     String videoUrl;
     try {
-      uploadeReelsIsLoading.value = true;
       final storageRef = ApiService.fireStorage.ref(
         "user-files/${ApiService.user.uid}/video/reels/$generatId.mp4",
       );

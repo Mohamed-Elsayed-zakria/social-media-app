@@ -1,7 +1,7 @@
 import '../../../../../../core/constant/colors.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../data/model/stories_model.dart';
-import '../../../controller/story_controller.dart';
+import '../../../controller/uploade_story_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

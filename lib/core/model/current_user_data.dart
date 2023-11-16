@@ -11,6 +11,7 @@ class CurrentUserData {
   static List followers = [];
   static List following = [];
   static List listBlock = [];
+  static List savedItems = [];
 
   CurrentUserData.fromJson(Map<String, dynamic> json) {
     personalPicture = json['personalPicture'];
@@ -22,6 +23,7 @@ class CurrentUserData {
     verified = json['verified'];
     followers = json['followers'];
     following = json['following'];
+    savedItems = json['savedItems'] ?? [];
     bio = json['bio'];
   }
   CurrentUserData.takePersonalPicture(String newPersonalPicture) {

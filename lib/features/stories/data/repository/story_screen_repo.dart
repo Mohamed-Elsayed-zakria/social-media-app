@@ -6,6 +6,7 @@ abstract class StoryScreenRepo {
     required String type,
     String? description,
     String? imgPath,
+    String? color,
   });
   Future<void> deleteStory({required String storyUid});
   Future<void> reportStory({required StoriesModel storyData});

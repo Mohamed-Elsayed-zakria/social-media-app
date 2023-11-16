@@ -1,7 +1,8 @@
 import '../../account_settings/account_information_screen.dart';
-import '../../account_settings/delete_account_screen.dart';
 import '../../account_settings/edite_personal_information.dart';
+import '../../../../../../core/model/current_user_data.dart';
 import '../../account_settings/change_password_screen.dart';
+import '../../account_settings/delete_account_screen.dart';
 import '../../account_settings/blocked_users_screen.dart';
 import '../../account_settings/verification_screen.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +31,13 @@ class AccountSettingsScreenBody extends StatelessWidget {
               onTap: () => Get.to(() => const BlockedUsersScreen()),
               text: 'Blocked users'.tr,
             ),
-            AccountSettingCard(
-              onTap: () => Get.to(() => const VerificationScreen()),
-              text: 'Verification'.tr,
+            Visibility(
+              visible: CurrentUserData.verified == false &&
+                  CurrentUserData.followers.length >= 500,
+              child: AccountSettingCard(
+                onTap: () => Get.to(() => const VerificationScreen()),
+                text: 'Verification'.tr,
+              ),
             ),
             AccountSettingCard(
               onTap: () => Get.to(() => const ChangePasswordScreen()),

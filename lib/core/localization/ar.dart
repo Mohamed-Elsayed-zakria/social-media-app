@@ -2,7 +2,7 @@ const String appname = "فلاش";
 
 const Map<String, String> ar = {
   "Appname": "فلاش",
-  "Error": "حطأ",
+  "Error": "خطأ",
   //=============auth==================
 
   //************login******************
@@ -123,6 +123,7 @@ const Map<String, String> ar = {
   "Deletet the Post": "حذف المنشور",
   "Edite post": "تعديل المنشور",
   "Save post": "حفظ المنشور",
+  "Remove save post": "إزالة حفظ المنشور",
   "Write comment": "اكتب تعليق",
   'All Likes': 'كل الاعجابات',
   'write something': 'أكتب شيئا',

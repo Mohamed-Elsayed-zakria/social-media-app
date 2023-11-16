@@ -1,6 +1,8 @@
 import '../../data/repository/api/add_details_screen_api.dart';
 import '../../../../core/utils/get_current_date_time.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
@@ -84,9 +86,25 @@ class AddDetailsController extends GetxController {
     XFile? pickedImg = await ImagePicker().pickImage(source: source);
 
     if (pickedImg != null) {
-      addDetailsImgPath = File(pickedImg.path);
-    }
+      CroppedFile? croppedFile = await ImageCropper().cropImage(
+        sourcePath: pickedImg.path,
+        compressQuality: 100,
+        uiSettings: [
+          AndroidUiSettings(
+            toolbarTitle: 'Edite'.tr,
+            toolbarColor: AppColors.kPrimaryColor,
+            toolbarWidgetColor: Colors.white,
+            initAspectRatio: CropAspectRatioPreset.original,
+            lockAspectRatio: false,
+            activeControlsWidgetColor: AppColors.kPrimaryColor,
+          ),
+        ],
+      );
 
-    update();
+      if (croppedFile != null) {
+        addDetailsImgPath = File(croppedFile.path);
+        update();
+      }
+    }
   }
 }

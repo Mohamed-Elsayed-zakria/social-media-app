@@ -1,3 +1,4 @@
+import '../../../../../../../core/model/current_user_data.dart';
 import '../../../../controllers/custom_post_controller.dart';
 import '../../../../../../../core/constant/colors.dart';
 import '../../../../../../../core/constant/style.dart';
@@ -47,15 +48,19 @@ class CustomPostMoreOtherUser extends StatelessWidget {
           ),
           ListTile(
             onTap: () async {
-              await addSavedItems(data: postData);
               Get.back();
+              CurrentUserData.savedItems.contains(postData.postUid)
+                  ? await removePostSavedItems(data: postData)
+                  : await addPostSavedItems(data: postData);
             },
             leading: const Icon(
               color: AppColors.kPrimaryColor,
               IconlyBroken.bookmark,
             ),
             title: Text(
-              "Save post".tr,
+              CurrentUserData.savedItems.contains(postData.postUid)
+                  ? "Remove save post".tr
+                  : "Save post".tr,
               style: const TextStyle(fontSize: AppStyle.kTextStyle18),
             ),
           ),

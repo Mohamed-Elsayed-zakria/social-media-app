@@ -1,5 +1,5 @@
 import '../../../home/presentaion/controller/home_sceen_controller.dart';
-import '../../presentation/controller/story_controller.dart';
+import '../../presentation/controller/uploade_story_controller.dart';
 import '../../../../core/utils/get_current_date_time.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../../core/constant/collections.dart';
@@ -18,12 +18,12 @@ class StoryScreenApi extends StoryScreenRepo {
     required String type,
     String? description,
     String? imgPath,
+    String? color,
   }) async {
-    DateTime getCurrentDateTime = currentTimeDevice();
-
+    uploadeStoryIsLoading.value = true;
+    DateTime getCurrentDateTime = await getServerTime();
     String currentDate = getCurrentDateTime.toString();
     String generatStoryId = const Uuid().v1();
-    uploadeStoryIsLoading.value = true;
     String? urlImgPath;
     String? videoUrl;
     try {
@@ -50,10 +50,11 @@ class StoryScreenApi extends StoryScreenRepo {
         durationTime: durationTime,
         description: description,
         datePublish: currentDate,
+        storyUid: generatStoryId,
         imgPath: urlImgPath,
         vedioUrl: videoUrl,
+        color: color,
         type: type,
-        storyUid: generatStoryId,
       );
       await ApiService.firestore
           .collection(Collections.userCollection)
@@ -64,6 +65,7 @@ class StoryScreenApi extends StoryScreenRepo {
           .then((value) {
         uploadeStoryIsLoading.value = false;
         getTextStory.clear();
+        selectColorIndex = 0;
         if (addNewStoryVedioPath != null) {
           addNewStoryVedioPath = null;
           addNewStoryPlayerController!.dispose();

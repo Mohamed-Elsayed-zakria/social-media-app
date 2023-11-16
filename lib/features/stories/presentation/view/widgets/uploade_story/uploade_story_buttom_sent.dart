@@ -1,7 +1,7 @@
 import '../../../../../../core/constant/style.dart';
 import '../../../../../home/presentaion/controller/home_sceen_controller.dart';
 import '../../../../data/model/stories_model.dart';
-import '../../../controller/story_controller.dart';
+import '../../../controller/uploade_story_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,12 +23,38 @@ class UploadeStoryButtomSent extends StatelessWidget {
       () => TextButton(
         onPressed: uploadeStoryIsLoading.value == false
             ? () {
+                // primaryColor,
+                // teal,
+                // deepPurple,
+                // red,
+                // orange,
+                // blueGrey,
+
                 if (type == TypeStoryUploade.text) {
                   if (getTextStory.text.isNotEmpty) {
+                    String color = StoryColor.primaryColor.name;
+                    switch (selectColorIndex) {
+                      case 1:
+                        color = StoryColor.teal.name;
+                        break;
+                      case 2:
+                        color = StoryColor.deepPurple.name;
+                        break;
+                      case 3:
+                        color = StoryColor.red.name;
+                        break;
+                      case 4:
+                        color = StoryColor.orange.name;
+                        break;
+                      case 5:
+                        color = StoryColor.blueGrey.name;
+                        break;
+                    }
                     uploadeStory(
                       durationTime: durationTime,
                       description: getTextStory.text,
                       imgPath: imagePathStory,
+                      color: color,
                       type: type.name,
                     );
                   }

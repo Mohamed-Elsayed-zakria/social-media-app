@@ -1,3 +1,4 @@
+import '../../../../../core/model/current_user_data.dart';
 import '../../../../../core/constant/collections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/utils/show_toast.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 class ProfileEditeMoreApi extends ProfileEditeMoreRepo {
   @override
   Future<void> addUserToListBlock({required String otherUid}) async {
+    CurrentUserData.listBlock.add(otherUid);
     await ApiService.firestore
         .collection(Collections.userCollection)
         .doc(ApiService.user.uid)
@@ -22,6 +24,7 @@ class ProfileEditeMoreApi extends ProfileEditeMoreRepo {
 
   @override
   Future<void> deleteUserFromListBlock({required String otherUid}) async {
+    CurrentUserData.listBlock.remove(otherUid);
     await ApiService.firestore
         .collection(Collections.userCollection)
         .doc(ApiService.user.uid)

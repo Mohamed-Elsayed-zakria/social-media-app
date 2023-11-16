@@ -10,6 +10,8 @@ class ChatScreenAllUsersApi extends ChatScreenAllUsersRepo {
   @override
   Future<List<UserChatData>> getUserDataToChat() async {
     List<Map<String, dynamic>> allUserData = [];
+    List<UserChatData> sortedUserData = [];
+    
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
         .firestore
         .collection(Collections.userCollection)
@@ -50,14 +52,12 @@ class ChatScreenAllUsersApi extends ChatScreenAllUsersRepo {
       );
 
       // Convert the list of maps to a list of UserChatData
-      List<UserChatData> sortedUserData = allUserData
+      sortedUserData = allUserData
           .map((userData) => UserChatData.fromJson(userData))
           .toList();
-
-      return sortedUserData;
     }
 
-    return [];
+    return sortedUserData;
   }
 
   @override

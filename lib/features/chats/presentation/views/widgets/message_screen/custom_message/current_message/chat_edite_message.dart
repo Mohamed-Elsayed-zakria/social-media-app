@@ -23,7 +23,7 @@ class ChstEditeMessage extends StatelessWidget {
     return ListTile(
       onTap: () async {
         Get.back();
-        DateTime getCurrentDateTime = currentTimeDevice();
+        DateTime getCurrentDateTime = await getServerTime();
         DateTime messageTime = DateTime.parse(messageData.dateTime);
 
         int minutesDifference =

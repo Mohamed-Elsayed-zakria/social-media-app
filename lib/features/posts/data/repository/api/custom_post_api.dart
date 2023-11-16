@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../core/constant/collections.dart';
+import '../../../../../core/model/current_user_data.dart';
 import '../../../../../core/utils/show_toast.dart';
 import '../../../../../core/api/api_service.dart';
 import '../../model/report_post.dart';
@@ -101,16 +102,6 @@ class CustomPostApi implements CustomPostRepo {
   }
 
   @override
-  Future<void> addSavedItems({required PostModel data}) async {
-    await ApiService.firestore
-        .collection(Collections.userCollection)
-        .doc(ApiService.user.uid)
-        .update({
-      "savedItems": FieldValue.arrayUnion([data.postUid])
-    });
-  }
-
-  @override
   Future<List<PostModel>> getPostDetails({required String postId}) async {
     List<PostModel> allPosts = [];
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
@@ -137,5 +128,27 @@ class CustomPostApi implements CustomPostRepo {
       }
     }
     return allPosts;
+  }
+
+  @override
+  Future<void> addPostSavedItems({required PostModel data}) async {
+    CurrentUserData.savedItems.add(data.postUid);
+    await ApiService.firestore
+        .collection(Collections.userCollection)
+        .doc(ApiService.user.uid)
+        .update({
+      "savedItems": FieldValue.arrayUnion([data.postUid])
+    });
+  }
+
+  @override
+  Future<void> removePostSavedItems({required PostModel data}) async {
+    CurrentUserData.savedItems.remove(data.postUid);
+    await ApiService.firestore
+        .collection(Collections.userCollection)
+        .doc(ApiService.user.uid)
+        .update({
+      "savedItems": FieldValue.arrayRemove([data.postUid])
+    });
   }
 }

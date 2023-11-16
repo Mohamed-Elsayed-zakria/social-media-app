@@ -1,4 +1,5 @@
 import '../../../features/profile/presentation/views/profile_screen.dart';
+import '../custom_verified_in_circal_avatar.dart';
 import '../../model/comment_model.dart';
 import 'package:flutter/material.dart';
 import '../../constant/colors.dart';
@@ -19,12 +20,17 @@ class CommentCircleAvatar extends StatelessWidget {
           otherUid: commentData.personUid,
         ),
       ),
-      child: CircleAvatar(
-        radius: 28,
-        backgroundColor: AppColors.kBackgroundColor,
-        backgroundImage: NetworkImage(
-          commentData.personalPicture,
-        ),
+      child: Stack(
+        children: [
+          CircleAvatar(
+            radius: 28,
+            backgroundColor: AppColors.kBackgroundColor,
+            backgroundImage: NetworkImage(
+              commentData.personalPicture,
+            ),
+          ),
+          CustomVerifiedInCircalAvatar(visible: commentData.verified),
+        ],
       ),
     );
   }

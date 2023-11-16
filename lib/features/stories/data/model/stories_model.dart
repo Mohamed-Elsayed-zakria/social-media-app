@@ -11,6 +11,7 @@ class StoriesModel {
   late String storyUid;
   late bool verified;
   late int durationTime;
+  late String? color;
 
   StoriesModel({
     required this.imgPath,
@@ -20,6 +21,7 @@ class StoriesModel {
     required this.datePublish,
     required this.type,
     this.description,
+    this.color,
     required this.durationTime,
   });
   StoriesModel.fromJson(Map<String, dynamic> json) {
@@ -35,6 +37,7 @@ class StoriesModel {
     personUid = json['personUid'] ?? '';
     verified = json['verified'] ?? false;
     type = json['type'] ?? '';
+    color = json['color'] ?? '';
     durationTime = json['durationTime'] ?? 10;
   }
 
@@ -48,8 +51,18 @@ class StoriesModel {
     data['personUid'] = personUid;
     data['type'] = type;
     data['durationTime'] = durationTime;
+    data['color'] = color;
     return data;
   }
 }
 
 enum TypeStoryUploade { image, vedio, text }
+
+enum StoryColor {
+  primaryColor,
+  teal,
+  deepPurple,
+  red,
+  orange,
+  blueGrey,
+}

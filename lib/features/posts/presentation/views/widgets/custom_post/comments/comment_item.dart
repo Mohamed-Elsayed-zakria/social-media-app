@@ -5,6 +5,7 @@ import '../../../../../../../core/model/comment_model.dart';
 import '../../../../../../../core/utils/date_time.dart';
 import '../../../../../../../core/constant/colors.dart';
 import 'package:flutter/material.dart';
+import '../../../../../../../core/widgets/comments/comment_username.dart';
 import 'on_long_press_comment.dart';
 import 'comment_add_like.dart';
 import 'package:get/get.dart';
@@ -33,23 +34,7 @@ class CommentItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-              title: Row(
-                children: [
-                  Text(
-                    textDirection: TextDirection.ltr,
-                    '@${commentData.username}',
-                  ),
-                  const SizedBox(width: 5),
-                  Visibility(
-                    visible: commentData.verified,
-                    child: const Icon(
-                      Icons.verified,
-                      size: 17,
-                      color: AppColors.kPrimaryColor,
-                    ),
-                  ),
-                ],
-              ),
+              title: CommentUsername(commentData: commentData),
               subtitle: Row(
                 children: [
                   Text(

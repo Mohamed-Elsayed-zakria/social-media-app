@@ -30,33 +30,24 @@ class ProfileScreenOtherMoreButtom extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CurrentUserData.listBlock.contains(userData.personalUid)
-              ? ListTile(
-                  onTap: () async {
-                    Get.back();
-                    await deleteUserFromListBlock(
-                      otherUid: userData.personalUid,
-                    );
-                    CurrentUserData.listBlock.remove(userData.personalUid);
-                  },
-                  leading: const Icon(
-                    IconlyBroken.infoSquare,
-                    color: AppColors.kPrimaryColor,
-                  ),
-                  title: Text("unBlock".tr),
-                )
-              : ListTile(
-                  onTap: () async {
-                    Get.back();
-                    await addUserToListBlock(otherUid: userData.personalUid);
-                    CurrentUserData.listBlock.add(userData.personalUid);
-                  },
-                  leading: const Icon(
-                    IconlyBroken.infoSquare,
-                    color: AppColors.kPrimaryColor,
-                  ),
-                  title: Text("Block".tr),
-                ),
+          ListTile(
+            onTap: () async {
+              Get.back();
+              CurrentUserData.listBlock.contains(userData.personalUid)
+                  ? await deleteUserFromListBlock(
+                      otherUid: userData.personalUid)
+                  : await addUserToListBlock(otherUid: userData.personalUid);
+            },
+            leading: const Icon(
+              IconlyBroken.infoSquare,
+              color: AppColors.kPrimaryColor,
+            ),
+            title: Text(
+              CurrentUserData.listBlock.contains(userData.personalUid)
+                  ? "unBlock".tr
+                  : "Block".tr,
+            ),
+          ),
           ListTile(
             onTap: () {
               Clipboard.setData(

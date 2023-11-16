@@ -1,6 +1,6 @@
-import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/widgets/custom_buttom_sheet_take_photo.dart';
 import '../../../controllers/add_details_controller.dart';
+import '../../../../../../core/utils/size_screen.dart';
 import '../../../../../../core/constant/assets.dart';
 import '../../../../../../core/constant/colors.dart';
 import '../../../../../../core/constant/style.dart';
