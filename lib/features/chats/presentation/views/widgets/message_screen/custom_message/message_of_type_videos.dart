@@ -3,12 +3,14 @@ import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 
+import '../../../../../data/models/message_model.dart';
+
 class MessageOfTypeVideos extends StatefulWidget {
-  final String videoUrl;
+  final MessageModel messageData;
 
   const MessageOfTypeVideos({
     super.key,
-    required this.videoUrl,
+    required this.messageData,
   });
 
   @override
@@ -16,20 +18,21 @@ class MessageOfTypeVideos extends StatefulWidget {
 }
 
 class _MessageOfTypeVideosState extends State<MessageOfTypeVideos> {
-  late VideoPlayerController videoPlayerController;
+  late VideoPlayerController playVideoInChatController;
 
   @override
   void initState() {
-    videoPlayerController = VideoPlayerController.networkUrl(
-        Uri.parse(widget.videoUrl))
-      ..initialize();
+    playVideoInChatController = VideoPlayerController.networkUrl(
+      Uri.parse(widget.messageData.videoUrl!),
+        
+    )..initialize();
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
-    videoPlayerController.dispose();
+    playVideoInChatController.dispose();
   }
 
   @override
@@ -45,7 +48,7 @@ class _MessageOfTypeVideosState extends State<MessageOfTypeVideos> {
             aspectRatio: 4 / 4,
             child: Chewie(
               controller: ChewieController(
-                videoPlayerController: videoPlayerController,
+                videoPlayerController: playVideoInChatController,
               ),
             ),
           ),

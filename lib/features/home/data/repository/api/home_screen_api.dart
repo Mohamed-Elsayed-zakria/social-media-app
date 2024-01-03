@@ -11,7 +11,7 @@ class HomeScreenApi extends HomeScreenRepo {
   Future<List<StoriesModel>> getCurrentUserStory() async {
     List<StoriesModel> storiesData = [];
 
-    DateTime currentTime = await getServerTime();
+    DateTime currentTime = currentTimeDevice();
 
     DateTime twentyFourHoursAgo = currentTime.subtract(
       const Duration(hours: 24),
@@ -98,7 +98,7 @@ class HomeScreenApi extends HomeScreenRepo {
   @override
   Future<List<List<StoriesModel>>> getAllUsersStories() async {
     List<List<StoriesModel>> allStoriesList = [];
-    DateTime currentTime = await getServerTime();
+    DateTime currentTime = currentTimeDevice();
 
     DateTime twentyFourHoursAgo = currentTime.subtract(
       const Duration(hours: 24),

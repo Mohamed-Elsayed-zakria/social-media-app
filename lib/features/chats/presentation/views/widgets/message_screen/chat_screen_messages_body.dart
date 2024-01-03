@@ -1,6 +1,7 @@
+import 'custom_message/current_message/custom_current_message.dart';
 import '../../../controllers/chat_screen_messages_controller.dart';
+import 'custom_message/other_message/custom_other_message.dart';
 import '../../../../../../core/model/current_user_data.dart';
-import 'custom_message/chat_custom_message_item.dart';
 import '../../../../../../core/api/api_service.dart';
 import '../../../../data/models/user_chat_data.dart';
 import '../../../../data/models/message_model.dart';
@@ -34,8 +35,15 @@ class ChatScreenMessagesBody extends StatelessWidget {
                       physics: const BouncingScrollPhysics(),
                       reverse: true,
                       itemCount: messageData.length,
-                      itemBuilder: (context, index) => ChatCustomMessage(
-                        messageData: messageData[index],
+                      itemBuilder: (context, index) => Visibility(
+                        visible:
+                            messageData[index].senderId == ApiService.user.uid,
+                        replacement: CustomOtherMessage(
+                          messageData: messageData[index],
+                        ),
+                        child: CustomCurrentMessage(
+                          messageData: messageData[index],
+                        ),
                       ),
                     ),
                   );

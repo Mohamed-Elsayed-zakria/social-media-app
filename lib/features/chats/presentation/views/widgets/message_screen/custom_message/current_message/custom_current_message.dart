@@ -1,6 +1,5 @@
-import 'package:flash/core/constant/colors.dart';
-
 import '../../../../../../data/models/message_model.dart';
+import 'package:flash/core/constant/colors.dart';
 import 'on_long_press_current_message.dart';
 import 'chat_current_message_image.dart';
 import 'chat_current_message_text.dart';

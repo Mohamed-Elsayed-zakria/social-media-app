@@ -3,6 +3,7 @@ import '../../../controllers/chat_screen_all_users_controller.dart';
 import '../../../../data/models/user_chat_data.dart';
 import 'custom_list_tile_personal_user.dart';
 import 'package:flutter/material.dart';
+import 'no_messages_yet.dart';
 
 class ChatScreenBody extends StatelessWidget {
   const ChatScreenBody({super.key});
@@ -19,6 +20,8 @@ class ChatScreenBody extends StatelessWidget {
               CustomPersonaListTileShimmer(),
             ],
           );
+        } else if (snapshot.data!.isEmpty || !snapshot.hasData) {
+          return const NoMessagesYet();
         } else {
           List<UserChatData> userData = snapshot.data!;
           return ListView.builder(

@@ -39,6 +39,7 @@ Future<void> chooseImagePictureFromGalary() async {
           toolbarWidgetColor: Colors.white,
           initAspectRatio: CropAspectRatioPreset.original,
           lockAspectRatio: false,
+          activeControlsWidgetColor: AppColors.kPrimaryColor,
         ),
       ],
     );

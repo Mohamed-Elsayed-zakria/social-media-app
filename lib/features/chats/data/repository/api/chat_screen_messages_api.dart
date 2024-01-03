@@ -168,10 +168,10 @@ class ChatScreenMessagesApi extends ChatScreenMessagesRepo {
   }) async {
     DateTime getCurrentDateTime = currentTimeDevice();
     String currentDateTime = getCurrentDateTime.toString();
+    String generatChatVideoId = const Uuid().v1();
     String videoUrl = '';
 
     if (addVideoChatPath != null) {
-      String generatChatVideoId = const Uuid().v1();
       final storageRef = FirebaseStorage.instance.ref(
         'user-files/${ApiService.user.uid}/video/chat/$generatChatVideoId.mp4',
       );

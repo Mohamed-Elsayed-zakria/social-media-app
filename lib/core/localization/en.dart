@@ -90,6 +90,7 @@ const Map<String, String> en = {
   "Edite message": "Edite message",
   "You have blocked this user": "You have blocked this user",
   'You can no longer edite the message':'You can no longer edite the message',
+  'No messages yet':'No messages yet',
 //===================home===================
   "Home": "Home",
   "uploade post": "uploade post",

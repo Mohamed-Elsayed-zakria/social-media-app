@@ -2,16 +2,22 @@ import '../../../../../../core/widgets/comments/comments_lower.dart';
 import '../../../controllers/custom_post_controller.dart';
 import '../../../../../../core/model/comment_model.dart';
 import '../../../controllers/comments_controller.dart';
+import '../../../../data/model/post_model.dart';
 import 'package:flutter/material.dart';
 import 'comments/custom_comments.dart';
+import 'custom_post_item.dart';
 import 'package:get/get.dart';
 import 'custom_post.dart';
 
 class CustomPostDetails extends StatelessWidget {
+  final bool getPostFromDatabase;
+  final PostModel? postData;
   final String postUid;
   const CustomPostDetails({
     super.key,
+    this.postData,
     required this.postUid,
+    required this.getPostFromDatabase,
   });
 
   @override
@@ -26,9 +32,10 @@ class CustomPostDetails extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                CustomPost(
-                  detailsPage: true,
-                  future: getPostDetails(postId: postUid),
+                buildCustomPost(
+                  getPostFromDatabase: getPostFromDatabase,
+                  postData: postData,
+                  postUid: postUid,
                 ),
                 const Divider(),
                 CustomComments(
@@ -57,4 +64,20 @@ class CustomPostDetails extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget buildCustomPost({
+  required bool getPostFromDatabase,
+  required String postUid,
+  PostModel? postData,
+}) {
+  return getPostFromDatabase
+      ? CustomPost(
+          detailsPage: true,
+          future: getPostDetails(postId: postUid),
+        )
+      : CustomPostItem(
+          postData: postData!,
+          detailsPage: true,
+        );
 }

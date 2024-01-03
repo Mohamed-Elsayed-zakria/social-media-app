@@ -18,7 +18,11 @@ class CustomPostAddComment extends StatelessWidget {
       children: [
         IconButton(
           onPressed: () => Get.to(
-            () => CustomPostDetails(postUid: postData.postUid),
+            () => CustomPostDetails(
+              getPostFromDatabase: false,
+              postUid: postData.postUid,
+              postData: postData,
+            ),
           ),
           icon: const Icon(IconlyBroken.moreSquare),
         ),

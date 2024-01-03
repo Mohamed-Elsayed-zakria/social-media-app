@@ -60,7 +60,7 @@ abstract class ApiDynamicLink {
     if (deepLink != null) {
       final id = deepLink.queryParameters['id'];
       if (id != null && isPost) {
-        Get.to(() => CustomPostDetails(postUid: id));
+        Get.to(() => CustomPostDetails(postUid: id,getPostFromDatabase: true));
       } else if (id != null && isPersonalPage) {
         Get.to(() => ProfileScreen(otherUid: id));
       } else if (id != null && isReels) {

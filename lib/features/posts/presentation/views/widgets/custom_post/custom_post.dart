@@ -32,9 +32,11 @@ class CustomPost extends StatelessWidget {
                   ),
                 );
         } else if (!postSnapshot.hasData || postSnapshot.data!.isEmpty) {
-          return SliverToBoxAdapter(
-            child: CustomPostNotFount(vedioPage: vedioPage),
-          );
+          return detailsPage
+              ? CustomPostNotFount(vedioPage: vedioPage)
+              : SliverToBoxAdapter(
+                  child: CustomPostNotFount(vedioPage: vedioPage),
+                );
         } else {
           final allPostData = postSnapshot.data!;
           final List<PostModel> listPost = vedioPage

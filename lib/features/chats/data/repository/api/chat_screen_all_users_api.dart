@@ -11,7 +11,7 @@ class ChatScreenAllUsersApi extends ChatScreenAllUsersRepo {
   Future<List<UserChatData>> getUserDataToChat() async {
     List<Map<String, dynamic>> allUserData = [];
     List<UserChatData> sortedUserData = [];
-    
+
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await ApiService
         .firestore
         .collection(Collections.userCollection)
@@ -35,14 +35,13 @@ class ChatScreenAllUsersApi extends ChatScreenAllUsersRepo {
           Map<String, dynamic> lastMessageData =
               lastMessageSnapshot.docs.first.data();
           lastMessageTime = DateTime.parse(lastMessageData['dateTime']);
+          userData['lastMessageTime'] = lastMessageTime;
+          allUserData.add(userData);
         } else {
-          // If there are no messages, set a default time (e.g., the user creation time).
-          DateTime userCreationTime = ApiService.user.metadata.creationTime!;
-          lastMessageTime = DateTime.parse(userData[userCreationTime]);
+          DateTime lastMessageTime = ApiService.user.metadata.creationTime!;
+          userData['lastMessageTime'] = lastMessageTime;
+          allUserData.add(userData);
         }
-
-        userData['lastMessageTime'] = lastMessageTime;
-        allUserData.add(userData);
       }
 
       // Sort the list based on last message time in descending order
@@ -68,9 +67,9 @@ class ChatScreenAllUsersApi extends ChatScreenAllUsersRepo {
         StreamController<List<MessageModel>>();
     ApiService.firestore
         .collection(Collections.userCollection)
-        .doc(otherUserId)
-        .collection(Collections.chatCollection)
         .doc(ApiService.user.uid)
+        .collection(Collections.chatCollection)
+        .doc(otherUserId)
         .collection(Collections.messageCollection)
         .orderBy("dateTime", descending: true)
         .limit(1)
